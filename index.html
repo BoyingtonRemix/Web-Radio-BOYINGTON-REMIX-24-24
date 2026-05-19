@@ -189,17 +189,16 @@
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(0,0,0,0.35);
-      height: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
+      background: rgba(0,0,0,0.45);
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 10px;
     }
 
     .track-cover img {
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: auto;
       display: block;
       object-fit: contain;
       border-radius: 16px;
@@ -535,7 +534,7 @@
       .banner-row { grid-template-columns: 1fr; }
       .social-row { grid-template-columns: repeat(2, 1fr); }
       .small-grid { grid-template-columns: 1fr; }
-      .track-cover { min-height: 420px; }
+      .track-cover { max-width: 100%; }
     }
 
     @media (max-width: 700px) {
@@ -544,7 +543,6 @@
       .main-grid, .matrix, .lower-grid, .banner-row { padding: 12px; }
       .social-row { grid-template-columns: 1fr; }
       .cities { grid-template-columns: 1fr; }
-      .track-cover { min-height: 320px; }
       .player-wrap iframe { height: 166px; }
     }
   </style>
@@ -552,7 +550,6 @@
 <body>
   <main class="page">
     <div class="shell">
-      <!-- [M1] HEADER -->
       <header class="topbar">
         <div class="brand">
           <div class="brand-logo">
@@ -573,7 +570,6 @@
         </nav>
       </header>
 
-      <!-- [M2] TOP GRID -->
       <section class="main-grid" id="latest">
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
@@ -776,6 +772,15 @@
         el.tokyo.textContent = formatTime(now, 'Asia/Tokyo');
       }
 
+      function normalizeArtworkUrl(url) {
+        if (!url) return defaultCover;
+        return url
+          .replace('-large.jpg', '-t500x500.jpg')
+          .replace('-large.png', '-t500x500.png')
+          .replace('-t300x300', '-t500x500')
+          .replace('-t500x500', '-t500x500');
+      }
+
       function updateCoverFromSound(sound) {
         if (!sound) {
           coverImg.src = defaultCover;
@@ -783,7 +788,7 @@
         }
 
         const artwork = sound.artwork_url || (sound.user && sound.user.avatar_url);
-        coverImg.src = artwork || defaultCover;
+        coverImg.src = normalizeArtworkUrl(artwork || defaultCover);
       }
 
       function bindSoundCloudCover() {
@@ -793,7 +798,6 @@
         }
 
         const widget = SC.Widget(iframe);
-
         const refreshCover = () => {
           widget.getCurrentSound(function (sound) {
             updateCoverFromSound(sound);
@@ -815,5 +819,6 @@
   </script>
 </body>
 </html>
+
 
 
