@@ -715,6 +715,9 @@ MARQUEUR 01 — DÉBUT PAGE WEB RADIO BOYINGTON
       <!-- =========================================================
 MARQUEUR 02 — HEADER / LOGO / MENU
 ========================================================= -->
+<!-- =========================================================
+MARQUEUR 01 — HEADER / LOGO / NAVIGATION
+========================================================= -->
 <header class="topbar">
         <div class="brand">
           <div class="brand-logo">
@@ -738,9 +741,12 @@ MARQUEUR 02 — HEADER / LOGO / MENU
       <!-- =========================================================
 MARQUEUR 03 — PLAYER RADIO / COVER DYNAMIQUE
 ========================================================= -->
+<!-- =========================================================
+MARQUEUR 02 — PLAYER RADIO / COVER DYNAMIQUE
+========================================================= -->
 <section class="main-grid" id="latest">
         <article class="card latest-layout">
-          <div class="card-header">Dernier Plalist uploadé</div>
+          <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
             <div class="player-wrap">
               <iframe
@@ -768,6 +774,9 @@ MARQUEUR 03 — PLAYER RADIO / COVER DYNAMIQUE
         <!-- =========================================================
 MARQUEUR 04 — RÉSEAUX SOCIAUX
 ========================================================= -->
+<!-- =========================================================
+MARQUEUR 03 — RÉSEAUX & LIENS
+========================================================= -->
 <aside class="social-grid" id="socials">
           <div class="card">
             <div class="card-header">Réseaux & liens</div>
@@ -792,12 +801,18 @@ MARQUEUR 04 — RÉSEAUX SOCIAUX
           <!-- =========================================================
 MARQUEUR 05 — IMAGE STUDIO CONSOLE
 ========================================================= -->
+<!-- =========================================================
+MARQUEUR 04 — IMAGE STUDIO CONSOLE
+========================================================= -->
 <div class="studio-box">
             <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
           </div>
 
           <!-- =========================================================
 MARQUEUR 06 — DJ WORLD MATRIX / HORLOGE
+========================================================= -->
+<!-- =========================================================
+MARQUEUR 05 — DJ WORLD MATRIX / HORLOGE
 ========================================================= -->
 <section class="matrix card" id="matrix">
             <div class="matrix-title">
@@ -837,12 +852,24 @@ MARQUEUR 06 — DJ WORLD MATRIX / HORLOGE
       <!-- =========================================================
 MARQUEUR 07 — SUPPORT PROJECT
 ========================================================= -->
+<!-- =========================================================
+MARQUEUR 06 — SUPPORT THE PROJECT
+========================================================= -->
 <section class="lower-grid">
         <article class="card support" id="support">
           <div class="card-header">SUPPORT THE PROJECT</div>
           <div class="card-body">
             <div class="support-panel">
-              <div class="empty-project"></div>
+              <p style="line-height:1.8;color:#d8d8d8;font-size:15px;text-align:center;padding:20px;">
+                🎧 <strong>BOYINGTON WEB RADIO 24/24</strong> 🎶<br><br>
+                🌌 Web radio immersive diffusant playlists, remixes et mix DJ 24/24.<br>
+                ✨ Une sélection musicale pensée pour voyager, ressentir et vibrer à travers des ambiances nocturnes, lounge, club et électroniques émotionnelles.<br><br>
+                🎵 Playlists évolutives<br>
+                📡 Diffusion automatique 24/24<br>
+                🔥 Ambiance radio premium<br>
+                🎚️ Univers DJ moderne & cinématique<br><br>
+                🎧 Live Music • DJ Experience • Emotional Electronic Vibes
+              </p>
             </div>
           </div>
         </article>
@@ -850,6 +877,9 @@ MARQUEUR 07 — SUPPORT PROJECT
 
       <!-- =========================================================
 MARQUEUR 08 — IMAGES BAS DE PAGE
+========================================================= -->
+<!-- =========================================================
+MARQUEUR 07 — IMAGES BAS DE PAGE
 ========================================================= -->
 <section class="banner-row">
         <div class="banner">
@@ -860,14 +890,16 @@ MARQUEUR 08 — IMAGES BAS DE PAGE
         </div>
       </section>
 
-      <div class="footer-note">✨🎶 Soutenez toujours les artistes et labels officiels.
-⚠️ Tous les droits sur les œuvres originales appartiennent à leurs propriétaires respectifs. .</div>
-      <div class="footer-note"><strong>BOYINGTON RADIO</strong> · Playlist Music non commerciales et non Officiel</div>
+      <div class="footer-note">✨ Vivre éternellement au rythme du rythme.</div>
+      <div class="footer-note"><strong>BOYINGTON REMIX</strong> · Créations/Remixes DJ non commerciales et non Officiel</div>
     </div>
   </main>
 
   <!-- =========================================================
 MARQUEUR 09 — SCRIPT SOUNDCLOUD / PLAYLIST / COVER
+========================================================= -->
+<!-- =========================================================
+MARQUEUR 08 — SCRIPT SOUNDCLOUD / PLAYLIST / COVER
 ========================================================= -->
 <script src="https://w.soundcloud.com/player/api.js"></script>
   <script>
@@ -911,6 +943,53 @@ MARQUEUR 09 — SCRIPT SOUNDCLOUD / PLAYLIST / COVER
 
       /* =========================================================
 MARQUEUR 10 — HORLOGE MONDIALE
+========================================================= */
+      /* =========================================================
+STYLE FLUO — BLOCS PRINCIPAUX & TITRES
+========================================================= */
+
+.card {
+  border: 1px solid rgba(192,192,192,0.25);
+  box-shadow:
+    0 0 12px rgba(255,255,255,0.08),
+    0 0 25px rgba(180,180,255,0.06);
+}
+
+.card-title,
+.section-title,
+h1,
+h2 {
+  color: #d8d8ff;
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.6),
+    0 0 12px rgba(180,180,255,0.5),
+    0 0 18px rgba(120,120,255,0.4);
+  letter-spacing: 2px;
+}
+
+.topbar,
+.player-wrapper,
+.matrix,
+.support-box,
+.social-grid a,
+.studio-box,
+.banner-row img {
+  border: 1px solid rgba(220,220,255,0.18);
+  box-shadow:
+    0 0 10px rgba(255,255,255,0.05),
+    0 0 30px rgba(180,180,255,0.08);
+}
+
+.social-grid a:hover,
+.nav-btn:hover {
+  border-color: rgba(255,255,255,0.45);
+  box-shadow:
+    0 0 12px rgba(255,255,255,0.25),
+    0 0 22px rgba(180,180,255,0.25);
+}
+
+/* =========================================================
+MARQUEUR 09 — HORLOGE MONDIALE
 ========================================================= */
       function updateClock() {
         const now = new Date();
@@ -961,6 +1040,9 @@ MARQUEUR 10 — HORLOGE MONDIALE
       /* =========================================================
 MARQUEUR 11 — LOGIQUE PLAYER SOUNDCLOUD
 ========================================================= */
+      /* =========================================================
+MARQUEUR 10 — LOGIQUE PLAYER SOUNDCLOUD
+========================================================= */
       function bindSoundCloud() {
         if (!window.SC || !SC.Widget) {
           coverImg.src = defaultCover;
@@ -1007,7 +1089,11 @@ MARQUEUR 11 — LOGIQUE PLAYER SOUNDCLOUD
 <!-- =========================================================
 MARQUEUR FINAL — FIN PAGE WEB RADIO BOYINGTON
 ========================================================= -->
+<!-- =========================================================
+MARQUEUR FINAL — FIN PAGE WEB RADIO BOYINGTON
+========================================================= -->
 </body>
 </html>
+
 
 
