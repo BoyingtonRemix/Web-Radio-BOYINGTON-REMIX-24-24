@@ -12,6 +12,7 @@
   <meta name="robots" content="index, follow" />
 
   <style>
+
     :root{
       --bg:#050505;
       --panel:#0b0b0b;
@@ -36,11 +37,14 @@
       background:
       linear-gradient(rgba(0,0,0,0.78),rgba(0,0,0,0.88)),
       url('background-boyington-radio.jpg');
+
       background-size:cover;
       background-position:center;
       background-attachment:fixed;
+
       font-family:Arial,Helvetica,sans-serif;
       color:var(--text);
+
       overflow-x:hidden;
     }
 
@@ -60,14 +64,21 @@
       backdrop-filter:blur(6px);
     }
 
+    /* =======================================================
+       🔲 01 - HEADER
+    ======================================================= */
+
     .topbar{
       display:flex;
       justify-content:space-between;
       align-items:center;
       flex-wrap:wrap;
       gap:16px;
+
       padding:18px 22px;
+
       border-bottom:1px solid var(--line);
+
       background:rgba(255,255,255,0.02);
     }
 
@@ -110,11 +121,17 @@
     .nav-tabs a{
       text-decoration:none;
       color:#fff;
+
       border:1px solid rgba(255,255,255,0.12);
+
       padding:10px 16px;
+
       border-radius:999px;
+
       background:rgba(255,255,255,0.03);
+
       transition:0.25s;
+
       font-size:0.92rem;
     }
 
@@ -122,6 +139,10 @@
       background:rgba(255,255,255,0.08);
       transform:translateY(-2px);
     }
+
+    /* =======================================================
+       🔲 02 - HERO
+    ======================================================= */
 
     .hero{
       text-align:center;
@@ -139,6 +160,7 @@
 
     .hero-live{
       margin-top:18px;
+
       display:flex;
       justify-content:center;
       gap:12px;
@@ -147,10 +169,15 @@
 
     .pill{
       padding:10px 16px;
+
       border-radius:999px;
+
       border:1px solid rgba(255,255,255,0.12);
+
       background:rgba(255,255,255,0.04);
+
       color:#fff;
+
       font-size:0.92rem;
     }
 
@@ -159,8 +186,14 @@
     }
 
     @keyframes blink{
-      50%{opacity:0.55;}
+      50%{
+        opacity:0.55;
+      }
     }
+
+    /* =======================================================
+       🔲 03 - MAIN GRID
+    ======================================================= */
 
     .content{
       display:grid;
@@ -171,19 +204,29 @@
 
     .card{
       background:rgba(255,255,255,0.02);
+
       border:1px solid var(--line);
+
       border-radius:24px;
+
       overflow:hidden;
+
       box-shadow:var(--shadow);
     }
 
     .card-header{
       padding:16px 20px;
+
       border-bottom:1px solid var(--line);
+
       color:var(--silver);
+
       text-transform:uppercase;
+
       letter-spacing:0.08em;
+
       font-size:0.9rem;
+
       background:rgba(255,255,255,0.02);
     }
 
@@ -191,13 +234,22 @@
       padding:18px;
     }
 
+    /* =======================================================
+       🔲 04 - GROS COVER
+    ======================================================= */
+
     .cover-stage{
       position:relative;
+
       width:100%;
       aspect-ratio:1/1;
+
       overflow:hidden;
+
       border-radius:20px;
+
       background:#000;
+
       border:1px solid rgba(255,255,255,0.08);
     }
 
@@ -210,11 +262,16 @@
 
     .cover-overlay{
       position:absolute;
+
       left:0;
       right:0;
       bottom:0;
+
       padding:18px;
-      background:linear-gradient(transparent,rgba(0,0,0,0.88));
+
+      background:linear-gradient(
+      transparent,
+      rgba(0,0,0,0.88));
     }
 
     .cover-kicker{
@@ -236,35 +293,77 @@
       font-size:0.9rem;
     }
 
+    /* =======================================================
+       🔲 05 - LOGO XXL SOUS COVER
+    ======================================================= */
+
     .cover-logo{
-      margin-top:18px;
+      margin-top:22px;
+
       width:100%;
+
       display:flex;
       justify-content:center;
       align-items:center;
+
+      min-height:260px;
+
+      padding:10px;
     }
 
     .cover-logo img{
-      width:180px;
-      max-width:80%;
-      opacity:0.95;
-      filter:drop-shadow(0 0 18px rgba(255,255,255,0.12));
+
+      width:100%;
+      max-width:100%;
+      height:auto;
+
+      object-fit:contain;
+
       display:block;
+
+      opacity:0.98;
+
+      filter:
+      drop-shadow(0 0 18px rgba(255,255,255,0.12))
+      drop-shadow(0 0 40px rgba(255,255,255,0.08));
+
+      transition:0.3s ease;
     }
 
+    /* =======================================================
+       🔲 06 - PLAYER
+    ======================================================= */
+
     .radio-launch-btn{
+
       width:100%;
+
       margin-bottom:14px;
+
       padding:14px;
+
       border:none;
+
       border-radius:14px;
-      background:linear-gradient(180deg,#e0e0e0,#8d8d8d);
+
+      background:
+      linear-gradient(
+      180deg,
+      #e0e0e0,
+      #8d8d8d);
+
       color:#000;
+
       font-size:1rem;
+
       font-weight:800;
+
       cursor:pointer;
+
       transition:0.25s;
+
       letter-spacing:0.08em;
+
       text-transform:uppercase;
     }
 
@@ -286,6 +385,10 @@
       display:block;
     }
 
+    /* =======================================================
+       🔲 07 - RESEAUX
+    ======================================================= */
+
     .social-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
@@ -293,18 +396,30 @@
     }
 
     .social-link{
+
       display:flex;
+
       justify-content:center;
       align-items:center;
+
       min-height:72px;
+
       text-decoration:none;
+
       color:#fff;
+
       border-radius:16px;
+
       border:1px solid rgba(255,255,255,0.10);
+
       background:rgba(255,255,255,0.03);
+
       transition:0.25s;
+
       font-weight:700;
+
       text-align:center;
+
       padding:12px;
     }
 
@@ -313,11 +428,20 @@
       background:rgba(255,255,255,0.08);
     }
 
+    /* =======================================================
+       🔲 08 - DJ WORLD MATRIX
+    ======================================================= */
+
     .world-mini{
+
       margin-top:18px;
+
       border-radius:20px;
+
       padding:18px;
+
       background:rgba(255,255,255,0.03);
+
       border:1px solid rgba(255,255,255,0.08);
     }
 
@@ -346,10 +470,15 @@
     }
 
     .matrix-city{
+
       border-radius:14px;
+
       background:rgba(255,255,255,0.03);
+
       border:1px solid rgba(255,255,255,0.08);
+
       padding:12px;
+
       text-align:center;
     }
 
@@ -367,6 +496,10 @@
       font-weight:700;
     }
 
+    /* =======================================================
+       🔲 09 - FOOTER
+    ======================================================= */
+
     .footer-wrap{
       padding:24px;
       text-align:center;
@@ -379,13 +512,20 @@
       text-transform:uppercase;
     }
 
+    /* =======================================================
+       🔲 10 - RESPONSIVE
+    ======================================================= */
+
     @media(max-width:1000px){
+
       .content{
         grid-template-columns:1fr;
       }
+
     }
 
     @media(max-width:700px){
+
       .topbar{
         justify-content:center;
       }
@@ -409,8 +549,14 @@
       .player-shell iframe{
         height:220px;
       }
+
     }
+
   </style>
+
+  <!-- =======================================================
+       🔲 11 - GOATCOUNTER + API SOUNDCLOUD
+  ======================================================== -->
 
   <script
     data-goatcounter="https://boyingtonremix.goatcounter.com/count"
@@ -428,12 +574,20 @@
 
     <div class="shell">
 
+      <!-- =======================================================
+           🔲 12 - HEADER
+      ======================================================== -->
+
       <header class="topbar">
 
         <div class="brand">
 
           <div class="logo-box">
-            <img src="logo_radio_boyington.png" alt="BOYINGTON RADIO">
+
+            <img
+              src="logo_radio_boyington.png"
+              alt="BOYINGTON RADIO">
+
           </div>
 
           <div class="brand-title">
@@ -443,26 +597,60 @@
         </div>
 
         <nav class="nav-tabs">
-          <a href="#home">Accueil</a>
-          <a href="#radio">Radio</a>
-          <a href="#social">Réseaux</a>
-          <a href="#matrix">Matrix</a>
+
+          <a href="#home">
+            Accueil
+          </a>
+
+          <a href="#radio">
+            Radio
+          </a>
+
+          <a href="#social">
+            Réseaux
+          </a>
+
+          <a href="#matrix">
+            Matrix
+          </a>
+
         </nav>
 
       </header>
 
+      <!-- =======================================================
+           🔲 13 - HERO
+      ======================================================== -->
+
       <section class="hero" id="home">
 
-        <h1>BOYINGTON RADIO</h1>
+        <h1>
+          BOYINGTON RADIO
+        </h1>
 
         <div class="hero-live">
-          <div class="pill live">🔴 LIVE</div>
-          <div class="pill">📻 RADIO 24/24</div>
+
+          <div class="pill live">
+            🔴 LIVE
+          </div>
+
+          <div class="pill">
+            📻 RADIO 24/24
+          </div>
+
         </div>
 
       </section>
 
+      <!-- =======================================================
+           🔲 14 - MAIN CONTENT
+      ======================================================== -->
+
       <section class="content">
+
+        <!-- =======================================================
+             🔲 15 - GROS COVER + LOGO XXL
+        ======================================================== -->
 
         <article class="card">
 
@@ -472,7 +660,11 @@
 
           <div class="card-body">
 
-            <div class="cover-stage" id="coverStage">
+            <!-- COVER -->
+
+            <div
+              class="cover-stage"
+              id="coverStage">
 
               <img
                 id="trackCover"
@@ -486,29 +678,51 @@
                   NOW PLAYING
                 </div>
 
-                <div class="cover-title" id="trackTitle">
+                <div
+                  class="cover-title"
+                  id="trackTitle">
+
                   Boyington Radio
+
                 </div>
 
-                <div class="cover-artist" id="trackArtist">
+                <div
+                  class="cover-artist"
+                  id="trackArtist">
+
                   SoundCloud Playlist
+
                 </div>
 
               </div>
 
             </div>
 
+            <!-- LOGO XXL -->
+
             <div class="cover-logo">
-              <img src="logo_radio_boyington.png" alt="Boyington Radio Logo">
+
+              <img
+                src="logo_radio_boyington.png"
+                alt="Boyington Radio Logo">
+
             </div>
 
           </div>
 
         </article>
 
+        <!-- =======================================================
+             🔲 16 - COLONNE DROITE
+        ======================================================== -->
+
         <div>
 
-          <article class="card" id="radio">
+          <!-- PLAYER -->
+
+          <article
+            class="card"
+            id="radio">
 
             <div class="card-header">
               Radio Live
@@ -519,7 +733,9 @@
               <button
                 id="startRadio"
                 class="radio-launch-btn">
+
                 ▶ Lancer la Radio
+
               </button>
 
               <div class="player-shell">
@@ -529,7 +745,9 @@
                   allow="autoplay"
                   scrolling="no"
                   frameborder="no"
+
                   src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23d8d8d8&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false">
+
                 </iframe>
 
               </div>
@@ -537,6 +755,8 @@
             </div>
 
           </article>
+
+          <!-- RESEAUX -->
 
           <article
             class="card"
@@ -555,28 +775,36 @@
                   class="social-link"
                   href="https://soundcloud.com/boyingtonremix"
                   target="_blank">
+
                   SoundCloud
+
                 </a>
 
                 <a
                   class="social-link"
                   href="https://www.facebook.com/LoranBoyington/"
                   target="_blank">
+
                   Facebook
+
                 </a>
 
                 <a
                   class="social-link"
                   href="https://www.tiktok.com/@boyingtonremixofficiel"
                   target="_blank">
+
                   TikTok
+
                 </a>
 
                 <a
                   class="social-link"
                   href="https://www.facebook.com/groups/DjsSetMusicForPeople"
                   target="_blank">
+
                   Groupe Djs Set Music For People
+
                 </a>
 
               </div>
@@ -584,6 +812,8 @@
             </div>
 
           </article>
+
+          <!-- MATRIX -->
 
           <article
             class="card"
@@ -605,29 +835,75 @@
                 <div
                   class="matrix-clock"
                   id="matrixClock">
+
                   --:--:--
+
                 </div>
 
                 <div class="matrix-cities">
 
                   <div class="matrix-city">
-                    <div class="city-name">Paris</div>
-                    <div class="city-time" data-timezone="Europe/Paris">--:--:--</div>
+
+                    <div class="city-name">
+                      Paris
+                    </div>
+
+                    <div
+                      class="city-time"
+                      data-timezone="Europe/Paris">
+
+                      --:--:--
+
+                    </div>
+
                   </div>
 
                   <div class="matrix-city">
-                    <div class="city-name">London</div>
-                    <div class="city-time" data-timezone="Europe/London">--:--:--</div>
+
+                    <div class="city-name">
+                      London
+                    </div>
+
+                    <div
+                      class="city-time"
+                      data-timezone="Europe/London">
+
+                      --:--:--
+
+                    </div>
+
                   </div>
 
                   <div class="matrix-city">
-                    <div class="city-name">New York</div>
-                    <div class="city-time" data-timezone="America/New_York">--:--:--</div>
+
+                    <div class="city-name">
+                      New York
+                    </div>
+
+                    <div
+                      class="city-time"
+                      data-timezone="America/New_York">
+
+                      --:--:--
+
+                    </div>
+
                   </div>
 
                   <div class="matrix-city">
-                    <div class="city-name">Tokyo</div>
-                    <div class="city-time" data-timezone="Asia/Tokyo">--:--:--</div>
+
+                    <div class="city-name">
+                      Tokyo
+                    </div>
+
+                    <div
+                      class="city-time"
+                      data-timezone="Asia/Tokyo">
+
+                      --:--:--
+
+                    </div>
+
                   </div>
 
                 </div>
@@ -642,6 +918,10 @@
 
       </section>
 
+      <!-- =======================================================
+           🔲 17 - FOOTER
+      ======================================================== -->
+
       <div class="footer-wrap">
 
         <div class="footer-brand">
@@ -654,117 +934,252 @@
 
   </main>
 
+  <!-- =======================================================
+       🔲 18 - JAVASCRIPT GLOBAL
+  ======================================================== -->
+
   <script>
-    const DEFAULT_COVER = 'cover-principal.jpg';
+
+    const DEFAULT_COVER =
+      'cover-principal.jpg';
+
+    /* =======================================================
+       🔲 19 - MATRIX CLOCK
+    ======================================================= */
 
     function updateMatrixClock(){
-      const now = new Date();
 
-      document.getElementById('matrixClock').textContent =
-        now.toLocaleTimeString('fr-FR', {
+      const now =
+        new Date();
+
+      document.getElementById(
+        'matrixClock'
+      ).textContent =
+
+      now.toLocaleTimeString(
+        'fr-FR',
+        {
           hour:'2-digit',
           minute:'2-digit',
           second:'2-digit',
           hour12:false
-        });
+        }
+      );
 
-      document.querySelectorAll('.city-time').forEach(el=>{
-        const tz = el.getAttribute('data-timezone');
+      document.querySelectorAll(
+        '.city-time'
+      ).forEach(el=>{
+
+        const tz =
+          el.getAttribute(
+            'data-timezone'
+          );
+
         el.textContent =
-          now.toLocaleTimeString('fr-FR',{
-            hour:'2-digit',
-            minute:'2-digit',
-            second:'2-digit',
-            hour12:false,
-            timeZone:tz
-          });
+          now.toLocaleTimeString(
+            'fr-FR',
+            {
+              hour:'2-digit',
+              minute:'2-digit',
+              second:'2-digit',
+              hour12:false,
+              timeZone:tz
+            }
+          );
+
       });
+
     }
 
-    setInterval(updateMatrixClock,1000);
+    setInterval(
+      updateMatrixClock,
+      1000
+    );
+
     updateMatrixClock();
 
-    function setCover(artUrl,title,artist){
-      const coverImg = document.getElementById('trackCover');
-      const titleEl = document.getElementById('trackTitle');
-      const artistEl = document.getElementById('trackArtist');
+    /* =======================================================
+       🔲 20 - SET COVER
+    ======================================================= */
 
-      titleEl.textContent = title || 'Boyington Radio';
-      artistEl.textContent = artist || 'SoundCloud Playlist';
+    function setCover(
+      artUrl,
+      title,
+      artist
+    ){
+
+      const coverImg =
+        document.getElementById(
+          'trackCover'
+        );
+
+      const titleEl =
+        document.getElementById(
+          'trackTitle'
+        );
+
+      const artistEl =
+        document.getElementById(
+          'trackArtist'
+        );
+
+      titleEl.textContent =
+        title || 'Boyington Radio';
+
+      artistEl.textContent =
+        artist || 'SoundCloud Playlist';
 
       if(!artUrl){
-        coverImg.src = DEFAULT_COVER;
+
+        coverImg.src =
+          DEFAULT_COVER;
+
         return;
+
       }
 
-      coverImg.src = artUrl.replace('-large','-t500x500');
+      coverImg.src =
+        artUrl.replace(
+          '-large',
+          '-t500x500'
+        );
+
     }
 
+    /* =======================================================
+       🔲 21 - PLAYER SOUNDCLOUD
+    ======================================================= */
+
     function initRadioPlayer(){
-      const iframe = document.getElementById('soundcloud-player');
-      const launchBtn = document.getElementById('startRadio');
+
+      const iframe =
+        document.getElementById(
+          'soundcloud-player'
+        );
+
+      const launchBtn =
+        document.getElementById(
+          'startRadio'
+        );
 
       if(!iframe) return;
 
       const waitForSC = ()=>{
-        if(!window.SC || !SC.Widget){
-          setTimeout(waitForSC,250);
+
+        if(
+          !window.SC
+          || !SC.Widget
+        ){
+
+          setTimeout(
+            waitForSC,
+            250
+          );
+
           return;
+
         }
 
-        const widget = SC.Widget(iframe);
+        const widget =
+          SC.Widget(iframe);
 
         const refreshCover = ()=>{
-          widget.getCurrentSound(sound=>{
+
+          widget.getCurrentSound(
+            sound=>{
+
             if(!sound){
-              setCover(DEFAULT_COVER,'Boyington Radio','SoundCloud Playlist');
+
+              setCover(
+                DEFAULT_COVER,
+                'Boyington Radio',
+                'SoundCloud Playlist'
+              );
+
               return;
+
             }
 
-            const art = sound.artwork_url
-              || (sound.user && sound.user.avatar_url)
+            const art =
+              sound.artwork_url
+              || (
+                sound.user
+                && sound.user.avatar_url
+              )
               || DEFAULT_COVER;
 
-            const title = sound.title || 'Boyington Radio';
+            const title =
+              sound.title
+              || 'Boyington Radio';
 
-            const artist = (sound.user && sound.user.username) || 'SoundCloud Playlist';
+            const artist =
+              (
+                sound.user
+                && sound.user.username
+              )
+              || 'SoundCloud Playlist';
 
-            setCover(art,title,artist);
+            setCover(
+              art,
+              title,
+              artist
+            );
+
           });
+
         };
 
         widget.bind(
           SC.Widget.Events.READY,
           ()=>{
+
             refreshCover();
 
             setTimeout(()=>{
+
               try{
                 widget.play();
               }catch(e){}
+
             },1800);
+
           }
         );
 
-        widget.bind(SC.Widget.Events.PLAY, refreshCover);
-        widget.bind(SC.Widget.Events.FINISH, refreshCover);
+        widget.bind(
+          SC.Widget.Events.PLAY,
+          refreshCover
+        );
 
-        setInterval(refreshCover,12000);
+        widget.bind(
+          SC.Widget.Events.FINISH,
+          refreshCover
+        );
+
+        setInterval(
+          refreshCover,
+          12000
+        );
 
         launchBtn.addEventListener(
           'click',
           ()=>{
+
             try{
               widget.play();
             }catch(e){}
+
           }
         );
+
       };
 
       waitForSC();
+
     }
 
     initRadioPlayer();
+
   </script>
 
 </body>
