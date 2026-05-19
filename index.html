@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,17 +9,13 @@
   <style>
     :root {
       --bg: #050505;
-      --bg2: #0b0b0e;
       --panel: rgba(255, 255, 255, 0.04);
-      --panel2: rgba(255, 255, 255, 0.06);
       --line: rgba(216, 216, 216, 0.14);
-      --line2: rgba(216, 216, 216, 0.20);
       --silver: #d7d7d7;
       --silver2: #bdbdbd;
       --text: #f4f4f4;
       --muted: #b4b4b4;
       --gold: #c7c7c7;
-      --accent: #d8d8d8;
       --shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
       --radius: 22px;
     }
@@ -174,7 +169,7 @@
       padding: 18px;
     }
 
-    /* [M3] LAST TRACK + PLAYER */
+    /* [M3] COVER + PLAYER + LOGO */
     .latest-layout {
       display: grid;
       grid-template-rows: auto auto auto;
@@ -211,25 +206,21 @@
       background: #111;
     }
 
-    .latest-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+    .official-logo {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(216,216,216,0.14);
+      background: rgba(0,0,0,0.35);
+      padding: 10px;
+      display: grid;
+      place-items: center;
     }
 
-    .latest-footer h3 {
-      margin: 0;
-      font-size: 1.02rem;
-      color: var(--text);
-    }
-
-    .latest-footer p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      line-height: 1.55;
-      max-width: 620px;
+    .official-logo img {
+      display: block;
+      width: min(100%, 520px);
+      height: auto;
+      object-fit: contain;
     }
 
     .btn-link {
@@ -474,15 +465,19 @@
       border-radius: 18px;
       border: 1px solid rgba(216,216,216,0.12);
       background: rgba(255,255,255,0.03);
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 14px;
     }
 
-    .project-panel h3,
-    .support-panel h3 {
+    .empty-project {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      border-radius: 18px;
+      border: 1px dashed rgba(216,216,216,0.14);
+      background: rgba(0,0,0,0.18);
+    }
+
+    .support-panel h3,
+    .project-panel h3 {
       margin: 0;
       color: var(--silver);
       font-size: 1.1rem;
@@ -490,7 +485,6 @@
       text-transform: uppercase;
     }
 
-    .project-panel p,
     .support-panel p {
       margin: 0;
       color: var(--muted);
@@ -604,6 +598,7 @@
       .social-row { grid-template-columns: 1fr; }
       .cities { grid-template-columns: 1fr; }
       .latest-cover { min-height: 320px; }
+      .player-wrap iframe { height: 280px; }
     }
   </style>
 </head>
@@ -633,7 +628,7 @@
 
       <!-- [M2] TOP GRID -->
       <section class="main-grid" id="latest">
-        <!-- Dernier titre uploadé + player -->
+        <!-- Cover + player + logo officiel -->
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
@@ -641,7 +636,7 @@
               <img src="latest-upload-boyington-radio.jpg" alt="Dernier titre BOYINGTON RADIO" />
             </div>
 
-            <div class="player-wrap" style="margin-top:14px;">
+            <div class="player-wrap">
               <iframe
                 title="BOYINGTON RADIO 24/24"
                 width="100%"
@@ -653,12 +648,8 @@
               </iframe>
             </div>
 
-            <div class="latest-footer" style="margin-top:14px;">
-              <div>
-                <h3>Player radio BOYINGTON</h3>
-                <p>Lecture SoundCloud visuelle avec pochettes et titres visibles pour les mixes d’une heure et les prochaines mises à jour.</p>
-              </div>
-              <a class="btn-link" href="https://soundcloud.com/boyingtonremix/sets/boyington-radio-24-24" target="_blank" rel="noopener">▶ OUVRIR</a>
+            <div class="official-logo">
+              <img src="logo_radio_boyington.png" alt="Logo officiel BOYINGTON RADIO" />
             </div>
           </div>
         </article>
@@ -670,13 +661,13 @@
             <div class="card-body">
               <div class="social-row">
                 <a class="social-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">SoundCloud</a>
-                <a class="social-btn" href="#" target="_blank" rel="noopener">Facebook</a>
-                <a class="social-btn" href="#" target="_blank" rel="noopener">TikTok</a>
-                <a class="social-btn" href="#" target="_blank" rel="noopener">YouTube</a>
+                <a class="social-btn" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
+                <a class="social-btn" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+                <a class="social-btn" href="https://www.facebook.com/groups/" target="_blank" rel="noopener">Groupe Djs Set Music For People</a>
               </div>
 
               <div class="small-grid" style="margin-top:14px;">
-                <a class="small-box" href="#" target="_blank" rel="noopener">
+                <a class="small-box" href="https://www.facebook.com/groups/" target="_blank" rel="noopener">
                   <strong>Groupe Facebook DJ</strong>
                   <span>Rejoindre</span>
                 </a>
@@ -740,14 +731,10 @@
       <!-- [M3] LOWER GRID -->
       <section class="lower-grid">
         <article class="card project" id="project">
-          <div class="card-header">BOYINGTON REMIX PROJECT</div>
+          <div class="card-header">Projet</div>
           <div class="card-body">
             <div class="project-panel">
-              <h3>Boyington Remix</h3>
-              <p>A Story Born From Passion.</p>
-              <p>
-                Boyington Remix was not born from strategy or a desire for fame. It is a project born from pure passion.
-              </p>
+              <div class="empty-project"></div>
             </div>
           </div>
         </article>
@@ -762,11 +749,11 @@
                   <span class="num">01</span>
                   <span class="label">Follow on SoundCloud</span>
                 </a>
-                <a class="support-item" href="#" target="_blank" rel="noopener">
+                <a class="support-item" href="https://www.facebook.com/" target="_blank" rel="noopener">
                   <span class="num">02</span>
                   <span class="label">Share the music</span>
                 </a>
-                <a class="support-item" href="#" target="_blank" rel="noopener">
+                <a class="support-item" href="https://www.facebook.com/groups/" target="_blank" rel="noopener">
                   <span class="num">03</span>
                   <span class="label">Join the Facebook community</span>
                 </a>
