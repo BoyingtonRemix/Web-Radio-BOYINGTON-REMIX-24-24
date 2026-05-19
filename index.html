@@ -166,7 +166,7 @@
     /* [M3] PLAYER + COVER */
     .latest-layout {
       display: grid;
-      grid-template-rows: auto auto auto;
+      grid-template-rows: auto auto auto auto;
       gap: 14px;
     }
 
@@ -183,6 +183,34 @@
       height: 166px;
       border: 0;
       background: #111;
+    }
+
+    .player-live-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(216,216,216,0.18);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .live-pill:hover {
+      transform: translateY(-1px);
+      border-color: rgba(216,216,216,0.34);
+      background: rgba(255,255,255,0.09);
     }
 
     .track-cover {
@@ -574,6 +602,10 @@
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
+            <div class="player-live-row" style="margin-bottom:12px;">
+              <a class="live-pill" href="https://soundcloud.com/boyingtonremix/sets/boyington-radio-24-24" target="_blank" rel="noopener">🔴 LIVE PLAYLIST</a>
+            </div>
+
             <div class="player-wrap">
               <iframe
                 id="soundcloud-widget"
@@ -583,7 +615,7 @@
                 scrolling="no"
                 frameborder="no"
                 allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23c0c0c0&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23c0c0c0&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
               </iframe>
             </div>
 
@@ -777,8 +809,7 @@
         return url
           .replace('-large.jpg', '-t500x500.jpg')
           .replace('-large.png', '-t500x500.png')
-          .replace('-t300x300', '-t500x500')
-          .replace('-t500x500', '-t500x500');
+          .replace('-t300x300', '-t500x500');
       }
 
       function updateCoverFromSound(sound) {
@@ -791,7 +822,7 @@
         coverImg.src = normalizeArtworkUrl(artwork || defaultCover);
       }
 
-      function bindSoundCloudCover() {
+      function bindSoundCloudAndAutoplay() {
         if (!window.SC || !SC.Widget) {
           coverImg.src = defaultCover;
           return;
@@ -804,14 +835,19 @@
           });
         };
 
-        widget.bind(SC.Widget.Events.READY, refreshCover);
+        widget.bind(SC.Widget.Events.READY, function () {
+          refreshCover();
+          try {
+            widget.play();
+          } catch (e) {}
+        });
         widget.bind(SC.Widget.Events.PLAY, refreshCover);
         widget.bind(SC.Widget.Events.FINISH, refreshCover);
       }
 
       updateClock();
       setInterval(updateClock, 1000);
-      bindSoundCloudCover();
+      bindSoundCloudAndAutoplay();
 
       const visitor = document.getElementById('visitor-counter');
       visitor.textContent = String(Number(visitor.textContent) || 2063);
