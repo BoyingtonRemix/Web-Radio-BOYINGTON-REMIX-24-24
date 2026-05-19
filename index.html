@@ -1,22 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BOYINGTON RADIO 24/24 - Web radio officielle, player SoundCloud intégré, ambiance premium noir argent." />
+  <meta name="description" content="BOYINGTON RADIO 24/24 - Web radio officielle, player SoundCloud intégré, univers noir argent premium." />
   <title>BOYINGTON RADIO 24/24</title>
+
   <style>
     :root {
       --bg: #050505;
-      --bg2: #0d0d0f;
       --panel: rgba(255, 255, 255, 0.04);
-      --panel-strong: rgba(255, 255, 255, 0.07);
+      --panel-strong: rgba(255, 255, 255, 0.08);
       --silver: #d8d8d8;
-      --silver-soft: rgba(216, 216, 216, 0.2);
+      --silver-soft: rgba(216, 216, 216, 0.18);
       --text: #f3f3f3;
       --muted: #b9b9b9;
-      --line: rgba(216, 216, 216, 0.18);
+      --line: rgba(216, 216, 216, 0.16);
       --red: #c40000;
       --shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
     }
@@ -26,14 +25,24 @@
     html, body {
       margin: 0;
       min-height: 100%;
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,0.08) 0%, rgba(5,5,5,0.08) 28%, rgba(5,5,5,1) 60%),
-        linear-gradient(180deg, #111 0%, #050505 100%);
+      background: #050505;
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
     }
 
+    body {
+      position: relative;
+      background-image:
+        linear-gradient(180deg, rgba(5,5,5,0.20), rgba(5,5,5,0.82)),
+        url('arrière-plan-boyington-radio.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    /* [M1] CONTENEUR PRINCIPAL */
     .page {
       width: 100%;
       max-width: 1240px;
@@ -44,11 +53,13 @@
     .shell {
       border: 1px solid var(--line);
       border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      background: linear-gradient(180deg, rgba(8,8,10,0.88), rgba(5,5,5,0.94));
       box-shadow: var(--shadow);
       overflow: hidden;
+      backdrop-filter: blur(6px);
     }
 
+    /* [M2] BARRE DU HAUT / NAVIGATION */
     .topbar {
       display: flex;
       align-items: center;
@@ -71,12 +82,19 @@
       height: 54px;
       border-radius: 18px;
       border: 1px solid rgba(216,216,216,0.28);
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
       display: grid;
       place-items: center;
-      color: var(--silver);
-      font-size: 24px;
+      overflow: hidden;
       box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
+      flex: 0 0 auto;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .brand-text h1 {
@@ -120,9 +138,26 @@
       border-color: rgba(216,216,216,0.34);
     }
 
+    /* [M3] HERO / ACCUEIL */
     .hero {
-      padding: 28px 20px 8px;
+      position: relative;
+      padding: 28px 20px 18px;
       text-align: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5,5,5,0.10), rgba(5,5,5,0.64));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .hero h2 {
@@ -134,7 +169,7 @@
     }
 
     .hero .lead {
-      max-width: 900px;
+      max-width: 920px;
       margin: 14px auto 0;
       color: var(--muted);
       font-size: 1rem;
@@ -147,7 +182,7 @@
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 18px;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
 
     .pill {
@@ -173,11 +208,12 @@
       50% { opacity: 0.58; }
     }
 
+    /* [M4] ZONE PRINCIPALE */
     .content {
       display: grid;
       grid-template-columns: 1.25fr 0.75fr;
       gap: 18px;
-      padding: 14px 16px 18px;
+      padding: 16px;
     }
 
     .card {
@@ -202,6 +238,7 @@
       padding: 18px;
     }
 
+    /* [M5] PLAYER SOUNDCloud */
     .player iframe {
       display: block;
       width: 100%;
@@ -211,6 +248,22 @@
       background: #111;
     }
 
+    /* [M6] CONSOLE RADIO */
+    .console-wrap {
+      margin-top: 16px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(216,216,216,0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+    }
+
+    .console-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* [M7] PANNEAU D'INFOS */
     .panel-grid {
       display: grid;
       gap: 14px;
@@ -244,6 +297,29 @@
       font-size: 0.95rem;
     }
 
+    /* [M8] BLOC BAS / FUTURES MISES A JOUR */
+    .lower {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      padding: 0 16px 18px;
+    }
+
+    .mini-image {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(216,216,216,0.14);
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow);
+    }
+
+    .mini-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
     .footer {
       padding: 18px 16px 24px;
       text-align: center;
@@ -262,7 +338,7 @@
     }
 
     @media (max-width: 960px) {
-      .content {
+      .content, .lower {
         grid-template-columns: 1fr;
       }
 
@@ -285,10 +361,10 @@
       }
 
       .hero {
-        padding: 22px 14px 6px;
+        padding: 22px 14px 14px;
       }
 
-      .content {
+      .content, .lower {
         padding: 12px;
         gap: 12px;
       }
@@ -302,9 +378,12 @@
 <body>
   <main class="page">
     <div class="shell">
+      <!-- [M2] BARRE DU HAUT / NAVIGATION -->
       <header class="topbar">
         <div class="brand">
-          <div class="logo">B</div>
+          <div class="logo">
+            <img src="logo_radio_boyington.png" alt="Logo BOYINGTON RADIO" />
+          </div>
           <div class="brand-text">
             <h1>Boyington Remix</h1>
             <p>Web radio officielle</p>
@@ -319,23 +398,28 @@
         </nav>
       </header>
 
+      <!-- [M3] HERO / ACCUEIL -->
       <section class="hero" id="accueil">
-        <h2>BOYINGTON RADIO 24/24</h2>
-        <p class="lead">
-          Une version noir argent, élégante et immersive, pensée comme une vraie page radio officielle :
-          player SoundCloud dédié, ambiance continue, et base prête pour les futures mises à jour.
-        </p>
+        <div class="hero-inner">
+          <h2>BOYINGTON RADIO 24/24</h2>
+          <p class="lead">
+            Version noir argent premium, pensée comme une vraie page radio officielle :
+            player SoundCloud dédié, ambiance continue et base prête pour les futures mises à jour.
+          </p>
 
-        <div class="status-row">
-          <div class="pill live">🔴 LIVE</div>
-          <div class="pill">📻 RADIO 24/24</div>
-          <div class="pill">🎧 SOUNDCloud PLAYER</div>
+          <div class="status-row">
+            <div class="pill live">🔴 LIVE</div>
+            <div class="pill">📻 RADIO 24/24</div>
+            <div class="pill">🎧 SOUNDCLOUD PLAYER</div>
+          </div>
         </div>
       </section>
 
       <div class="divider"></div>
 
+      <!-- [M4] ZONE PRINCIPALE -->
       <section class="content">
+        <!-- [M5] PLAYER SOUNDCloud -->
         <article class="card" id="radio">
           <div class="card-header">Lecture en direct</div>
           <div class="card-body player">
@@ -348,6 +432,7 @@
           </div>
         </article>
 
+        <!-- [M7] PANNEAU D'INFOS -->
         <aside class="panel-grid">
           <section class="card" id="programmation">
             <div class="card-header">Programmation</div>
@@ -383,6 +468,18 @@
         </aside>
       </section>
 
+      <!-- [M6] CONSOLE RADIO -->
+      <section class="lower">
+        <div class="mini-image">
+          <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
+        </div>
+
+        <div class="mini-image">
+          <img src="arrière-plan-boyington-radio.jpg" alt="Fond BOYINGTON RADIO" />
+        </div>
+      </section>
+
+      <!-- [M8] FUTURES MISES A JOUR -->
       <footer class="footer">
         <strong>BOYINGTON REMIX</strong> · Web Radio 24h/24 · Version noir argent
       </footer>
