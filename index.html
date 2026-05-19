@@ -706,9 +706,16 @@
   </style>
 </head>
 <body>
+
+<!-- =========================================================
+MARQUEUR 01 — DÉBUT PAGE WEB RADIO BOYINGTON
+========================================================= -->
   <main class="page">
     <div class="shell">
-      <header class="topbar">
+      <!-- =========================================================
+MARQUEUR 02 — HEADER / LOGO / MENU
+========================================================= -->
+<header class="topbar">
         <div class="brand">
           <div class="brand-logo">
             <img src="logo_radio _boyington.png" alt="Logo BOYINGTON RADIO" />
@@ -728,7 +735,10 @@
         </nav>
       </header>
 
-      <section class="main-grid" id="latest">
+      <!-- =========================================================
+MARQUEUR 03 — PLAYER RADIO / COVER DYNAMIQUE
+========================================================= -->
+<section class="main-grid" id="latest">
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
@@ -755,7 +765,10 @@
           </div>
         </article>
 
-        <aside class="social-grid" id="socials">
+        <!-- =========================================================
+MARQUEUR 04 — RÉSEAUX SOCIAUX
+========================================================= -->
+<aside class="social-grid" id="socials">
           <div class="card">
             <div class="card-header">Réseaux & liens</div>
             <div class="card-body">
@@ -776,11 +789,17 @@
             </div>
           </div>
 
-          <div class="studio-box">
+          <!-- =========================================================
+MARQUEUR 05 — IMAGE STUDIO CONSOLE
+========================================================= -->
+<div class="studio-box">
             <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
           </div>
 
-          <section class="matrix card" id="matrix">
+          <!-- =========================================================
+MARQUEUR 06 — DJ WORLD MATRIX / HORLOGE
+========================================================= -->
+<section class="matrix card" id="matrix">
             <div class="matrix-title">
               <h2>DJ WORLD MATRIX</h2>
               <p>Global Time • Live Session</p>
@@ -815,7 +834,10 @@
 
       <div class="section-divider"></div>
 
-      <section class="lower-grid">
+      <!-- =========================================================
+MARQUEUR 07 — SUPPORT PROJECT
+========================================================= -->
+<section class="lower-grid">
         <article class="card support" id="support">
           <div class="card-header">SUPPORT THE PROJECT</div>
           <div class="card-body">
@@ -826,7 +848,10 @@
         </article>
       </section>
 
-      <section class="banner-row">
+      <!-- =========================================================
+MARQUEUR 08 — IMAGES BAS DE PAGE
+========================================================= -->
+<section class="banner-row">
         <div class="banner">
           <img src="image_studio-bas.jpg" alt="Studio Radio BOYINGTON" />
         </div>
@@ -840,7 +865,10 @@
     </div>
   </main>
 
-  <script src="https://w.soundcloud.com/player/api.js"></script>
+  <!-- =========================================================
+MARQUEUR 09 — SCRIPT SOUNDCLOUD / PLAYLIST / COVER
+========================================================= -->
+<script src="https://w.soundcloud.com/player/api.js"></script>
   <script>
     (function () {
       const pad = (n) => String(n).padStart(2, '0');
@@ -880,6 +908,9 @@
         }).format(date);
       }
 
+      /* =========================================================
+MARQUEUR 10 — HORLOGE MONDIALE
+========================================================= */
       function updateClock() {
         const now = new Date();
         const h = now.getHours();
@@ -926,6 +957,9 @@
         coverImg.src = normalizeArtworkUrl(artwork || defaultCover);
       }
 
+      /* =========================================================
+MARQUEUR 11 — LOGIQUE PLAYER SOUNDCLOUD
+========================================================= */
       function bindSoundCloud() {
         if (!window.SC || !SC.Widget) {
           coverImg.src = defaultCover;
@@ -969,6 +1003,10 @@
       visitor.textContent = String(Number(visitor.textContent) || 2063);
     })();
   </script>
+<!-- =========================================================
+MARQUEUR FINAL — FIN PAGE WEB RADIO BOYINGTON
+========================================================= -->
 </body>
 </html>
+
 
