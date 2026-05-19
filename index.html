@@ -848,18 +848,15 @@
       const coverImg = document.getElementById('current-track-cover');
       const iframe = document.getElementById('soundcloud-widget');
 
-      const playlists = [
-        'soundcloud:playlists:2239455974',
-        'soundcloud:playlists:2239455975',
-        'soundcloud:playlists:2239455976'
-      ];
+      // Playlist maître unique : SoundCloud documente start_track, skip() et getSounds() pour les widgets multi-sound.
+      const playlistUrn = 'soundcloud:playlists:2239455974';
 
-      const buildPlayerUrl = (urn) => {
+      const buildPlayerUrl = (urn, startTrack = 0) => {
         const encoded = encodeURIComponent(urn);
-        return `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/${encoded}&color=%23c0c0c0&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false`;
+        return `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/${encoded}&color=%23c0c0c0&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&start_track=${startTrack}`;
       };
 
-      iframe.src = buildPlayerUrl(playlists[0]);
+      iframe.src = buildPlayerUrl(playlistUrn, 0);
 
       const el = {
         localTime: document.getElementById('local-time'),
@@ -929,12 +926,6 @@
         coverImg.src = normalizeArtworkUrl(artwork || defaultCover);
       }
 
-      function pickRandomPlaylist(currentUrn) {
-        const candidates = playlists.filter((urn) => urn !== currentUrn);
-        const pool = candidates.length ? candidates : playlists;
-        return pool[Math.floor(Math.random() * pool.length)];
-      }
-
       function bindSoundCloud() {
         if (!window.SC || !SC.Widget) {
           coverImg.src = defaultCover;
@@ -942,7 +933,7 @@
         }
 
         const widget = SC.Widget(iframe);
-        let currentPlaylistUrn = playlists[0];
+        let readyPlayed = false;
 
         const refreshCover = () => {
           widget.getCurrentSound(function (sound) {
@@ -950,40 +941,24 @@
           });
         };
 
-        const loadPlaylist = (urn) => {
-          currentPlaylistUrn = urn;
-          const url = buildPlayerUrl(urn);
-          iframe.src = url;
-          setTimeout(() => {
-            try {
-              widget.load(url, {
-                auto_play: true,
-                hide_related: true,
-                show_comments: false,
-                show_user: false,
-                show_reposts: false,
-                show_teaser: false,
-                visual: false,
-                color: '#c0c0c0'
-              });
-            } catch (e) {
-              iframe.src = url;
-            }
-          }, 150);
-        };
-
         widget.bind(SC.Widget.Events.READY, function () {
-          refreshCover();
-          try { widget.play(); } catch (e) {}
+          widget.getSounds(function (sounds) {
+            const total = Array.isArray(sounds) ? sounds.length : 0;
+            const randomIndex = total > 1 ? Math.floor(Math.random() * total) : 0;
+            try {
+              widget.skip(randomIndex);
+            } catch (e) {}
+            refreshCover();
+            if (!readyPlayed) {
+              readyPlayed = true;
+              try { widget.play(); } catch (e) {}
+            }
+          });
         });
 
         widget.bind(SC.Widget.Events.PLAY, refreshCover);
-
-        widget.bind(SC.Widget.Events.FINISH, function () {
-          refreshCover();
-          const nextPlaylistUrn = pickRandomPlaylist(currentPlaylistUrn);
-          loadPlaylist(nextPlaylistUrn);
-        });
+        widget.bind(SC.Widget.Events.PLAY_PROGRESS, refreshCover);
+        widget.bind(SC.Widget.Events.FINISH, refreshCover);
       }
 
       updateClock();
