@@ -1,850 +1,713 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BOYINGTON RADIO 24/24 - Version noir argent premium, structure complète avec player SoundCloud, encarts, horloge mondiale et liens réseau." />
-  <title>BOYINGTON RADIO 24/24</title>
-
-  <style>
-    :root {
-      --bg: #050505;
-      --panel: rgba(255, 255, 255, 0.04);
-      --line: rgba(216, 216, 216, 0.14);
-      --silver: #d7d7d7;
-      --text: #f4f4f4;
-      --muted: #b4b4b4;
-      --gold: #c7c7c7;
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
-      --radius: 22px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        linear-gradient(180deg, rgba(5,5,5,0.12), rgba(5,5,5,0.88)),
-        url('arrière-plan-boyington-radio.jpg');
-      background-size: cover;
-      background-position: center center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; }
-
-    .page {
-      width: 100%;
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 18px;
-    }
-
-    .shell {
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(10,10,12,0.90), rgba(5,5,5,0.95));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      backdrop-filter: blur(6px);
-    }
-
-    /* [M1] HEADER */
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 18px 22px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 280px;
-    }
-
-    .brand-logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(216,216,216,0.22);
-      background: rgba(255,255,255,0.04);
-      box-shadow: inset 0 0 18px rgba(255,255,255,0.04);
-      flex: 0 0 auto;
-    }
-
-    .brand-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .brand-title h1 {
-      margin: 0;
-      font-size: clamp(1.4rem, 2.5vw, 2.4rem);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--silver);
-      line-height: 1;
-    }
-
-    .brand-title p {
-      margin: 7px 0 0;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.9rem;
-    }
-
-    .nav {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .nav a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(216,216,216,0.18);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      text-decoration: none;
-      transition: all 0.18s ease;
-      font-size: 0.94rem;
-    }
-
-    .nav a:hover {
-      transform: translateY(-1px);
-      border-color: rgba(216,216,216,0.34);
-      background: rgba(255,255,255,0.06);
-    }
-
-    /* [M2] TOP GRID */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 18px;
-      padding: 18px;
-    }
-
-    .card {
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: var(--panel);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .card-header {
-      padding: 16px 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.96rem;
-      font-weight: 700;
-    }
-
-    .card-body { padding: 18px; }
-
-    /* [M3] PLAYER + COVER */
-    .latest-layout {
-      display: grid;
-      grid-template-rows: auto auto auto;
-      gap: 14px;
-    }
-
-    .player-wrap {
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(216,216,216,0.16);
-      background: rgba(0,0,0,0.35);
-    }
-
-    .player-wrap iframe {
-      display: block;
-      width: 100%;
-      height: 166px;
-      border: 0;
-      background: #111;
-    }
-
-    .track-cover {
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(0,0,0,0.45);
-      width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 10px;
-    }
-
-    .track-cover img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-      border-radius: 16px;
-    }
-
-    .btn-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: var(--bg);
-      background: linear-gradient(180deg, #d9d9d9, #b8b8b8);
-      padding: 12px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.24);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      white-space: nowrap;
-    }
-
-    .btn-link:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-    }
-
-    /* [M4] RIGHT COLUMN */
-    .social-grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .social-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-
-    .social-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 74px;
-      padding: 14px 12px;
-      border-radius: 18px;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(255,255,255,0.04);
-      text-decoration: none;
-      font-weight: 700;
-      color: var(--text);
-      transition: all 0.18s ease;
-      text-align: center;
-    }
-
-    .social-btn:hover {
-      transform: translateY(-1px);
-      border-color: rgba(216,216,216,0.30);
-      background: rgba(255,255,255,0.07);
-    }
-
-    .small-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .small-box {
-      min-height: 112px;
-      border-radius: 18px;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(255,255,255,0.04);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 14px;
-      text-decoration: none;
-    }
-
-    .small-box strong {
-      display: block;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-    }
-
-    .small-box span {
-      color: var(--text);
-      font-weight: 700;
-      font-size: 1.35rem;
-    }
-
-    .studio-box {
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(0,0,0,0.35);
-    }
-
-    .studio-box img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    /* [M5] DJ WORLD MATRIX */
-    .matrix {
-      margin-top: 18px;
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      box-shadow: var(--shadow);
-    }
-
-    .matrix-title { text-align: center; margin-bottom: 16px; }
-
-    .matrix-title h2 {
-      margin: 0;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.10em;
-      font-size: 1.1rem;
-    }
-
-    .matrix-title p { margin: 6px 0 0; color: var(--muted); }
-
-    .matrix-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .clock-wrap {
-      display: grid;
-      place-items: center;
-      padding: 16px;
-    }
-
-    .clock {
-      width: min(100%, 330px);
-      aspect-ratio: 1;
-      border-radius: 50%;
-      border: 1px solid rgba(216,216,216,0.16);
-      background:
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02), rgba(0,0,0,0.48)),
-        rgba(0,0,0,0.45);
-      position: relative;
-      box-shadow: inset 0 0 30px rgba(255,255,255,0.04);
-    }
-
-    .clock::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 50%;
-      border: 1px solid rgba(216,216,216,0.08);
-    }
-
-    .hand {
-      position: absolute;
-      left: 50%;
-      bottom: 50%;
-      transform-origin: 50% 100%;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #e0e0e0, #9f9f9f);
-      box-shadow: 0 0 12px rgba(255,255,255,0.12);
-    }
-
-    .hand.hour { width: 5px; height: 80px; margin-left: -2.5px; }
-    .hand.minute { width: 4px; height: 110px; margin-left: -2px; }
-    .hand.second { width: 2px; height: 122px; margin-left: -1px; background: var(--gold); }
-
-    .clock-center {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--gold);
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 12px rgba(255,255,255,0.18);
-    }
-
-    .clock-time { text-align: center; margin-top: 14px; }
-
-    .clock-time .time {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 0.06em;
-    }
-
-    .clock-time .date { margin-top: 4px; color: var(--muted); }
-
-    .cities {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .city {
-      border-radius: 18px;
-      padding: 18px 14px;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(255,255,255,0.04);
-      text-align: center;
-    }
-
-    .city strong {
-      display: block;
-      color: var(--gold);
-      margin-bottom: 8px;
-      letter-spacing: 0.08em;
-    }
-
-    .city span {
-      display: block;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    /* [M6] LOWER BLOCKS */
-    .lower-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
-      padding: 18px;
-      padding-top: 0;
-    }
-
-    .project,
-    .support { min-height: 310px; }
-
-    .project .card-body,
-    .support .card-body { height: calc(100% - 54px); }
-
-    .project-panel {
-      height: 100%;
-      border-radius: 18px;
-      border: 1px solid rgba(216,216,216,0.12);
-      background: rgba(255,255,255,0.03);
-      padding: 18px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .empty-project {
-      width: 100%;
-      min-height: 80px;
-      border-radius: 18px;
-      border: 1px dashed rgba(216,216,216,0.14);
-      background: rgba(0,0,0,0.18);
-    }
-
-    .support-panel p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 1.02rem;
-    }
-
-    .support-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .support-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(255,255,255,0.04);
-      text-decoration: none;
-    }
-
-    .support-item:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(216,216,216,0.28);
-    }
-
-    .support-item .num {
-      color: var(--gold);
-      font-weight: 800;
-      font-size: 1rem;
-      min-width: 34px;
-    }
-
-    .support-item .label {
-      flex: 1;
-      text-align: right;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .banner-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      padding: 0 18px 18px;
-    }
-
-    .banner {
-      min-height: 240px;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(255,255,255,0.03);
-      box-shadow: var(--shadow);
-    }
-
-    .banner img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .footer-note {
-      text-align: center;
-      padding: 10px 18px 24px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .footer-note strong {
-      color: var(--gold);
-      letter-spacing: 0.08em;
-    }
-
-    .section-divider {
-      margin: 0 18px 18px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(216,216,216,0.35), transparent);
-    }
-
-    @media (max-width: 1120px) {
-      .main-grid,
-      .matrix-grid,
-      .lower-grid,
-      .banner-row { grid-template-columns: 1fr; }
-      .social-row { grid-template-columns: repeat(2, 1fr); }
-      .small-grid { grid-template-columns: 1fr; }
-      .track-cover { max-width: 100%; }
-    }
-
-    @media (max-width: 700px) {
-      .page { padding: 10px; }
-      .topbar { padding: 14px; }
-      .main-grid, .matrix, .lower-grid, .banner-row { padding: 12px; }
-      .social-row { grid-template-columns: 1fr; }
-      .cities { grid-template-columns: 1fr; }
-      .player-wrap iframe { height: 166px; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>BOYINGTON RADIO 24/24</title>
+
+<style>
+
+/* =========================================================
+01 - RESET
+========================================================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:
+linear-gradient(rgba(0,0,0,0.82),rgba(0,0,0,0.92)),
+url('background-boyington-radio.jpg');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:#ffffff;
+overflow-x:hidden;
+}
+
+/* =========================================================
+02 - STRUCTURE
+========================================================= */
+
+.container{
+width:95%;
+max-width:1700px;
+margin:auto;
+padding:20px;
+}
+
+.main-wrapper{
+background:rgba(0,0,0,0.72);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:30px;
+overflow:hidden;
+backdrop-filter:blur(6px);
+box-shadow:0 0 50px rgba(0,0,0,0.6);
+}
+
+/* =========================================================
+03 - HEADER
+========================================================= */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 30px;
+border-bottom:1px solid rgba(255,255,255,0.08);
+flex-wrap:wrap;
+gap:20px;
+}
+
+.logo-zone{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo-zone img{
+width:65px;
+height:65px;
+border-radius:15px;
+object-fit:cover;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.logo-title h1{
+font-size:2.5rem;
+letter-spacing:6px;
+color:#d8d8d8;
+}
+
+.logo-title p{
+margin-top:5px;
+color:#9c9c9c;
+letter-spacing:2px;
+font-size:0.9rem;
+}
+
+nav{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+nav a{
+text-decoration:none;
+color:#ffffff;
+padding:12px 18px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.1);
+background:rgba(255,255,255,0.03);
+transition:0.3s;
+}
+
+nav a:hover{
+background:rgba(255,255,255,0.08);
+}
+
+/* =========================================================
+04 - GRID
+========================================================= */
+
+.grid{
+display:grid;
+grid-template-columns:1.2fr 0.8fr;
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:25px;
+overflow:hidden;
+}
+
+.card-title{
+padding:20px;
+border-bottom:1px solid rgba(255,255,255,0.08);
+font-size:1.6rem;
+letter-spacing:2px;
+color:#d0d0d0;
+}
+
+.card-content{
+padding:20px;
+}
+
+/* =========================================================
+05 - PLAYER
+========================================================= */
+
+.player-box{
+overflow:hidden;
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.player-box iframe{
+width:100%;
+height:166px;
+border:none;
+display:block;
+}
+
+/* =========================================================
+06 - GROS COVER
+========================================================= */
+
+.big-cover{
+margin-top:18px;
+border-radius:25px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.08);
+background:#000000;
+padding:10px;
+}
+
+.big-cover img{
+width:100%;
+display:block;
+border-radius:18px;
+object-fit:contain;
+}
+
+/* =========================================================
+07 - BOUTON
+========================================================= */
+
+.open-btn{
+margin-top:18px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+padding:18px;
+border-radius:40px;
+background:linear-gradient(to bottom,#eeeeee,#bcbcbc);
+color:#000000;
+font-weight:bold;
+font-size:1.2rem;
+text-decoration:none;
+}
+
+/* =========================================================
+08 - RESEAUX
+========================================================= */
+
+.social-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.social-btn{
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+border-radius:20px;
+text-decoration:none;
+font-weight:bold;
+color:#ffffff;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+transition:0.3s;
+min-height:90px;
+}
+
+.social-btn:hover{
+background:rgba(255,255,255,0.08);
+}
+
+/* =========================================================
+09 - STUDIO IMAGE
+========================================================= */
+
+.studio-box{
+margin-top:20px;
+border-radius:25px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.studio-box img{
+width:100%;
+display:block;
+}
+
+/* =========================================================
+10 - MATRIX
+========================================================= */
+
+.matrix{
+margin-top:20px;
+padding:20px;
+border-radius:25px;
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.matrix h2{
+text-align:center;
+letter-spacing:4px;
+color:#d8d8d8;
+margin-bottom:10px;
+}
+
+.matrix p{
+text-align:center;
+color:#9c9c9c;
+margin-bottom:20px;
+}
+
+.time-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+.time-box{
+padding:20px;
+border-radius:20px;
+background:rgba(255,255,255,0.04);
+border:1px solid rgba(255,255,255,0.08);
+text-align:center;
+}
+
+.time-box h3{
+color:#d8d8d8;
+margin-bottom:10px;
+}
+
+.time-box span{
+font-size:1.3rem;
+font-weight:bold;
+}
+
+/* =========================================================
+11 - BANNERS
+========================================================= */
+
+.banner-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+padding:20px;
+}
+
+.banner{
+border-radius:25px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,0.08);
+background:rgba(255,255,255,0.03);
+}
+
+.banner img{
+width:100%;
+display:block;
+}
+
+/* =========================================================
+12 - FOOTER
+========================================================= */
+
+footer{
+padding:30px;
+text-align:center;
+color:#9c9c9c;
+line-height:2;
+}
+
+/* =========================================================
+13 - RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.banner-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:700px){
+
+.social-grid{
+grid-template-columns:1fr;
+}
+
+.logo-title h1{
+font-size:1.8rem;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-  <main class="page">
-    <div class="shell">
-      <header class="topbar">
-        <div class="brand">
-          <div class="brand-logo">
-            <img src="logo_radio_boyington.png" alt="Logo BOYINGTON RADIO" />
-          </div>
-          <div class="brand-title">
-            <h1>BOYINGTON RADIO</h1>
-            <p>Web radio officielle · noir & argent</p>
-          </div>
-        </div>
 
-        <nav class="nav" aria-label="Navigation principale">
-          <a href="#latest">Accueil</a>
-          <a href="#socials">Réseaux</a>
-          <a href="#matrix">DJ World Matrix</a>
-          <a href="#project">Projet</a>
-          <a href="#support">Support</a>
-        </nav>
-      </header>
+<div class="container">
 
-      <section class="main-grid" id="latest">
-        <article class="card latest-layout">
-          <div class="card-header">Dernier titre uploadé</div>
-          <div class="card-body">
-            <div class="player-wrap">
-              <iframe
-                id="soundcloud-widget"
-                title="BOYINGTON RADIO 24/24"
-                width="100%"
-                height="166"
-                scrolling="no"
-                frameborder="no"
-                allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23c0c0c0&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
-              </iframe>
-            </div>
+<div class="main-wrapper">
 
-            <div class="track-cover" style="margin-top:14px;">
-              <img id="current-track-cover" src="arrière-plan-boyington-radio.jpg" alt="Cover de la piste en lecture" />
-            </div>
+<!-- =========================================================
+HEADER
+========================================================= -->
 
-            <a class="btn-link" href="https://soundcloud.com/boyingtonremix/sets/boyington-radio-24-24" target="_blank" rel="noopener" style="margin-top:14px; justify-content:center; width:100%;">
-              ▶ OUVRIR
-            </a>
-          </div>
-        </article>
+<header>
 
-        <aside class="social-grid" id="socials">
-          <div class="card">
-            <div class="card-header">Réseaux & liens</div>
-            <div class="card-body">
-              <div class="social-row">
-                <a class="social-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">SoundCloud</a>
-                <a class="social-btn" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener">Facebook</a>
-                <a class="social-btn" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener">TikTok</a>
-                <a class="social-btn" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener">Groupe Djs Set Music For People</a>
-              </div>
+<div class="logo-zone">
 
-              <div class="small-grid" style="margin-top:14px;">
-                <div class="small-box">
-                  <strong>VISIT</strong>
-                  <span id="visitor-counter">2063</span>
-                  <div style="margin-top:6px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;font-size:0.8rem;">GOATCOUNTER</div>
-                </div>
-              </div>
-            </div>
-          </div>
+<img src="logo_radio_boyington.png">
 
-          <div class="studio-box">
-            <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
-          </div>
+<div class="logo-title">
+<h1>BOYINGTON RADIO</h1>
+<p>WEB RADIO OFFICIELLE</p>
+</div>
 
-          <section class="matrix card" id="matrix">
-            <div class="matrix-title">
-              <h2>DJ WORLD MATRIX</h2>
-              <p>Global Time • Live Session</p>
-            </div>
+</div>
 
-            <div class="matrix-grid">
-              <div class="clock-wrap">
-                <div>
-                  <div class="clock" aria-label="Horloge mondiale">
-                    <div class="hand hour" id="hour-hand"></div>
-                    <div class="hand minute" id="minute-hand"></div>
-                    <div class="hand second" id="second-hand"></div>
-                    <div class="clock-center"></div>
-                  </div>
-                  <div class="clock-time">
-                    <div class="time" id="local-time">00:00:00</div>
-                    <div class="date" id="local-date">—</div>
-                  </div>
-                </div>
-              </div>
+<nav>
+<a href="#">Accueil</a>
+<a href="#">Radio 24/24</a>
+<a href="#">Programmation</a>
+<a href="#">Infos</a>
+</nav>
 
-              <div class="cities">
-                <div class="city">
-                  <strong>PARIS</strong>
-                  <span id="time-paris">00:00:00</span>
-                </div>
-                <div class="city">
-                  <strong>LONDON</strong>
-                  <span id="time-london">00:00:00</span>
-                </div>
-                <div class="city">
-                  <strong>NEW YORK</strong>
-                  <span id="time-newyork">00:00:00</span>
-                </div>
-                <div class="city">
-                  <strong>TOKYO</strong>
-                  <span id="time-tokyo">00:00:00</span>
-                </div>
-              </div>
-            </div>
-          </section>
-        </aside>
-      </section>
+</header>
 
-      <div class="section-divider"></div>
+<!-- =========================================================
+MAIN GRID
+========================================================= -->
 
-      <section class="lower-grid">
-        <article class="card project" id="project">
-          <div class="card-header">Projet</div>
-          <div class="card-body">
-            <div class="project-panel">
-              <div class="support-list">
-                <a class="support-item" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">
-                  <span class="num">01</span>
-                  <span class="label">Follow on SoundCloud</span>
-                </a>
-                <a class="support-item" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener">
-                  <span class="num">02</span>
-                  <span class="label">Share the music</span>
-                </a>
-                <a class="support-item" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener">
-                  <span class="num">03</span>
-                  <span class="label">Join the Facebook community</span>
-                </a>
-                <a class="support-item" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener">
-                  <span class="num">04</span>
-                  <span class="label">TikTok Boyington</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </article>
+<div class="grid">
 
-        <aside class="card support" id="support">
-          <div class="card-header">SUPPORT THE PROJECT</div>
-          <div class="card-body">
-            <div class="support-panel">
-              <div class="empty-project"></div>
-            </div>
-          </div>
-        </aside>
-      </section>
+<!-- =========================================================
+LEFT
+========================================================= -->
 
-      <section class="banner-row">
-        <div class="banner">
-          <img src="arrière-plan-boyington-radio.jpg" alt="Fond BOYINGTON RADIO" />
-        </div>
-        <div class="banner">
-          <img src="arrière-plan-boyington-radio.jpg" alt="Fond BOYINGTON RADIO" />
-        </div>
-      </section>
+<div class="card">
 
-      <div class="footer-note">✨ Vivre éternellement au rythme du rythme.</div>
-      <div class="footer-note"><strong>BOYINGTON REMIX</strong> · Créations/Remixes DJ non commerciales et non Officiel</div>
-    </div>
-  </main>
+<div class="card-title">
+DERNIER TITRE UPLOADÉ
+</div>
 
-  <script src="https://w.soundcloud.com/player/api.js"></script>
-  <script>
-    (function () {
-      const pad = (n) => String(n).padStart(2, '0');
-      const defaultCover = 'arrière-plan-boyington-radio.jpg';
-      const coverImg = document.getElementById('current-track-cover');
-      const iframe = document.getElementById('soundcloud-widget');
+<div class="card-content">
 
-      const el = {
-        localTime: document.getElementById('local-time'),
-        localDate: document.getElementById('local-date'),
-        hour: document.getElementById('hour-hand'),
-        minute: document.getElementById('minute-hand'),
-        second: document.getElementById('second-hand'),
-        paris: document.getElementById('time-paris'),
-        london: document.getElementById('time-london'),
-        newyork: document.getElementById('time-newyork'),
-        tokyo: document.getElementById('time-tokyo')
-      };
+<div class="player-box">
 
-      function formatTime(date, timeZone) {
-        return new Intl.DateTimeFormat('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-          timeZone
-        }).format(date);
-      }
+<iframe
+id="soundcloud-widget"
+allow="autoplay"
+src="">
+</iframe>
 
-      function updateClock() {
-        const now = new Date();
-        const h = now.getHours();
-        const m = now.getMinutes();
-        const s = now.getSeconds();
-        const ms = now.getMilliseconds();
+</div>
 
-        const seconds = s + ms / 1000;
-        const minutes = m + seconds / 60;
-        const hours = (h % 12) + minutes / 60;
+<div class="big-cover">
 
-        el.hour.style.transform = `translateX(-50%) rotate(${hours * 30}deg)`;
-        el.minute.style.transform = `translateX(-50%) rotate(${minutes * 6}deg)`;
-        el.second.style.transform = `translateX(-50%) rotate(${seconds * 6}deg)`;
+<img
+id="current-track-cover"
+src="background-boyington-radio.jpg">
 
-        el.localTime.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
-        el.localDate.textContent = now.toLocaleDateString('fr-FR', {
-          weekday: 'long',
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        });
+</div>
 
-        el.paris.textContent = formatTime(now, 'Europe/Paris');
-        el.london.textContent = formatTime(now, 'Europe/London');
-        el.newyork.textContent = formatTime(now, 'America/New_York');
-        el.tokyo.textContent = formatTime(now, 'Asia/Tokyo');
-      }
+<a
+class="open-btn"
+href="https://soundcloud.com/boyingtonremix/sets/boyington-radio-24-24"
+target="_blank">
 
-      function normalizeArtworkUrl(url) {
-        if (!url) return defaultCover;
-        return url
-          .replace('-large.jpg', '-t500x500.jpg')
-          .replace('-large.png', '-t500x500.png')
-          .replace('-t300x300', '-t500x500');
-      }
+▶ OUVRIR
 
-      function updateCoverFromSound(sound) {
-        if (!sound) {
-          coverImg.src = defaultCover;
-          return;
-        }
+</a>
 
-        const artwork = sound.artwork_url || (sound.user && sound.user.avatar_url);
-        coverImg.src = normalizeArtworkUrl(artwork || defaultCover);
-      }
+</div>
 
-      function bindSoundCloudAndAutoplay() {
-        if (!window.SC || !SC.Widget) {
-          coverImg.src = defaultCover;
-          return;
-        }
+</div>
 
-        const widget = SC.Widget(iframe);
-        const refreshCover = () => {
-          widget.getCurrentSound(function (sound) {
-            updateCoverFromSound(sound);
-          });
-        };
+<!-- =========================================================
+RIGHT
+========================================================= -->
 
-        widget.bind(SC.Widget.Events.READY, function () {
-          refreshCover();
-          try {
-            widget.play();
-          } catch (e) {}
-        });
-        widget.bind(SC.Widget.Events.PLAY, refreshCover);
-        widget.bind(SC.Widget.Events.FINISH, refreshCover);
-      }
+<div>
 
-      updateClock();
-      setInterval(updateClock, 1000);
-      bindSoundCloudAndAutoplay();
+<div class="card">
 
-      const visitor = document.getElementById('visitor-counter');
-      visitor.textContent = String(Number(visitor.textContent) || 2063);
-    })();
-  </script>
+<div class="card-title">
+RÉSEAUX & LIENS
+</div>
+
+<div class="card-content">
+
+<div class="social-grid">
+
+<a
+class="social-btn"
+href="https://soundcloud.com/boyingtonremix"
+target="_blank">
+SoundCloud
+</a>
+
+<a
+class="social-btn"
+href="https://www.facebook.com/LoranBoyington/"
+target="_blank">
+Facebook
+</a>
+
+<a
+class="social-btn"
+href="https://www.tiktok.com/@boyingtonremixofficiel"
+target="_blank">
+TikTok
+</a>
+
+<a
+class="social-btn"
+href="https://www.facebook.com/groups/DjsSetMusicForPeople"
+target="_blank">
+Groupe Djs Set Music For People
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+STUDIO
+========================================================= -->
+
+<div class="studio-box">
+
+<img src="Studio-Console.jpg">
+
+</div>
+
+<!-- =========================================================
+MATRIX
+========================================================= -->
+
+<div class="matrix">
+
+<h2>DJ WORLD MATRIX</h2>
+<p>Global Time • Live Session</p>
+
+<div class="time-grid">
+
+<div class="time-box">
+<h3>PARIS</h3>
+<span id="paris-time">00:00:00</span>
+</div>
+
+<div class="time-box">
+<h3>LONDON</h3>
+<span id="london-time">00:00:00</span>
+</div>
+
+<div class="time-box">
+<h3>NEW YORK</h3>
+<span id="newyork-time">00:00:00</span>
+</div>
+
+<div class="time-box">
+<h3>TOKYO</h3>
+<span id="tokyo-time">00:00:00</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+BANNERS
+========================================================= -->
+
+<div class="banner-grid">
+
+<div class="banner">
+<img src="background-boyington-radio.jpg">
+</div>
+
+<div class="banner">
+<img src="background-boyington-radio.jpg">
+</div>
+
+</div>
+
+<!-- =========================================================
+FOOTER
+========================================================= -->
+
+<footer>
+
+✨ Vivre éternellement au rythme du rythme.
+
+<br><br>
+
+BOYINGTON REMIX
+
+<br>
+
+Créations / Remixes DJ non commerciales et non officielles
+
+</footer>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+SCRIPT
+========================================================= -->
+
+<script src="https://w.soundcloud.com/player/api.js"></script>
+
+<script>
+
+/* =========================================================
+PLAYLISTES
+========================================================= */
+
+const playlists = [
+
+'https://api.soundcloud.com/playlists/soundcloud:playlists:2239455974',
+'https://api.soundcloud.com/playlists/soundcloud:playlists:2239455975',
+'https://api.soundcloud.com/playlists/soundcloud:playlists:2239455976'
+
+];
+
+/* =========================================================
+PLAYER RANDOM
+========================================================= */
+
+const iframe = document.getElementById('soundcloud-widget');
+
+let currentPlaylist = 0;
+
+function buildPlayer(url){
+
+return `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%23c0c0c0&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false`;
+
+}
+
+iframe.src = buildPlayer(playlists[0]);
+
+const widget = SC.Widget(iframe);
+
+/* =========================================================
+COVER
+========================================================= */
+
+const cover = document.getElementById('current-track-cover');
+
+function updateCover(){
+
+widget.getCurrentSound(function(sound){
+
+if(sound && sound.artwork_url){
+
+let image = sound.artwork_url
+.replace('-large','-t500x500');
+
+cover.src = image;
+
+}
+
+});
+
+}
+
+/* =========================================================
+EVENTS
+========================================================= */
+
+widget.bind(SC.Widget.Events.READY,function(){
+
+widget.play();
+updateCover();
+
+});
+
+widget.bind(SC.Widget.Events.PLAY,function(){
+
+updateCover();
+
+});
+
+widget.bind(SC.Widget.Events.FINISH,function(){
+
+let next =
+Math.floor(Math.random()*playlists.length);
+
+currentPlaylist = next;
+
+widget.load(
+buildPlayer(playlists[next]),
+{
+auto_play:true
+}
+);
+
+});
+
+/* =========================================================
+HORLOGES
+========================================================= */
+
+function updateWorldClock(){
+
+const now = new Date();
+
+document.getElementById('paris-time').innerHTML =
+now.toLocaleTimeString('fr-FR',{
+timeZone:'Europe/Paris'
+});
+
+document.getElementById('london-time').innerHTML =
+now.toLocaleTimeString('fr-FR',{
+timeZone:'Europe/London'
+});
+
+document.getElementById('newyork-time').innerHTML =
+now.toLocaleTimeString('fr-FR',{
+timeZone:'America/New_York'
+});
+
+document.getElementById('tokyo-time').innerHTML =
+now.toLocaleTimeString('fr-FR',{
+timeZone:'Asia/Tokyo'
+});
+
+}
+
+setInterval(updateWorldClock,1000);
+
+updateWorldClock();
+
+</script>
+
 </body>
 </html>
-
-
