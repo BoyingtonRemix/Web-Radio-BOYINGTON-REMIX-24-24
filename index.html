@@ -570,12 +570,12 @@
 
       <!-- [M2] TOP GRID -->
       <section class="main-grid" id="latest">
-        <!-- Player + cover -->
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
             <div class="player-wrap">
               <iframe
+                id="soundcloud-widget"
                 title="BOYINGTON RADIO 24/24"
                 width="100%"
                 height="166"
@@ -587,16 +587,15 @@
             </div>
 
             <div class="track-cover" style="margin-top:14px;">
-              <img src="arrière-plan-boyington-radio.jpg" alt="Cover de la piste en lecture" />
+              <img id="current-track-cover" src="arrière-plan-boyington-radio.jpg" alt="Cover de la piste en lecture" />
             </div>
 
-            <div class="btn-link" style="margin-top:14px; justify-content:center; width:100%;" role="link" aria-label="Ouvrir la playlist SoundCloud">
+            <a class="btn-link" href="https://soundcloud.com/boyingtonremix/sets/boyington-radio-24-24" target="_blank" rel="noopener" style="margin-top:14px; justify-content:center; width:100%;">
               ▶ OUVRIR
-            </div>
+            </a>
           </div>
         </article>
 
-        <!-- Réseaux & liens -->
         <aside class="social-grid" id="socials">
           <div class="card">
             <div class="card-header">Réseaux & liens</div>
@@ -618,7 +617,6 @@
             </div>
           </div>
 
-          <!-- DJ World Matrix -->
           <section class="matrix card" id="matrix">
             <div class="matrix-title">
               <h2>DJ WORLD MATRIX</h2>
@@ -666,7 +664,6 @@
 
       <div class="section-divider"></div>
 
-      <!-- [M3] LOWER GRID -->
       <section class="lower-grid">
         <article class="card project" id="project">
           <div class="card-header">Projet</div>
@@ -701,7 +698,6 @@
         </aside>
       </section>
 
-      <!-- [M4] BANNERS BAS -->
       <section class="banner-row">
         <div class="banner">
           <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
@@ -716,9 +712,13 @@
     </div>
   </main>
 
+  <script src="https://w.soundcloud.com/player/api.js"></script>
   <script>
     (function () {
       const pad = (n) => String(n).padStart(2, '0');
+      const defaultCover = 'arrière-plan-boyington-radio.jpg';
+      const coverImg = document.getElementById('current-track-cover');
+      const iframe = document.getElementById('soundcloud-widget');
 
       const el = {
         localTime: document.getElementById('local-time'),
@@ -771,14 +771,44 @@
         el.tokyo.textContent = formatTime(now, 'Asia/Tokyo');
       }
 
+      function updateCoverFromSound(sound) {
+        if (!sound) {
+          coverImg.src = defaultCover;
+          return;
+        }
+
+        const artwork = sound.artwork_url || (sound.user && sound.user.avatar_url);
+        coverImg.src = artwork || defaultCover;
+      }
+
+      function bindSoundCloudCover() {
+        if (!window.SC || !SC.Widget) {
+          coverImg.src = defaultCover;
+          return;
+        }
+
+        const widget = SC.Widget(iframe);
+
+        const refreshCover = () => {
+          widget.getCurrentSound(function (sound) {
+            updateCoverFromSound(sound);
+          });
+        };
+
+        widget.bind(SC.Widget.Events.READY, refreshCover);
+        widget.bind(SC.Widget.Events.PLAY, refreshCover);
+        widget.bind(SC.Widget.Events.FINISH, refreshCover);
+      }
+
       updateClock();
       setInterval(updateClock, 1000);
+      bindSoundCloudCover();
 
       const visitor = document.getElementById('visitor-counter');
-      const current = Number(visitor.textContent) || 2063;
-      visitor.textContent = String(current);
+      visitor.textContent = String(Number(visitor.textContent) || 2063);
     })();
   </script>
 </body>
 </html>
+
 
