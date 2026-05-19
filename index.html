@@ -1,15 +1,104 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<title>BOYINGTON RADIO</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOYINGTON RADIO 24/24</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #1a1a1a 0%, #050505 60%);
+      color: #d4af37;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 48px;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .live {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 18px;
+      background: #b30000;
+      color: white;
+      border-radius: 999px;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    .player-box {
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .player-title {
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #d4af37;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 14px;
+      color: #bbbbbb;
+    }
+  </style>
 </head>
 
-<body style="background:black;color:gold;text-align:center;font-family:Arial;">
+<body>
+  <div class="container">
+    <h1>📻 BOYINGTON RADIO</h1>
+    <div class="subtitle">Web Radio 24h / 24</div>
+    <div class="live">🔴 LIVE</div>
 
-<h1>📻 BOYINGTON RADIO</h1>
+    <div class="player-box">
+      <div class="player-title">BOYINGTON RADIO 24/24</div>
 
-<p>Web Radio 24h/24</p>
+      <iframe width="100%" height="300" scrolling="no" frameborder="no"
+        allow="autoplay; encrypted-media"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+      </iframe>
+    </div>
 
+    <div class="footer">
+      BOYINGTON REMIX — Radio web en construction
+    </div>
+  </div>
 </body>
+
 </html>
