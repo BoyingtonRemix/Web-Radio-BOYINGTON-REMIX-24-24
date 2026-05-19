@@ -28,7 +28,7 @@
       color: var(--text);
       background:
         linear-gradient(180deg, rgba(5,5,5,0.12), rgba(5,5,5,0.88)),
-        url('background-boyington-radio.jpg');
+        url('arrière-plan-boyington-radio.jpg');
       background-size: cover;
       background-position: center center;
       background-attachment: fixed;
@@ -163,26 +163,11 @@
 
     .card-body { padding: 18px; }
 
-    /* [M3] COVER + PLAYER + LOGO */
+    /* [M3] PLAYER + COVER */
     .latest-layout {
       display: grid;
       grid-template-rows: auto auto auto;
       gap: 14px;
-    }
-
-    .latest-cover {
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(0,0,0,0.35);
-      min-height: 420px;
-    }
-
-    .latest-cover img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
     }
 
     .player-wrap {
@@ -195,26 +180,24 @@
     .player-wrap iframe {
       display: block;
       width: 100%;
-      height: 300px;
+      height: 166px;
       border: 0;
       background: #111;
     }
 
-    .official-logo {
+    .track-cover {
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(216,216,216,0.14);
       background: rgba(0,0,0,0.35);
-      padding: 10px;
-      display: grid;
-      place-items: center;
+      min-height: 420px;
     }
 
-    .official-logo img {
+    .track-cover img {
+      width: 100%;
+      height: 100%;
       display: block;
-      width: min(100%, 520px);
-      height: auto;
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .btn-link {
@@ -547,7 +530,7 @@
       .banner-row { grid-template-columns: 1fr; }
       .social-row { grid-template-columns: repeat(2, 1fr); }
       .small-grid { grid-template-columns: 1fr; }
-      .latest-cover { min-height: 420px; }
+      .track-cover { min-height: 420px; }
     }
 
     @media (max-width: 700px) {
@@ -556,8 +539,8 @@
       .main-grid, .matrix, .lower-grid, .banner-row { padding: 12px; }
       .social-row { grid-template-columns: 1fr; }
       .cities { grid-template-columns: 1fr; }
-      .latest-cover { min-height: 320px; }
-      .player-wrap iframe { height: 280px; }
+      .track-cover { min-height: 320px; }
+      .player-wrap iframe { height: 166px; }
     }
   </style>
 </head>
@@ -587,28 +570,28 @@
 
       <!-- [M2] TOP GRID -->
       <section class="main-grid" id="latest">
-        <!-- Cover + player + logo officiel -->
+        <!-- Player + cover -->
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
-            <div class="latest-cover">
-              <img src="latest-upload-boyington-radio.jpg" alt="Dernier titre BOYINGTON RADIO" />
-            </div>
-
             <div class="player-wrap">
               <iframe
                 title="BOYINGTON RADIO 24/24"
                 width="100%"
-                height="300"
+                height="166"
                 scrolling="no"
                 frameborder="no"
                 allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23c0c0c0&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true">
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23c0c0c0&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
               </iframe>
             </div>
 
-            <div class="official-logo">
-              <img src="logo_radio_boyington.png" alt="Logo officiel BOYINGTON RADIO" />
+            <div class="track-cover" style="margin-top:14px;">
+              <img src="arrière-plan-boyington-radio.jpg" alt="Cover de la piste en lecture" />
+            </div>
+
+            <div class="btn-link" style="margin-top:14px; justify-content:center; width:100%;" role="link" aria-label="Ouvrir la playlist SoundCloud">
+              ▶ OUVRIR
             </div>
           </div>
         </article>
@@ -622,7 +605,7 @@
                 <a class="social-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">SoundCloud</a>
                 <a class="social-btn" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener">Facebook</a>
                 <a class="social-btn" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener">TikTok</a>
-                <a class="social-btn" href="https://www.facebook.com/groups/" target="_blank" rel="noopener">Groupe Djs Set Music For People</a>
+                <a class="social-btn" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener">Groupe Djs Set Music For People</a>
               </div>
 
               <div class="small-grid" style="margin-top:14px;">
@@ -708,7 +691,7 @@
                   <span class="num">02</span>
                   <span class="label">Share the music</span>
                 </a>
-                <a class="support-item" href="https://www.facebook.com/groups/" target="_blank" rel="noopener">
+                <a class="support-item" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener">
                   <span class="num">03</span>
                   <span class="label">Join the Facebook community</span>
                 </a>
@@ -721,10 +704,10 @@
       <!-- [M4] BANNERS BAS -->
       <section class="banner-row">
         <div class="banner">
-          <img src="boyington-radio-banner-1.jpg" alt="Banner BOYINGTON RADIO" />
+          <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
         </div>
         <div class="banner">
-          <img src="boyington-radio-banner-2.jpg" alt="Banner DJ World Matrix" />
+          <img src="arrière-plan-boyington-radio.jpg" alt="Fond BOYINGTON RADIO" />
         </div>
       </section>
 
