@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BOYINGTON RADIO 24/24 - Version noir argent premium, structure identique au site Boyington Remix, avec encarts, horloge mondiale et liens réseau." />
+  <meta name="description" content="BOYINGTON RADIO 24/24 - Version noir argent premium, structure complète avec player SoundCloud, encarts, horloge mondiale et liens réseau." />
   <title>BOYINGTON RADIO 24/24</title>
 
   <style>
@@ -173,10 +174,10 @@
       padding: 18px;
     }
 
-    /* [M3] LAST TRACK */
+    /* [M3] LAST TRACK + PLAYER */
     .latest-layout {
       display: grid;
-      grid-template-rows: auto auto;
+      grid-template-rows: auto auto auto;
       gap: 14px;
     }
 
@@ -185,7 +186,7 @@
       overflow: hidden;
       border: 1px solid rgba(216,216,216,0.14);
       background: rgba(0,0,0,0.35);
-      min-height: 520px;
+      min-height: 420px;
     }
 
     .latest-cover img {
@@ -193,6 +194,21 @@
       height: 100%;
       display: block;
       object-fit: cover;
+    }
+
+    .player-wrap {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(216,216,216,0.16);
+      background: rgba(0,0,0,0.35);
+    }
+
+    .player-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 300px;
+      border: 0;
+      background: #111;
     }
 
     .latest-footer {
@@ -617,7 +633,7 @@
 
       <!-- [M2] TOP GRID -->
       <section class="main-grid" id="latest">
-        <!-- Dernier titre uploadé -->
+        <!-- Dernier titre uploadé + player -->
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
@@ -625,12 +641,24 @@
               <img src="latest-upload-boyington-radio.jpg" alt="Dernier titre BOYINGTON RADIO" />
             </div>
 
-            <div class="latest-footer">
+            <div class="player-wrap" style="margin-top:14px;">
+              <iframe
+                title="BOYINGTON RADIO 24/24"
+                width="100%"
+                height="300"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay; encrypted-media"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23c0c0c0&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+              </iframe>
+            </div>
+
+            <div class="latest-footer" style="margin-top:14px;">
               <div>
-                <h3>Dernier titre publié</h3>
-                <p>Cliquer sur le bouton pour ouvrir directement le player SoundCloud et lancer l’écoute du dernier mix ou du dernier upload mis en avant.</p>
+                <h3>Player radio BOYINGTON</h3>
+                <p>Lecture SoundCloud visuelle avec pochettes et titres visibles pour les mixes d’une heure et les prochaines mises à jour.</p>
               </div>
-              <a class="btn-link" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">▶ OUVRIR</a>
+              <a class="btn-link" href="https://soundcloud.com/boyingtonremix/sets/boyington-radio-24-24" target="_blank" rel="noopener">▶ OUVRIR</a>
             </div>
           </div>
         </article>
