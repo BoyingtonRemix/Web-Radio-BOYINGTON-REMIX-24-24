@@ -1,104 +1,346 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BOYINGTON RADIO 24/24 - Web radio officielle, lectures continues, ambiance premium et player SoundCloud intégré." />
   <title>BOYINGTON RADIO 24/24</title>
-
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top, #1a1a1a 0%, #050505 60%);
-      color: #d4af37;
-      font-family: Arial, sans-serif;
-      text-align: center;
+    :root {
+      --bg: #050505;
+      --bg2: #0d0d10;
+      --gold: #d4af37;
+      --gold-soft: rgba(212, 175, 55, 0.18);
+      --white: #ffffff;
+      --muted: #b8b8b8;
+      --red: #c40000;
+      --line: rgba(212, 175, 55, 0.28);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
     }
 
-    .container {
-      max-width: 1000px;
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at top, rgba(212, 175, 55, 0.15) 0%, rgba(5, 5, 5, 0.12) 28%, rgba(5, 5, 5, 1) 60%),
+        linear-gradient(180deg, #111 0%, #050505 100%);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 40px 20px 60px;
+      padding: 28px 18px 40px;
+    }
+
+    .hero {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
+        linear-gradient(180deg, rgba(16,16,20,0.95), rgba(8,8,10,0.95));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(255, 183, 77, 0.13), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(122, 59, 255, 0.10), transparent 32%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      padding: 34px 22px 24px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .logo-badge {
+      width: 74px;
+      height: 74px;
+      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      background: linear-gradient(180deg, rgba(212,175,55,0.18), rgba(212,175,55,0.06));
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.12);
+      font-size: 34px;
+      color: var(--gold);
     }
 
     h1 {
       margin: 0;
-      font-size: 48px;
-      letter-spacing: 2px;
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 4rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-shadow: 0 0 14px rgba(212, 175, 55, 0.18);
     }
 
     .subtitle {
-      margin-top: 10px;
-      font-size: 20px;
-      color: #ffffff;
+      margin: 10px auto 0;
+      max-width: 820px;
+      text-align: center;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      line-height: 1.6;
     }
 
-    .live {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 18px;
-      background: #b30000;
-      color: white;
+    .status-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
       border-radius: 999px;
-      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .pill.live {
+      background: linear-gradient(180deg, rgba(196,0,0,0.95), rgba(120,0,0,0.95));
+      border-color: rgba(255, 80, 80, 0.4);
+      box-shadow: 0 0 28px rgba(196, 0, 0, 0.25);
       animation: blink 1s infinite;
     }
 
     @keyframes blink {
-      50% {
-        opacity: 0.4;
-      }
+      50% { opacity: 0.55; }
     }
 
-    .player-box {
-      margin-top: 40px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 18px;
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.16);
+      background: rgba(255,255,255,0.02);
+      font-size: 0.98rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .card-body {
       padding: 18px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
     }
 
-    .player-title {
-      margin-bottom: 15px;
-      font-size: 22px;
-      color: #d4af37;
-    }
-
-    iframe {
+    .player-wrap iframe {
+      display: block;
       width: 100%;
-      border: none;
-      border-radius: 12px;
+      height: 340px;
+      border: 0;
+      border-radius: 16px;
+      background: #111;
+    }
+
+    .radio-info {
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-box {
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      border: 1px solid rgba(212,175,55,0.16);
+    }
+
+    .info-title {
+      margin: 0 0 6px;
+      color: var(--gold);
+      font-size: 1.02rem;
+    }
+
+    .info-text {
+      margin: 0;
+      color: #e7e7e7;
+      line-height: 1.55;
+      font-size: 0.96rem;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 18px;
+      color: #e7e7e7;
+      line-height: 1.6;
+      font-size: 0.96rem;
     }
 
     .footer {
-      margin-top: 25px;
-      font-size: 14px;
-      color: #bbbbbb;
+      margin-top: 18px;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer strong {
+      color: var(--gold);
+    }
+
+    .divider {
+      height: 1px;
+      margin: 18px 0;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.35), transparent);
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .player-wrap iframe {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 12px;
+      }
+
+      .hero-inner {
+        padding: 24px 14px 18px;
+      }
+
+      .logo-badge {
+        width: 62px;
+        height: 62px;
+        font-size: 28px;
+      }
+
+      .player-wrap iframe {
+        height: 320px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>📻 BOYINGTON RADIO</h1>
-    <div class="subtitle">Web Radio 24h / 24</div>
-    <div class="live">🔴 LIVE</div>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="brand-row">
+          <div class="logo-badge">B</div>
+        </div>
 
-    <div class="player-box">
-      <div class="player-title">BOYINGTON RADIO 24/24</div>
+        <h1>BOYINGTON RADIO</h1>
+        <p class="subtitle">
+          Web radio officielle 24h/24 — sessions longues, ambiance rétro, jingles BOYINGTON REMIX,
+          et diffusion continue dans un univers premium noir & or.
+        </p>
 
-      <iframe width="100%" height="300" scrolling="no" frameborder="no"
-        allow="autoplay; encrypted-media"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-      </iframe>
-    </div>
+        <div class="status-row">
+          <div class="pill live">🔴 LIVE</div>
+          <div class="pill">📻 RADIO 24/24</div>
+          <div class="pill">🎧 SOUNDCloud PLAYER</div>
+        </div>
+      </div>
+    </section>
 
-    <div class="footer">
-      BOYINGTON REMIX — Radio web en construction
-    </div>
-  </div>
+    <section class="grid">
+      <div class="card">
+        <div class="card-header">Lecture en direct</div>
+        <div class="card-body player-wrap">
+          <iframe
+            title="BOYINGTON RADIO 24/24"
+            scrolling="no"
+            allow="autoplay; encrypted-media"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+          </iframe>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div class="card-header">Structure radio</div>
+        <div class="card-body radio-info">
+          <div class="info-box">
+            <p class="info-title">Programmation</p>
+            <p class="info-text">
+              Mixs d’une heure, enchaînés proprement, avec jingles BOYINGTON et ambiance radio continue.
+            </p>
+          </div>
+
+          <div class="info-box">
+            <p class="info-title">Contenu futur</p>
+            <ul class="list">
+              <li>Sessions rétro thématiques</li>
+              <li>Mixs d’1 heure</li>
+              <li>Jingles BOYINGTON REMIX</li>
+              <li>Programmes 80’s / funk / disco</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <p class="info-title">État du projet</p>
+            <p class="info-text">
+              Base prête pour accueillir les futures mises à jour sans casser la structure principale.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="card">
+      <div class="card-header">Zone d’infos BOYINGTON</div>
+      <div class="card-body">
+        <p class="info-text" style="margin:0; text-align:center;">
+          BOYINGTON REMIX — radio web indépendante, immersive et évolutive.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <strong>BOYINGTON REMIX</strong> · Web Radio 24h/24 · Construction initiale prête
+    </footer>
+  </main>
 </body>
-
 </html>
