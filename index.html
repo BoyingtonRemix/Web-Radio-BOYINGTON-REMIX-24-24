@@ -950,6 +950,28 @@
           });
         };
 
+        const loadPlaylist = (urn) => {
+          currentPlaylistUrn = urn;
+          const url = buildPlayerUrl(urn);
+          iframe.src = url;
+          setTimeout(() => {
+            try {
+              widget.load(url, {
+                auto_play: true,
+                hide_related: true,
+                show_comments: false,
+                show_user: false,
+                show_reposts: false,
+                show_teaser: false,
+                visual: false,
+                color: '#c0c0c0'
+              });
+            } catch (e) {
+              iframe.src = url;
+            }
+          }, 150);
+        };
+
         widget.bind(SC.Widget.Events.READY, function () {
           refreshCover();
           try { widget.play(); } catch (e) {}
@@ -959,9 +981,8 @@
 
         widget.bind(SC.Widget.Events.FINISH, function () {
           refreshCover();
-          currentPlaylistUrn = pickRandomPlaylist(currentPlaylistUrn);
-          iframe.src = buildPlayerUrl(currentPlaylistUrn);
-          setTimeout(bindSoundCloud, 700);
+          const nextPlaylistUrn = pickRandomPlaylist(currentPlaylistUrn);
+          loadPlaylist(nextPlaylistUrn);
         });
       }
 
@@ -975,3 +996,4 @@
   </script>
 </body>
 </html>
+
