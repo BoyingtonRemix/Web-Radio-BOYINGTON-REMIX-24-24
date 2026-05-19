@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -766,31 +765,45 @@
 </head>
 <body>
   <main class="page">
+    <!-- ===================================================== -->
+    <!-- 🗺️ GUIDE VISUEL RAPIDE DU FICHIER -->
+    <!-- [M1] Topbar / navigation du site -->
+    <!-- [M2] Hero / titre principal et badges LIVE -->
+    <!-- [M3] Zone centrale / player + panneaux d’infos -->
+    <!-- [M4] Player SoundCloud compact -->
+    <!-- [M5] Programmation + blocs d’état du projet -->
+    <!-- [M6] Dernier titre / pochette clippable -->
+    <!-- [M7] Réseaux + compteur + DJ World Matrix -->
+    <!-- [M8] Support / liens officiels clippables -->
+    <!-- [M9] Footer / mentions finales -->
+    <!-- [M10] Scripts / compteur + horloges -->
+    <!-- ===================================================== -->
+
     <div class="shell">
-      <!-- ====================================================== -->
-      <!-- [M1] TOPBAR / NAVIGATION PRINCIPALE -->
-      <!-- [M1.1] CONTENEUR TOPBAR -->
-      <!-- [M1.2] ZONE LOGO RADIO -->
-      <!-- [M1.3] TITRE BOYINGTON RADIO -->
-      <!-- [M1.4] SOUS-TITRE WEB RADIO OFFICIELLE -->
-      <!-- [M1.5] MENU NAVIGATION -->
-      <!-- [M1.6] BOUTON ACCUEIL -->
-      <!-- [M1.7] BOUTON RADIO -->
-      <!-- [M1.8] BOUTON PROGRAMMATION -->
-      <!-- [M1.9] BOUTON SUPPORT -->
-      <!-- [M1.10] BOUTON INFOS -->
-      <!-- ====================================================== -->
+      <!-- ===================================================== -->
+      <!-- 🧩 [M1] TOPBAR / NAVIGATION PRINCIPALE -->
+      <!-- 📍 Sur la page : bandeau supérieur avec logo, nom du site et menu -->
+      <!-- 🔹 [M1.1] Bloc logo à gauche -->
+      <!-- 🔹 [M1.2] Nom de la marque + sous-titre -->
+      <!-- 🔹 [M1.3] Menu des ancres de navigation -->
+      <!-- 🔹 [M1.4] Boutons d’accès rapide aux sections -->
+      <!-- ===================================================== -->
       <header class="topbar">
+        <!-- [M1.1] Zone identité marque : logo + texte -->
         <div class="brand">
+          <!-- [M1.1.1] Logo carré du site -->
           <div class="logo-box">
             <img src="logo_radio_boyington.png" alt="Logo BOYINGTON RADIO" />
           </div>
+
+          <!-- [M1.2] Bloc texte identité -->
           <div class="brand-text">
             <h1>Boyington Radio</h1>
             <p>Web radio officielle</p>
           </div>
         </div>
 
+        <!-- [M1.3] Navigation principale du site -->
         <nav class="nav-tabs" aria-label="Navigation principale">
           <a class="tab" href="#accueil">Accueil</a>
           <a class="tab" href="#radio">Radio 24/24</a>
@@ -800,16 +813,15 @@
         </nav>
       </header>
 
-      <!-- ====================================================== -->
-      <!-- [M2] HERO / ACCUEIL RADIO -->
-      <!-- [M2.1] SECTION HERO PRINCIPALE -->
-      <!-- [M2.2] TITRE CENTRAL RADIO -->
-      <!-- [M2.3] TEXTE DESCRIPTION HERO -->
-      <!-- [M2.4] BADGE LIVE -->
-      <!-- [M2.5] BADGE RADIO 24/24 -->
-      <!-- [M2.6] BADGE SOUNDCLOUD -->
-      <!-- ====================================================== -->
+      <!-- ===================================================== -->
+      <!-- 🌟 [M2] HERO / ACCUEIL RADIO -->
+      <!-- 📍 Sur la page : grand bandeau central d’ouverture -->
+      <!-- 🔹 [M2.1] Titre principal -->
+      <!-- 🔹 [M2.2] Phrase d’accroche -->
+      <!-- 🔹 [M2.3] Badges d’état (LIVE / RADIO 24/24 / SOUNDCLOUD) -->
+      <!-- ===================================================== -->
       <section class="hero" id="accueil">
+        <!-- [M2.1 + M2.2 + M2.3] Contenu central du hero -->
         <div class="hero-inner">
           <h2>BOYINGTON RADIO 24/24</h2>
           <p class="lead">
@@ -826,25 +838,27 @@
 
       <div class="divider"></div>
 
-      <!-- ====================================================== -->
-      <!-- [M3] ZONE PLAYER + PANNEAUX -->
-      <!-- [M3.1] CONTENEUR PRINCIPAL GRID -->
-      <!-- [M3.2] COLONNE PLAYER -->
-      <!-- [M3.3] COLONNE PANNEAUX LATÉRAUX -->
-      <!-- ====================================================== -->
+      <!-- ===================================================== -->
+      <!-- 🧱 [M3] ZONE CENTRALE / PLAYER + PANNEAUX -->
+      <!-- 📍 Sur la page : grand bloc en 2 colonnes -->
+      <!-- 🔹 [M3.1] Colonne gauche : player principal -->
+      <!-- 🔹 [M3.2] Colonne droite : cartes d’infos -->
+      <!-- ===================================================== -->
       <section class="content">
-        <!-- ====================================================== -->
-        <!-- [M4] PLAYER RADIO SOUNDCLOUD -->
-        <!-- [M4.1] CARTE PLAYER -->
-        <!-- [M4.2] HEADER PLAYER -->
-        <!-- [M4.3] CONTENEUR PLAYER -->
-        <!-- [M4.4] IFRAME SOUNDCLOUD -->
-        <!-- [M4.5] NOTE PLAYER -->
-        <!-- ====================================================== -->
+        <!-- ===================================================== -->
+        <!-- 🎧 [M4] PLAYER RADIO SOUNDCLOUD -->
+        <!-- 📍 Sur la page : lecteur principal de la radio -->
+        <!-- 🔹 [M4.1] Titre de la carte -->
+        <!-- 🔹 [M4.2] Cadre du player -->
+        <!-- 🔹 [M4.3] Iframe SoundCloud compacte -->
+        <!-- 🔹 [M4.4] Note explicative sous le player -->
+        <!-- ===================================================== -->
         <article class="card" id="radio">
           <div class="card-header">Lecture en direct</div>
           <div class="card-body">
+            <!-- [M4.2] Conteneur visuel du player -->
             <div class="player-shell">
+              <!-- [M4.3] Fenêtre iframe SoundCloud -->
               <div class="player-viewport">
                 <iframe
                   id="soundcloud-player"
@@ -858,22 +872,22 @@
               </div>
             </div>
 
+            <!-- [M4.4] Note d’info sous le player -->
             <div class="player-note">
               Player SoundCloud en version compacte, sans visuel principal au-dessus, pour garder l’interface plus sobre et plus radio.
             </div>
           </div>
         </article>
 
-        <!-- ====================================================== -->
-        <!-- [M5] BLOCS INFOS / PROGRAMMATION -->
-        <!-- [M5.1] PANNEAU PROGRAMMATION -->
-        <!-- [M5.2] BOX FORMAT RADIO -->
-        <!-- [M5.3] PANNEAU CONTENU PRÉVU -->
-        <!-- [M5.4] LISTE CONTENU -->
-        <!-- [M5.5] PANNEAU ÉTAT DU PROJET -->
-        <!-- [M5.6] BOX BASE PRÊTE -->
-        <!-- ====================================================== -->
+        <!-- ===================================================== -->
+        <!-- 🗂️ [M5] BLOCS INFOS / PROGRAMMATION -->
+        <!-- 📍 Sur la page : colonne de droite avec cartes info -->
+        <!-- 🔹 [M5.1] Programmation -->
+        <!-- 🔹 [M5.2] Contenu prévu -->
+        <!-- 🔹 [M5.3] État du projet -->
+        <!-- ===================================================== -->
         <aside class="panel-grid">
+          <!-- [M5.1] Carte programmation -->
           <section class="card" id="programmation">
             <div class="card-header">Programmation</div>
             <div class="card-body">
@@ -884,6 +898,7 @@
             </div>
           </section>
 
+          <!-- [M5.2] Carte liste du contenu prévu -->
           <section class="card">
             <div class="card-header">Contenu prévu</div>
             <div class="card-body">
@@ -896,6 +911,7 @@
             </div>
           </section>
 
+          <!-- [M5.3] Carte état du projet -->
           <section class="card" id="infos">
             <div class="card-header">État du projet</div>
             <div class="card-body">
@@ -908,15 +924,14 @@
         </aside>
       </section>
 
-      <!-- ====================================================== -->
-      <!-- [M6] ENCASTS RAPIDES / COVER + RÉSEAUX -->
-      <!-- [M6.1] GRID DES ENCASTS -->
-      <!-- [M6.2] ENCAST DERNIER TITRE -->
-      <!-- [M6.3] IMAGE COVER PRINCIPALE -->
-      <!-- [M6.4] TEXTE DERNIER TITRE -->
-      <!-- [M6.5] BOUTON OUVRIR PLAYER -->
-      <!-- ====================================================== -->
+      <!-- ===================================================== -->
+      <!-- 🖼️ [M6] ENCASTS RAPIDES / COVER + RÉSEAUX -->
+      <!-- 📍 Sur la page : 2 grandes cartes sous la zone principale -->
+      <!-- 🔹 [M6.1] Dernier titre / image clippable -->
+      <!-- 🔹 [M6.2] Réseaux + compteur + matrice horaire -->
+      <!-- ===================================================== -->
       <section class="quick-grid">
+        <!-- [M6.1] Bloc dernier titre / pochette -->
         <div class="card quick-card">
           <h2 class="card-header">Dernier titre uploadé</h2>
           <a class="latest-release" href="#radio">
@@ -934,26 +949,11 @@
           </a>
         </div>
 
-        <!-- ====================================================== -->
-        <!-- [M7] RÉSEAUX SOCIAUX + DJ WORLD MATRIX -->
-        <!-- [M7.1] ENCAST RÉSEAUX -->
-        <!-- [M7.2] BOUTON SOUNDCLOUD -->
-        <!-- [M7.3] BOUTON FACEBOOK -->
-        <!-- [M7.4] BOUTON TIKTOK -->
-        <!-- [M7.5] BOUTON YOUTUBE -->
-        <!-- [M7.6] BOUTON GROUPE FACEBOOK -->
-        <!-- [M7.7] COMPTEUR VISITES -->
-        <!-- [M7.8] DJ WORLD MATRIX -->
-        <!-- [M7.9] HORLOGE ANALOGIQUE -->
-        <!-- [M7.10] HORLOGE DIGITALE -->
-        <!-- [M7.11] HORLOGE PARIS -->
-        <!-- [M7.12] HORLOGE LONDON -->
-        <!-- [M7.13] HORLOGE NEW YORK -->
-        <!-- [M7.14] HORLOGE TOKYO -->
-        <!-- [M7.15] BANNIÈRE DJ INTERNATIONAL -->
-        <!-- ====================================================== -->
+        <!-- [M6.2] Bloc réseaux + compteur + DJ World Matrix -->
         <div class="card quick-card" id="support">
           <h2 class="card-header">Réseaux & liens</h2>
+
+          <!-- [M7.1] Grille des réseaux clippables -->
           <div class="social-grid">
             <a class="social-link" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">SoundCloud</a>
             <a class="social-link" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -967,6 +967,7 @@
             </div>
           </div>
 
+          <!-- [M7.2] DJ World Matrix / horloges mondiales -->
           <div class="world-mini">
             <div class="world-mini-head">
               <div class="world-mini-title">DJ World Matrix</div>
@@ -1011,20 +1012,19 @@
             </div>
           </div>
 
+          <!-- [M7.3] Bannière communauté DJ -->
           <img class="dj-community-banner" src="djs-international-banner.jpg" alt="DJs International" />
         </div>
       </section>
 
-      <!-- ====================================================== -->
-      <!-- [M8] PANNEAUX BAS / SUPPORT -->
-      <!-- [M8.1] PANNEAU BOYINGTON PROJECT -->
-      <!-- [M8.2] TEXTE DESCRIPTION PROJET -->
-      <!-- [M8.3] PANNEAU SUPPORT PROJECT -->
-      <!-- [M8.4] LIEN FOLLOW SOUNDCLOUD -->
-      <!-- [M8.5] LIEN SHARE FACEBOOK -->
-      <!-- [M8.6] LIEN COMMUNAUTÉ DJ -->
-      <!-- ====================================================== -->
+      <!-- ===================================================== -->
+      <!-- 🤝 [M8] SUPPORT THE PROJECT / LIENS OFFICIELS -->
+      <!-- 📍 Sur la page : zone du bas avec deux cartes -->
+      <!-- 🔹 [M8.1] Présentation Boyington Radio -->
+      <!-- 🔹 [M8.2] Liens de support / follow / share / community -->
+      <!-- ===================================================== -->
       <section class="bottom-grid">
+        <!-- [M8.1] Carte projet / description de la radio -->
         <div class="card quick-card">
           <h2 class="card-header">Boyington Remix Project</h2>
           <div class="feature-panel">
@@ -1036,6 +1036,7 @@
           </div>
         </div>
 
+        <!-- [M8.2] Carte support / liens officiels -->
         <div class="card quick-card" id="infos">
           <h2 class="card-header">Support The Project</h2>
           <div class="support-panel">
@@ -1052,13 +1053,13 @@
 
       <div class="notes">✨ WebRadio Boyington — live, premium, DJ, radio, émotion.</div>
 
-      <!-- ====================================================== -->
-      <!-- [M9] FOOTER FINAL -->
-      <!-- [M9.1] TITRE FOOTER -->
-      <!-- [M9.2] TEXTE LICENCE -->
-      <!-- [M9.3] COPYRIGHT -->
-      <!-- [M9.4] ALIAS PÉPPINO -->
-      <!-- ====================================================== -->
+      <!-- ===================================================== -->
+      <!-- 🧾 [M9] FOOTER FINAL -->
+      <!-- 📍 Sur la page : mentions légales et signature -->
+      <!-- 🔹 [M9.1] Nom de marque -->
+      <!-- 🔹 [M9.2] Licence et droits -->
+      <!-- 🔹 [M9.3] Alias de signature -->
+      <!-- ===================================================== -->
       <div class="footer-wrap">
         <div class="footer-brand">Boyington Radio</div>
         <footer>
@@ -1074,16 +1075,15 @@
     </div>
   </main>
 
-  <!-- ====================================================== -->
-  <!-- [M10] SCRIPTS HORLOGE + VISITES -->
-  <!-- [M10.1] SCRIPT GOATCOUNTER -->
-  <!-- [M10.2] SCRIPT COMPTEUR VISITES -->
-  <!-- [M10.3] SCRIPT DJ WORLD MATRIX -->
-  <!-- [M10.4] SCRIPT HORLOGE ANALOGIQUE -->
-  <!-- [M10.5] SCRIPT HORLOGE DIGITALE -->
-  <!-- [M10.6] SCRIPT HEURES INTERNATIONALES -->
-  <!-- [M10.7] UPDATE INTERVAL 1 SECONDE -->
-  <!-- ====================================================== -->
+  <!-- ===================================================== -->
+  <!-- ⚙️ [M10] SCRIPTS / COMPTEUR + HORLOGES -->
+  <!-- 📍 Sur la page : scripts automatiques en bas -->
+  <!-- 🔹 [M10.1] GoatCounter -->
+  <!-- 🔹 [M10.2] Compteur de visites -->
+  <!-- 🔹 [M10.3] Horloge analogique du monde -->
+  <!-- 🔹 [M10.4] Horloge digitale locale -->
+  <!-- 🔹 [M10.5] Heures Paris / London / New York / Tokyo -->
+  <!-- ===================================================== -->
   <script>
     async function loadSiteVisitCounter() {
       const counterEl = document.getElementById('siteVisitCount');
@@ -1170,5 +1170,4 @@
     loadSiteVisitCounter();
     setInterval(loadSiteVisitCounter, 60000);
   </script>
-</body>
-</html>
+</bod
