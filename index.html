@@ -166,7 +166,7 @@
     /* [M3] PLAYER + COVER */
     .latest-layout {
       display: grid;
-      grid-template-rows: auto auto auto auto;
+      grid-template-rows: auto auto auto;
       gap: 14px;
     }
 
@@ -183,34 +183,6 @@
       height: 166px;
       border: 0;
       background: #111;
-    }
-
-    .player-live-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-    }
-
-    .live-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(216,216,216,0.18);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.18s ease;
-    }
-
-    .live-pill:hover {
-      transform: translateY(-1px);
-      border-color: rgba(216,216,216,0.34);
-      background: rgba(255,255,255,0.09);
     }
 
     .track-cover {
@@ -252,7 +224,7 @@
       transform: translateY(-1px);
     }
 
-    /* [M4] SOCIAL LINKS */
+    /* [M4] RIGHT COLUMN */
     .social-grid {
       display: grid;
       gap: 14px;
@@ -317,6 +289,20 @@
       color: var(--text);
       font-weight: 700;
       font-size: 1.35rem;
+    }
+
+    .studio-box {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(216,216,216,0.14);
+      background: rgba(0,0,0,0.35);
+    }
+
+    .studio-box img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
     }
 
     /* [M5] DJ WORLD MATRIX */
@@ -459,12 +445,18 @@
       border-radius: 18px;
       border: 1px solid rgba(216,216,216,0.12);
       background: rgba(255,255,255,0.03);
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .project-panel .support-list {
+      margin-top: 0;
     }
 
     .empty-project {
       width: 100%;
-      height: 100%;
-      min-height: 220px;
+      min-height: 80px;
       border-radius: 18px;
       border: 1px dashed rgba(216,216,216,0.14);
       background: rgba(0,0,0,0.18);
@@ -602,10 +594,6 @@
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
-            <div class="player-live-row" style="margin-bottom:12px;">
-              <a class="live-pill" href="https://soundcloud.com/boyingtonremix/sets/boyington-radio-24-24" target="_blank" rel="noopener">🔴 LIVE PLAYLIST</a>
-            </div>
-
             <div class="player-wrap">
               <iframe
                 id="soundcloud-widget"
@@ -633,11 +621,8 @@
           <div class="card">
             <div class="card-header">Réseaux & liens</div>
             <div class="card-body">
-              <div class="social-row">
-                <a class="social-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">SoundCloud</a>
-                <a class="social-btn" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener">Facebook</a>
-                <a class="social-btn" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener">TikTok</a>
-                <a class="social-btn" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener">Groupe Djs Set Music For People</a>
+              <div class="studio-box">
+                <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
               </div>
 
               <div class="small-grid" style="margin-top:14px;">
@@ -702,16 +687,6 @@
           <div class="card-header">Projet</div>
           <div class="card-body">
             <div class="project-panel">
-              <div class="empty-project"></div>
-            </div>
-          </div>
-        </article>
-
-        <aside class="card support" id="support">
-          <div class="card-header">SUPPORT THE PROJECT</div>
-          <div class="card-body">
-            <div class="support-panel">
-              <p>Aide le projet à grandir et reste connecté à l’univers Boyington Remix.</p>
               <div class="support-list">
                 <a class="support-item" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">
                   <span class="num">01</span>
@@ -725,7 +700,20 @@
                   <span class="num">03</span>
                   <span class="label">Join the Facebook community</span>
                 </a>
+                <a class="support-item" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener">
+                  <span class="num">04</span>
+                  <span class="label">TikTok Boyington</span>
+                </a>
               </div>
+            </div>
+          </div>
+        </article>
+
+        <aside class="card support" id="support">
+          <div class="card-header">SUPPORT THE PROJECT</div>
+          <div class="card-body">
+            <div class="support-panel">
+              <div class="empty-project"></div>
             </div>
           </div>
         </aside>
@@ -733,7 +721,7 @@
 
       <section class="banner-row">
         <div class="banner">
-          <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
+          <img src="arrière-plan-boyington-radio.jpg" alt="Fond BOYINGTON RADIO" />
         </div>
         <div class="banner">
           <img src="arrière-plan-boyington-radio.jpg" alt="Fond BOYINGTON RADIO" />
@@ -855,6 +843,4 @@
   </script>
 </body>
 </html>
-
-
 
