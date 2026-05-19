@@ -12,7 +12,6 @@
       --panel: rgba(255, 255, 255, 0.04);
       --line: rgba(216, 216, 216, 0.14);
       --silver: #d7d7d7;
-      --silver2: #bdbdbd;
       --text: #f4f4f4;
       --muted: #b4b4b4;
       --gold: #c7c7c7;
@@ -91,16 +90,13 @@
       display: block;
     }
 
-    .brand-title {
-      line-height: 1.05;
-    }
-
     .brand-title h1 {
       margin: 0;
       font-size: clamp(1.4rem, 2.5vw, 2.4rem);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--silver);
+      line-height: 1;
     }
 
     .brand-title p {
@@ -165,9 +161,7 @@
       font-weight: 700;
     }
 
-    .card-body {
-      padding: 18px;
-    }
+    .card-body { padding: 18px; }
 
     /* [M3] COVER + PLAYER + LOGO */
     .latest-layout {
@@ -268,6 +262,7 @@
       font-weight: 700;
       color: var(--text);
       transition: all 0.18s ease;
+      text-align: center;
     }
 
     .social-btn:hover {
@@ -278,7 +273,7 @@
 
     .small-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 12px;
     }
 
@@ -319,10 +314,7 @@
       box-shadow: var(--shadow);
     }
 
-    .matrix-title {
-      text-align: center;
-      margin-bottom: 16px;
-    }
+    .matrix-title { text-align: center; margin-bottom: 16px; }
 
     .matrix-title h2 {
       margin: 0;
@@ -332,10 +324,7 @@
       font-size: 1.1rem;
     }
 
-    .matrix-title p {
-      margin: 6px 0 0;
-      color: var(--muted);
-    }
+    .matrix-title p { margin: 6px 0 0; color: var(--muted); }
 
     .matrix-grid {
       display: grid;
@@ -396,10 +385,7 @@
       box-shadow: 0 0 12px rgba(255,255,255,0.18);
     }
 
-    .clock-time {
-      text-align: center;
-      margin-top: 14px;
-    }
+    .clock-time { text-align: center; margin-top: 14px; }
 
     .clock-time .time {
       font-size: clamp(2rem, 4vw, 3rem);
@@ -408,10 +394,7 @@
       letter-spacing: 0.06em;
     }
 
-    .clock-time .date {
-      margin-top: 4px;
-      color: var(--muted);
-    }
+    .clock-time .date { margin-top: 4px; color: var(--muted); }
 
     .cities {
       display: grid;
@@ -451,14 +434,10 @@
     }
 
     .project,
-    .support {
-      min-height: 310px;
-    }
+    .support { min-height: 310px; }
 
     .project .card-body,
-    .support .card-body {
-      height: calc(100% - 54px);
-    }
+    .support .card-body { height: calc(100% - 54px); }
 
     .project-panel {
       height: 100%;
@@ -474,15 +453,6 @@
       border-radius: 18px;
       border: 1px dashed rgba(216,216,216,0.14);
       background: rgba(0,0,0,0.18);
-    }
-
-    .support-panel h3,
-    .project-panel h3 {
-      margin: 0;
-      color: var(--silver);
-      font-size: 1.1rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
     }
 
     .support-panel p {
@@ -574,21 +544,10 @@
       .main-grid,
       .matrix-grid,
       .lower-grid,
-      .banner-row {
-        grid-template-columns: 1fr;
-      }
-
-      .social-row {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .small-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .latest-cover {
-        min-height: 420px;
-      }
+      .banner-row { grid-template-columns: 1fr; }
+      .social-row { grid-template-columns: repeat(2, 1fr); }
+      .small-grid { grid-template-columns: 1fr; }
+      .latest-cover { min-height: 420px; }
     }
 
     @media (max-width: 700px) {
@@ -644,7 +603,7 @@
                 scrolling="no"
                 frameborder="no"
                 allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23c0c0c0&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23c0c0c0&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true">
               </iframe>
             </div>
 
@@ -661,16 +620,12 @@
             <div class="card-body">
               <div class="social-row">
                 <a class="social-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">SoundCloud</a>
-                <a class="social-btn" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
-                <a class="social-btn" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+                <a class="social-btn" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener">Facebook</a>
+                <a class="social-btn" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener">TikTok</a>
                 <a class="social-btn" href="https://www.facebook.com/groups/" target="_blank" rel="noopener">Groupe Djs Set Music For People</a>
               </div>
 
               <div class="small-grid" style="margin-top:14px;">
-                <a class="small-box" href="https://www.facebook.com/groups/" target="_blank" rel="noopener">
-                  <strong>Groupe Facebook DJ</strong>
-                  <span>Rejoindre</span>
-                </a>
                 <div class="small-box">
                   <strong>VISIT</strong>
                   <span id="visitor-counter">2063</span>
@@ -749,7 +704,7 @@
                   <span class="num">01</span>
                   <span class="label">Follow on SoundCloud</span>
                 </a>
-                <a class="support-item" href="https://www.facebook.com/" target="_blank" rel="noopener">
+                <a class="support-item" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener">
                   <span class="num">02</span>
                   <span class="label">Share the music</span>
                 </a>
@@ -815,13 +770,9 @@
         const minutes = m + seconds / 60;
         const hours = (h % 12) + minutes / 60;
 
-        const hourDeg = hours * 30;
-        const minuteDeg = minutes * 6;
-        const secondDeg = seconds * 6;
-
-        el.hour.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
-        el.minute.style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
-        el.second.style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+        el.hour.style.transform = `translateX(-50%) rotate(${hours * 30}deg)`;
+        el.minute.style.transform = `translateX(-50%) rotate(${minutes * 6}deg)`;
+        el.second.style.transform = `translateX(-50%) rotate(${seconds * 6}deg)`;
 
         el.localTime.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
         el.localDate.textContent = now.toLocaleDateString('fr-FR', {
