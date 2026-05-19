@@ -25,8 +25,6 @@
       --line: rgba(216, 216, 216, 0.16);
       --shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
       --title-size: clamp(2.6rem, 7vw, 5.8rem);
-      --hero-logo-width: 360px;
-      --hero-logo-width-mobile: 240px;
     }
 
     * { box-sizing: border-box; }
@@ -78,7 +76,6 @@
       backdrop-filter: blur(6px);
     }
 
-    .panel,
     .card {
       background: linear-gradient(180deg, rgba(10,10,10,0.95), rgba(5,5,5,0.96));
       border: 1px solid var(--line);
@@ -231,15 +228,19 @@
       animation: blink 1.2s infinite;
     }
 
-    @keyframes blink {
-      50% { opacity: 0.62; }
-    }
+    @keyframes blink { 50% { opacity: 0.62; } }
 
     .content {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 0.95fr 1.05fr;
       gap: 18px;
       padding: 16px;
+    }
+
+    .panel-grid {
+      display: grid;
+      gap: 14px;
+      min-width: 0;
     }
 
     .card-header {
@@ -254,6 +255,62 @@
 
     .card-body {
       padding: 18px;
+    }
+
+    .cover-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(216,216,216,0.14);
+      background: #050505;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
+
+    .cover-live {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #050505;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .cover-stage.is-loading .cover-live {
+      opacity: 0.6;
+      transform: scale(0.99);
+    }
+
+    .cover-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px 16px 14px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.82));
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    }
+
+    .cover-overlay .cover-kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 6px;
+    }
+
+    .cover-overlay .cover-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .cover-overlay .cover-artist {
+      font-size: 0.9rem;
+      color: var(--muted);
     }
 
     .radio-launch-btn{
@@ -299,11 +356,6 @@
       color: var(--muted);
       font-size: 0.88rem;
       line-height: 1.5;
-    }
-
-    .panel-grid {
-      display: grid;
-      gap: 14px;
     }
 
     .info-box {
@@ -424,11 +476,7 @@
       transform: translateY(-2px);
     }
 
-    .social-link.is-wide {
-      grid-column: span 2;
-      justify-content: center;
-      text-align: center;
-    }
+    .social-link.is-wide { grid-column: span 2; justify-content: center; text-align: center; }
 
     .visit-tile {
       flex-direction: column;
@@ -486,37 +534,12 @@
       overflow: hidden;
     }
 
-    .world-mini-head {
-      text-align: center;
-      margin-bottom: 14px;
-    }
+    .world-mini-head { text-align: center; margin-bottom: 14px; }
+    .world-mini-title { color: var(--silver); text-transform: uppercase; letter-spacing: 0.12em; font-weight: bold; font-size: 0.98rem; }
+    .world-mini-sub { color: var(--muted); font-size: 0.84rem; margin-top: 4px; letter-spacing: 0.06em; }
 
-    .world-mini-title {
-      color: var(--silver);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: bold;
-      font-size: 0.98rem;
-    }
-
-    .world-mini-sub {
-      color: var(--muted);
-      font-size: 0.84rem;
-      margin-top: 4px;
-      letter-spacing: 0.06em;
-    }
-
-    .world-mini-layout {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .world-mini-clock-wrap {
-      display: flex;
-      justify-content: center;
-    }
+    .world-mini-layout { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 14px; align-items: center; }
+    .world-mini-clock-wrap { display: flex; justify-content: center; }
 
     .world-mini-ring {
       width: 100%;
@@ -585,23 +608,9 @@
       border-radius: 999px;
     }
 
-    .world-mini-hour {
-      width: 5px;
-      height: 26%;
-      background: linear-gradient(180deg, #f1f1f1, #bdbdbd);
-    }
-
-    .world-mini-minute {
-      width: 4px;
-      height: 34%;
-      background: linear-gradient(180deg, #fff, #d8d8d8);
-    }
-
-    .world-mini-second {
-      width: 2px;
-      height: 40%;
-      background: rgba(216,216,216,0.95);
-    }
+    .world-mini-hour { width: 5px; height: 26%; background: linear-gradient(180deg, #f1f1f1, #bdbdbd); }
+    .world-mini-minute { width: 4px; height: 34%; background: linear-gradient(180deg, #fff, #d8d8d8); }
+    .world-mini-second { width: 2px; height: 40%; background: rgba(216,216,216,0.95); }
 
     .world-mini-dot {
       position: absolute;
@@ -681,10 +690,7 @@
     }
 
     .feature-panel p,
-    .support-panel p {
-      color: var(--muted);
-      line-height: 1.9;
-    }
+    .support-panel p { color: var(--muted); line-height: 1.9; }
 
     .support-list {
       list-style: none;
@@ -706,10 +712,7 @@
       background: rgba(255,255,255,0.02);
     }
 
-    .support-list span {
-      color: var(--silver);
-      font-weight: bold;
-    }
+    .support-list span { color: var(--silver); font-weight: bold; }
 
     .notes {
       margin: 10px 16px 0;
@@ -748,12 +751,7 @@
     }
 
     @media (max-width: 1100px) {
-      .content,
-      .quick-grid,
-      .bottom-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .content, .quick-grid, .bottom-grid { grid-template-columns: 1fr; }
       .social-grid { grid-template-columns: repeat(2,1fr); }
       .world-mini-layout { grid-template-columns: 1fr; }
       .world-mini-cities { grid-template-columns: 1fr; }
@@ -765,9 +763,7 @@
       .page { padding: 10px; }
       .topbar { padding: 16px 14px; }
       .hero { padding: 22px 14px 14px; }
-      .content,
-      .quick-grid,
-      .bottom-grid { padding: 12px; gap: 12px; }
+      .content, .quick-grid, .bottom-grid { padding: 12px; gap: 12px; }
       .player-viewport iframe { height: 210px; }
       .brand-text h1 { font-size: 1.4rem; }
       .logo-box { width: 48px; height: 48px; }
@@ -781,168 +777,127 @@
     }
   </style>
 
-  <script data-goatcounter="https://boyingtonremix.goatcounter.com/count"
-          async src="//gc.zgo.at/count.js"></script>
+  <script data-goatcounter="https://boyingtonremix.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <script src="https://w.soundcloud.com/player/api.js"></script>
 </head>
 <body>
   <main class="page">
     <div class="shell">
-      <!-- [M0] LÉGENDE RAPIDE : les marqueurs M0.* correspondent aux titres, textes, boutons et images visibles sur la page. -->
-
-      <!-- [M1] TOPBAR : logo + titre + menu -->
       <header class="topbar">
-        <!-- [M1.1] LOGO BOYINGTON RADIO -->
         <div class="brand">
           <div class="logo-box">
             <img src="logo_radio_boyington.png" alt="Logo BOYINGTON RADIO" />
           </div>
-
-          <!-- [M1.2] TITRE SITE -->
           <div class="brand-text">
             <h1>Boyington Radio</h1>
-            <!-- [M1.3] SOUS-TITRE SITE -->
             <p>Web radio officielle</p>
           </div>
         </div>
 
-        <!-- [M1.4] MENU PRINCIPAL -->
         <nav class="nav-tabs" aria-label="Navigation principale">
-          <!-- [M1.4.1] Bouton Accueil -->
           <a class="tab" href="#accueil">Accueil</a>
-          <!-- [M1.4.2] Bouton Radio 24/24 -->
           <a class="tab" href="#radio">Radio 24/24</a>
-          <!-- [M1.4.3] Bouton Programmation -->
           <a class="tab" href="#programmation">Programmation</a>
-          <!-- [M1.4.4] Bouton Support -->
           <a class="tab" href="#support">Support</a>
-          <!-- [M1.4.5] Bouton Infos -->
           <a class="tab" href="#infos">Infos</a>
         </nav>
       </header>
 
-      <!-- [M2] HERO : titre central + description + badges -->
       <section class="hero" id="accueil">
         <div class="hero-inner">
-          <!-- [M2.1] GRAND TITRE HERO -->
           <h2>BOYINGTON RADIO 24/24</h2>
-          <!-- [M2.2] TEXTE HERO PRINCIPAL -->
           <p class="lead">
-            Version noir et argent premium, construite sur la structure Boyington Remix : mêmes encarts, mêmes visuels, mêmes blocs clippables, avec un player SoundCloud discret et fonctionnel sur la playlist Radio Boynton.
+            Web radio officielle Boyington, version premium noir et argent.
           </p>
-
-          <!-- [M2.3] BADGES D’ÉTAT -->
           <div class="status-row">
-            <!-- [M2.3.1] Badge LIVE -->
             <div class="pill live">🔴 LIVE</div>
-            <!-- [M2.3.2] Badge RADIO 24/24 -->
             <div class="pill">📻 RADIO 24/24</div>
-            <!-- [M2.3.3] Badge SOUNDCLOUD PLAYLIST -->
-            <div class="pill">🎧 SOUNDCLOUD PLAYLIST</div>
           </div>
         </div>
       </section>
 
       <div class="divider"></div>
 
-      <!-- [M3] ZONE CENTRALE : player à gauche + cartes à droite -->
       <section class="content">
-        <!-- [M4] PLAYER PRINCIPAL -->
-        <article class="card" id="radio">
-          <!-- [M4.1] TITRE PLAYER -->
-          <div class="card-header">Lecture en direct</div>
+        <article class="card cover-card" id="cover">
+          <div class="card-header">Cover de lecture</div>
           <div class="card-body">
-            <!-- [M4.2] BOUTON LANCEMENT RADIO -->
-            <button id="startRadio" class="radio-launch-btn">▶ Lancer la radio</button>
-
-            <!-- [M4.3] CADRE DU PLAYER -->
-            <div class="player-shell">
-              <!-- [M4.4] IFRAME SOUNDCLOUD COMPACTE -->
-              <div class="player-viewport">
-                <iframe
-                  id="soundcloud-player"
-                  title="BOYINGTON RADIO 24/24"
-                  scrolling="no"
-                  frameborder="no"
-                  loading="eager"
-                  allow="autoplay; encrypted-media"
-                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23d8d8d8&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
-                </iframe>
+            <div class="cover-stage is-loading" id="coverStage">
+              <img
+                id="trackCover"
+                class="cover-live"
+                src="cover-principal.jpg"
+                alt="Cover de la piste en cours"
+              />
+              <div class="cover-overlay">
+                <div class="cover-kicker">NOW PLAYING</div>
+                <div class="cover-title" id="trackTitle">Boyington Radio</div>
+                <div class="cover-artist" id="trackArtist">SoundCloud Playlist Radio Boynton</div>
               </div>
-            </div>
-
-            <!-- [M4.5] NOTE SOUS PLAYER -->
-            <div class="player-note">
-              Player SoundCloud en version compacte, avec tentative de démarrage automatique à l’ouverture de la page.
             </div>
           </div>
         </article>
 
-        <!-- [M5] PANNEAUX INFOS -->
         <aside class="panel-grid">
-          <!-- [M5.1] Bloc programmation -->
+          <article class="card" id="radio">
+            <div class="card-header">Lecture en direct</div>
+            <div class="card-body">
+              <button id="startRadio" class="radio-launch-btn">▶ Lancer la radio</button>
+
+              <div class="player-shell">
+                <div class="player-viewport">
+                  <iframe
+                    id="soundcloud-player"
+                    title="BOYINGTON RADIO 24/24"
+                    scrolling="no"
+                    frameborder="no"
+                    loading="eager"
+                    allow="autoplay; encrypted-media"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239455974&color=%23d8d8d8&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
+                  </iframe>
+                </div>
+              </div>
+
+              <div class="player-note">
+                Player SoundCloud en version compacte, avec tentative de démarrage automatique à l’ouverture de la page.
+              </div>
+            </div>
+          </article>
+
           <section class="card" id="programmation">
             <div class="card-header">Programmation</div>
             <div class="card-body">
-              <div class="info-box">
-                <!-- [M5.1.1] Sous-titre format radio -->
-                <h3>Format radio</h3>
-                <!-- [M5.1.2] Texte explicatif -->
-                <p>Structure inspirée de la page Boyington Remix, avec les mêmes blocs, mais en univers noir argent pour la WebRadio.</p>
-              </div>
+              <div class="info-box"></div>
             </div>
           </section>
 
-          <!-- [M5.2] Bloc contenu prévu -->
-          <section class="card">
-            <div class="card-header">Contenu prévu</div>
-            <div class="card-body">
-              <ul class="list">
-                <li>Sessions live / DJ sets</li>
-                <li>Playlists radio en continu</li>
-                <li>Jingles BOYINGTON RADIO</li>
-                <li>Ambiance premium noir argent</li>
-              </ul>
-            </div>
-          </section>
+          
 
-          <!-- [M5.3] Bloc état du projet -->
           <section class="card" id="infos">
             <div class="card-header">État du projet</div>
             <div class="card-body">
-              <div class="info-box">
-                <h3>Base prête</h3>
-                <p>Cette version est prête à recevoir de futurs modules : live DJ, chat, flux Shoutcast/Icecast, ou player radio personnalisé.</p>
-              </div>
+              <div class="info-box"></div>
             </div>
           </section>
         </aside>
       </section>
 
-      <!-- [M6] QUICK GRID : dernier titre + réseaux + matrix -->
       <section class="quick-grid">
-        <!-- [M6.1] Carte dernier titre -->
         <div class="card quick-card">
           <h2 class="card-header">Dernier titre uploadé</h2>
           <a class="latest-release" href="#radio">
             <div class="latest-frame">
               <img class="cover-image" src="cover-principal.jpg" alt="Boyington Radio" />
             </div>
-
             <div class="latest-copy">
-              <div>
-                <strong>Dernier titre publié</strong>
-                Clique sur la pochette pour aller directement au player SoundCloud.
-              </div>
+              <div></div>
               <div class="open-btn">▶ Ouvrir</div>
             </div>
           </a>
         </div>
 
-        <!-- [M6.2] Carte réseaux + matrix -->
         <div class="card quick-card" id="support">
           <h2 class="card-header">Réseaux & liens</h2>
-
           <div class="social-grid">
             <a class="social-link" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">SoundCloud</a>
             <a class="social-link" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -1004,23 +959,13 @@
         </div>
       </section>
 
-      <!-- [M7] BAS DE PAGE : projet + support -->
       <section class="bottom-grid">
-        <div class="card quick-card">
-          <h2 class="card-header">Boyington Remix Project</h2>
-          <div class="feature-panel">
-            <p>
-              🎧 <strong>Boyington Radio</strong><br><br>
-              Une radio pensée pour diffuser une identité DJ premium : sessions live, sélections club, ambiances émotionnelles et univers cinématique.
-              La structure reprend les encarts du site Boyington Remix en version radio noire et argent.
-            </p>
-          </div>
-        </div>
+        
 
         <div class="card quick-card" id="infos">
           <h2 class="card-header">Support The Project</h2>
           <div class="support-panel">
-            <p>Aide le projet à grandir et reste connecté à l’univers Boyington.</p>
+            <p> </p>
             <ul class="support-list">
               <li><a href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer"><span>01</span>Follow on SoundCloud</a></li>
               <li><a href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer"><span>02</span>Share the music</a></li>
@@ -1048,6 +993,8 @@
   </main>
 
   <script>
+    const DEFAULT_COVER = 'cover-principal.jpg';
+
     async function loadSiteVisitCounter() {
       const counterEl = document.getElementById('siteVisitCount');
       if (!counterEl) return;
@@ -1066,9 +1013,7 @@
           { cache: 'no-store' }
         );
 
-        if (!response.ok) {
-          throw new Error('HTTP ' + response.status);
-        }
+        if (!response.ok) throw new Error('HTTP ' + response.status);
 
         const data = await response.json();
         counterEl.textContent = data.count || data.count_unique || '0';
@@ -1079,7 +1024,6 @@
 
     function updateDJWorldMatrix() {
       const now = new Date();
-
       const localTimeEl = document.getElementById('matrixLocalTime');
       const localDateEl = document.getElementById('matrixLocalDate');
       const hourHand = document.getElementById('matrixHourHand');
@@ -1100,46 +1044,79 @@
 
       if (localTimeEl) {
         localTimeEl.textContent = now.toLocaleTimeString('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false
+          hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
         });
       }
 
       if (localDateEl) {
         localDateEl.textContent = now.toLocaleDateString('fr-FR', {
-          weekday: 'long',
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
+          weekday: 'long', day: '2-digit', month: 'long', year: 'numeric'
         });
       }
 
       document.querySelectorAll('.city-time').forEach(el => {
         const tz = el.getAttribute('data-timezone');
         el.textContent = now.toLocaleTimeString('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-          timeZone: tz
+          hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: tz
         });
       });
+    }
+
+    function setCover(artUrl, title, artist) {
+      const coverImg = document.getElementById('trackCover');
+      const coverStage = document.getElementById('coverStage');
+      const titleEl = document.getElementById('trackTitle');
+      const artistEl = document.getElementById('trackArtist');
+
+      if (coverStage) coverStage.classList.add('is-loading');
+
+      if (titleEl) titleEl.textContent = title || 'Boyington Radio';
+      if (artistEl) artistEl.textContent = artist || 'SoundCloud Playlist Radio Boynton';
+
+      const nextSrc = artUrl ? artUrl.replace('-large', '-t500x500') : DEFAULT_COVER;
+      if (coverImg) {
+        coverImg.src = nextSrc;
+        coverImg.alt = title ? `Cover de ${title}` : 'Cover de la piste en cours';
+        coverImg.onload = () => {
+          if (coverStage) coverStage.classList.remove('is-loading');
+        };
+        coverImg.onerror = () => {
+          if (coverImg.src !== DEFAULT_COVER) {
+            coverImg.src = DEFAULT_COVER;
+          }
+          if (coverStage) coverStage.classList.remove('is-loading');
+        };
+      } else if (coverStage) {
+        coverStage.classList.remove('is-loading');
+      }
     }
 
     function initRadioPlayer() {
       const iframePlayer = document.getElementById('soundcloud-player');
       const launchButton = document.getElementById('startRadio');
-
       if (!iframePlayer) return;
 
-      const tryInitWidget = () => {
+      const waitForSC = () => {
         if (!window.SC || !SC.Widget) {
-          return false;
+          setTimeout(waitForSC, 250);
+          return;
         }
 
         const radioWidget = SC.Widget(iframePlayer);
+        let coverPoll = null;
+
+        const refreshCover = () => {
+          try {
+            radioWidget.getCurrentSound((sound) => {
+              const art = sound && sound.artwork_url ? sound.artwork_url : (sound && sound.user && sound.user.avatar_url ? sound.user.avatar_url : DEFAULT_COVER);
+              const title = sound && sound.title ? sound.title : 'Boyington Radio';
+              const artist = sound && sound.user && sound.user.username ? sound.user.username : 'SoundCloud Playlist Radio Boynton';
+              setCover(art, title, artist);
+            });
+          } catch (e) {
+            setCover(DEFAULT_COVER, 'Boyington Radio', 'SoundCloud Playlist Radio Boynton');
+          }
+        };
 
         const launchRadio = () => {
           try {
@@ -1149,22 +1126,22 @@
           }
         };
 
-        window.addEventListener('load', () => {
-          setTimeout(() => {
-            launchRadio();
-          }, 1800);
+        radioWidget.bind(SC.Widget.Events.READY, () => {
+          refreshCover();
+          setTimeout(launchRadio, 1800);
+          if (!coverPoll) {
+            coverPoll = setInterval(refreshCover, 12000);
+          }
         });
+
+        radioWidget.bind(SC.Widget.Events.PLAY, refreshCover);
+        radioWidget.bind(SC.Widget.Events.FINISH, refreshCover);
 
         if (launchButton) {
           launchButton.addEventListener('click', launchRadio);
         }
 
-        return true;
-      };
-
-      const waitForSC = () => {
-        if (tryInitWidget()) return;
-        setTimeout(waitForSC, 250);
+        refreshCover();
       };
 
       waitForSC();
