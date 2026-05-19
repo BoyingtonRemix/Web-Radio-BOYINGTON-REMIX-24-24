@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BOYINGTON RADIO 24/24 - Version noir argent, structure identique au site officiel, avec encarts, horloge mondiale et liens réseau." />
+  <meta name="description" content="BOYINGTON RADIO 24/24 - Version noir argent premium, structure identique au site Boyington Remix, avec encarts, horloge mondiale et liens réseau." />
   <title>BOYINGTON RADIO 24/24</title>
 
   <style>
@@ -284,6 +284,7 @@
       place-items: center;
       text-align: center;
       padding: 14px;
+      text-decoration: none;
     }
 
     .small-box strong {
@@ -824,7 +825,6 @@
       updateClock();
       setInterval(updateClock, 1000);
 
-      // Compteur simple affiché localement, prêt à être remplacé plus tard
       const visitor = document.getElementById('visitor-counter');
       const current = Number(visitor.textContent) || 2063;
       visitor.textContent = String(current);
@@ -832,5 +832,4 @@
   </script>
 </body>
 </html>
-
 
