@@ -643,6 +643,7 @@ MARQUEUR 01 — DÉBUT PAGE WEB RADIO BOYINGTON
 <!-- =========================================================
 MARQUEUR 09 — HORLOGE
 ========================================================= -->
+<script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
 function updateClock(){
   const now = new Date();
@@ -676,16 +677,67 @@ setInterval(updateClock,1000);
 </script>
 
 <!-- =========================================================
-MARQUEUR 10 — GROS COVER FLECHE
+MARQUEUR 10 — GROS COVER DYNAMIQUE SOUNDCLOUD
 ========================================================= -->
 <script>
 (function(){
+  const defaultCover = 'background-boyington-radio.jpg';
   const cover = document.getElementById('big-cover-player');
-  if (!cover) return;
+  const widgetFrame = document.querySelector('#bloc-player-soundcloud iframe');
 
-  // Image de secours visible sous le player.
-  // Remplace seulement cette ligne si tu veux une autre pochette.
-  cover.src = 'background-boyington-radio.jpg';
+  function normalizeArtworkUrl(url){
+    if (!url) return defaultCover;
+    return url
+      .replace('-large.jpg', '-t500x500.jpg')
+      .replace('-large.png', '-t500x500.png')
+      .replace('-t300x300', '-t500x500');
+  }
+
+  function updateCoverFromSound(sound){
+    if (!cover) return;
+    if (!sound) {
+      cover.src = defaultCover;
+      return;
+    }
+
+    const artwork = sound.artwork_url || (sound.user && sound.user.avatar_url);
+    cover.src = normalizeArtworkUrl(artwork || defaultCover);
+  }
+
+  function bindWidget(){
+    if (!widgetFrame || !window.SC || !SC.Widget) {
+      if (cover) cover.src = defaultCover;
+      return;
+    }
+
+    const widget = SC.Widget(widgetFrame);
+
+    widget.bind(SC.Widget.Events.READY, function(){
+      widget.getCurrentSound(function(sound){
+        updateCoverFromSound(sound);
+      });
+    });
+
+    widget.bind(SC.Widget.Events.PLAY, function(){
+      widget.getCurrentSound(function(sound){
+        updateCoverFromSound(sound);
+      });
+    });
+
+    widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(){
+      widget.getCurrentSound(function(sound){
+        updateCoverFromSound(sound);
+      });
+    });
+
+    widget.bind(SC.Widget.Events.FINISH, function(){
+      widget.getCurrentSound(function(sound){
+        updateCoverFromSound(sound);
+      });
+    });
+  }
+
+  bindWidget();
 })();
 </script>
 
