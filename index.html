@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="BOYINGTON RADIO 24/24 - Version noir argent premium, pensée pour mobile et desktop, avec player SoundCloud, réseaux, horloge mondiale et sections radio." />
+  <meta name="description" content="BOYINGTON RADIO 24/24 - Web Radio Premium" />
   <title>BOYINGTON RADIO 24/24</title>
 
   <style>
@@ -19,17 +19,11 @@
       --radius: 22px;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
     body {
-      margin: 0;
-      min-height: 100%;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
       background:
@@ -42,31 +36,34 @@
       overflow-x: hidden;
     }
 
-    a { color: inherit; }
-    img { max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
 
     .page {
       width: 100%;
       max-width: 1700px;
-      margin: 0 auto;
-      padding: 10px;
+      margin: auto;
+      padding: 12px;
     }
 
     .shell {
       border: 1px solid var(--line);
       border-radius: 28px;
+      overflow: hidden;
       background: linear-gradient(180deg, rgba(10,10,12,0.90), rgba(5,5,5,0.96));
       box-shadow: var(--shadow);
-      overflow: hidden;
       backdrop-filter: blur(6px);
     }
 
+    /* =========================================================
+    MARQUEUR 01 — HEADER
+    ========================================================= */
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 16px;
+      padding: 16px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       flex-wrap: wrap;
     }
@@ -74,77 +71,61 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      min-width: 0;
-      flex: 1 1 320px;
+      gap: 14px;
     }
 
     .brand-logo {
-      width: 54px;
-      height: 54px;
+      width: 58px;
+      height: 58px;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid rgba(216,216,216,0.22);
       background: rgba(255,255,255,0.04);
-      box-shadow: inset 0 0 18px rgba(255,255,255,0.04);
-      flex: 0 0 auto;
     }
 
     .brand-logo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
-    .brand-title { min-width: 0; }
-
     .brand-title h1 {
-      margin: 0;
-      font-size: clamp(1.25rem, 4vw, 2.35rem);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: clamp(1.2rem, 4vw, 2.4rem);
+      letter-spacing: 0.14em;
       color: var(--silver);
-      line-height: 1.08;
+      text-transform: uppercase;
+      line-height: 1;
     }
 
     .brand-title p {
-      margin: 6px 0 0;
+      margin-top: 6px;
       color: var(--muted);
       text-transform: uppercase;
+      font-size: 0.78rem;
       letter-spacing: 0.08em;
-      font-size: 0.82rem;
     }
 
     .nav {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       flex-wrap: wrap;
-      justify-content: flex-end;
-      width: 100%;
     }
 
     .nav a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 13px;
+      padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(216,216,216,0.18);
+      border: 1px solid rgba(216,216,216,0.16);
       background: rgba(255,255,255,0.03);
-      color: var(--text);
-      text-decoration: none;
-      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
-      font-size: 0.92rem;
+      transition: 0.2s;
+      font-size: 0.9rem;
       white-space: nowrap;
     }
 
-    .nav a:hover {
-      transform: translateY(-1px);
-      border-color: rgba(216,216,216,0.34);
-      background: rgba(255,255,255,0.06);
-    }
+    .nav a:hover { background: rgba(255,255,255,0.08); }
 
+    /* =========================================================
+    MARQUEUR 02 — MAIN GRID
+    ========================================================= */
     .main-grid {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
@@ -174,6 +155,14 @@
 
     .card-body { padding: 16px; }
 
+    /* =========================================================
+    MARQUEUR 03 — PLAYER + GROS COVER
+    ========================================================= */
+    .latest-layout {
+      display: grid;
+      gap: 14px;
+    }
+
     .player-wrap {
       border-radius: 18px;
       overflow: hidden;
@@ -182,17 +171,49 @@
     }
 
     .player-wrap iframe {
-      display: block;
       width: 100%;
-      height: 300px;
+      height: 166px;
+      display: block;
       border: 0;
       background: #111;
     }
 
-    .social-grid {
-      display: grid;
-      gap: 14px;
+    .track-cover-big {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(216,216,216,0.14);
+      background: rgba(0,0,0,0.45);
+      padding: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
+
+    .track-cover-big img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.24);
+      background: linear-gradient(180deg, #d9d9d9, #b8b8b8);
+      color: var(--bg);
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .btn-link:hover { filter: brightness(1.05); }
+
+    /* =========================================================
+    MARQUEUR 04 — RÉSEAUX
+    ========================================================= */
+    .social-grid { display: grid; gap: 14px; }
 
     .social-row {
       display: grid;
@@ -209,11 +230,9 @@
       border-radius: 18px;
       border: 1px solid rgba(216,216,216,0.14);
       background: rgba(255,255,255,0.04);
-      text-decoration: none;
-      font-weight: 700;
-      color: var(--text);
-      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
       text-align: center;
+      font-weight: 700;
+      transition: 0.2s;
       line-height: 1.15;
       font-size: 0.95rem;
     }
@@ -224,9 +243,8 @@
       background: rgba(255,255,255,0.07);
     }
 
-    .small-grid { display: grid; gap: 12px; }
-
     .small-box {
+      margin-top: 14px;
       min-height: 96px;
       border-radius: 18px;
       border: 1px solid rgba(216,216,216,0.14);
@@ -235,7 +253,6 @@
       place-items: center;
       text-align: center;
       padding: 14px;
-      text-decoration: none;
     }
 
     .small-box strong {
@@ -260,13 +277,11 @@
       background: rgba(0,0,0,0.35);
     }
 
-    .studio-box img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
+    .studio-box img { width: 100%; height: auto; object-fit: cover; }
 
+    /* =========================================================
+    MARQUEUR 05 — MATRIX
+    ========================================================= */
     .matrix {
       padding: 16px;
       border-radius: 22px;
@@ -276,10 +291,7 @@
       min-width: 0;
     }
 
-    .matrix-title {
-      text-align: center;
-      margin-bottom: 14px;
-    }
+    .matrix-title { text-align: center; margin-bottom: 14px; }
 
     .matrix-title h2 {
       margin: 0;
@@ -289,11 +301,7 @@
       font-size: 1rem;
     }
 
-    .matrix-title p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+    .matrix-title p { margin-top: 6px; color: var(--muted); font-size: 0.92rem; }
 
     .matrix-grid {
       display: grid;
@@ -302,11 +310,7 @@
       align-items: center;
     }
 
-    .clock-wrap {
-      display: grid;
-      place-items: center;
-      padding: 12px;
-    }
+    .clock-wrap { display: grid; place-items: center; padding: 12px; }
 
     .clock {
       width: min(100%, 300px);
@@ -354,29 +358,11 @@
       box-shadow: 0 0 12px rgba(255,255,255,0.18);
     }
 
-    .clock-time {
-      text-align: center;
-      margin-top: 12px;
-    }
+    .clock-time { text-align: center; margin-top: 12px; }
+    .clock-time .time { font-size: clamp(1.8rem, 7vw, 2.7rem); font-weight: 800; color: var(--gold); letter-spacing: 0.05em; }
+    .clock-time .date { margin-top: 4px; color: var(--muted); font-size: 0.9rem; }
 
-    .clock-time .time {
-      font-size: clamp(1.8rem, 7vw, 2.7rem);
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 0.05em;
-    }
-
-    .clock-time .date {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .cities {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+    .cities { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
     .city {
       border-radius: 18px;
@@ -394,20 +380,12 @@
       font-size: 0.86rem;
     }
 
-    .city span {
-      display: block;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      word-break: break-word;
-    }
+    .city span { display: block; font-size: 1.05rem; font-weight: 700; color: var(--text); word-break: break-word; }
 
-    .lower-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      padding: 0 16px 16px;
-    }
+    /* =========================================================
+    MARQUEUR 06 — SUPPORT
+    ========================================================= */
+    .lower-grid { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 0 16px 16px; }
 
     .support-panel {
       border-radius: 18px;
@@ -417,12 +395,10 @@
       min-height: 0;
     }
 
-    .banner-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      padding: 0 16px 16px;
-    }
+    /* =========================================================
+    MARQUEUR 07 — IMAGES BAS
+    ========================================================= */
+    .banner-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 16px 16px; }
 
     .banner {
       min-height: 180px;
@@ -433,31 +409,11 @@
       box-shadow: var(--shadow);
     }
 
-    .banner img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
+    .banner img { width: 100%; height: 100%; display: block; object-fit: cover; }
 
-    .footer-note {
-      text-align: center;
-      padding: 10px 16px 18px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .footer-note strong {
-      color: var(--gold);
-      letter-spacing: 0.08em;
-    }
-
-    .section-divider {
-      margin: 0 16px 16px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(216,216,216,0.35), transparent);
-    }
+    .footer-note { text-align: center; padding: 10px 16px 18px; color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+    .footer-note strong { color: var(--gold); letter-spacing: 0.08em; }
+    .section-divider { margin: 0 16px 16px; height: 1px; background: linear-gradient(90deg, transparent, rgba(216,216,216,0.35), transparent); }
 
     @media (min-width: 1024px) {
       .page { padding: 18px; }
@@ -478,16 +434,11 @@
       body { background-attachment: scroll; }
       .page { padding: 8px; }
       .topbar { flex-direction: column; align-items: stretch; padding: 12px; }
-      .nav {
-        width: 100%; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px;
-        -webkit-overflow-scrolling: touch; scrollbar-width: none;
-      }
+      .nav { width: 100%; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       .nav::-webkit-scrollbar { display: none; }
       .nav a { flex: 0 0 auto; padding: 9px 12px; font-size: 0.86rem; }
       .main-grid { grid-template-columns: 1fr; padding: 10px; }
-      .player-wrap iframe { height: 300px; }
-      .track-cover { max-width: 100%; padding: 8px; }
-      .btn-link { padding: 11px 14px; font-size: 0.98rem; }
+      .player-wrap iframe { height: 166px; }
       .social-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .social-btn { min-height: 62px; font-size: 0.9rem; padding: 12px 10px; }
       .small-box { min-height: 86px; }
@@ -512,7 +463,7 @@
       .brand-title p { font-size: 0.74rem; }
       .card-header { padding: 12px 14px; font-size: 0.86rem; }
       .card-body { padding: 12px; }
-      .player-wrap iframe { height: 300px; }
+      .player-wrap iframe { height: 166px; }
       .social-row { grid-template-columns: 1fr; }
       .social-btn { min-height: 54px; font-size: 0.88rem; }
       .small-box { min-height: 76px; padding: 12px; }
@@ -526,15 +477,6 @@
       .banner { min-height: 132px; }
       .footer-note { font-size: 0.86rem; }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -542,204 +484,213 @@
 <!-- =========================================================
 MARQUEUR 01 — DÉBUT PAGE WEB RADIO BOYINGTON
 ========================================================= -->
-  <main class="page">
-    <div class="shell">
+<main class="page">
+  <div class="shell">
+
+    <!-- =========================================================
+    MARQUEUR 02 — HEADER / LOGO / NAVIGATION
+    ========================================================= -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">
+          <img src="logo_radio _boyington.png" alt="Logo BOYINGTON RADIO" />
+        </div>
+        <div class="brand-title">
+          <h1>BOYINGTON RADIO</h1>
+          <p>Web radio officielle</p>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#latest">Accueil</a>
+        <a href="#socials">Réseaux</a>
+        <a href="#matrix">DJ World Matrix</a>
+        <a href="#support">Support</a>
+      </nav>
+    </header>
+
+    <!-- =========================================================
+    MARQUEUR 03 — PLAYER RADIO / GROS COVER
+    ========================================================= -->
+    <section class="main-grid" id="latest">
+      <article class="card latest-layout">
+        <div class="card-header">Dernier titre uploadé</div>
+        <div class="card-body">
+
+          <!-- BLOC PLAYER SOUNDCLOUD — DÉBUT -->
+          <div class="player-wrap" id="bloc-player-soundcloud">
+            <iframe
+              width="100%"
+              height="166"
+              scrolling="no"
+              frameborder="no"
+              allow="autoplay; encrypted-media"
+              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2323903682&color=%23ee560f&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+            </iframe>
+            <div style="font-size:10px;color:#cccccc;line-break:anywhere;word-break:normal;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight:100;padding:8px 10px;background:rgba(0,0,0,0.35);border-top:1px solid rgba(255,255,255,0.08);">
+              <a href="https://soundcloud.com/boyingtonremix" title="@BoyingtonRemixOfficial" target="_blank" style="color:#cccccc;text-decoration:none;">@BoyingtonRemixOfficial</a>
+              ·
+              <a href="https://soundcloud.com/boyingtonremix/playlists-1-remix" title="Playlists 1 Remix" target="_blank" style="color:#cccccc;text-decoration:none;">Playlists 1 Remix</a>
+            </div>
+          </div>
+          <!-- BLOC PLAYER SOUNDCLOUD — FIN -->
+
+          <div class="track-cover-big" style="margin-top:14px;">
+            <img id="big-cover-player" src="background-boyington-radio.jpg" alt="Cover Playlist" />
+          </div>
+
+        </div>
+      </article>
 
       <!-- =========================================================
-MARQUEUR 02 — HEADER / LOGO / NAVIGATION
-========================================================= -->
-      <header class="topbar">
-        <div class="brand">
-          <div class="brand-logo">
-            <img src="logo_radio _boyington.png" alt="Logo BOYINGTON RADIO" />
-          </div>
-          <div class="brand-title">
-            <h1>BOYINGTON RADIO</h1>
-            <p>Web radio officielle</p>
+      MARQUEUR 04 — RÉSEAUX SOCIAUX
+      ========================================================= -->
+      <aside class="social-grid" id="socials">
+        <div class="card">
+          <div class="card-header">Réseaux & liens</div>
+          <div class="card-body">
+            <div class="social-row">
+              <a class="social-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">SoundCloud</a>
+              <a class="social-btn" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener">Facebook</a>
+              <a class="social-btn" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener">TikTok</a>
+              <a class="social-btn" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener">Groupe Djs Set Music For People</a>
+            </div>
+            <div class="small-box">
+              <strong>VISIT</strong>
+              <span id="visitor-counter">2063</span>
+            </div>
           </div>
         </div>
-
-        <nav class="nav" aria-label="Navigation principale">
-          <a href="#latest">Accueil</a>
-          <a href="#socials">Réseaux</a>
-          <a href="#matrix">DJ World Matrix</a>
-          <a href="#support">Support</a>
-        </nav>
-      </header>
-
-      <!-- =========================================================
-MARQUEUR 03 — PLAYER RADIO / SOUNDLOUD
-========================================================= -->
-      <section class="main-grid" id="latest">
-        <article class="card latest-layout">
-          <div class="card-header">Dernier titre uploadé</div>
-          <div class="card-body">
-            <!-- =========================================================
-BLOC PLAYER SOUNDCLOUD — DÉBUT
-À remplacer entièrement si tu changes le player
-========================================================= -->
-          <div class="player-wrap" id="bloc-player-soundcloud">
-
-<iframe
-width="100%"
-height="166"
-scrolling="no"
-frameborder="no"
-allow="autoplay; encrypted-media"
-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2323903682&color=%23ee560f&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
-</iframe>
-
-<div style="
-font-size:10px;
-color:#cccccc;
-line-break:anywhere;
-word-break:normal;
-overflow:hidden;
-white-space:nowrap;
-text-overflow:ellipsis;
-font-family:Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
-font-weight:100;
-padding:8px 10px;
-background:rgba(0,0,0,0.35);
-border-top:1px solid rgba(255,255,255,0.08);
-">
-
-<a
-href="https://soundcloud.com/boyingtonremix"
-title="@BoyingtonRemixOfficial"
-target="_blank"
-style="color:#cccccc;text-decoration:none;">
-@BoyingtonRemixOfficial
-</a>
-
-·
-
-<a
-href="https://soundcloud.com/boyingtonremix/playlists-1-remix"
-title="Playlists 1 Remix"
-target="_blank"
-style="color:#cccccc;text-decoration:none;">
-Playlists 1 Remix
-</a>
-
-</div>
-
-</div>
-            <!-- =========================================================
-            BLOC PLAYER SOUNDCLOUD — FIN
-            ========================================================= -->
-          </div>
-        </article>
 
         <!-- =========================================================
-MARQUEUR 04 — RÉSEAUX SOCIAUX
-========================================================= -->
-        <aside class="social-grid" id="socials">
-          <div class="card">
-            <div class="card-header">Réseaux & liens</div>
-            <div class="card-body">
-              <div class="social-row">
-                <a class="social-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener">SoundCloud</a>
-                <a class="social-btn" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener">Facebook</a>
-                <a class="social-btn" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener">TikTok</a>
-                <a class="social-btn" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener">Groupe Djs Set Music For People</a>
-              </div>
+        MARQUEUR 05 — IMAGE STUDIO CONSOLE
+        ========================================================= -->
+        <div class="studio-box">
+          <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
+        </div>
 
-              <div class="small-grid" style="margin-top:14px;">
-                <div class="small-box">
-                  <strong>VISIT</strong>
-                  <span id="visitor-counter">2063</span>
-                  <div style="margin-top:4px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;font-size:0.7rem;">GOATCOUNTER</div>
+        <!-- =========================================================
+        MARQUEUR 06 — DJ WORLD MATRIX / HORLOGE
+        ========================================================= -->
+        <section class="matrix card" id="matrix">
+          <div class="matrix-title">
+            <h2>DJ WORLD MATRIX</h2>
+            <p>Global Time • Live Session</p>
+          </div>
+          <div class="matrix-grid">
+            <div class="clock-wrap">
+              <div>
+                <div class="clock" aria-label="Horloge mondiale">
+                  <div class="hand hour" id="hour-hand"></div>
+                  <div class="hand minute" id="minute-hand"></div>
+                  <div class="hand second" id="second-hand"></div>
+                  <div class="clock-center"></div>
+                </div>
+                <div class="clock-time">
+                  <div class="time" id="local-time">00:00:00</div>
+                  <div class="date" id="local-date">—</div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <!-- =========================================================
-MARQUEUR 05 — IMAGE STUDIO CONSOLE
-========================================================= -->
-          <div class="studio-box">
-            <img src="Studio-Console.jpg" alt="Console radio BOYINGTON" />
-          </div>
-
-          <!-- =========================================================
-MARQUEUR 06 — DJ WORLD MATRIX / HORLOGE
-========================================================= -->
-          <section class="matrix card" id="matrix">
-            <div class="matrix-title">
-              <h2>DJ WORLD MATRIX</h2>
-              <p>Global Time • Live Session</p>
-            </div>
-
-            <div class="matrix-grid">
-              <div class="clock-wrap">
-                <div>
-                  <div class="clock" aria-label="Horloge mondiale">
-                    <div class="hand hour" id="hour-hand"></div>
-                    <div class="hand minute" id="minute-hand"></div>
-                    <div class="hand second" id="second-hand"></div>
-                    <div class="clock-center"></div>
-                  </div>
-                  <div class="clock-time">
-                    <div class="time" id="local-time">00:00:00</div>
-                    <div class="date" id="local-date">—</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="cities">
-                <div class="city"><strong>PARIS</strong><span id="time-paris">00:00:00</span></div>
-                <div class="city"><strong>LONDON</strong><span id="time-london">00:00:00</span></div>
-                <div class="city"><strong>NEW YORK</strong><span id="time-newyork">00:00:00</span></div>
-                <div class="city"><strong>TOKYO</strong><span id="time-tokyo">00:00:00</span></div>
-              </div>
-            </div>
-          </section>
-        </aside>
-      </section>
-
-      <div class="section-divider"></div>
-
-      <!-- =========================================================
-MARQUEUR 07 — SUPPORT THE PROJECT
-========================================================= -->
-      <section class="lower-grid">
-        <article class="card support" id="support">
-          <div class="card-header">SUPPORT THE PROJECT</div>
-          <div class="card-body">
-            <div class="support-panel">
-              <p style="line-height:1.8;color:#d8d8d8;font-size:15px;text-align:center;padding:20px; margin:0;">
-                🎧 <strong>BOYINGTON WEB RADIO 24/24</strong> 🎶<br><br>
-                🌌 Web radio immersive diffusant playlists, remixes et mix DJ 24/24.<br>
-                ✨ Une sélection musicale pensée pour voyager, ressentir et vibrer à travers des ambiances nocturnes, lounge, club et électroniques émotionnelles.<br><br>
-                🎵 Playlists évolutives<br>
-                📡 Diffusion automatique 24/24<br>
-                🔥 Ambiance radio premium<br>
-                🎚️ Univers DJ moderne & cinématique<br><br>
-                🎧 Live Music • DJ Experience • Emotional Electronic Vibes
-              </p>
+            <div class="cities">
+              <div class="city"><strong>PARIS</strong><span id="time-paris">00:00:00</span></div>
+              <div class="city"><strong>LONDON</strong><span id="time-london">00:00:00</span></div>
+              <div class="city"><strong>NEW YORK</strong><span id="time-newyork">00:00:00</span></div>
+              <div class="city"><strong>TOKYO</strong><span id="time-tokyo">00:00:00</span></div>
             </div>
           </div>
-        </article>
-      </section>
+        </section>
+      </aside>
+    </section>
 
-      <!-- =========================================================
-MARQUEUR 08 — IMAGES BAS DE PAGE
-========================================================= -->
-      <section class="banner-row">
-        <div class="banner">
-          <img src="image_studio-bas.jpg" alt="Studio Radio BOYINGTON" />
+    <div class="section-divider"></div>
+
+    <!-- =========================================================
+    MARQUEUR 07 — SUPPORT THE PROJECT
+    ========================================================= -->
+    <section class="lower-grid">
+      <article class="card support" id="support">
+        <div class="card-header">SUPPORT THE PROJECT</div>
+        <div class="card-body">
+          <div class="support-panel">
+            <p style="line-height:1.8;color:#d8d8d8;font-size:15px;text-align:center;padding:20px;">
+              🎧 <strong>BOYINGTON WEB RADIO 24/24</strong> 🎶<br><br>
+              🌌 Web radio immersive diffusant playlists, remixes et mix DJ 24/24.<br>
+              ✨ Une sélection musicale pensée pour voyager, ressentir et vibrer à travers des ambiances nocturnes, lounge, club et électroniques émotionnelles.<br><br>
+              🎵 Playlists évolutives<br>
+              📡 Diffusion automatique 24/24<br>
+              🔥 Ambiance radio premium<br>
+              🎚️ Univers DJ moderne & cinématique<br><br>
+              🎧 Live Music • DJ Experience • Emotional Electronic Vibes
+            </p>
+          </div>
         </div>
-        <div class="banner">
-          <img src="image_studio-bas.jpg" alt="Studio Radio BOYINGTON" />
-        </div>
-      </section>
+      </article>
+    </section>
 
-      <div class="footer-note">✨ Vivre éternellement au rythme du rythme.</div>
-      <div class="footer-note"><strong>BOYINGTON REMIX</strong> · Créations/Remixes DJ non commerciales et non Officiel</div>
-    </div>
-  </main>
+    <!-- =========================================================
+    MARQUEUR 08 — IMAGES BAS DE PAGE
+    ========================================================= -->
+    <section class="banner-row">
+      <div class="banner"><img src="image_studio-bas.jpg" alt="Studio Radio BOYINGTON" /></div>
+      <div class="banner"><img src="image_studio-bas.jpg" alt="Studio Radio BOYINGTON" /></div>
+    </section>
+
+    <div class="footer-note">✨ Vivre éternellement au rythme du rythme.</div>
+    <div class="footer-note"><strong>BOYINGTON REMIX</strong> · Créations/Remixes DJ non commerciales et non Officiel</div>
+  </div>
+</main>
+
+<!-- =========================================================
+MARQUEUR 09 — HORLOGE
+========================================================= -->
+<script>
+function updateClock(){
+  const now = new Date();
+  const h = now.getHours();
+  const m = now.getMinutes();
+  const s = now.getSeconds();
+  const hourDeg = ((h % 12) + m / 60) * 30;
+  const minuteDeg = (m + s / 60) * 6;
+  const secondDeg = s * 6;
+
+  document.getElementById('hour-hand').style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+  document.getElementById('minute-hand').style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+  document.getElementById('second-hand').style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+
+  const pad = n => String(n).padStart(2,'0');
+  document.getElementById('local-time').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+  document.getElementById('local-date').textContent = now.toLocaleDateString('fr-FR',{ weekday:'long', day:'2-digit', month:'long', year:'numeric' });
+
+  function world(tz,id){
+    document.getElementById(id).textContent = new Intl.DateTimeFormat('fr-FR',{ hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false, timeZone:tz }).format(now);
+  }
+
+  world('Europe/Paris','time-paris');
+  world('Europe/London','time-london');
+  world('America/New_York','time-newyork');
+  world('Asia/Tokyo','time-tokyo');
+}
+
+updateClock();
+setInterval(updateClock,1000);
+</script>
+
+<!-- =========================================================
+MARQUEUR 10 — GROS COVER FLECHE
+========================================================= -->
+<script>
+(function(){
+  const cover = document.getElementById('big-cover-player');
+  if (!cover) return;
+
+  // Image de secours visible sous le player.
+  // Remplace seulement cette ligne si tu veux une autre pochette.
+  cover.src = 'background-boyington-radio.jpg';
+})();
+</script>
+
 </body>
 </html>
+
 
 
