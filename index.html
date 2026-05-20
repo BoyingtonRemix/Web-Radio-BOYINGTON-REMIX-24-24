@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Boyington Web Radio — site officiel, player SoundCloud, branding premium, playlists et liens officiels." />
-  <meta name="theme-color" content="#0b0b0b" />
+  <meta name="description" content="Boyington Web Radio — site officiel, player SoundCloud, branding premium noir/or/argent et liens officiels." />
+  <meta name="theme-color" content="#0a0a0a" />
   <title>BOYINGTON WEB RADIO — Site Officiel</title>
   <style>
     :root {
-      --bg: #070707;
-      --bg-alt: #111111;
-      --panel: rgba(18, 18, 18, 0.92);
+      --bg: #060606;
+      --bg-2: #0f0f10;
+      --panel: rgba(16, 16, 16, 0.92);
       --panel-soft: rgba(255, 255, 255, 0.04);
       --line: rgba(255, 255, 255, 0.10);
       --text: #f4f4f4;
       --muted: #b8b8b8;
-      --silver: #c9c9c9;
+      --silver: #d0d0d0;
       --gold: #d8b15a;
+      --gold-2: #a88434;
       --accent: #ee0f25;
       --accent-2: #8a0cff;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+      --accent-3: #ffb300;
+      --accent-4: #4dd7ff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.58);
       --radius: 28px;
-      --radius-sm: 18px;
       --max: 1280px;
     }
 
@@ -34,9 +36,10 @@
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top, rgba(238, 15, 37, 0.13), transparent 30%),
-        radial-gradient(circle at 85% 0%, rgba(138, 12, 255, 0.10), transparent 28%),
-        linear-gradient(180deg, #090909 0%, #060606 100%);
+        radial-gradient(circle at top, rgba(238, 15, 37, 0.18), transparent 24%),
+        radial-gradient(circle at 80% 0%, rgba(138, 12, 255, 0.16), transparent 26%),
+        radial-gradient(circle at 10% 12%, rgba(255, 179, 0, 0.09), transparent 20%),
+        linear-gradient(180deg, #090909 0%, #050505 100%);
     }
 
     a { color: inherit; text-decoration: none; }
@@ -53,10 +56,10 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.024) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.024) 1px, transparent 1px);
       background-size: 34px 34px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 92%);
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.60), transparent 92%);
       pointer-events: none;
       z-index: -2;
     }
@@ -75,16 +78,13 @@
       margin: 0 auto;
     }
 
-    /* =========================================================
-       MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE
-       Zone à modifier : logo, nom, navigation, slogan.
-       ========================================================= */
+    /* MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(18px);
-      background: linear-gradient(180deg, rgba(10,10,10,0.96), rgba(10,10,10,0.72));
+      background: linear-gradient(180deg, rgba(8,8,8,0.96), rgba(8,8,8,0.72));
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
@@ -110,14 +110,14 @@
       display: grid;
       place-items: center;
       flex: 0 0 auto;
-      border: 1px solid rgba(216, 177, 90, 0.45);
+      border: 1px solid rgba(216, 177, 90, 0.50);
       background:
         radial-gradient(circle at 30% 28%, rgba(255,255,255,0.22), transparent 32%),
-        linear-gradient(145deg, #2b2110 0%, #161616 40%, #000 100%);
+        linear-gradient(145deg, #33260f 0%, #161616 42%, #000 100%);
       color: var(--gold);
       font-weight: 900;
       letter-spacing: 0.04em;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 0 30px rgba(216,177,90,0.10);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 0 28px rgba(216,177,90,0.12);
     }
 
     .brand-copy { min-width: 0; }
@@ -153,18 +153,13 @@
 
     .nav a:hover {
       transform: translateY(-1px);
-      border-color: rgba(216,177,90,0.35);
+      border-color: rgba(216,177,90,0.38);
       color: #fff;
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
 
-    /* =========================================================
-       MARQUEUR 02 — HERO / POSITIONNEMENT COMMERCIAL
-       Zone à modifier : cover, slogan, boutons, image de fond.
-       ========================================================= */
-    .hero {
-      padding: 28px 0 16px;
-    }
+    /* MARQUEUR 02 — HERO / COVER PRINCIPALE */
+    .hero { padding: 28px 0 16px; }
 
     .hero-grid {
       display: grid;
@@ -188,7 +183,9 @@
       flex-direction: column;
       justify-content: flex-end;
       background:
-        linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.90) 100%),
+        linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.40) 42%, rgba(0,0,0,0.88) 100%),
+        radial-gradient(circle at top left, rgba(255, 179, 0, 0.22), transparent 25%),
+        radial-gradient(circle at top right, rgba(138, 12, 255, 0.20), transparent 24%),
         url('cover-default.jpg') center/cover no-repeat;
     }
 
@@ -252,7 +249,7 @@
     .cover-subtitle {
       margin: 0;
       max-width: 70ch;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.94);
       font-size: 1.02rem;
       line-height: 1.7;
     }
@@ -323,29 +320,22 @@
       font-weight: 900;
     }
 
-    .cover-logo .text {
-      display: grid;
-      gap: 2px;
-    }
-
+    .cover-logo .text { display: grid; gap: 2px; }
     .cover-logo .text strong {
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-size: 0.92rem;
     }
-
-    .cover-logo .text span {
-      color: var(--muted);
-      font-size: 0.84rem;
-    }
+    .cover-logo .text span { color: var(--muted); font-size: 0.84rem; }
 
     .info-panel {
       display: grid;
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: auto auto auto;
       gap: 18px;
       padding: 22px;
       background:
-        radial-gradient(circle at top right, rgba(216,177,90,0.14), transparent 32%),
+        radial-gradient(circle at top right, rgba(216,177,90,0.18), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(138,12,255,0.12), transparent 30%),
         linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
     }
 
@@ -398,13 +388,8 @@
       color: var(--muted);
     }
 
-    /* =========================================================
-       MARQUEUR 03 — PLAYER / CONTENT STRATEGY
-       Zone à modifier : playlist SoundCloud, lien embed, visuels.
-       ========================================================= */
-    .section {
-      padding: 18px 0;
-    }
+    /* MARQUEUR 03 — PLAYER OFFICIEL */
+    .section { padding: 18px 0; }
 
     .section-head {
       display: flex;
@@ -464,10 +449,7 @@
       text-underline-offset: 2px;
     }
 
-    /* =========================================================
-       MARQUEUR 04 — OFFRE / POSITIONNEMENT COMMERCIAL
-       Zone à modifier : messages, services, arguments de vente.
-       ========================================================= */
+    /* MARQUEUR 04 — OFFRE COMMERCIALE */
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -507,10 +489,7 @@
       font-size: 0.92rem;
     }
 
-    /* =========================================================
-       MARQUEUR 05 — PLAYLISTS / RÉASSIGNATION RAPIDE
-       Zone à modifier : blocs playlists, titres, descriptions.
-       ========================================================= */
+    /* MARQUEUR 05 — PLAYLISTS ÉDITABLES */
     .playlist-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -545,10 +524,7 @@
       font-size: 0.92rem;
     }
 
-    /* =========================================================
-       MARQUEUR 06 — LIENS OFFICIELS / CONTACT
-       Zone à modifier : réseaux, support, liens externes.
-       ========================================================= */
+    /* MARQUEUR 06 — LIENS OFFICIELS */
     .links-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -561,6 +537,8 @@
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
       transition: 0.22s ease;
+      display: block;
+      min-height: 126px;
     }
 
     .link-card:hover {
@@ -583,10 +561,58 @@
       font-size: 0.92rem;
     }
 
-    /* =========================================================
-       MARQUEUR 07 — MARQUEURS VISIBLES / REPÉRAGE RAPIDE
-       Zone utile pour maintenance et mises à jour futures.
-       ========================================================= */
+    .network-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .network-btn {
+      padding: 18px 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: 0.22s ease;
+    }
+
+    .network-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(238,15,37,0.26);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+    }
+
+    .network-btn strong {
+      display: block;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.96rem;
+    }
+
+    .network-btn span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .network-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    /* MARQUEUR 07 — MARQUEURS VISIBLES */
     .marker-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -620,10 +646,7 @@
     .m7 { border-color: rgba(216, 177, 90, 0.34); }
     .m8 { border-color: rgba(255, 255, 255, 0.12); }
 
-    /* =========================================================
-       MARQUEUR 08 — FOOTER / FINAL
-       Zone à modifier : mentions, bas de page, rappel officiel.
-       ========================================================= */
+    /* MARQUEUR 08 — FOOTER */
     .footer {
       padding: 24px 0 34px;
       color: var(--muted);
@@ -659,6 +682,7 @@
       .feature-grid,
       .playlist-grid,
       .links-grid,
+      .network-row,
       .marker-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -678,6 +702,7 @@
       .feature-grid,
       .playlist-grid,
       .links-grid,
+      .network-row,
       .marker-grid,
       .stats {
         grid-template-columns: 1fr;
@@ -692,9 +717,7 @@
 </head>
 <body>
   <div class="shell">
-    <!-- =========================================================
-         MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE
-         ========================================================= -->
+    <!-- MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE -->
     <header class="topbar">
       <div class="container topbar-inner">
         <div class="brand" aria-label="Boyington Web Radio">
@@ -705,10 +728,7 @@
           </div>
         </div>
         <nav class="nav" aria-label="Navigation principale">
-          <a href="#hero">Accueil</a>
           <a href="#player">Player</a>
-          <a href="#offer">Offre</a>
-          <a href="#playlists">Playlists</a>
           <a href="#liens">Liens</a>
           <a href="#marqueurs">Marqueurs</a>
         </nav>
@@ -716,9 +736,7 @@
     </header>
 
     <main>
-      <!-- =========================================================
-           MARQUEUR 02 — HERO / POSITIONNEMENT COMMERCIAL
-           ========================================================= -->
+      <!-- MARQUEUR 02 — HERO / COVER PRINCIPALE -->
       <section id="hero" class="hero">
         <div class="container hero-grid">
           <article class="panel cover-panel">
@@ -737,7 +755,7 @@
                 </h1>
                 <p class="cover-subtitle">
                   Univers cinématique premium dédié à la diffusion musicale, aux mixes, aux remixes et à la mise en avant du projet.
-                  Cette version est pensée comme une vitrine commerciale claire, élégante et simple à mettre à jour.
+                  Cette version rétablit une identité colorée, claire et commerciale, tout en restant simple à maintenir.
                 </p>
               </div>
 
@@ -801,9 +819,7 @@
         </div>
       </section>
 
-      <!-- =========================================================
-           MARQUEUR 03 — PLAYER / EMBED OFFICIEL
-           ========================================================= -->
+      <!-- MARQUEUR 03 — PLAYER OFFICIEL -->
       <section id="player" class="section">
         <div class="container">
           <div class="section-head">
@@ -829,9 +845,7 @@
         </div>
       </section>
 
-      <!-- =========================================================
-           MARQUEUR 04 — OFFRE / ARGUMENTS COMMERCIAUX
-           ========================================================= -->
+      <!-- MARQUEUR 04 — OFFRE COMMERCIALE -->
       <section id="offer" class="section">
         <div class="container">
           <div class="section-head">
@@ -866,9 +880,7 @@
         </div>
       </section>
 
-      <!-- =========================================================
-           MARQUEUR 05 — PLAYLISTS / STRUCTURE MODIFIABLE
-           ========================================================= -->
+      <!-- MARQUEUR 05 — PLAYLISTS ÉDITABLES -->
       <section id="playlists" class="section">
         <div class="container">
           <div class="section-head">
@@ -895,15 +907,13 @@
         </div>
       </section>
 
-      <!-- =========================================================
-           MARQUEUR 06 — LIENS OFFICIELS / CONTACT
-           ========================================================= -->
+      <!-- MARQUEUR 06 — LIENS OFFICIELS -->
       <section id="liens" class="section">
         <div class="container">
           <div class="section-head">
             <div>
               <h2>Liens officiels</h2>
-              <p>Bloc simple pour les accès directs vers les réseaux et les repères externes du projet.</p>
+              <p>Les liens réseau sont maintenant branchés directement sur des boutons cliquables pour Facebook, TikTok et SoundCloud.</p>
             </div>
           </div>
 
@@ -916,17 +926,39 @@
               <h3>TikTok</h3>
               <p>Compte officiel Boyington Remix Officiel.</p>
             </a>
-            <div class="link-card">
+            <a class="link-card" href="https://soundcloud.com/boyingtonremix/sets/web-radio-boyington-remix-24" target="_blank" rel="noopener noreferrer">
               <h3>SoundCloud</h3>
               <p>Lecture intégrée de la playlist Web Radio Boyington Remix 24-24.</p>
-            </div>
+            </a>
+          </div>
+
+          <div class="network-row">
+            <a class="network-btn" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">
+              <div>
+                <strong>Facebook officiel</strong>
+                <span>Accès direct à la page principale.</span>
+              </div>
+              <div class="network-badge">F</div>
+            </a>
+            <a class="network-btn" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">
+              <div>
+                <strong>TikTok officiel</strong>
+                <span>Accès direct au compte public.</span>
+              </div>
+              <div class="network-badge">T</div>
+            </a>
+            <a class="network-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">
+              <div>
+                <strong>SoundCloud officiel</strong>
+                <span>Accès direct au profil Boyington Remix.</span>
+              </div>
+              <div class="network-badge">S</div>
+            </a>
           </div>
         </div>
       </section>
 
-      <!-- =========================================================
-           MARQUEUR 07 — MARQUEURS VISIBLES / MAINTENANCE
-           ========================================================= -->
+      <!-- MARQUEUR 07 — MARQUEURS VISIBLES -->
       <section id="marqueurs" class="section">
         <div class="container">
           <div class="section-head">
@@ -950,9 +982,7 @@
       </section>
     </main>
 
-    <!-- =========================================================
-         MARQUEUR 08 — FOOTER / FINAL
-         ========================================================= -->
+    <!-- MARQUEUR 08 — FOOTER / FINAL -->
     <footer class="footer">
       <div class="container">
         <div class="gold-line"></div>
