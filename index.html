@@ -75,9 +75,7 @@
       margin: 0 auto;
     }
 
-    /* =========================
-       MARQUEUR 01 — HEADER
-       ========================= */
+    /* MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE */
     .topbar {
       position: sticky;
       top: 0;
@@ -157,9 +155,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
 
-    /* =========================
-       MARQUEUR 02 — HERO
-       ========================= */
+    /* MARQUEUR 02 — HERO / STRUCTURE D'ACCUEIL */
     .hero { padding: 28px 0 16px; }
 
     .hero-grid {
@@ -356,9 +352,7 @@
       color: var(--muted);
     }
 
-    /* =========================
-       SECTION COMMON
-       ========================= */
+    /* MARQUEUR 03 — PLAYER OFFICIEL */
     .section { padding: 18px 0; }
 
     .section-head {
@@ -376,22 +370,14 @@
       letter-spacing: 0.08em;
     }
 
-    .section-head p {
-      margin: 0;
-      max-width: 74ch;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* =========================
-       MARQUEUR 03 — PLAYER
-       ========================= */
     .player-wrap {
       padding: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
     }
 
-    .player-embed {
+    .player-wrap .player-embed {
+      max-width: 1400px;
+      margin: 0 auto;
       overflow: hidden;
       border-radius: 22px;
       border: 1px solid rgba(255,255,255,0.08);
@@ -405,26 +391,7 @@
       border: 0;
     }
 
-    .player-meta {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: center;
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .player-meta a {
-      color: var(--silver);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    /* =========================
-       MARQUEUR 04 — OFFER
-       ========================= */
+    /* MARQUEUR 04 — OFFRE / POSITIONNEMENT */
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -439,21 +406,7 @@
       min-height: 140px;
     }
 
-    .feature-card .kicker {
-      display: inline-flex;
-      margin-bottom: 10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      color: var(--silver);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .feature-card strong {
-      display: block;
-      margin-bottom: 8px;
+    .featn-bottom: 8px;
       font-size: 1.08rem;
     }
 
@@ -464,9 +417,7 @@
       font-size: 0.92rem;
     }
 
-    /* =========================
-       MARQUEUR 05 — PLAYLISTS
-       ========================= */
+    /* MARQUEUR 05 — PLAYLISTS ÉDITABLES */
     .playlist-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -501,9 +452,7 @@
       font-size: 0.92rem;
     }
 
-    /* =========================
-       MARQUEUR 06 — LINKS
-       ========================= */
+    /* MARQUEUR 06 — LIENS OFFICIELS */
     .links-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -591,9 +540,7 @@
       font-weight: 800;
     }
 
-    /* =========================
-       MARQUEUR 07 — MARKERS
-       ========================= */
+    /* MARQUEUR 07 — MARQUEURS VISIBLES */
     .marker-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -627,9 +574,7 @@
     .m7 { border-color: rgba(216, 177, 90, 0.34); }
     .m8 { border-color: rgba(255, 255, 255, 0.12); }
 
-    /* =========================
-       FOOTER
-       ========================= */
+    /* FOOTER */
     .footer {
       padding: 24px 0 34px;
       color: var(--muted);
@@ -791,7 +736,6 @@
           <div class="section-head">
             <div>
               <h2>Player SoundCloud officiel</h2>
-              <p>Le lecteur charge une playlist aléatoire depuis le fichier JSON à chaque ouverture.</p>
             </div>
           </div>
 
@@ -800,76 +744,42 @@
               <iframe
                 id="sc-player"
                 width="100%"
-                height="450"
+                height="220"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay; encrypted-media"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&amp;color=%23ee0f25&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false"
+                title="SoundCloud player - Boyington Web Radio"></ifram
+      <!-- MARQUEUR 03 — PLAYER OFFICIEL -->
+      <section id="player" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Player SoundCloud officiel</h2>
+            </div>
+          </div>
+
+          <div class="panel player-wrap">
+            <div class="player-embed">
+              <iframe
+                id="sc-player"
+                width="100%"
+                height="220"
                 scrolling="no"
                 frameborder="no"
                 allow="autoplay; encrypted-media"
                 src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&amp;color=%23ee0f25&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false"
                 title="SoundCloud player - Boyington Web Radio"></iframe>
             </div>
-            <div class="player-meta">
-              <div>
-                <a href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">@BoyingtonRemixOfficial</a>
-                ·
-                <a href="https://soundcloud.com/boyingtonremix/sets/web-radio-boyington-remix-24" target="_blank" rel="noopener noreferrer">Web-Radio-BOYINGTON-REMIX-24-24</a>
-              </div>
-              <div id="playerStatus" class="small">Chargement du lecteur…</div>
-            </div>
           </div>
         </div>
       </section>
 
-      <!-- MARQUEUR 04 — OFFRE / POSITIONNEMENT -->
-      <section id="offer" class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>Offre / positionnement</h2>
-              <p>Bloc de présentation pour garder la page claire, sérieuse et agréable pour les visiteurs.</p>
-            </div>
-          </div>
-
-          <div class="feature-grid">
-            <div class="feature-card">
-              <span class="kicker">Image</span>
-              <strong>Vitrine premium</strong>
-              <p>Un design noir, argent et or pour une présence officielle nette et élégante.</p>
-            </div>
-            <div class="feature-card">
-              <span class="kicker">Audio</span>
-              <strong>Player central</strong>
-              <p>La diffusion reste au cœur de la page, avec un accès direct au contenu musical.</p>
-            </div>
-            <div class="feature-card">
-              <span class="kicker">Marque</span>
-              <strong>Identité claire</strong>
-              <p>Le nom officiel et les réseaux restent visibles sans surcharge inutile.</p>
-            </div>
-            <div class="feature-card">
-              <span class="kicker">Évolutif</span>
-              <strong>Facile à maintenir</strong>
-              <p>La structure est séparée par zones pour simplifier les futures mises à jour.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- MARQUEUR 05 — PLAYLISTS ÉDITABLES -->
-      <section id="playlists" class="section">
-        <div class="container">
+      <!-- MARQUEUR 04 — OFFRE / POSITIONNEMENT -->iner">
           <div class="section-head">
             <div>
               <h2>Playlists / blocs éditables</h2>
-              <p>Les playlists sont maintenant lues depuis `playlists.json`. Tu n’as plus qu’à maintenir ce fichier.</p>
-            </div>
-          </div>
-
-          <div class="playlist-grid">
-            <div class="playlist-card">
-              <h3>Playlist principale</h3>
-              <p>Chargée automatiquement depuis le JSON au démarrage de la page.</p>
-            </div>
-            <div class="playlist-card">
+        class="playlist-card">
               <h3>Rotation aléatoire</h3>
               <p>Le script évite de rejouer la même playlist si plusieurs sont disponibles.</p>
             </div>
@@ -978,23 +888,17 @@
     </footer>
   </div>
 
-  <!-- =========================================================
-       SOUNDCloud Widget API
-       ========================================================= -->
+  <!-- SOUNDCloud Widget API -->
   <script src="https://w.soundcloud.com/player/api.js"></script>
   <script>
     (function () {
       const PLAYER_IFRAME_ID = 'sc-player';
-      const STATUS_ID = 'playerStatus';
       const PLAYLISTS_URL = 'playlists.json';
       const LAST_PLAYLIST_KEY = 'boyington_last_playlist_index';
       const LAST_SOUND_KEY = 'boyington_last_sound_index';
 
       const iframe = document.getElementById(PLAYER_IFRAME_ID);
-      const statusEl = document.getElementById(STATUS_ID);
-
-      if (!iframe || !statusEl || typeof SC === 'undefined' || !SC.Widget) {
-        if (statusEl) statusEl.textContent = 'Lecteur indisponible.';
+      if (!iframe || typeof SC === 'undefined' || !SC.Widget) {
         return;
       }
 
@@ -1002,12 +906,7 @@
       let playlistPool = [];
       let currentPlaylistIndex = -1;
       let currentPlaylist = null;
-      let currentTrackCount = 0;
       let readyAfterLoad = false;
-
-      function updateStatus(text) {
-        statusEl.textContent = text;
-      }
 
       function getStoredIndex(key) {
         const raw = Number(localStorage.getItem(key));
@@ -1026,17 +925,12 @@
       }
 
       function loadPlaylist(index, autoplay = true) {
-        if (!playlistPool.length) {
-          updateStatus('Aucune playlist publique trouvée dans playlists.json.');
-          return;
-        }
+        if (!playlistPool.length) return;
 
         const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
         currentPlaylistIndex = safeIndex;
         currentPlaylist = playlistPool[safeIndex];
-        currentTrackCount = 0;
         setStoredIndex(LAST_PLAYLIST_KEY, safeIndex);
-        updateStatus(`Chargement : ${currentPlaylist.title}`);
 
         widget.load(currentPlaylist.url, {
           auto_play: autoplay,
@@ -1048,127 +942,5 @@
           show_playcount: false,
           show_user: false,
           single_active: true,
-          show_comments: false,
-          show_reposts: false,
-          show_teaser: false
-        });
-      }
-
-      function startRandomTrackInCurrentPlaylist() {
-        widget.getSounds(function (sounds) {
-          const total = Array.isArray(sounds) ? sounds.length : 0;
-          currentTrackCount = total;
-
-          if (!total) {
-            updateStatus('Playlist chargée, mais aucun son n’a été récupéré.');
-            return;
-          }
-
-          const lastSound = getStoredIndex(LAST_SOUND_KEY);
-          const startIndex = pickRandomIndex(total, lastSound >= 0 ? lastSound : -1);
-          setStoredIndex(LAST_SOUND_KEY, startIndex);
-
-          if (startIndex > 0) {
-            widget.skip(startIndex);
-          }
-
-          widget.play();
-          updateStatus(`Lecture aléatoire : ${currentPlaylist.title} — piste ${startIndex + 1} / ${total}`);
-        });
-      }
-
-      function refreshNowPlaying() {
-        widget.getCurrentSound(function (sound) {
-          if (!sound) return;
-          const title = sound.title || currentPlaylist?.title || 'Boyington Web Radio';
-          updateStatus(`Lecture : ${title}`);
-        });
-      }
-
-      function playNextOrLoadAnotherPlaylist() {
-        widget.getCurrentSoundIndex(function (index) {
-          widget.getSounds(function (sounds) {
-            const total = Array.isArray(sounds) ? sounds.length : 0;
-
-            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
-              widget.next();
-              return;
-            }
-
-            if (playlistPool.length > 1) {
-              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-              loadPlaylist(nextPlaylist, true);
-              return;
-            }
-
-            if (playlistPool.length === 1) {
-              loadPlaylist(0, true);
-              return;
-            }
-
-            updateStatus('Aucune playlist disponible.');
-          });
-        });
-      }
-
-      widget.bind(SC.Widget.Events.READY, function () {
-        if (!readyAfterLoad) {
-          readyAfterLoad = true;
-          startRandomTrackInCurrentPlaylist();
-        } else {
-          refreshNowPlaying();
-        }
-      });
-
-      widget.bind(SC.Widget.Events.PLAY, function () {
-        refreshNowPlaying();
-      });
-
-      widget.bind(SC.Widget.Events.FINISH, function () {
-        playNextOrLoadAnotherPlaylist();
-      });
-
-      widget.bind(SC.Widget.Events.ERROR, function () {
-        updateStatus('Erreur de lecture SoundCloud.');
-      });
-
-      fetch(PLAYLISTS_URL, { cache: 'no-store' })
-        .then(function (response) {
-          if (!response.ok) {
-            throw new Error('Impossible de charger playlists.json');
-          }
-          return response.json();
-        })
-        .then(function (data) {
-          if (!Array.isArray(data)) {
-            throw new Error('playlists.json doit contenir un tableau JSON.');
-          }
-
-          playlistPool = data
-            .filter(function (item) {
-              return item && typeof item.title === 'string' && typeof item.url === 'string' && item.url.trim().length > 0;
-            })
-            .map(function (item) {
-              return {
-                title: item.title.trim(),
-                url: item.url.trim()
-              };
-            });
-
-          if (!playlistPool.length) {
-            updateStatus('Aucune playlist valide dans playlists.json.');
-            return;
-          }
-
-          const lastPlaylist = getStoredIndex(LAST_PLAYLIST_KEY);
-          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, lastPlaylist);
-          loadPlaylist(initialPlaylistIndex, true);
-        })
-        .catch(function () {
-          updateStatus('Impossible de lire playlists.json.');
-        });
-    })();
-  </script>
-</body>
-</html>
+          show_com
 
