@@ -72,11 +72,7 @@
       flex-wrap: wrap;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
+    .brand { display: flex; align-items: center; gap: 14px; }
 
     .brand-logo {
       width: 58px;
@@ -85,13 +81,10 @@
       overflow: hidden;
       border: 1px solid rgba(216,216,216,0.22);
       background: rgba(255,255,255,0.04);
+      flex: 0 0 auto;
     }
 
-    .brand-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
 
     .brand-title h1 {
       font-size: clamp(1.2rem, 4vw, 2.4rem);
@@ -109,11 +102,7 @@
       letter-spacing: 0.08em;
     }
 
-    .nav {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    .nav { display: flex; gap: 10px; flex-wrap: wrap; }
 
     .nav a {
       padding: 10px 14px;
@@ -160,7 +149,7 @@
     .card-body { padding: 16px; }
 
     /* =========================================================
-    MARQUEUR 03 — PLAYER + COVER DYNAMIQUE
+    MARQUEUR 03 — PLAYER + GROS COVER
     ========================================================= */
     .latest-layout { display: grid; gap: 14px; }
 
@@ -540,7 +529,7 @@ MARQUEUR 01 — DÉBUT PAGE WEB RADIO BOYINGTON
               scrolling="no"
               frameborder="no"
               allow="autoplay; encrypted-media"
-              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&color=%23ee560f&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+              src="">
             </iframe>
             <div class="sc-credit">
               <a href="https://soundcloud.com/boyingtonremix" title="@BoyingtonRemixOfficial" target="_blank" style="color:#cccccc;text-decoration:none;">@BoyingtonRemixOfficial</a>
@@ -660,6 +649,98 @@ MARQUEUR 09 — SOUNDLOUD WIDGET + HORLOGE + COVER DYNAMIQUE
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
 (function () {
+  const playlistUrls = [
+    'https://api.soundcloud.com/playlists/soundcloud:playlists:2239796183',
+    'https://api.soundcloud.com/playlists/soundcloud:playlists:2239455974'
+  ];
+
+  const storageKey = 'boyington_last_playlist_index';
+  const iframe = document.getElementById('soundcloud-widget');
+  const cover = document.getElementById('big-cover-player');
+  const defaultCover = 'background-boyington-radio.jpg';
+
+  function buildPlayerUrl(apiUrl) {
+    return 'https://w.soundcloud.com/player/?url=' +
+      encodeURIComponent(apiUrl) +
+      '&color=%23ee560f&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true';
+  }
+
+  function pickRandomIndex(excludeIndex) {
+    const indexes = playlistUrls.map((_, i) => i).filter(i => i !== excludeIndex);
+    const pool = indexes.length ? indexes : playlistUrls.map((_, i) => i);
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function normalizeArtworkUrl(url) {
+    if (!url) return defaultCover;
+    return url
+      .replace('-large.jpg', '-t500x500.jpg')
+      .replace('-large.png', '-t500x500.png')
+      .replace('-t300x300', '-t500x500');
+  }
+
+  function updateCoverFromSound(sound) {
+    if (!cover) return;
+    if (!sound) {
+      cover.src = defaultCover;
+      return;
+    }
+    const artwork = sound.artwork_url || (sound.user && sound.user.avatar_url);
+    cover.src = normalizeArtworkUrl(artwork || defaultCover);
+  }
+
+  function bindSoundCloud() {
+    if (!iframe) return;
+
+    if (!window.SC || !SC.Widget) {
+      iframe.src = buildPlayerUrl(playlistUrls[0]);
+      cover.src = defaultCover;
+      return;
+    }
+
+    const widget = SC.Widget(iframe);
+    let currentIndex = -1;
+
+    function loadPlaylist(index) {
+      currentIndex = index;
+      localStorage.setItem(storageKey, String(index));
+      widget.load(buildPlayerUrl(playlistUrls[index]), {
+        auto_play: true,
+        hide_related: false,
+        show_comments: true,
+        show_user: true,
+        show_reposts: false,
+        show_teaser: true
+      });
+    }
+
+    widget.bind(SC.Widget.Events.READY, function () {
+      const saved = parseInt(localStorage.getItem(storageKey) || '-1', 10);
+      const startIndex = pickRandomIndex(Number.isFinite(saved) ? saved : -1);
+      loadPlaylist(startIndex);
+    });
+
+    widget.bind(SC.Widget.Events.PLAY, function () {
+      widget.getCurrentSound(function (sound) {
+        updateCoverFromSound(sound);
+      });
+    });
+
+    widget.bind(SC.Widget.Events.PLAY_PROGRESS, function () {
+      widget.getCurrentSound(function (sound) {
+        updateCoverFromSound(sound);
+      });
+    });
+
+    widget.bind(SC.Widget.Events.FINISH, function () {
+      const nextIndex = pickRandomIndex(currentIndex);
+      loadPlaylist(nextIndex);
+      widget.getCurrentSound(function (sound) {
+        updateCoverFromSound(sound);
+      });
+    });
+  }
+
   function updateClock() {
     const now = new Date();
     const h = now.getHours();
@@ -694,70 +775,6 @@ MARQUEUR 09 — SOUNDLOUD WIDGET + HORLOGE + COVER DYNAMIQUE
 
   updateClock();
   setInterval(updateClock, 1000);
-
-  const defaultCover = 'background-boyington-radio.jpg';
-  const cover = document.getElementById('big-cover-player');
-  const iframe = document.getElementById('soundcloud-widget');
-
-  function normalizeArtworkUrl(url) {
-    if (!url) return defaultCover;
-    return url
-      .replace('-large.jpg', '-t500x500.jpg')
-      .replace('-large.png', '-t500x500.png')
-      .replace('-t300x300', '-t500x500');
-  }
-
-  function updateCoverFromSound(sound) {
-    if (!cover) return;
-    if (!sound) {
-      cover.src = defaultCover;
-      return;
-    }
-    const artwork = sound.artwork_url || (sound.user && sound.user.avatar_url);
-    cover.src = normalizeArtworkUrl(artwork || defaultCover);
-  }
-
-  function bindSoundCloud() {
-    if (!window.SC || !SC.Widget || !iframe) {
-      if (cover) cover.src = defaultCover;
-      return;
-    }
-
-    const widget = SC.Widget(iframe);
-    const storageKey = 'boyington_last_track_index';
-
-    widget.bind(SC.Widget.Events.READY, function () {
-      widget.getSounds(function (sounds) {
-        const total = Array.isArray(sounds) ? sounds.length : 0;
-        const lastIndex = parseInt(localStorage.getItem(storageKey) || '-1', 10);
-        const candidates = [];
-        for (let i = 0; i < total; i++) {
-          if (i !== lastIndex) candidates.push(i);
-        }
-        const randomIndex = candidates.length ? candidates[Math.floor(Math.random() * candidates.length)] : 0;
-
-        try { widget.skip(randomIndex); } catch (e) {}
-        localStorage.setItem(storageKey, String(randomIndex));
-
-        widget.getCurrentSound(function (sound) {
-          updateCoverFromSound(sound);
-        });
-
-        try { widget.play(); } catch (e) {}
-      });
-    });
-
-    const refreshCover = () => {
-      widget.getCurrentSound(function (sound) {
-        updateCoverFromSound(sound);
-      });
-    };
-
-    widget.bind(SC.Widget.Events.PLAY, refreshCover);
-    widget.bind(SC.Widget.Events.PLAY_PROGRESS, refreshCover);
-    widget.bind(SC.Widget.Events.FINISH, refreshCover);
-  }
-
   bindSoundCloud();
 
   const visitor = document.getElementById('visitor-counter');
