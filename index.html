@@ -605,55 +605,66 @@
       </section>
 
       <!-- PARTIES 2, 3 ET 4 À AJOUTER ENSUITE -->
-      <section class="section">
+         <!-- MARQUEUR 03 — PLAYER OFFICIEL -->
+      <section id="player" class="section">
         <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Player SoundCloud officiel</h2>
+              <p>Player verrouillé, lecture aléatoire au démarrage et enchaînement automatique conservés.</p>
+            </div>
+          </div>
+
           <div class="panel player-wrap">
-            <div class="section-head">
-              <div>
-                <h2>Suite à compléter</h2>
-                <p>La partie player verrouillée, les visuels, les liens officiels et le footer seront ajoutés dans les parties suivantes.</p>
-              </div>
+            <div class="player-embed">
+              <iframe
+                id="sc-player"
+                width="100%"
+                height="220"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay; encrypted-media"
+                src="about:blank"
+                title="SoundCloud player - Boyington Web Radio"></iframe>
             </div>
           </div>
         </div>
       </section>
-    </main>
 
-    <!-- FOOTER À COMPLÉTER DANS LA DERNIÈRE PARTIE -->
-    <footer class="footer">
-      <div class="container">
-        <div class="gold-line"></div>
-        <div class="footer-inner">
-          <div>
-            <strong>BOYINGTON WEB RADIO</strong><br />
-            <span class="small">Version partielle 1/4 prête pour la suite.</span>
+      <!-- MARQUEUR 04 — VISUELS DU DÉPÔT GITHUB -->
+      <section id="visuels" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Visuels du dépôt GitHub</h2>
+              <p>Les images du dépôt sont mises en avant dans des encarts propres, sans surcharge de texte.</p>
+            </div>
           </div>
-          <div>
-            <span class="small">Facebook : </span><a href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">LoranBoyington</a><br />
-            <span class="small">TikTok : </span><a href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">@boyingtonremixofficiel</a>
+
+          <div class="gallery-grid">
+            <article class="gallery-card">
+              <img src="Studio-Console.jpg" alt="Studio Console Boyington" />
+              <div class="body">
+                <strong>Studio Console</strong>
+                <p>Visuel principal pour l’ambiance studio et la présence premium.</p>
+              </div>
+            </article>
+
+            <article class="gallery-card">
+              <img src="arrière-plan-boyington-radio.jpg" alt="Arrière-plan Boyington Radio" />
+              <div class="body">
+                <strong>Arrière-plan radio</strong>
+                <p>Image de fond pour renforcer la cohérence visuelle de la page.</p>
+              </div>
+            </article>
+
+            <article class="gallery-card">
+              <img src="image_studio-bas.jpg" alt="Image studio bas Boyington" />
+              <div class="body">
+                <strong>Studio bas</strong>
+                <p>Bloc complémentaire pour équilibrer la composition générale.</p>
+              </div>
+            </article>
           </div>
         </div>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    (function () {
-      const clockEl = document.getElementById('boyingtonClock');
-
-      function updateClock() {
-        if (!clockEl) return;
-        const now = new Date();
-        clockEl.textContent = new Intl.DateTimeFormat('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        }).format(now);
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-    })();
-  </script>
-</body>
-</html>
+      </section>
