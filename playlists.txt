@@ -1,0 +1,14 @@
+[PLAYLIST]
+TITLE=Playlists 1 Remix
+URL=https://soundcloud.com/boyingtonremix/playlists-remix
+[/PLAYLIST]
+
+[PLAYLIST]
+TITLE=Playlist 2 Maxi 45T
+URL=https://soundcloud.com/boyingtonremix/playlist-2-maxi-45t
+[/PLAYLIST]
+
+[PLAYLIST]
+TITLE=Playlist 3 Maxi 45T 80
+URL=https://soundcloud.com/boyingtonremix/playlist-3-maxi-45t-80
+[/PLAYLIST]
