@@ -9,7 +9,6 @@
   <style>
     :root {
       --bg: #060606;
-      --bg-2: #101010;
       --panel: rgba(16, 16, 16, 0.92);
       --line: rgba(255, 255, 255, 0.10);
       --text: #f4f4f4;
@@ -72,7 +71,6 @@
       margin: 0 auto;
     }
 
-    /* MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE */
     .topbar {
       position: sticky;
       top: 0;
@@ -152,7 +150,6 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
 
-    /* MARQUEUR 02 — HERO / STRUCTURE D'ACCUEIL */
     .hero { padding: 28px 0 16px; }
 
     .hero-grid {
@@ -182,7 +179,6 @@
     }
 
     .hero-inner { width: 100%; padding: 28px; display: grid; gap: 18px; }
-
     .tag-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
     .badge-live,
@@ -310,195 +306,46 @@
     }
 
     .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-
-    .stat {
-      border-radius: 18px;
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-    }
-
+    .stat { border-radius: 18px; padding: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); }
     .stat strong { display: block; font-size: 1.4rem; color: #fff; margin-bottom: 4px; }
     .stat span { font-size: 0.85rem; color: var(--muted); }
 
-    /* MARQUEUR 03 — PLAYER OFFICIEL */
     .section { padding: 18px 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 18px; align-items: end; margin-bottom: 14px; }
+    .section-head h2 { margin: 0; font-size: clamp(1.4rem, 2.6vw, 2rem); text-transform: uppercase; letter-spacing: 0.08em; }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: end;
-      margin-bottom: 14px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(1.4rem, 2.6vw, 2rem);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .player-wrap {
-      padding: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-    }
-
-    .player-wrap .player-embed {
-      max-width: 1400px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #0d0d0d;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
-    }
-
+    .player-wrap { padding: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); }
+    .player-wrap .player-embed { max-width: 1400px; margin: 0 auto; overflow: hidden; border-radius: 22px; border: 1px solid rgba(255,255,255,0.08); background: #0d0d0d; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03); }
     iframe { display: block; width: 100%; border: 0; }
 
-    /* MARQUEUR 04 — OFFRE / POSITIONNEMENT */
     .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-
-    .feature-card {
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      min-height: 140px;
-    }
-
-    .feature-card .kicker {
-      display: inline-flex;
-      margin-bottom: 10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      color: var(--silver);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
+    .feature-card { padding: 18px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); min-height: 140px; }
+    .feature-card .kicker { display: inline-flex; margin-bottom: 10px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--silver); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
     .feature-card strong { display: block; margin-bottom: 8px; font-size: 1.08rem; }
     .feature-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.92rem; }
 
-    /* MARQUEUR 05 — PLAYLISTS ÉDITABLES */
     .playlist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-
-    .playlist-card {
-      padding: 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      transition: 0.22s ease;
-    }
-
-    .playlist-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(216,177,90,0.34);
-      background: rgba(216,177,90,0.06);
-    }
-
-    .playlist-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
+    .playlist-card { padding: 20px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); transition: 0.22s ease; }
+    .playlist-card:hover { transform: translateY(-2px); border-color: rgba(216,177,90,0.34); background: rgba(216,177,90,0.06); }
+    .playlist-card h3 { margin: 0 0 8px; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.08em; }
     .playlist-card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.92rem; }
 
-    /* MARQUEUR 06 — LIENS OFFICIELS */
     .links-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-
-    .link-card {
-      padding: 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      transition: 0.22s ease;
-      display: block;
-      min-height: 126px;
-    }
-
-    .link-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(216,177,90,0.34);
-      background: rgba(216,177,90,0.06);
-    }
-
-    .link-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
+    .link-card { padding: 20px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); transition: 0.22s ease; display: block; min-height: 126px; }
+    .link-card:hover { transform: translateY(-2px); border-color: rgba(216,177,90,0.34); background: rgba(216,177,90,0.06); }
+    .link-card h3 { margin: 0 0 8px; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.08em; }
     .link-card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.92rem; }
 
     .network-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
-
-    .network-btn {
-      padding: 18px 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      transition: 0.22s ease;
-    }
-
-    .network-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(238,15,37,0.26);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
-    }
-
-    .network-btn strong {
-      display: block;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.96rem;
-    }
-
+    .network-btn { padding: 18px 20px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.10); background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); display: flex; align-items: center; justify-content: space-between; gap: 14px; transition: 0.22s ease; }
+    .network-btn:hover { transform: translateY(-2px); border-color: rgba(238,15,37,0.26); box-shadow: 0 14px 30px rgba(0,0,0,0.22); }
+    .network-btn strong { display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.96rem; }
     .network-btn span { color: var(--muted); font-size: 0.88rem; }
+    .network-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 42px; height: 42px; border-radius: 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: var(--gold); font-weight: 800; }
 
-    .network-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--gold);
-      font-weight: 800;
-    }
-
-    /* MARQUEUR 07 — MARQUEURS VISIBLES */
     .marker-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-
-    .marker {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    .marker strong {
-      display: block;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.84rem;
-    }
-
+    .marker { padding: 14px 16px; border-radius: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; line-height: 1.45; }
+    .marker strong { display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.84rem; }
     .marker span { color: var(--muted); }
     .m1 { border-color: rgba(255, 80, 80, 0.32); }
     .m2 { border-color: rgba(88, 201, 255, 0.30); }
@@ -509,32 +356,10 @@
     .m7 { border-color: rgba(216, 177, 90, 0.34); }
     .m8 { border-color: rgba(255, 255, 255, 0.12); }
 
-    /* FOOTER */
     .footer { padding: 24px 0 34px; color: var(--muted); }
-
-    .gold-line {
-      height: 1px;
-      width: 100%;
-      margin: 18px 0;
-      background: linear-gradient(90deg, transparent, rgba(216,177,90,0.55), transparent);
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 0.9rem;
-    }
-
-    .footer a {
-      color: var(--silver);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
+    .gold-line { height: 1px; width: 100%; margin: 18px 0; background: linear-gradient(90deg, transparent, rgba(216,177,90,0.55), transparent); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; }
+    .footer a { color: var(--silver); text-decoration: underline; text-underline-offset: 2px; }
     .small { font-size: 0.88rem; color: var(--muted); }
 
     @media (max-width: 1100px) {
@@ -568,7 +393,6 @@
 </head>
 <body>
   <div class="shell">
-    <!-- MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE -->
     <header class="topbar">
       <div class="container topbar-inner">
         <div class="brand" aria-label="Boyington Web Radio">
@@ -587,7 +411,6 @@
     </header>
 
     <main>
-      <!-- MARQUEUR 02 — HERO / STRUCTURE D'ACCUEIL -->
       <section id="hero" class="hero">
         <div class="container hero-grid">
           <article class="panel hero-panel">
@@ -646,14 +469,13 @@
             <div class="info-card">
               <h3>Fonctionnement</h3>
               <p>
-                Le script lit <strong>playlists.json</strong>, accepte les clés <strong>title</strong> ou <strong>titre</strong>, choisit une entrée au hasard, puis le widget SoundCloud gère la lecture et l’enchaînement des titres. Quand la fin d’une source est atteinte, une nouvelle source aléatoire est chargée automatiquement.
+                Le script lit <strong>playlists.txt</strong>, accepte les clés <strong>TITLE</strong> et <strong>URL</strong>, choisit une entrée au hasard, puis le widget SoundCloud gère la lecture et l’enchaînement des titres. Quand la fin d’une source est atteinte, une nouvelle source aléatoire est chargée automatiquement.
               </p>
             </div>
           </aside>
         </div>
       </section>
 
-      <!-- MARQUEUR 03 — PLAYER OFFICIEL -->
       <section id="player" class="section">
         <div class="container">
           <div class="section-head">
@@ -678,7 +500,6 @@
         </div>
       </section>
 
-      <!-- MARQUEUR 04 — OFFRE / POSITIONNEMENT -->
       <section id="offer" class="section">
         <div class="container">
           <div class="section-head">
@@ -713,20 +534,19 @@
         </div>
       </section>
 
-      <!-- MARQUEUR 05 — PLAYLISTS ÉDITABLES -->
       <section id="playlists" class="section">
         <div class="container">
           <div class="section-head">
             <div>
               <h2>Playlists / blocs éditables</h2>
-              <p>Les playlists sont maintenant lues depuis <strong>playlists.json</strong>. Tu n’as plus qu’à maintenir ce fichier.</p>
+              <p>Les playlists sont maintenant lues depuis <strong>playlists.txt</strong>. Tu n’as plus qu’à maintenir ce fichier.</p>
             </div>
           </div>
 
           <div class="playlist-grid">
             <div class="playlist-card">
-              <h3>Playlist principale</h3>
-              <p>Chargée automatiquement depuis le JSON au démarrage de la page.</p>
+              <h3>Bloc balisé</h3>
+              <p>Chaque playlist est contenue dans un bloc [PLAYLIST] simple à copier-coller.</p>
             </div>
             <div class="playlist-card">
               <h3>Rotation aléatoire</h3>
@@ -740,7 +560,6 @@
         </div>
       </section>
 
-      <!-- MARQUEUR 06 — LIENS OFFICIELS -->
       <section id="liens" class="section">
         <div class="container">
           <div class="section-head">
@@ -791,7 +610,6 @@
         </div>
       </section>
 
-      <!-- MARQUEUR 07 — MARQUEURS VISIBLES -->
       <section id="marqueurs" class="section">
         <div class="container">
           <div class="section-head">
@@ -806,7 +624,7 @@
             <div class="marker m2"><strong>02 — Hero</strong><span>Zone d’accueil principale.</span></div>
             <div class="marker m3"><strong>03 — Player</strong><span>Embed SoundCloud et contrôle.</span></div>
             <div class="marker m4"><strong>04 — Offre</strong><span>Positionnement commercial et valeur.</span></div>
-            <div class="marker m5"><strong>05 — Playlists</strong><span>Bloc lié à playlists.json.</span></div>
+            <div class="marker m5"><strong>05 — Playlists</strong><span>Bloc lié à playlists.txt.</span></div>
             <div class="marker m6"><strong>06 — Liens</strong><span>Réseaux officiels et accès directs.</span></div>
             <div class="marker m7"><strong>07 — Branding</strong><span>Couleurs noir / argent / or / rouge.</span></div>
             <div class="marker m8"><strong>08 — Final</strong><span>Structure prête pour GitHub.</span></div>
@@ -815,7 +633,6 @@
       </section>
     </main>
 
-    <!-- MARQUEUR 08 — FOOTER / FINAL -->
     <footer class="footer">
       <div class="container">
         <div class="gold-line"></div>
@@ -829,7 +646,7 @@
             <span class="small">TikTok : </span><a href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">@boyingtonremixofficiel</a>
           </div>
           <div>
-            <span class="small">Playlists :</span> <strong>playlists.json</strong><br />
+            <span class="small">Playlists :</span> <strong>playlists.txt</strong><br />
             <span class="small">Player :</span> SoundCloud Widget API
           </div>
         </div>
@@ -841,7 +658,7 @@
   <script>
     (function () {
       const PLAYER_IFRAME_ID = 'sc-player';
-      const PLAYLISTS_URL = 'playlists.json';
+      const PLAYLISTS_URL = 'playlists.txt';
       const iframe = document.getElementById(PLAYER_IFRAME_ID);
 
       if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
@@ -861,6 +678,24 @@
             : 'Sans titre';
         if (!url) return null;
         return { title, url };
+      }
+
+      function parsePlaylistText(rawText) {
+        const blocks = rawText.split(/\[PLAYLIST\]/i);
+        const entries = [];
+
+        blocks.forEach(function (block, index) {
+          if (index === 0) return;
+          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
+          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
+          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
+          const title = titleMatch ? titleMatch[1].trim() : '';
+          const url = urlMatch ? urlMatch[1].trim() : '';
+
+          if (url) entries.push({ title: title || 'Sans titre', url });
+        });
+
+        return entries.map(normalizeEntry).filter(Boolean);
       }
 
       function pickRandomIndex(length, avoidIndex = -1) {
@@ -964,16 +799,11 @@
 
       fetch(PLAYLISTS_URL, { cache: 'no-store' })
         .then(function (response) {
-          if (!response.ok) throw new Error('Impossible de charger playlists.json');
-          return response.json();
+          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
+          return response.text();
         })
-        .then(function (data) {
-          if (!Array.isArray(data)) throw new Error('playlists.json doit contenir un tableau JSON.');
-
-          playlistPool = data
-            .map(normalizeEntry)
-            .filter(Boolean);
-
+        .then(function (rawText) {
+          playlistPool = parsePlaylistText(rawText);
           if (!playlistPool.length) return;
 
           const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
