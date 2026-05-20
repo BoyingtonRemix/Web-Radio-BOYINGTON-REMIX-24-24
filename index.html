@@ -1,420 +1,368 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOYINGTON WEB RADIO</title>
+  <meta name="description" content="Boyington Web Radio — Ambiance Radio Premium, remix exclusifs et univers DJ cinématique." />
 
-<title>BOYINGTON WEB RADIO</title>
+  <style>
+    :root {
+      --gold: #ffb84d;
+      --gold-2: #ff9900;
+      --silver: #d8d8d8;
+      --black: #050505;
+      --panel: rgba(0, 0, 0, 0.72);
+      --panel-2: rgba(12, 12, 12, 0.82);
+      --line: rgba(255, 184, 77, 0.35);
+      --text: #f5f5f5;
+      --muted: #d0d0d0;
+      --glow: rgba(255, 153, 0, 0.35);
+    }
 
-<style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ============================= */
-/* 🔥 BOYINGTON WEB RADIO FINAL 🔥 */
-/* ============================= */
+    html, body {
+      min-height: 100%;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.72)),
+        url('arrière-plan-boyington-radio.jpg') center center / cover no-repeat fixed;
+      overflow-x: hidden;
+    }
 
-body{
-font-family:Arial, sans-serif;
-background:url('arrière-plan-boyington-radio.jpg') center center/cover no-repeat fixed;
-color:white;
-overflow-x:hidden;
-}
+    .overlay {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(255, 153, 0, 0.08), transparent 40%),
+                  linear-gradient(to bottom, rgba(0,0,0,0.22), rgba(0,0,0,0.42));
+      padding: 20px;
+    }
 
-/* ============================= */
-/* 🌌 OVERLAY */
-/* ============================= */
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
 
-.overlay{
-background:rgba(0,0,0,0.82);
-min-height:100vh;
-padding:20px;
-}
+    .hero {
+      text-align: center;
+      padding: 18px 12px 10px;
+    }
 
-/* ============================= */
-/* 🎧 HEADER */
-/* ============================= */
+    .logo {
+      display: block;
+      width: min(260px, 80vw);
+      margin: 0 auto 10px;
+      filter: drop-shadow(0 0 18px rgba(255, 184, 77, 0.72));
+    }
 
-.header{
-text-align:center;
-margin-bottom:25px;
-}
+    .brand {
+      font-size: clamp(30px, 4.4vw, 54px);
+      letter-spacing: 3px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 18px rgba(255, 153, 0, 0.9);
+      margin-bottom: 8px;
+    }
 
-.logo{
-width:220px;
-max-width:90%;
-margin-bottom:15px;
-filter:drop-shadow(0 0 15px gold);
-}
+    .tagline {
+      font-size: clamp(14px, 1.8vw, 18px);
+      color: var(--silver);
+      opacity: 0.96;
+      line-height: 1.5;
+    }
 
-.title{
-font-size:42px;
-font-weight:bold;
-color:#ffffff;
-text-shadow:0 0 15px #ff9900;
-letter-spacing:3px;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 22px;
+      align-items: start;
+      margin-top: 20px;
+    }
 
-.subtitle{
-font-size:18px;
-color:#cccccc;
-margin-top:10px;
-}
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 0 28px var(--glow), inset 0 0 0 1px rgba(255,255,255,0.03);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
 
-/* ============================= */
-/* 🎛️ PLAYER */
-/* ============================= */
+    .card-header {
+      padding: 18px 18px 14px;
+      background: linear-gradient(180deg, rgba(255, 184, 77, 0.11), rgba(255, 184, 77, 0.03));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
 
-.player-container{
-background:rgba(0,0,0,0.70);
-border:2px solid #ff9900;
-border-radius:25px;
-padding:20px;
-max-width:950px;
-margin:auto;
-box-shadow:0 0 25px rgba(255,153,0,0.5);
-backdrop-filter:blur(8px);
-}
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+    }
 
-/* ============================= */
-/* 📀 COVER PLAYLIST */
-/* ============================= */
+    .card-body {
+      padding: 18px;
+    }
 
-.playlist-cover{
-width:100%;
-border-radius:20px;
-margin-top:20px;
-box-shadow:0 0 25px rgba(255,255,255,0.15);
-}
+    .player-wrap {
+      background: rgba(0,0,0,0.42);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+    }
 
-/* ============================= */
-/* 🎵 PLAYER IFRAME */
-/* ============================= */
+    .player-note {
+      font-size: 12px;
+      color: #bdbdbd;
+      margin-top: 10px;
+      line-height: 1.45;
+    }
 
-iframe{
-border-radius:18px;
-overflow:hidden;
-}
+    .cover {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.35);
+    }
 
-/* ============================= */
-/* 🖼️ IMAGE STUDIO */
-/* ============================= */
+    .section {
+      margin-top: 22px;
+    }
 
-.studio-image{
-width:100%;
-margin-top:35px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(255,153,0,0.35);
-}
+    .matrix {
+      text-align: center;
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
 
-/* ============================= */
-/* 🌍 DJ WORLD MATRIX */
-/* ============================= */
+    .matrix h2 {
+      color: var(--gold);
+      font-size: clamp(18px, 2.5vw, 28px);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-.matrix{
-margin-top:35px;
-text-align:center;
-padding:20px;
-border:1px solid rgba(255,255,255,0.15);
-border-radius:20px;
-background:rgba(0,0,0,0.45);
-}
+    .matrix p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
 
-.matrix h2{
-color:#ff9900;
-font-size:28px;
-margin-bottom:10px;
-}
+    .clock {
+      margin-top: 12px;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 0 16px rgba(0, 204, 255, 0.75);
+      letter-spacing: 2px;
+    }
 
-.clock{
-font-size:42px;
-font-weight:bold;
-color:#ffffff;
-text-shadow:0 0 15px #00ccff;
-margin-top:10px;
-}
+    .studio-image {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      margin-top: 18px;
+      box-shadow: 0 0 18px rgba(255, 153, 0, 0.22);
+    }
 
-/* ============================= */
-/* ❤️ SUPPORT */
-/* ============================= */
+    .support {
+      text-align: center;
+      padding: 22px 18px;
+    }
 
-.support{
-margin-top:35px;
-background:rgba(0,0,0,0.65);
-padding:25px;
-border-radius:20px;
-border:1px solid rgba(255,153,0,0.3);
-text-align:center;
-}
+    .support h2 {
+      color: var(--gold);
+      font-size: 26px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
 
-.support h2{
-color:#ff9900;
-margin-bottom:15px;
-font-size:30px;
-}
+    .support p {
+      color: var(--silver);
+      line-height: 1.8;
+      font-size: 15px;
+    }
 
-.support p{
-line-height:1.7;
-font-size:16px;
-color:#dddddd;
-}
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 0 18px 18px;
+    }
 
-/* ============================= */
-/* 🌐 SOCIALS */
-/* ============================= */
+    .socials a {
+      min-width: 150px;
+      text-align: center;
+      padding: 13px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #fff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
 
-.socials{
-margin-top:35px;
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
-}
+    .socials a:hover {
+      transform: translateY(-2px);
+      opacity: 0.96;
+      box-shadow: 0 0 18px rgba(255,255,255,0.18);
+    }
 
-.socials a{
-text-decoration:none;
-padding:14px 22px;
-border-radius:14px;
-font-weight:bold;
-color:white;
-transition:0.3s;
-}
+    .facebook {
+      background: #1877f2;
+    }
 
-.facebook{
-background:#1877f2;
-}
+    .tiktok {
+      background: #111111;
+      border: 1px solid #ff0050;
+    }
 
-.tiktok{
-background:#111111;
-border:1px solid #ff0050;
-}
+    .footer {
+      text-align: center;
+      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      padding: 26px 10px 8px;
+    }
 
-.socials a:hover{
-transform:scale(1.08);
-box-shadow:0 0 15px rgba(255,255,255,0.35);
-}
+    .spacer {
+      height: 6px;
+    }
 
-/* ============================= */
-/* 📻 FOOTER */
-/* ============================= */
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-.footer{
-margin-top:40px;
-text-align:center;
-font-size:14px;
-color:#aaaaaa;
-padding-bottom:30px;
-}
+    @media (max-width: 768px) {
+      .overlay {
+        padding: 14px;
+      }
 
-/* ============================= */
-/* 📱 MOBILE */
-/* ============================= */
+      .card-header, .card-body {
+        padding: 16px;
+      }
 
-@media(max-width:768px){
-
-.title{
-font-size:28px;
-}
-
-.subtitle{
-font-size:15px;
-}
-
-.clock{
-font-size:28px;
-}
-
-.player-container{
-padding:15px;
-}
-
-}
-
-</style>
+      .socials a {
+        min-width: 140px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="overlay">
+    <div class="shell">
+      <header class="hero">
+        <img src="logo_radio_boyington.png" alt="Logo Boyington Web Radio" class="logo" />
+        <div class="brand">BOYINGTON WEB RADIO</div>
+        <div class="tagline">Ambiance Radio Premium • Remix Exclusifs • Playlist Évolutive • Live 24/24</div>
+      </header>
 
-<div class="overlay">
+      <main class="grid">
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title">Player SoundCloud</div>
+          </div>
+          <div class="card-body">
+            <div class="player-wrap">
+              <iframe
+                title="Boyington Web Radio SoundCloud Player"
+                width="100%"
+                height="166"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay"
+                loading="lazy"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/TON_ID_PLAYLIST&color=%23ff9900&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&buying=false&download=false&sharing=false">
+              </iframe>
+            </div>
+            <div class="player-note">
+              Remplacer <strong>TON_ID_PLAYLIST</strong> par l’identifiant réel de la playlist SoundCloud.
+            </div>
 
-<!-- ============================= -->
-<!-- 🔥 HEADER -->
-<!-- ============================= -->
+            <div class="section">
+              <img src="Studio-Console.jpg" alt="Cover playlist Boyington Web Radio" class="cover" />
+            </div>
+          </div>
+        </section>
 
-<div class="header">
+        <aside class="card">
+          <div class="card-header">
+            <div class="card-title">DJ World Matrix</div>
+          </div>
+          <div class="card-body">
+            <div class="matrix">
+              <h2>Playlist Remix</h2>
+              <p>
+                Vous écoutez…<br />
+                Boyington Web Radio…<br /><br />
+                La référence…<br />
+                des remix exclusifs…<br /><br />
+                Une ambiance…<br />
+                premium…<br />
+                élégante…<br />
+                et électrisante…<br /><br />
+                Boyington Web Radio…<br />
+                Le son des vraies émotions…
+              </p>
+              <div class="clock" id="clock">00:00:00</div>
+            </div>
 
-<img src="logo_radio_boyington.png" class="logo">
+            <img src="image_studio-bas.jpg" alt="Studio Boyington Web Radio" class="studio-image" />
+          </div>
+        </aside>
+      </main>
 
-<div class="title">
-BOYINGTON WEB RADIO
-</div>
+      <section class="card section">
+        <div class="card-header">
+          <div class="card-title">Support</div>
+        </div>
+        <div class="support">
+          <p>
+            Merci de soutenir BOYINGTON WEB RADIO 🎧<br /><br />
+            Remix exclusifs • Mashups premium • Emotional vibes • Playlists évolutives • Ambiance radio cinématique<br /><br />
+            Partage la radio autour de toi et rejoins la communauté DJ.
+          </p>
+        </div>
+        <div class="socials">
+          <a class="facebook" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">FACEBOOK</a>
+          <a class="tiktok" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">TIKTOK</a>
+        </div>
+      </section>
 
-<div class="subtitle">
-🎧 Ambiance Radio Premium • Remix Exclusifs • Live 24/24
-</div>
+      <div class="footer">© 2026 BOYINGTON WEB RADIO — ALL RIGHTS RESERVED</div>
+    </div>
+  </div>
 
-</div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      const el = document.getElementById('clock');
+      if (el) el.textContent = `${h}:${m}:${s}`;
+    }
 
-<!-- ============================= -->
-<!-- 🎛️ PLAYER -->
-<!-- ============================= -->
-
-<div class="player-container">
-
-<iframe 
-width="100%" 
-height="450" 
-scrolling="no" 
-frameborder="no" 
-allow="autoplay"
-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/TON_ID_PLAYLIST&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=true&buying=false&download=false&sharing=false">
-</iframe>
-
-<!-- ============================= -->
-<!-- 📀 COVER -->
-<!-- ============================= -->
-
-<img src="Studio-Console.jpg" class="playlist-cover">
-
-<!-- ============================= -->
-<!-- 🌍 MATRIX -->
-<!-- ============================= -->
-
-<div class="matrix">
-
-<h2>🌍 DJ WORLD MATRIX</h2>
-
-<p>
-Boyington Web Radio diffuse les meilleurs remix exclusifs,
-mashups, emotional vibes, melodic sounds et playlists premium.
-</p>
-
-<div class="clock" id="clock">
-00:00:00
-</div>
-
-</div>
-
-<!-- ============================= -->
-<!-- 🖼️ IMAGE STUDIO -->
-<!-- ============================= -->
-
-<img src="image_studio-bas.jpg" class="studio-image">
-
-<!-- ============================= -->
-<!-- ❤️ SUPPORT -->
-<!-- ============================= -->
-
-<div class="support">
-
-<h2>❤️ SUPPORT</h2>
-
-<p>
-Merci de soutenir BOYINGTON WEB RADIO 🎧<br><br>
-
-✔ Remix exclusifs<br>
-✔ Mashups premium<br>
-✔ Emotional vibes<br>
-✔ Playlists évolutives<br>
-✔ Ambiance radio cinématique<br><br>
-
-Partage la radio autour de toi et rejoins la communauté DJ !
-</p>
-
-</div>
-
-<!-- ============================= -->
-<!-- 🌐 SOCIALS -->
-<!-- ============================= -->
-
-<div class="socials">
-
-<a class="facebook"
-href="https://www.facebook.com/LoranBoyington/"
-target="_blank">
-FACEBOOK
-</a>
-
-<a class="tiktok"
-href="https://www.tiktok.com/@boyingtonremixofficiel"
-target="_blank">
-TIKTOK
-</a>
-
-</div>
-
-</div>
-
-<!-- ============================= -->
-<!-- 📻 FOOTER -->
-<!-- ============================= -->
-
-<div class="footer">
-© 2026 BOYINGTON WEB RADIO — ALL RIGHTS RESERVED
-</div>
-
-</div>
-
-<!-- ============================= -->
-<!-- ⏰ CLOCK SCRIPT -->
-<!-- ============================= -->
-
-<script>
-
-function updateClock(){
-
-const now = new Date();
-
-const hours = String(now.getHours()).padStart(2,'0');
-const minutes = String(now.getMinutes()).padStart(2,'0');
-const seconds = String(now.getSeconds()).padStart(2,'0');
-
-document.getElementById('clock').innerHTML =
-hours + ":" + minutes + ":" + seconds;
-
-}
-
-setInterval(updateClock,1000);
-
-updateClock();
-
-</script>
-
-<!-- ============================= -->
-<!-- 📱 SOUNDCLOUD MOBILE FIX -->
-<!-- ============================= -->
-
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-const iframe = document.querySelector("iframe");
-
-if (iframe) {
-iframe.setAttribute(
-"sandbox",
-"allow-scripts allow-same-origin allow-popups"
-);
-}
-
-document.addEventListener("click", function(e) {
-
-const target = e.target.closest("a");
-
-if(target && target.href.includes("soundcloud.com")) {
-e.preventDefault();
-}
-
-});
-
-});
-
-</script>
-
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
 </body>
 </html>
+
 
