@@ -1,12 +1,21 @@
 <!DOCTYPE html>
+<!-- ============================= -->
+<!-- 🔥 MARQUEUR 01 : DOCUMENT HTML -->
+<!-- ============================= -->
 <html lang="fr">
+<!-- ============================= -->
+<!-- 🎨 MARQUEUR 02 : HEAD / SEO -->
+<!-- ============================= -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BOYINGTON WEB RADIO</title>
   <meta name="description" content="Boyington Web Radio — Ambiance Radio Premium, remix exclusifs et univers DJ cinématique." />
 
-  <style>
+  <!-- ============================= -->
+<!-- 🎛️ MARQUEUR 03 : CSS GLOBAL -->
+<!-- ============================= -->
+<style>
     :root {
       --gold: #ffb84d;
       --gold-2: #ff9900;
@@ -264,16 +273,25 @@
     }
   </style>
 </head>
+<!-- ============================= -->
+<!-- 📻 MARQUEUR 04 : BODY RADIO -->
+<!-- ============================= -->
 <body>
   <div class="overlay">
     <div class="shell">
-      <header class="hero">
+      <!-- ============================= -->
+<!-- 🔥 MARQUEUR 05 : HEADER RADIO -->
+<!-- ============================= -->
+<header class="hero">
         <img src="logo_radio_boyington.png" alt="Logo Boyington Web Radio" class="logo" />
         <div class="brand">BOYINGTON WEB RADIO</div>
         <div class="tagline">Ambiance Radio Premium • Remix Exclusifs • Playlist Évolutive • Live 24/24</div>
       </header>
 
-      <main class="grid">
+      <!-- ============================= -->
+<!-- 🎧 MARQUEUR 06 : SECTION PLAYER -->
+<!-- ============================= -->
+<main class="grid">
         <section class="card">
           <div class="card-header">
             <div class="card-title">Player SoundCloud</div>
@@ -281,18 +299,19 @@
           <div class="card-body">
             <div class="player-wrap">
               <iframe
-                title="Boyington Web Radio SoundCloud Player"
                 width="100%"
-                height="166"
+                height="450"
                 scrolling="no"
                 frameborder="no"
-                allow="autoplay"
-                loading="lazy"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/TON_ID_PLAYLIST&color=%23ff9900&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&buying=false&download=false&sharing=false">
+                allow="autoplay; encrypted-media"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&color=%23ee0f25&auto_play=true&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
               </iframe>
             </div>
-            <div class="player-note">
-              Remplacer <strong>TON_ID_PLAYLIST</strong> par l’identifiant réel de la playlist SoundCloud.
+
+            <div style="font-size:10px;color:#cccccc;line-break:anywhere;word-break:normal;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-family:Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight:100;margin-top:8px;">
+              <a href="https://soundcloud.com/boyingtonremix" title="@BoyingtonRemixOfficial" target="_blank" style="color:#cccccc;text-decoration:none;">@BoyingtonRemixOfficial</a>
+              ·
+              <a href="https://soundcloud.com/boyingtonremix/sets/web-radio-boyington-remix-24" title="Web-Radio-BOYINGTON-REMIX-24-24" target="_blank" style="color:#cccccc;text-decoration:none;">Web-Radio-BOYINGTON-REMIX-24-24</a>
             </div>
 
             <div class="section">
@@ -328,7 +347,10 @@
         </aside>
       </main>
 
-      <section class="card section">
+      <!-- ============================= -->
+<!-- ❤️ MARQUEUR 07 : SUPPORT & SOCIAL -->
+<!-- ============================= -->
+<section class="card section">
         <div class="card-header">
           <div class="card-title">Support</div>
         </div>
@@ -349,7 +371,10 @@
     </div>
   </div>
 
-  <script>
+  <!-- ============================= -->
+<!-- ⏰ MARQUEUR 08 : HORLOGE DJ WORLD MATRIX -->
+<!-- ============================= -->
+<script>
     function updateClock() {
       const now = new Date();
       const h = String(now.getHours()).padStart(2, '0');
