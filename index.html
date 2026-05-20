@@ -437,7 +437,6 @@
       line-height: 1.6;
     }
 
-    /* PLACEHOLDERS DE LA SUITE À AJOUTER DANS LES PARTIES SUIVANTES */
     .player-wrap {
       padding: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
@@ -457,6 +456,131 @@
       display: block;
       width: 100%;
       border: 0;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .gallery-card {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .gallery-card .body {
+      padding: 16px;
+    }
+
+    .gallery-card .body strong {
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+    }
+
+    .gallery-card .body p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .link-card {
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      transition: 0.22s ease;
+      min-height: 128px;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(216,177,90,0.34);
+      background: rgba(216,177,90,0.06);
+    }
+
+    .link-card h3 {
+      margin: 0 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 1.03rem;
+    }
+
+    .link-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .social-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .social-btn {
+      padding: 18px 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: 0.22s ease;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(238,15,37,0.26);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+    }
+
+    .social-btn strong {
+      display: block;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.96rem;
+    }
+
+    .social-btn span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .badge-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--gold);
+      font-weight: 800;
     }
 
     .footer {
@@ -492,6 +616,9 @@
     @media (max-width: 1100px) {
       .hero-grid { grid-template-columns: 1fr 1fr; }
       .hero-panel { min-height: 380px; }
+      .gallery-grid,
+      .links-grid,
+      .social-row { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 760px) {
@@ -501,7 +628,10 @@
       .nav { justify-content: flex-start; }
       .hero-grid,
       .stats,
-      .mini-stats { grid-template-columns: 1fr; }
+      .mini-stats,
+      .gallery-grid,
+      .links-grid,
+      .social-row { grid-template-columns: 1fr; }
       .hero-panel { min-height: 360px; }
       .hero-content { padding: 20px; }
       .hero-side { padding: 14px; }
@@ -604,8 +734,7 @@
         </div>
       </section>
 
-     
-         <!-- MARQUEUR 03 — PLAYER OFFICIEL -->
+      <!-- MARQUEUR 03 — PLAYER OFFICIEL -->
       <section id="player" class="section">
         <div class="container">
           <div class="section-head">
@@ -631,7 +760,7 @@
         </div>
       </section>
 
-     <!-- MARQUEUR 04 — VISUELS DU DÉPÔT GITHUB -->
+      <!-- MARQUEUR 04 — VISUELS DU DÉPÔT GITHUB -->
       <section id="visuels" class="section">
         <div class="container">
           <div class="section-head">
@@ -668,7 +797,8 @@
           </div>
         </div>
       </section>
-            <!-- MARQUEUR 05 — LIENS OFFICIELS -->
+
+      <!-- MARQUEUR 05 — LIENS OFFICIELS -->
       <section id="liens" class="section">
         <div class="container">
           <div class="section-head">
@@ -722,3 +852,204 @@
           </div>
         </div>
       </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="gold-line"></div>
+        <div class="footer-inner">
+          <div>
+            <strong>BOYINGTON WEB RADIO</strong><br />
+            <span class="small">Version finale prête à intégrer dans le dépôt GitHub.</span>
+          </div>
+          <div>
+            <span class="small">Facebook : </span><a href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">LoranBoyington</a><br />
+            <span class="small">TikTok : </span><a href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">@boyingtonremixofficiel</a>
+          </div>
+          <div>
+            <span class="small">Playlists :</span> <strong>playlists.txt</strong><br />
+            <span class="small">Player :</span> SoundCloud Widget API
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+  <script>
+    (function () {
+      const PLAYER_IFRAME_ID = 'sc-player';
+      const PLAYLISTS_URL = 'playlists.txt';
+      const iframe = document.getElementById(PLAYER_IFRAME_ID);
+      const clockEl = document.getElementById('boyingtonClock');
+
+      function updateClock() {
+        if (!clockEl) return;
+        const now = new Date();
+        clockEl.textContent = new Intl.DateTimeFormat('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }).format(now);
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
+
+      let playlistPool = [];
+      let currentPlaylistIndex = -1;
+      let widget = null;
+      let readyAfterLoad = false;
+
+      function normalizeEntry(item) {
+        if (!item || typeof item !== 'object') return null;
+        const url = typeof item.url === 'string' ? item.url.trim() : '';
+        const title = (typeof item.title === 'string' && item.title.trim())
+          ? item.title.trim()
+          : (typeof item.titre === 'string' && item.titre.trim())
+            ? item.titre.trim()
+            : 'Sans titre';
+        if (!url) return null;
+        return { title, url };
+      }
+
+      function parsePlaylistText(rawText) {
+        const blocks = rawText.split(/\[PLAYLIST\]/i);
+        const entries = [];
+
+        blocks.forEach(function (block, index) {
+          if (index === 0) return;
+          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
+          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
+          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
+          const title = titleMatch ? titleMatch[1].trim() : '';
+          const url = urlMatch ? urlMatch[1].trim() : '';
+
+          if (url) entries.push({ title: title || 'Sans titre', url });
+        });
+
+        return entries.map(normalizeEntry).filter(Boolean);
+      }
+
+      function pickRandomIndex(length, avoidIndex = -1) {
+        if (length <= 1) return 0;
+        const randomBytes = new Uint32Array(1);
+        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
+        let index = randomBytes[0] % length;
+        if (index === avoidIndex) index = (index + 1) % length;
+        return index;
+      }
+
+      function buildPlayerUrl(playlistUrl) {
+        const encoded = encodeURIComponent(playlistUrl);
+        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ee0f25&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+      }
+
+      function createWidget() {
+        if (widget) return widget;
+        widget = SC.Widget(iframe);
+
+        widget.bind(SC.Widget.Events.READY, function () {
+          if (!readyAfterLoad) {
+            readyAfterLoad = true;
+            startRandomTrackInCurrentPlaylist();
+          }
+        });
+
+        widget.bind(SC.Widget.Events.FINISH, function () {
+          playNextOrLoadAnotherPlaylist();
+        });
+
+        return widget;
+      }
+
+      function loadPlaylist(index, autoplay = true) {
+        if (!playlistPool.length) return;
+
+        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
+        currentPlaylistIndex = safeIndex;
+        const currentPlaylist = playlistPool[safeIndex];
+
+        if (!widget) {
+          iframe.src = buildPlayerUrl(currentPlaylist.url);
+          return;
+        }
+
+        readyAfterLoad = false;
+        widget.load(currentPlaylist.url, {
+          auto_play: autoplay,
+          color: '#ee0f25',
+          buying: false,
+          sharing: false,
+          download: false,
+          show_artwork: true,
+          show_playcount: false,
+          show_user: false,
+          single_active: true,
+          show_comments: false,
+          show_reposts: false,
+          show_teaser: false
+        });
+      }
+
+      function startRandomTrackInCurrentPlaylist() {
+        if (!widget) return;
+
+        widget.getSounds(function (sounds) {
+          const total = Array.isArray(sounds) ? sounds.length : 0;
+          if (!total) return;
+
+          const startIndex = pickRandomIndex(total, -1);
+          if (startIndex > 0) widget.skip(startIndex);
+          widget.play();
+        });
+      }
+
+      function playNextOrLoadAnotherPlaylist() {
+        if (!widget) return;
+
+        widget.getCurrentSoundIndex(function (index) {
+          widget.getSounds(function (sounds) {
+            const total = Array.isArray(sounds) ? sounds.length : 0;
+
+            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
+              widget.next();
+              return;
+            }
+
+            if (playlistPool.length > 1) {
+              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+              loadPlaylist(nextPlaylist, true);
+              return;
+            }
+
+            if (playlistPool.length === 1) {
+              loadPlaylist(0, true);
+            }
+          });
+        });
+      }
+
+      fetch(PLAYLISTS_URL, { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
+          return response.text();
+        })
+        .then(function (rawText) {
+          playlistPool = parsePlaylistText(rawText);
+          if (!playlistPool.length) return;
+
+          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
+          currentPlaylistIndex = initialPlaylistIndex;
+          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
+          createWidget();
+        })
+        .catch(function () {
+          return;
+        });
+    })();
+  </script>
+</body>
+</html>
