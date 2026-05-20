@@ -1,12 +1,14 @@
 [
   {
-    "title": "Playlist 1",
-    "url": "https://soundcloud.com/toncompte/sets/playlist-1",
-    "cover": "cover-default.jpg"
+    "title": "Playlists 1 Remix",
+    "url": "https://soundcloud.com/boyingtonremix/playlists-remix"
   },
   {
-    "title": "Playlist 2",
-    "url": "https://soundcloud.com/toncompte/sets/playlist-2",
-    "cover": "cover-default.jpg"
+    "title": "Playlist 2 Maxi 45T",
+    "url": "https://soundcloud.com/boyingtonremix/playlist-2-maxi-45t"
+  },
+  {
+    "title": "Playlist 3 Maxi 45T 80",
+    "url": "https://soundcloud.com/boyingtonremix/playlist-3-maxi-45t-80"
   }
 ]
