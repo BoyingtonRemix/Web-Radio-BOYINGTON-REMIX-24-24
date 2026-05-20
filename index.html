@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Boyington Web Radio — site officiel, player SoundCloud, branding premium noir/or/argent et liens officiels." />
+  <meta name="description" content="Boyington Web Radio — site officiel, player SoundCloud, playlists aléatoires et liens officiels." />
   <meta name="theme-color" content="#0a0a0a" />
   <title>BOYINGTON WEB RADIO — Site Officiel</title>
   <style>
     :root {
       --bg: #060606;
-      --bg-2: #0f0f10;
+      --bg-2: #101010;
       --panel: rgba(16, 16, 16, 0.92);
       --panel-soft: rgba(255, 255, 255, 0.04);
       --line: rgba(255, 255, 255, 0.10);
@@ -17,13 +17,11 @@
       --muted: #b8b8b8;
       --silver: #d0d0d0;
       --gold: #d8b15a;
-      --gold-2: #a88434;
       --accent: #ee0f25;
       --accent-2: #8a0cff;
-      --accent-3: #ffb300;
-      --accent-4: #4dd7ff;
       --shadow: 0 24px 80px rgba(0, 0, 0, 0.58);
       --radius: 28px;
+      --radius-sm: 18px;
       --max: 1280px;
     }
 
@@ -36,9 +34,8 @@
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top, rgba(238, 15, 37, 0.18), transparent 24%),
-        radial-gradient(circle at 80% 0%, rgba(138, 12, 255, 0.16), transparent 26%),
-        radial-gradient(circle at 10% 12%, rgba(255, 179, 0, 0.09), transparent 20%),
+        radial-gradient(circle at top, rgba(238, 15, 37, 0.16), transparent 24%),
+        radial-gradient(circle at 80% 0%, rgba(138, 12, 255, 0.14), transparent 26%),
         linear-gradient(180deg, #090909 0%, #050505 100%);
     }
 
@@ -78,7 +75,9 @@
       margin: 0 auto;
     }
 
-    /* MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE */
+    /* =========================
+       MARQUEUR 01 — HEADER
+       ========================= */
     .topbar {
       position: sticky;
       top: 0;
@@ -158,12 +157,14 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
 
-    /* MARQUEUR 02 — HERO / COVER PRINCIPALE */
+    /* =========================
+       MARQUEUR 02 — HERO
+       ========================= */
     .hero { padding: 28px 0 16px; }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.18fr 0.82fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 22px;
       align-items: stretch;
     }
@@ -177,19 +178,18 @@
       box-shadow: var(--shadow);
     }
 
-    .cover-panel {
-      min-height: 690px;
+    .hero-panel {
+      min-height: 420px;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      align-items: center;
       background:
-        linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.40) 42%, rgba(0,0,0,0.88) 100%),
-        radial-gradient(circle at top left, rgba(255, 179, 0, 0.22), transparent 25%),
-        radial-gradient(circle at top right, rgba(138, 12, 255, 0.20), transparent 24%),
-        url('cover-default.jpg') center/cover no-repeat;
+        radial-gradient(circle at 15% 20%, rgba(216,177,90,0.20), transparent 20%),
+        radial-gradient(circle at 85% 12%, rgba(138,12,255,0.18), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.12));
     }
 
-    .cover-inner {
+    .hero-inner {
+      width: 100%;
       padding: 28px;
       display: grid;
       gap: 18px;
@@ -235,7 +235,7 @@
 
     .cover-title {
       margin: 0;
-      font-size: clamp(2rem, 4vw, 4.6rem);
+      font-size: clamp(2rem, 4vw, 4.3rem);
       line-height: 0.96;
       letter-spacing: 0.02em;
       text-transform: uppercase;
@@ -249,7 +249,7 @@
     .cover-subtitle {
       margin: 0;
       max-width: 70ch;
-      color: rgba(255,255,255,0.94);
+      color: rgba(255,255,255,0.92);
       font-size: 1.02rem;
       line-height: 1.7;
     }
@@ -296,46 +296,14 @@
       transform: translateY(-2px);
     }
 
-    .cover-logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      width: fit-content;
-      padding: 14px 18px;
-      border-radius: 20px;
-      background: rgba(0,0,0,0.42);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .cover-logo .big-b {
-      width: 58px;
-      height: 58px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, #2a210e, #0d0d0d);
-      border: 1px solid rgba(216,177,90,0.55);
-      color: var(--gold);
-      font-size: 1.8rem;
-      font-weight: 900;
-    }
-
-    .cover-logo .text { display: grid; gap: 2px; }
-    .cover-logo .text strong {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.92rem;
-    }
-    .cover-logo .text span { color: var(--muted); font-size: 0.84rem; }
-
     .info-panel {
       display: grid;
-      grid-template-rows: auto auto auto;
+      grid-template-rows: auto auto 1fr;
       gap: 18px;
       padding: 22px;
       background:
-        radial-gradient(circle at top right, rgba(216,177,90,0.18), transparent 32%),
-        radial-gradient(circle at bottom left, rgba(138,12,255,0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(216,177,90,0.16), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(138,12,255,0.10), transparent 30%),
         linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
     }
 
@@ -388,7 +356,9 @@
       color: var(--muted);
     }
 
-    /* MARQUEUR 03 — PLAYER OFFICIEL */
+    /* =========================
+       SECTION COMMON
+       ========================= */
     .section { padding: 18px 0; }
 
     .section-head {
@@ -413,6 +383,9 @@
       line-height: 1.6;
     }
 
+    /* =========================
+       MARQUEUR 03 — PLAYER
+       ========================= */
     .player-wrap {
       padding: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
@@ -449,7 +422,9 @@
       text-underline-offset: 2px;
     }
 
-    /* MARQUEUR 04 — OFFRE COMMERCIALE */
+    /* =========================
+       MARQUEUR 04 — OFFER
+       ========================= */
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -489,7 +464,9 @@
       font-size: 0.92rem;
     }
 
-    /* MARQUEUR 05 — PLAYLISTS ÉDITABLES */
+    /* =========================
+       MARQUEUR 05 — PLAYLISTS
+       ========================= */
     .playlist-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -524,7 +501,9 @@
       font-size: 0.92rem;
     }
 
-    /* MARQUEUR 06 — LIENS OFFICIELS */
+    /* =========================
+       MARQUEUR 06 — LINKS
+       ========================= */
     .links-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -612,7 +591,9 @@
       font-weight: 800;
     }
 
-    /* MARQUEUR 07 — MARQUEURS VISIBLES */
+    /* =========================
+       MARQUEUR 07 — MARKERS
+       ========================= */
     .marker-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -646,7 +627,9 @@
     .m7 { border-color: rgba(216, 177, 90, 0.34); }
     .m8 { border-color: rgba(255, 255, 255, 0.12); }
 
-    /* MARQUEUR 08 — FOOTER */
+    /* =========================
+       FOOTER
+       ========================= */
     .footer {
       padding: 24px 0 34px;
       color: var(--muted);
@@ -686,7 +669,7 @@
       .marker-grid {
         grid-template-columns: 1fr 1fr;
       }
-      .cover-panel { min-height: 560px; }
+      .hero-panel { min-height: 380px; }
     }
 
     @media (max-width: 760px) {
@@ -708,8 +691,8 @@
         grid-template-columns: 1fr;
       }
 
-      .cover-panel { min-height: 520px; }
-      .cover-inner { padding: 20px; }
+      .hero-panel { min-height: 360px; }
+      .hero-inner { padding: 20px; }
       .info-panel { padding: 18px; }
       .player-wrap { padding: 14px; }
     }
@@ -736,15 +719,15 @@
     </header>
 
     <main>
-      <!-- MARQUEUR 02 — HERO / COVER PRINCIPALE -->
+      <!-- MARQUEUR 02 — HERO / STRUCTURE D'ACCUEIL -->
       <section id="hero" class="hero">
         <div class="container hero-grid">
-          <article class="panel cover-panel">
-            <div class="cover-inner">
+          <article class="panel hero-panel">
+            <div class="hero-inner">
               <div class="tag-row">
                 <span class="badge-live">En direct / 24h24</span>
                 <span class="tag"><span class="dot"></span> SoundCloud officiel</span>
-                <span class="tag">Playlist Web Radio</span>
+                <span class="tag">Playlist aléatoire</span>
                 <span class="tag">Mix · Remix · Radio</span>
               </div>
 
@@ -754,22 +737,13 @@
                   <span class="silver">Web</span> <span class="accent">Radio</span>
                 </h1>
                 <p class="cover-subtitle">
-                  Univers cinématique premium dédié à la diffusion musicale, aux mixes, aux remixes et à la mise en avant du projet.
-                  Cette version rétablit une identité colorée, claire et commerciale, tout en restant simple à maintenir.
+                  Plateforme officielle de diffusion pour les playlists SoundCloud du projet Boyington Remix. Le lecteur démarre sur une playlist aléatoire à chaque ouverture, puis enchaîne automatiquement les pistes.
                 </p>
               </div>
 
               <div class="cta-row">
                 <a class="btn btn-primary" href="#player">▶ Lancer le player</a>
                 <a class="btn btn-ghost" href="#liens">Voir les liens officiels</a>
-              </div>
-
-              <div class="cover-logo" aria-label="Logo officiel Boyington">
-                <div class="big-b">B</div>
-                <div class="text">
-                  <strong>Logo officiel verrouillé</strong>
-                  <span>Noir / or / couronne / grand B doré</span>
-                </div>
               </div>
             </div>
           </article>
@@ -778,7 +752,7 @@
             <div class="info-card">
               <h2>Présentation commerciale</h2>
               <p>
-                Page officielle construite pour présenter le projet avec une lecture rapide, une hiérarchie visuelle claire et des points d’accroche immédiats.
+                Page officielle pensée pour la diffusion continue, la présentation claire des playlists et la navigation simple pour les visiteurs.
               </p>
             </div>
 
@@ -793,7 +767,7 @@
               </div>
               <div class="stat">
                 <strong>3</strong>
-                <span>Réseaux officiels</span>
+                <span>Playlists source</span>
               </div>
               <div class="stat">
                 <strong>FINAL</strong>
@@ -802,17 +776,9 @@
             </div>
 
             <div class="info-card">
-              <h3>Univers sonore validé</h3>
+              <h3>Fonctionnement</h3>
               <p>
-                Latin House, Melodic Techno, Synthwave, Emotional Deep House et flamenco electro.
-                L’ensemble reste cohérent avec l’identité premium officielle du projet.
-              </p>
-            </div>
-
-            <div class="info-card">
-              <h3>Maintenance simplifiée</h3>
-              <p>
-                Les zones importantes sont signalées par des commentaires HTML précis pour remplacer rapidement une cover, une playlist ou un lien.
+                Le script lit <strong>playlists.json</strong>, choisit une playlist au hasard, puis le widget SoundCloud gère la lecture et l’enchaînement des titres.
               </p>
             </div>
           </aside>
@@ -825,13 +791,21 @@
           <div class="section-head">
             <div>
               <h2>Player SoundCloud officiel</h2>
-              <p>Le player actuel reste conservé, avec la playlist officielle du projet Web Radio Boyington.</p>
+              <p>Le lecteur charge une playlist aléatoire depuis le fichier JSON à chaque ouverture.</p>
             </div>
           </div>
 
           <div class="panel player-wrap">
             <div class="player-embed">
-              <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&amp;color=%23ee0f25&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false" title="SoundCloud player - Boyington Web Radio"></iframe>
+              <iframe
+                id="sc-player"
+                width="100%"
+                height="450"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay; encrypted-media"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&amp;color=%23ee0f25&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false"
+                title="SoundCloud player - Boyington Web Radio"></iframe>
             </div>
             <div class="player-meta">
               <div>
@@ -839,19 +813,19 @@
                 ·
                 <a href="https://soundcloud.com/boyingtonremix/sets/web-radio-boyington-remix-24" target="_blank" rel="noopener noreferrer">Web-Radio-BOYINGTON-REMIX-24-24</a>
               </div>
-              <div class="small">Autoplay possible selon les règles du navigateur.</div>
+              <div id="playerStatus" class="small">Chargement du lecteur…</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- MARQUEUR 04 — OFFRE COMMERCIALE -->
+      <!-- MARQUEUR 04 — OFFRE / POSITIONNEMENT -->
       <section id="offer" class="section">
         <div class="container">
           <div class="section-head">
             <div>
               <h2>Offre / positionnement</h2>
-              <p>Bloc utile pour présenter la valeur du projet et rendre la page plus convaincante pour un visiteur ou un partenaire.</p>
+              <p>Bloc de présentation pour garder la page claire, sérieuse et agréable pour les visiteurs.</p>
             </div>
           </div>
 
@@ -859,22 +833,22 @@
             <div class="feature-card">
               <span class="kicker">Image</span>
               <strong>Vitrine premium</strong>
-              <p>Un design noir/argent/or qui donne immédiatement une impression sérieuse, moderne et haut de gamme.</p>
+              <p>Un design noir, argent et or pour une présence officielle nette et élégante.</p>
             </div>
             <div class="feature-card">
               <span class="kicker">Audio</span>
               <strong>Player central</strong>
-              <p>La diffusion reste au cœur de la page, avec un accès direct et une structure propre pour les visiteurs.</p>
+              <p>La diffusion reste au cœur de la page, avec un accès direct au contenu musical.</p>
             </div>
             <div class="feature-card">
               <span class="kicker">Marque</span>
               <strong>Identité claire</strong>
-              <p>Le nom officiel, le logo et les réseaux sont visibles sans surcharge, avec une lecture immédiate.</p>
+              <p>Le nom officiel et les réseaux restent visibles sans surcharge inutile.</p>
             </div>
             <div class="feature-card">
               <span class="kicker">Évolutif</span>
-              <strong>Facile à faire évoluer</strong>
-              <p>Les sections sont découplées pour permettre des mises à jour rapides sans casser la structure générale.</p>
+              <strong>Facile à maintenir</strong>
+              <p>La structure est séparée par zones pour simplifier les futures mises à jour.</p>
             </div>
           </div>
         </div>
@@ -886,22 +860,22 @@
           <div class="section-head">
             <div>
               <h2>Playlists / blocs éditables</h2>
-              <p>Zone prévue pour ajouter, remplacer ou réorganiser les playlists plus tard sans toucher au reste de la page.</p>
+              <p>Les playlists sont maintenant lues depuis `playlists.json`. Tu n’as plus qu’à maintenir ce fichier.</p>
             </div>
           </div>
 
           <div class="playlist-grid">
             <div class="playlist-card">
               <h3>Playlist principale</h3>
-              <p>Utilisée pour la diffusion centrale SoundCloud et la présentation de la radio officielle.</p>
+              <p>Chargée automatiquement depuis le JSON au démarrage de la page.</p>
             </div>
             <div class="playlist-card">
-              <h3>Playlist remix</h3>
-              <p>Bloc prêt à recevoir les remixes, versions radio, edits spéciaux ou sélections thématiques.</p>
+              <h3>Rotation aléatoire</h3>
+              <p>Le script évite de rejouer la même playlist si plusieurs sont disponibles.</p>
             </div>
             <div class="playlist-card">
-              <h3>Playlist maxi 45T</h3>
-              <p>Emplacement réservé pour les sélections rétro, maxi 45 tours, compilations ou pages dédiées.</p>
+              <h3>Enchaînement</h3>
+              <p>À la fin d’un morceau, le widget passe au suivant puis change de playlist si nécessaire.</p>
             </div>
           </div>
         </div>
@@ -913,7 +887,7 @@
           <div class="section-head">
             <div>
               <h2>Liens officiels</h2>
-              <p>Les liens réseau sont maintenant branchés directement sur des boutons cliquables pour Facebook, TikTok et SoundCloud.</p>
+              <p>Accès direct aux réseaux publics du projet.</p>
             </div>
           </div>
 
@@ -926,9 +900,9 @@
               <h3>TikTok</h3>
               <p>Compte officiel Boyington Remix Officiel.</p>
             </a>
-            <a class="link-card" href="https://soundcloud.com/boyingtonremix/sets/web-radio-boyington-remix-24" target="_blank" rel="noopener noreferrer">
+            <a class="link-card" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">
               <h3>SoundCloud</h3>
-              <p>Lecture intégrée de la playlist Web Radio Boyington Remix 24-24.</p>
+              <p>Accès direct au profil Boyington Remix.</p>
             </a>
           </div>
 
@@ -970,10 +944,10 @@
 
           <div class="marker-grid">
             <div class="marker m1"><strong>01 — Header</strong><span>Identité officielle et navigation.</span></div>
-            <div class="marker m2"><strong>02 — Hero</strong><span>Cover principale et appels à l’action.</span></div>
-            <div class="marker m3"><strong>03 — Player</strong><span>Embed SoundCloud officiel conservé.</span></div>
+            <div class="marker m2"><strong>02 — Hero</strong><span>Zone d’accueil principale.</span></div>
+            <div class="marker m3"><strong>03 — Player</strong><span>Embed SoundCloud et contrôle.</span></div>
             <div class="marker m4"><strong>04 — Offre</strong><span>Positionnement commercial et valeur.</span></div>
-            <div class="marker m5"><strong>05 — Playlists</strong><span>Blocs éditables pour versions futures.</span></div>
+            <div class="marker m5"><strong>05 — Playlists</strong><span>Bloc lié à playlists.json.</span></div>
             <div class="marker m6"><strong>06 — Liens</strong><span>Réseaux officiels et accès directs.</span></div>
             <div class="marker m7"><strong>07 — Branding</strong><span>Couleurs noir / argent / or / rouge.</span></div>
             <div class="marker m8"><strong>08 — Final</strong><span>Structure prête pour GitHub.</span></div>
@@ -989,20 +963,212 @@
         <div class="footer-inner">
           <div>
             <strong>BOYINGTON WEB RADIO</strong><br />
-            <span class="small">Version officielle finale prête à intégrer dans le dépôt GitHub.</span>
+            <span class="small">Version finale prête à intégrer dans le dépôt GitHub.</span>
           </div>
           <div>
             <span class="small">Facebook : </span><a href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">LoranBoyington</a><br />
             <span class="small">TikTok : </span><a href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">@boyingtonremixofficiel</a>
           </div>
           <div>
-            <span class="small">Cover de secours :</span> <strong>cover-default.jpg</strong><br />
-            <span class="small">Player :</span> SoundCloud iframe officiel
+            <span class="small">Playlists :</span> <strong>playlists.json</strong><br />
+            <span class="small">Player :</span> SoundCloud Widget API
           </div>
         </div>
       </div>
     </footer>
   </div>
+
+  <!-- =========================================================
+       SOUNDCloud Widget API
+       ========================================================= -->
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+  <script>
+    (function () {
+      const PLAYER_IFRAME_ID = 'sc-player';
+      const STATUS_ID = 'playerStatus';
+      const PLAYLISTS_URL = 'playlists.json';
+      const LAST_PLAYLIST_KEY = 'boyington_last_playlist_index';
+      const LAST_SOUND_KEY = 'boyington_last_sound_index';
+
+      const iframe = document.getElementById(PLAYER_IFRAME_ID);
+      const statusEl = document.getElementById(STATUS_ID);
+
+      if (!iframe || !statusEl || typeof SC === 'undefined' || !SC.Widget) {
+        if (statusEl) statusEl.textContent = 'Lecteur indisponible.';
+        return;
+      }
+
+      const widget = SC.Widget(iframe);
+      let playlistPool = [];
+      let currentPlaylistIndex = -1;
+      let currentPlaylist = null;
+      let currentTrackCount = 0;
+      let readyAfterLoad = false;
+
+      function updateStatus(text) {
+        statusEl.textContent = text;
+      }
+
+      function getStoredIndex(key) {
+        const raw = Number(localStorage.getItem(key));
+        return Number.isInteger(raw) && raw >= 0 ? raw : -1;
+      }
+
+      function setStoredIndex(key, value) {
+        localStorage.setItem(key, String(value));
+      }
+
+      function pickRandomIndex(length, avoidIndex = -1) {
+        if (length <= 1) return 0;
+        let index = Math.floor(Math.random() * length);
+        if (index === avoidIndex) index = (index + 1) % length;
+        return index;
+      }
+
+      function loadPlaylist(index, autoplay = true) {
+        if (!playlistPool.length) {
+          updateStatus('Aucune playlist publique trouvée dans playlists.json.');
+          return;
+        }
+
+        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
+        currentPlaylistIndex = safeIndex;
+        currentPlaylist = playlistPool[safeIndex];
+        currentTrackCount = 0;
+        setStoredIndex(LAST_PLAYLIST_KEY, safeIndex);
+        updateStatus(`Chargement : ${currentPlaylist.title}`);
+
+        widget.load(currentPlaylist.url, {
+          auto_play: autoplay,
+          color: '#ee0f25',
+          buying: false,
+          sharing: false,
+          download: false,
+          show_artwork: true,
+          show_playcount: false,
+          show_user: false,
+          single_active: true,
+          show_comments: false,
+          show_reposts: false,
+          show_teaser: false
+        });
+      }
+
+      function startRandomTrackInCurrentPlaylist() {
+        widget.getSounds(function (sounds) {
+          const total = Array.isArray(sounds) ? sounds.length : 0;
+          currentTrackCount = total;
+
+          if (!total) {
+            updateStatus('Playlist chargée, mais aucun son n’a été récupéré.');
+            return;
+          }
+
+          const lastSound = getStoredIndex(LAST_SOUND_KEY);
+          const startIndex = pickRandomIndex(total, lastSound >= 0 ? lastSound : -1);
+          setStoredIndex(LAST_SOUND_KEY, startIndex);
+
+          if (startIndex > 0) {
+            widget.skip(startIndex);
+          }
+
+          widget.play();
+          updateStatus(`Lecture aléatoire : ${currentPlaylist.title} — piste ${startIndex + 1} / ${total}`);
+        });
+      }
+
+      function refreshNowPlaying() {
+        widget.getCurrentSound(function (sound) {
+          if (!sound) return;
+          const title = sound.title || currentPlaylist?.title || 'Boyington Web Radio';
+          updateStatus(`Lecture : ${title}`);
+        });
+      }
+
+      function playNextOrLoadAnotherPlaylist() {
+        widget.getCurrentSoundIndex(function (index) {
+          widget.getSounds(function (sounds) {
+            const total = Array.isArray(sounds) ? sounds.length : 0;
+
+            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
+              widget.next();
+              return;
+            }
+
+            if (playlistPool.length > 1) {
+              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+              loadPlaylist(nextPlaylist, true);
+              return;
+            }
+
+            if (playlistPool.length === 1) {
+              loadPlaylist(0, true);
+              return;
+            }
+
+            updateStatus('Aucune playlist disponible.');
+          });
+        });
+      }
+
+      widget.bind(SC.Widget.Events.READY, function () {
+        if (!readyAfterLoad) {
+          readyAfterLoad = true;
+          startRandomTrackInCurrentPlaylist();
+        } else {
+          refreshNowPlaying();
+        }
+      });
+
+      widget.bind(SC.Widget.Events.PLAY, function () {
+        refreshNowPlaying();
+      });
+
+      widget.bind(SC.Widget.Events.FINISH, function () {
+        playNextOrLoadAnotherPlaylist();
+      });
+
+      widget.bind(SC.Widget.Events.ERROR, function () {
+        updateStatus('Erreur de lecture SoundCloud.');
+      });
+
+      fetch(PLAYLISTS_URL, { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Impossible de charger playlists.json');
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          if (!Array.isArray(data)) {
+            throw new Error('playlists.json doit contenir un tableau JSON.');
+          }
+
+          playlistPool = data
+            .filter(function (item) {
+              return item && typeof item.title === 'string' && typeof item.url === 'string' && item.url.trim().length > 0;
+            })
+            .map(function (item) {
+              return {
+                title: item.title.trim(),
+                url: item.url.trim()
+              };
+            });
+
+          if (!playlistPool.length) {
+            updateStatus('Aucune playlist valide dans playlists.json.');
+            return;
+          }
+
+          const lastPlaylist = getStoredIndex(LAST_PLAYLIST_KEY);
+          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, lastPlaylist);
+          loadPlaylist(initialPlaylistIndex, true);
+        })
+        .catch(function () {
+          updateStatus('Impossible de lire playlists.json.');
+        });
+    })();
+  </script>
 </body>
 </html>
 
