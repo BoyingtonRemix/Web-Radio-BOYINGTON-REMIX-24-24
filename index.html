@@ -11,7 +11,6 @@
       --bg: #060606;
       --bg-2: #101010;
       --panel: rgba(16, 16, 16, 0.92);
-      --panel-soft: rgba(255, 255, 255, 0.04);
       --line: rgba(255, 255, 255, 0.10);
       --text: #f4f4f4;
       --muted: #b8b8b8;
@@ -21,7 +20,6 @@
       --accent-2: #8a0cff;
       --shadow: 0 24px 80px rgba(0, 0, 0, 0.58);
       --radius: 28px;
-      --radius-sm: 18px;
       --max: 1280px;
     }
 
@@ -40,7 +38,6 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
 
     .shell {
       position: relative;
@@ -117,13 +114,13 @@
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 0 28px rgba(216,177,90,0.12);
     }
 
-    .brand-copy { min-width: 0; }
     .brand-copy strong {
       display: block;
       font-size: 0.98rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
+
     .brand-copy span {
       display: block;
       margin-top: 2px;
@@ -184,19 +181,9 @@
         linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.12));
     }
 
-    .hero-inner {
-      width: 100%;
-      padding: 28px;
-      display: grid;
-      gap: 18px;
-    }
+    .hero-inner { width: 100%; padding: 28px; display: grid; gap: 18px; }
 
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
     .badge-live,
     .tag {
@@ -250,12 +237,7 @@
       line-height: 1.7;
     }
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
     .btn {
       display: inline-flex;
@@ -327,11 +309,7 @@
       font-size: 0.95rem;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
+    .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 
     .stat {
       border-radius: 18px;
@@ -340,17 +318,8 @@
       background: rgba(255,255,255,0.03);
     }
 
-    .stat strong {
-      display: block;
-      font-size: 1.4rem;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .stat span {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
+    .stat strong { display: block; font-size: 1.4rem; color: #fff; margin-bottom: 4px; }
+    .stat span { font-size: 0.85rem; color: var(--muted); }
 
     /* MARQUEUR 03 — PLAYER OFFICIEL */
     .section { padding: 18px 0; }
@@ -385,18 +354,10 @@
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
     }
 
-    iframe {
-      display: block;
-      width: 100%;
-      border: 0;
-    }
+    iframe { display: block; width: 100%; border: 0; }
 
     /* MARQUEUR 04 — OFFRE / POSITIONNEMENT */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
+    .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 
     .feature-card {
       padding: 18px;
@@ -418,25 +379,11 @@
       letter-spacing: 0.1em;
     }
 
-    .feature-card strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.08rem;
-    }
-
-    .feature-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 0.92rem;
-    }
+    .feature-card strong { display: block; margin-bottom: 8px; font-size: 1.08rem; }
+    .feature-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.92rem; }
 
     /* MARQUEUR 05 — PLAYLISTS ÉDITABLES */
-    .playlist-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
+    .playlist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 
     .playlist-card {
       padding: 20px;
@@ -459,19 +406,10 @@
       letter-spacing: 0.08em;
     }
 
-    .playlist-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 0.92rem;
-    }
+    .playlist-card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.92rem; }
 
     /* MARQUEUR 06 — LIENS OFFICIELS */
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
+    .links-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 
     .link-card {
       padding: 20px;
@@ -496,19 +434,9 @@
       letter-spacing: 0.08em;
     }
 
-    .link-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 0.92rem;
-    }
+    .link-card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.92rem; }
 
-    .network-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 14px;
-    }
+    .network-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
 
     .network-btn {
       padding: 18px 20px;
@@ -536,10 +464,7 @@
       font-size: 0.96rem;
     }
 
-    .network-btn span {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
+    .network-btn span { color: var(--muted); font-size: 0.88rem; }
 
     .network-badge {
       display: inline-flex;
@@ -555,11 +480,7 @@
     }
 
     /* MARQUEUR 07 — MARQUEURS VISIBLES */
-    .marker-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
+    .marker-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
 
     .marker {
       padding: 14px 16px;
@@ -589,10 +510,7 @@
     .m8 { border-color: rgba(255, 255, 255, 0.12); }
 
     /* FOOTER */
-    .footer {
-      padding: 24px 0 34px;
-      color: var(--muted);
-    }
+    .footer { padding: 24px 0 34px; color: var(--muted); }
 
     .gold-line {
       height: 1px;
@@ -625,20 +543,14 @@
       .playlist-grid,
       .links-grid,
       .network-row,
-      .marker-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .marker-grid { grid-template-columns: 1fr 1fr; }
       .hero-panel { min-height: 380px; }
     }
 
     @media (max-width: 760px) {
       .topbar-inner,
       .section-head,
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
+      .footer-inner { flex-direction: column; align-items: flex-start; }
       .nav { justify-content: flex-start; }
       .hero-grid,
       .feature-grid,
@@ -646,10 +558,7 @@
       .links-grid,
       .network-row,
       .marker-grid,
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
+      .stats { grid-template-columns: 1fr; }
       .hero-panel { min-height: 360px; }
       .hero-inner { padding: 20px; }
       .info-panel { padding: 18px; }
@@ -725,7 +634,7 @@
                 <span>Mix / remix / remastering</span>
               </div>
               <div class="stat">
-                <strong>3</strong>
+                <strong>3+</strong>
                 <span>Playlists source</span>
               </div>
               <div class="stat">
@@ -737,7 +646,7 @@
             <div class="info-card">
               <h3>Fonctionnement</h3>
               <p>
-                Le script lit <strong>playlists.json</strong>, choisit une playlist au hasard, puis le widget SoundCloud gère la lecture et l’enchaînement des titres.
+                Le script lit <strong>playlists.json</strong>, accepte les clés <strong>title</strong> ou <strong>titre</strong>, choisit une entrée au hasard, puis le widget SoundCloud gère la lecture et l’enchaînement des titres. Quand la fin d’une source est atteinte, une nouvelle source aléatoire est chargée automatiquement.
               </p>
             </div>
           </aside>
@@ -821,11 +730,11 @@
             </div>
             <div class="playlist-card">
               <h3>Rotation aléatoire</h3>
-              <p>Le script évite de rejouer la même playlist si plusieurs sont disponibles.</p>
+              <p>Le script choisit une playlist au hasard à chaque ouverture.</p>
             </div>
             <div class="playlist-card">
               <h3>Enchaînement</h3>
-              <p>À la fin d’un morceau, le widget passe au suivant puis change de playlist si nécessaire.</p>
+              <p>À la fin d’un morceau, le widget passe au suivant puis change de source si nécessaire.</p>
             </div>
           </div>
         </div>
@@ -928,38 +837,37 @@
     </footer>
   </div>
 
-  <!-- SOUNDCloud Widget API -->
   <script src="https://w.soundcloud.com/player/api.js"></script>
   <script>
     (function () {
       const PLAYER_IFRAME_ID = 'sc-player';
       const PLAYLISTS_URL = 'playlists.json';
-      const LAST_PLAYLIST_KEY = 'boyington_last_playlist_index';
-      const LAST_SOUND_KEY = 'boyington_last_sound_index';
-
       const iframe = document.getElementById(PLAYER_IFRAME_ID);
-      if (!iframe || typeof SC === 'undefined' || !SC.Widget) {
-        return;
-      }
+
+      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
 
       let playlistPool = [];
       let currentPlaylistIndex = -1;
-      let currentPlaylist = null;
       let widget = null;
       let readyAfterLoad = false;
 
-      function getStoredIndex(key) {
-        const raw = Number(localStorage.getItem(key));
-        return Number.isInteger(raw) && raw >= 0 ? raw : -1;
-      }
-
-      function setStoredIndex(key, value) {
-        localStorage.setItem(key, String(value));
+      function normalizeEntry(item) {
+        if (!item || typeof item !== 'object') return null;
+        const url = typeof item.url === 'string' ? item.url.trim() : '';
+        const title = (typeof item.title === 'string' && item.title.trim())
+          ? item.title.trim()
+          : (typeof item.titre === 'string' && item.titre.trim())
+            ? item.titre.trim()
+            : 'Sans titre';
+        if (!url) return null;
+        return { title, url };
       }
 
       function pickRandomIndex(length, avoidIndex = -1) {
         if (length <= 1) return 0;
-        let index = Math.floor(Math.random() * length);
+        const randomBytes = new Uint32Array(1);
+        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
+        let index = randomBytes[0] % length;
         if (index === avoidIndex) index = (index + 1) % length;
         return index;
       }
@@ -969,7 +877,8 @@
         return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ee0f25&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
       }
 
-      function initWidget() {
+      function createWidget() {
+        if (widget) return widget;
         widget = SC.Widget(iframe);
 
         widget.bind(SC.Widget.Events.READY, function () {
@@ -982,6 +891,8 @@
         widget.bind(SC.Widget.Events.FINISH, function () {
           playNextOrLoadAnotherPlaylist();
         });
+
+        return widget;
       }
 
       function loadPlaylist(index, autoplay = true) {
@@ -989,28 +900,28 @@
 
         const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
         currentPlaylistIndex = safeIndex;
-        currentPlaylist = playlistPool[safeIndex];
-        setStoredIndex(LAST_PLAYLIST_KEY, safeIndex);
+        const currentPlaylist = playlistPool[safeIndex];
+
+        if (!widget) {
+          iframe.src = buildPlayerUrl(currentPlaylist.url);
+          return;
+        }
 
         readyAfterLoad = false;
-        iframe.src = buildPlayerUrl(currentPlaylist.url);
-
-        if (widget && typeof widget.load === 'function') {
-          widget.load(currentPlaylist.url, {
-            auto_play: autoplay,
-            color: '#ee0f25',
-            buying: false,
-            sharing: false,
-            download: false,
-            show_artwork: true,
-            show_playcount: false,
-            show_user: false,
-            single_active: true,
-            show_comments: false,
-            show_reposts: false,
-            show_teaser: false
-          });
-        }
+        widget.load(currentPlaylist.url, {
+          auto_play: autoplay,
+          color: '#ee0f25',
+          buying: false,
+          sharing: false,
+          download: false,
+          show_artwork: true,
+          show_playcount: false,
+          show_user: false,
+          single_active: true,
+          show_comments: false,
+          show_reposts: false,
+          show_teaser: false
+        });
       }
 
       function startRandomTrackInCurrentPlaylist() {
@@ -1020,14 +931,8 @@
           const total = Array.isArray(sounds) ? sounds.length : 0;
           if (!total) return;
 
-          const lastSound = getStoredIndex(LAST_SOUND_KEY);
-          const startIndex = pickRandomIndex(total, lastSound >= 0 ? lastSound : -1);
-          setStoredIndex(LAST_SOUND_KEY, startIndex);
-
-          if (startIndex > 0) {
-            widget.skip(startIndex);
-          }
-
+          const startIndex = pickRandomIndex(total, -1);
+          if (startIndex > 0) widget.skip(startIndex);
           widget.play();
         });
       }
@@ -1059,33 +964,22 @@
 
       fetch(PLAYLISTS_URL, { cache: 'no-store' })
         .then(function (response) {
-          if (!response.ok) {
-            throw new Error('Impossible de charger playlists.json');
-          }
+          if (!response.ok) throw new Error('Impossible de charger playlists.json');
           return response.json();
         })
         .then(function (data) {
-          if (!Array.isArray(data)) {
-            throw new Error('playlists.json doit contenir un tableau JSON.');
-          }
+          if (!Array.isArray(data)) throw new Error('playlists.json doit contenir un tableau JSON.');
 
           playlistPool = data
-            .filter(function (item) {
-              return item && typeof item.title === 'string' && typeof item.url === 'string' && item.url.trim().length > 0;
-            })
-            .map(function (item) {
-              return {
-                title: item.title.trim(),
-                url: item.url.trim()
-              };
-            });
+            .map(normalizeEntry)
+            .filter(Boolean);
 
           if (!playlistPool.length) return;
 
-          initWidget();
-          const lastPlaylist = getStoredIndex(LAST_PLAYLIST_KEY);
-          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, lastPlaylist);
-          loadPlaylist(initialPlaylistIndex, true);
+          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
+          currentPlaylistIndex = initialPlaylistIndex;
+          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
+          createWidget();
         })
         .catch(function () {
           return;
