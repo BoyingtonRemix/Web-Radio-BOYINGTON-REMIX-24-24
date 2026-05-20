@@ -3,27 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Boyington Web Radio — site officiel, player SoundCloud, playlists aléatoires et liens officiels." />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="description" content="Boyington Web Radio — site officiel premium avec player SoundCloud, visuels du dépôt GitHub et liens officiels." />
+  <meta name="theme-color" content="#080808" />
   <title>BOYINGTON WEB RADIO — Site Officiel</title>
   <style>
     :root {
-      --bg: #060606;
-      --panel: rgba(16, 16, 16, 0.92);
-      --line: rgba(255, 255, 255, 0.10);
+      --bg: #080808;
+      --bg-2: #111111;
+      --panel: rgba(18, 18, 18, 0.92);
+      --panel-2: rgba(255, 255, 255, 0.03);
+      --line: rgba(255, 255, 255, 0.09);
       --text: #f4f4f4;
-      --muted: #b8b8b8;
-      --silver: #d0d0d0;
+      --muted: #b9b9b9;
+      --silver: #d7d7d7;
       --gold: #d8b15a;
       --accent: #ee0f25;
       --accent-2: #8a0cff;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.58);
+      --shadow: 0 26px 90px rgba(0, 0, 0, 0.58);
       --radius: 28px;
-      --max: 1280px;
+      --radius-sm: 20px;
+      --max: 1320px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -31,12 +35,13 @@
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top, rgba(238, 15, 37, 0.16), transparent 24%),
-        radial-gradient(circle at 80% 0%, rgba(138, 12, 255, 0.14), transparent 26%),
-        linear-gradient(180deg, #090909 0%, #050505 100%);
+        radial-gradient(circle at top left, rgba(238, 15, 37, 0.17), transparent 22%),
+        radial-gradient(circle at top right, rgba(138, 12, 255, 0.14), transparent 22%),
+        linear-gradient(180deg, #0b0b0b 0%, #050505 100%);
     }
 
     a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     .shell {
       position: relative;
@@ -49,10 +54,10 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.024) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.024) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
       background-size: 34px 34px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.60), transparent 92%);
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.64), transparent 92%);
       pointer-events: none;
       z-index: -2;
     }
@@ -61,7 +66,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.05), transparent 36%);
+      background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.05), transparent 34%);
       pointer-events: none;
       z-index: -1;
     }
@@ -71,12 +76,13 @@
       margin: 0 auto;
     }
 
+    /* HEADER */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 100;
       backdrop-filter: blur(18px);
-      background: linear-gradient(180deg, rgba(8,8,8,0.96), rgba(8,8,8,0.72));
+      background: linear-gradient(180deg, rgba(8,8,8,0.96), rgba(8,8,8,0.76));
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
@@ -95,28 +101,32 @@
       min-width: 0;
     }
 
-    .brand-mark {
-      width: 50px;
-      height: 50px;
+    .brand-logo {
+      width: 52px;
+      height: 52px;
       border-radius: 16px;
+      border: 1px solid rgba(216,177,90,0.55);
+      background:
+        radial-gradient(circle at 30% 28%, rgba(255,255,255,0.22), transparent 28%),
+        linear-gradient(145deg, #32260f 0%, #181818 45%, #000 100%);
       display: grid;
       place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 0 28px rgba(216,177,90,0.10);
+      overflow: hidden;
       flex: 0 0 auto;
-      border: 1px solid rgba(216, 177, 90, 0.50);
-      background:
-        radial-gradient(circle at 30% 28%, rgba(255,255,255,0.22), transparent 32%),
-        linear-gradient(145deg, #33260f 0%, #161616 42%, #000 100%);
-      color: var(--gold);
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 0 28px rgba(216,177,90,0.12);
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .brand-copy strong {
       display: block;
-      font-size: 0.98rem;
-      letter-spacing: 0.16em;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.98rem;
     }
 
     .brand-copy span {
@@ -124,6 +134,25 @@
       margin-top: 2px;
       color: var(--muted);
       font-size: 0.84rem;
+    }
+
+    .clock-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--silver);
+      white-space: nowrap;
+      font-size: 0.9rem;
+    }
+
+    .clock-pill strong {
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.08em;
     }
 
     .nav {
@@ -150,12 +179,13 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
 
-    .hero { padding: 28px 0 16px; }
+    /* HERO */
+    .hero { padding: 28px 0 14px; }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
+      gap: 20px;
       align-items: stretch;
     }
 
@@ -164,46 +194,64 @@
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
       box-shadow: var(--shadow);
     }
 
     .hero-panel {
-      min-height: 420px;
-      display: flex;
-      align-items: center;
+      min-height: 460px;
       background:
-        radial-gradient(circle at 15% 20%, rgba(216,177,90,0.20), transparent 20%),
-        radial-gradient(circle at 85% 12%, rgba(138,12,255,0.18), transparent 22%),
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.12));
+        linear-gradient(135deg, rgba(0,0,0,0.58), rgba(0,0,0,0.28)),
+        url('arrière-plan-boyington-radio.jpg') center/cover no-repeat;
     }
 
-    .hero-inner { width: 100%; padding: 28px; display: grid; gap: 18px; }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216,177,90,0.14), transparent 24%),
+        radial-gradient(circle at 80% 16%, rgba(138,12,255,0.18), transparent 28%),
+        linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.60));
+    }
 
-    .badge-live,
-    .tag {
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 9px 14px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.11);
-      background: rgba(0,0,0,0.36);
-      font-size: 0.83rem;
+      background: rgba(0,0,0,0.38);
       letter-spacing: 0.06em;
       text-transform: uppercase;
+      font-size: 0.82rem;
+      color: var(--silver);
     }
 
-    .badge-live {
-      color: #ffd9dd;
+    .badge.live {
+      color: #ffdce0;
       background: rgba(238,15,37,0.12);
-      border-color: rgba(238,15,37,0.28);
+      border-color: rgba(238,15,37,0.26);
     }
 
-    .badge-live::before,
-    .dot {
-      content: "";
+    .badge .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -212,28 +260,32 @@
       flex: 0 0 auto;
     }
 
-    .cover-title {
+    .hero-title {
       margin: 0;
-      font-size: clamp(2rem, 4vw, 4.3rem);
-      line-height: 0.96;
-      letter-spacing: 0.02em;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 0.92;
       text-transform: uppercase;
-      text-shadow: 0 4px 24px rgba(0,0,0,0.65);
+      letter-spacing: 0.02em;
     }
 
-    .cover-title .gold { color: var(--gold); }
-    .cover-title .silver { color: var(--silver); }
-    .cover-title .accent { color: var(--accent); }
+    .hero-title .gold { color: var(--gold); }
+    .hero-title .silver { color: var(--silver); }
+    .hero-title .red { color: var(--accent); }
 
-    .cover-subtitle {
+    .hero-copy {
       margin: 0;
-      max-width: 70ch;
+      max-width: 62ch;
       color: rgba(255,255,255,0.92);
-      font-size: 1.02rem;
       line-height: 1.7;
+      font-size: 1rem;
     }
 
-    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
 
     .btn {
       display: inline-flex;
@@ -253,122 +305,192 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), #b80819 50%, #7f0610 100%);
       color: #fff;
-      box-shadow: 0 18px 35px rgba(238,15,37,0.24);
+      box-shadow: 0 18px 35px rgba(238,15,37,0.22);
     }
 
     .btn-primary:hover { transform: translateY(-2px); }
 
-    .btn-ghost {
+    .btn-secondary {
       background: rgba(255,255,255,0.04);
       border-color: rgba(255,255,255,0.10);
       color: var(--text);
     }
 
-    .btn-ghost:hover {
+    .btn-secondary:hover {
+      transform: translateY(-2px);
       border-color: rgba(216,177,90,0.32);
       background: rgba(216,177,90,0.08);
-      transform: translateY(-2px);
     }
 
-    .info-panel {
+    .hero-side {
       display: grid;
       grid-template-rows: auto auto 1fr;
-      gap: 18px;
-      padding: 22px;
+      gap: 14px;
+      padding: 18px;
       background:
-        radial-gradient(circle at top right, rgba(216,177,90,0.16), transparent 32%),
-        radial-gradient(circle at bottom left, rgba(138,12,255,0.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(216,177,90,0.15), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(138,12,255,0.12), transparent 32%),
         linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
     }
 
-    .info-card {
-      border: 1px solid rgba(255,255,255,0.08);
+    .hero-card {
       border-radius: 22px;
-      padding: 18px;
-      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.26);
+      overflow: hidden;
     }
 
-    .info-card h2,
-    .info-card h3 {
-      margin: 0 0 8px;
+    .hero-card.top {
+      padding: 18px;
+    }
+
+    .hero-card h2,
+    .hero-card h3 {
+      margin: 0;
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
 
-    .info-card h2 { font-size: 1.15rem; }
-    .info-card h3 { font-size: 0.98rem; color: var(--gold); }
+    .hero-card h2 { font-size: 1.08rem; margin-bottom: 10px; }
+    .hero-card h3 { font-size: 0.92rem; color: var(--gold); margin-bottom: 8px; }
 
-    .info-card p {
+    .hero-card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.95rem;
+      line-height: 1.6;
+      font-size: 0.92rem;
     }
 
-    .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .stat { border-radius: 18px; padding: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); }
-    .stat strong { display: block; font-size: 1.4rem; color: #fff; margin-bottom: 4px; }
-    .stat span { font-size: 0.85rem; color: var(--muted); }
+    .studio-thumb {
+      position: relative;
+      min-height: 210px;
+      background: url('Studio-Console.jpg') center/cover no-repeat;
+    }
 
+    .studio-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.55));
+    }
+
+    .studio-thumb .caption {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 1;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.48);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-stat {
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .mini-stat strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    /* SECTIONS */
     .section { padding: 18px 0; }
-    .section-head { display: flex; justify-content: space-between; gap: 18px; align-items: end; margin-bottom: 14px; }
-    .section-head h2 { margin: 0; font-size: clamp(1.4rem, 2.6vw, 2rem); text-transform: uppercase; letter-spacing: 0.08em; }
 
-    .player-wrap { padding: 18px; background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); }
-    .player-wrap .player-embed { max-width: 1400px; margin: 0 auto; overflow: hidden; border-radius: 22px; border: 1px solid rgba(255,255,255,0.08); background: #0d0d0d; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03); }
-    iframe { display: block; width: 100%; border: 0; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
 
-    .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-    .feature-card { padding: 18px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.08); background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); min-height: 140px; }
-    .feature-card .kicker { display: inline-flex; margin-bottom: 10px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--silver); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
-    .feature-card strong { display: block; margin-bottom: 8px; font-size: 1.08rem; }
-    .feature-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.92rem; }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 2.7vw, 2.05rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
-    .playlist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .playlist-card { padding: 20px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); transition: 0.22s ease; }
-    .playlist-card:hover { transform: translateY(-2px); border-color: rgba(216,177,90,0.34); background: rgba(216,177,90,0.06); }
-    .playlist-card h3 { margin: 0 0 8px; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.08em; }
-    .playlist-card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.92rem; }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 72ch;
+      line-height: 1.6;
+    }
 
-    .links-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .link-card { padding: 20px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); transition: 0.22s ease; display: block; min-height: 126px; }
-    .link-card:hover { transform: translateY(-2px); border-color: rgba(216,177,90,0.34); background: rgba(216,177,90,0.06); }
-    .link-card h3 { margin: 0 0 8px; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.08em; }
-    .link-card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 0.92rem; }
+    /* PLACEHOLDERS DE LA SUITE À AJOUTER DANS LES PARTIES SUIVANTES */
+    .player-wrap {
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    }
 
-    .network-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
-    .network-btn { padding: 18px 20px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.10); background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); display: flex; align-items: center; justify-content: space-between; gap: 14px; transition: 0.22s ease; }
-    .network-btn:hover { transform: translateY(-2px); border-color: rgba(238,15,37,0.26); box-shadow: 0 14px 30px rgba(0,0,0,0.22); }
-    .network-btn strong { display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.96rem; }
-    .network-btn span { color: var(--muted); font-size: 0.88rem; }
-    .network-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 42px; height: 42px; border-radius: 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: var(--gold); font-weight: 800; }
+    .player-embed {
+      max-width: 1400px;
+      margin: 0 auto;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #0d0d0d;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    }
 
-    .marker-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-    .marker { padding: 14px 16px; border-radius: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; line-height: 1.45; }
-    .marker strong { display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.84rem; }
-    .marker span { color: var(--muted); }
-    .m1 { border-color: rgba(255, 80, 80, 0.32); }
-    .m2 { border-color: rgba(88, 201, 255, 0.30); }
-    .m3 { border-color: rgba(255, 207, 64, 0.30); }
-    .m4 { border-color: rgba(138, 12, 255, 0.32); }
-    .m5 { border-color: rgba(72, 219, 141, 0.28); }
-    .m6 { border-color: rgba(238, 15, 37, 0.28); }
-    .m7 { border-color: rgba(216, 177, 90, 0.34); }
-    .m8 { border-color: rgba(255, 255, 255, 0.12); }
+    iframe {
+      display: block;
+      width: 100%;
+      border: 0;
+    }
 
-    .footer { padding: 24px 0 34px; color: var(--muted); }
-    .gold-line { height: 1px; width: 100%; margin: 18px 0; background: linear-gradient(90deg, transparent, rgba(216,177,90,0.55), transparent); }
-    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; }
-    .footer a { color: var(--silver); text-decoration: underline; text-underline-offset: 2px; }
+    .footer {
+      padding: 24px 0 34px;
+      color: var(--muted);
+    }
+
+    .gold-line {
+      height: 1px;
+      width: 100%;
+      margin: 18px 0;
+      background: linear-gradient(90deg, transparent, rgba(216,177,90,0.55), transparent);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: var(--silver);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     .small { font-size: 0.88rem; color: var(--muted); }
 
     @media (max-width: 1100px) {
-      .hero-grid,
-      .feature-grid,
-      .playlist-grid,
-      .links-grid,
-      .network-row,
-      .marker-grid { grid-template-columns: 1fr 1fr; }
+      .hero-grid { grid-template-columns: 1fr 1fr; }
       .hero-panel { min-height: 380px; }
     }
 
@@ -378,442 +500,159 @@
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .nav { justify-content: flex-start; }
       .hero-grid,
-      .feature-grid,
-      .playlist-grid,
-      .links-grid,
-      .network-row,
-      .marker-grid,
-      .stats { grid-template-columns: 1fr; }
+      .stats,
+      .mini-stats { grid-template-columns: 1fr; }
       .hero-panel { min-height: 360px; }
-      .hero-inner { padding: 20px; }
-      .info-panel { padding: 18px; }
+      .hero-content { padding: 20px; }
+      .hero-side { padding: 14px; }
       .player-wrap { padding: 14px; }
     }
   </style>
 </head>
 <body>
   <div class="shell">
+    <!-- MARQUEUR 01 — HEADER / IDENTITÉ OFFICIELLE -->
     <header class="topbar">
       <div class="container topbar-inner">
         <div class="brand" aria-label="Boyington Web Radio">
-          <div class="brand-mark">B</div>
+          <div class="brand-logo">
+            <img src="logo_radio_boyington.png" alt="Logo Boyington Radio" />
+          </div>
           <div class="brand-copy">
             <strong>Boyington Web Radio</strong>
-            <span>Site officiel — version premium noir / argent / or</span>
+            <span>Site officiel — noir / argent / or</span>
           </div>
         </div>
+
+        <div class="clock-pill" aria-live="polite">
+          <span>DJ World Matrix</span>
+          <strong id="boyingtonClock">--:--:--</strong>
+        </div>
+
         <nav class="nav" aria-label="Navigation principale">
           <a href="#player">Player</a>
+          <a href="#visuels">Visuels</a>
           <a href="#liens">Liens</a>
-          <a href="#marqueurs">Marqueurs</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section id="hero" class="hero">
+      <!-- MARQUEUR 02 — HERO / STRUCTURE D'ACCUEIL -->
+      <section class="hero">
         <div class="container hero-grid">
           <article class="panel hero-panel">
-            <div class="hero-inner">
-              <div class="tag-row">
-                <span class="badge-live">En direct / 24h24</span>
-                <span class="tag"><span class="dot"></span> SoundCloud officiel</span>
-                <span class="tag">Playlist aléatoire</span>
-                <span class="tag">Mix · Remix · Radio</span>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+              <div class="badge-row">
+                <span class="badge live"><span class="dot"></span> En direct / 24h24</span>
+                <span class="badge">SoundCloud officiel</span>
+                <span class="badge">Lecture aléatoire</span>
               </div>
 
               <div>
-                <h1 class="cover-title">
+                <h1 class="hero-title">
                   <span class="gold">Boyington</span><br />
-                  <span class="silver">Web</span> <span class="accent">Radio</span>
+                  <span class="silver">Web</span> <span class="red">Radio</span>
                 </h1>
-                <p class="cover-subtitle">
-                  Plateforme officielle de diffusion pour les playlists SoundCloud du projet Boyington Remix. Le lecteur démarre sur une playlist aléatoire à chaque ouverture, puis enchaîne automatiquement les pistes.
+                <p class="hero-copy">
+                  Une page officielle plus compacte, plus premium et plus lisible, avec les visuels du dépôt GitHub intégrés dans des encarts et un accès direct au player SoundCloud.
                 </p>
               </div>
 
-              <div class="cta-row">
+              <div class="hero-actions">
                 <a class="btn btn-primary" href="#player">▶ Lancer le player</a>
-                <a class="btn btn-ghost" href="#liens">Voir les liens officiels</a>
+                <a class="btn btn-secondary" href="#visuels">Voir les visuels</a>
               </div>
             </div>
           </article>
 
-          <aside class="panel info-panel">
-            <div class="info-card">
-              <h2>Présentation commerciale</h2>
+          <aside class="panel hero-side">
+            <div class="hero-card top">
+              <h2>Présentation courte</h2>
               <p>
-                Page officielle pensée pour la diffusion continue, la présentation claire des playlists et la navigation simple pour les visiteurs.
+                Design noir, argent et or, avec une structure claire pour mettre le player au centre et les visuels en encarts.
               </p>
             </div>
 
-            <div class="stats">
-              <div class="stat">
+            <div class="hero-card studio-thumb">
+              <div class="caption">
+                <h3>Studio console</h3>
+                <p>Image du dépôt GitHub en avant dans un bloc premium.</p>
+              </div>
+            </div>
+
+            <div class="mini-stats">
+              <div class="mini-stat">
                 <strong>24/24</strong>
                 <span>Diffusion continue</span>
               </div>
-              <div class="stat">
-                <strong>DJ</strong>
-                <span>Mix / remix / remastering</span>
-              </div>
-              <div class="stat">
+              <div class="mini-stat">
                 <strong>3+</strong>
                 <span>Playlists source</span>
               </div>
-              <div class="stat">
-                <strong>FINAL</strong>
-                <span>Script unique à copier/coller</span>
+              <div class="mini-stat">
+                <strong>DJ</strong>
+                <span>Mix et remix</span>
               </div>
-            </div>
-
-            <div class="info-card">
-              <h3>Fonctionnement</h3>
-              <p>
-                Le script lit <strong>playlists.txt</strong>, accepte les clés <strong>TITLE</strong> et <strong>URL</strong>, choisit une entrée au hasard, puis le widget SoundCloud gère la lecture et l’enchaînement des titres. Quand la fin d’une source est atteinte, une nouvelle source aléatoire est chargée automatiquement.
-              </p>
+              <div class="mini-stat">
+                <strong>LIVE</strong>
+                <span>Lecture aléatoire</span>
+              </div>
             </div>
           </aside>
         </div>
       </section>
 
-      <section id="player" class="section">
+      <!-- PARTIES 2, 3 ET 4 À AJOUTER ENSUITE -->
+      <section class="section">
         <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>Player SoundCloud officiel</h2>
-            </div>
-          </div>
-
           <div class="panel player-wrap">
-            <div class="player-embed">
-              <iframe
-                id="sc-player"
-                width="100%"
-                height="220"
-                scrolling="no"
-                frameborder="no"
-                allow="autoplay; encrypted-media"
-                src="about:blank"
-                title="SoundCloud player - Boyington Web Radio"></iframe>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="offer" class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>Offre / positionnement</h2>
-              <p>Bloc de présentation pour garder la page claire, sérieuse et agréable pour les visiteurs.</p>
-            </div>
-          </div>
-
-          <div class="feature-grid">
-            <div class="feature-card">
-              <span class="kicker">Image</span>
-              <strong>Vitrine premium</strong>
-              <p>Un design noir, argent et or pour une présence officielle nette et élégante.</p>
-            </div>
-            <div class="feature-card">
-              <span class="kicker">Audio</span>
-              <strong>Player central</strong>
-              <p>La diffusion reste au cœur de la page, avec un accès direct au contenu musical.</p>
-            </div>
-            <div class="feature-card">
-              <span class="kicker">Marque</span>
-              <strong>Identité claire</strong>
-              <p>Le nom officiel et les réseaux restent visibles sans surcharge inutile.</p>
-            </div>
-            <div class="feature-card">
-              <span class="kicker">Évolutif</span>
-              <strong>Facile à maintenir</strong>
-              <p>La structure est séparée par zones pour simplifier les futures mises à jour.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="playlists" class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>Playlists / blocs éditables</h2>
-              <p>Les playlists sont maintenant lues depuis <strong>playlists.txt</strong>. Tu n’as plus qu’à maintenir ce fichier.</p>
-            </div>
-          </div>
-
-          <div class="playlist-grid">
-            <div class="playlist-card">
-              <h3>Bloc balisé</h3>
-              <p>Chaque playlist est contenue dans un bloc [PLAYLIST] simple à copier-coller.</p>
-            </div>
-            <div class="playlist-card">
-              <h3>Rotation aléatoire</h3>
-              <p>Le script choisit une playlist au hasard à chaque ouverture.</p>
-            </div>
-            <div class="playlist-card">
-              <h3>Enchaînement</h3>
-              <p>À la fin d’un morceau, le widget passe au suivant puis change de source si nécessaire.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="liens" class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>Liens officiels</h2>
-              <p>Accès direct aux réseaux publics du projet.</p>
-            </div>
-          </div>
-
-          <div class="links-grid">
-            <a class="link-card" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">
-              <h3>Facebook</h3>
-              <p>Page officielle Boyington / Loran Boyington.</p>
-            </a>
-            <a class="link-card" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">
-              <h3>TikTok</h3>
-              <p>Compte officiel Boyington Remix Officiel.</p>
-            </a>
-            <a class="link-card" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">
-              <h3>SoundCloud</h3>
-              <p>Accès direct au profil Boyington Remix.</p>
-            </a>
-          </div>
-
-          <div class="network-row">
-            <a class="network-btn" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">
+            <div class="section-head">
               <div>
-                <strong>Facebook officiel</strong>
-                <span>Accès direct à la page principale.</span>
+                <h2>Suite à compléter</h2>
+                <p>La partie player verrouillée, les visuels, les liens officiels et le footer seront ajoutés dans les parties suivantes.</p>
               </div>
-              <div class="network-badge">F</div>
-            </a>
-            <a class="network-btn" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">
-              <div>
-                <strong>TikTok officiel</strong>
-                <span>Accès direct au compte public.</span>
-              </div>
-              <div class="network-badge">T</div>
-            </a>
-            <a class="network-btn" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">
-              <div>
-                <strong>SoundCloud officiel</strong>
-                <span>Accès direct au profil Boyington Remix.</span>
-              </div>
-              <div class="network-badge">S</div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="marqueurs" class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>Marqueurs visibles</h2>
-              <p>Repères colorés et commentaires précis pour retrouver rapidement les sections lors d’une prochaine mise à jour.</p>
             </div>
-          </div>
-
-          <div class="marker-grid">
-            <div class="marker m1"><strong>01 — Header</strong><span>Identité officielle et navigation.</span></div>
-            <div class="marker m2"><strong>02 — Hero</strong><span>Zone d’accueil principale.</span></div>
-            <div class="marker m3"><strong>03 — Player</strong><span>Embed SoundCloud et contrôle.</span></div>
-            <div class="marker m4"><strong>04 — Offre</strong><span>Positionnement commercial et valeur.</span></div>
-            <div class="marker m5"><strong>05 — Playlists</strong><span>Bloc lié à playlists.txt.</span></div>
-            <div class="marker m6"><strong>06 — Liens</strong><span>Réseaux officiels et accès directs.</span></div>
-            <div class="marker m7"><strong>07 — Branding</strong><span>Couleurs noir / argent / or / rouge.</span></div>
-            <div class="marker m8"><strong>08 — Final</strong><span>Structure prête pour GitHub.</span></div>
           </div>
         </div>
       </section>
     </main>
 
+    <!-- FOOTER À COMPLÉTER DANS LA DERNIÈRE PARTIE -->
     <footer class="footer">
       <div class="container">
         <div class="gold-line"></div>
         <div class="footer-inner">
           <div>
             <strong>BOYINGTON WEB RADIO</strong><br />
-            <span class="small">Version finale prête à intégrer dans le dépôt GitHub.</span>
+            <span class="small">Version partielle 1/4 prête pour la suite.</span>
           </div>
           <div>
             <span class="small">Facebook : </span><a href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">LoranBoyington</a><br />
             <span class="small">TikTok : </span><a href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">@boyingtonremixofficiel</a>
-          </div>
-          <div>
-            <span class="small">Playlists :</span> <strong>playlists.txt</strong><br />
-            <span class="small">Player :</span> SoundCloud Widget API
           </div>
         </div>
       </div>
     </footer>
   </div>
 
-  <script src="https://w.soundcloud.com/player/api.js"></script>
   <script>
     (function () {
-      const PLAYER_IFRAME_ID = 'sc-player';
-      const PLAYLISTS_URL = 'playlists.txt';
-      const iframe = document.getElementById(PLAYER_IFRAME_ID);
+      const clockEl = document.getElementById('boyingtonClock');
 
-      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
-
-      let playlistPool = [];
-      let currentPlaylistIndex = -1;
-      let widget = null;
-      let readyAfterLoad = false;
-
-      function normalizeEntry(item) {
-        if (!item || typeof item !== 'object') return null;
-        const url = typeof item.url === 'string' ? item.url.trim() : '';
-        const title = (typeof item.title === 'string' && item.title.trim())
-          ? item.title.trim()
-          : (typeof item.titre === 'string' && item.titre.trim())
-            ? item.titre.trim()
-            : 'Sans titre';
-        if (!url) return null;
-        return { title, url };
+      function updateClock() {
+        if (!clockEl) return;
+        const now = new Date();
+        clockEl.textContent = new Intl.DateTimeFormat('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }).format(now);
       }
 
-      function parsePlaylistText(rawText) {
-        const blocks = rawText.split(/\[PLAYLIST\]/i);
-        const entries = [];
-
-        blocks.forEach(function (block, index) {
-          if (index === 0) return;
-          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
-          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
-          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
-          const title = titleMatch ? titleMatch[1].trim() : '';
-          const url = urlMatch ? urlMatch[1].trim() : '';
-
-          if (url) entries.push({ title: title || 'Sans titre', url });
-        });
-
-        return entries.map(normalizeEntry).filter(Boolean);
-      }
-
-      function pickRandomIndex(length, avoidIndex = -1) {
-        if (length <= 1) return 0;
-        const randomBytes = new Uint32Array(1);
-        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
-        let index = randomBytes[0] % length;
-        if (index === avoidIndex) index = (index + 1) % length;
-        return index;
-      }
-
-      function buildPlayerUrl(playlistUrl) {
-        const encoded = encodeURIComponent(playlistUrl);
-        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ee0f25&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
-      }
-
-      function createWidget() {
-        if (widget) return widget;
-        widget = SC.Widget(iframe);
-
-        widget.bind(SC.Widget.Events.READY, function () {
-          if (!readyAfterLoad) {
-            readyAfterLoad = true;
-            startRandomTrackInCurrentPlaylist();
-          }
-        });
-
-        widget.bind(SC.Widget.Events.FINISH, function () {
-          playNextOrLoadAnotherPlaylist();
-        });
-
-        return widget;
-      }
-
-      function loadPlaylist(index, autoplay = true) {
-        if (!playlistPool.length) return;
-
-        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
-        currentPlaylistIndex = safeIndex;
-        const currentPlaylist = playlistPool[safeIndex];
-
-        if (!widget) {
-          iframe.src = buildPlayerUrl(currentPlaylist.url);
-          return;
-        }
-
-        readyAfterLoad = false;
-        widget.load(currentPlaylist.url, {
-          auto_play: autoplay,
-          color: '#ee0f25',
-          buying: false,
-          sharing: false,
-          download: false,
-          show_artwork: true,
-          show_playcount: false,
-          show_user: false,
-          single_active: true,
-          show_comments: false,
-          show_reposts: false,
-          show_teaser: false
-        });
-      }
-
-      function startRandomTrackInCurrentPlaylist() {
-        if (!widget) return;
-
-        widget.getSounds(function (sounds) {
-          const total = Array.isArray(sounds) ? sounds.length : 0;
-          if (!total) return;
-
-          const startIndex = pickRandomIndex(total, -1);
-          if (startIndex > 0) widget.skip(startIndex);
-          widget.play();
-        });
-      }
-
-      function playNextOrLoadAnotherPlaylist() {
-        if (!widget) return;
-
-        widget.getCurrentSoundIndex(function (index) {
-          widget.getSounds(function (sounds) {
-            const total = Array.isArray(sounds) ? sounds.length : 0;
-
-            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
-              widget.next();
-              return;
-            }
-
-            if (playlistPool.length > 1) {
-              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-              loadPlaylist(nextPlaylist, true);
-              return;
-            }
-
-            if (playlistPool.length === 1) {
-              loadPlaylist(0, true);
-            }
-          });
-        });
-      }
-
-      fetch(PLAYLISTS_URL, { cache: 'no-store' })
-        .then(function (response) {
-          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
-          return response.text();
-        })
-        .then(function (rawText) {
-          playlistPool = parsePlaylistText(rawText);
-          if (!playlistPool.length) return;
-
-          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
-          currentPlaylistIndex = initialPlaylistIndex;
-          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
-          createWidget();
-        })
-        .catch(function () {
-          return;
-        });
+      updateClock();
+      setInterval(updateClock, 1000);
     })();
   </script>
 </body>
