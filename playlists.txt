@@ -14,8 +14,8 @@ URL=https://soundcloud.com/boyingtonremix/playlist-3-maxi-45t-80
 [/PLAYLIST]
 
 [PLAYLIST]
-TITLE=
-URL=
+TITLE=Only My Love (Funk Original Mix) par Boyington Remix
+URL=https://soundcloud.com/boyingtonremix/only-my-love-funk-original-mix
 [/PLAYLIST]
 
 [PLAYLIST]
