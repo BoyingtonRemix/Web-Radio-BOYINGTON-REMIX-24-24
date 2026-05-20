@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="BOYINGTON RADIO 24/24 - Version noir argent premium, pensée pour mobile et desktop, avec player SoundCloud, cover dynamique, réseaux, horloge mondiale et sections radio." />
+  <meta name="description" content="BOYINGTON RADIO 24/24 - Version noir argent premium, pensée pour mobile et desktop, avec player SoundCloud, réseaux, horloge mondiale et sections radio." />
   <title>BOYINGTON RADIO 24/24</title>
 
   <style>
@@ -174,11 +174,6 @@
 
     .card-body { padding: 16px; }
 
-    .latest-layout {
-      display: grid;
-      gap: 14px;
-    }
-
     .player-wrap {
       border-radius: 18px;
       overflow: hidden;
@@ -189,44 +184,9 @@
     .player-wrap iframe {
       display: block;
       width: 100%;
-      height: 166px;
+      height: 300px;
       border: 0;
       background: #111;
-    }
-
-    .track-cover {
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(0,0,0,0.45);
-      width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 10px;
-    }
-
-    .track-cover img {
-      width: 100%;
-      display: block;
-      object-fit: contain;
-      border-radius: 16px;
-    }
-
-    .btn-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-decoration: none;
-      color: var(--bg);
-      background: linear-gradient(180deg, #d9d9d9, #b8b8b8);
-      padding: 12px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.24);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      white-space: nowrap;
-      width: 100%;
     }
 
     .social-grid {
@@ -264,11 +224,7 @@
       background: rgba(255,255,255,0.07);
     }
 
-    .small-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
+    .small-grid { display: grid; gap: 12px; }
 
     .small-box {
       min-height: 96px;
@@ -453,42 +409,12 @@
       padding: 0 16px 16px;
     }
 
-    .support-panel,
-    .project-panel {
+    .support-panel {
       border-radius: 18px;
       border: 1px solid rgba(216,216,216,0.12);
       background: rgba(255,255,255,0.03);
       padding: 14px;
       min-height: 0;
-    }
-
-    .support-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 14px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(216,216,216,0.14);
-      background: rgba(255,255,255,0.04);
-      text-decoration: none;
-    }
-
-    .support-item .num {
-      color: var(--gold);
-      font-weight: 800;
-      font-size: 0.95rem;
-      min-width: 34px;
-      flex: 0 0 auto;
-    }
-
-    .support-item .label {
-      flex: 1;
-      text-align: right;
-      color: var(--text);
-      font-weight: 700;
-      font-size: 0.95rem;
-      line-height: 1.15;
     }
 
     .banner-row {
@@ -559,7 +485,7 @@
       .nav::-webkit-scrollbar { display: none; }
       .nav a { flex: 0 0 auto; padding: 9px 12px; font-size: 0.86rem; }
       .main-grid { grid-template-columns: 1fr; padding: 10px; }
-      .player-wrap iframe { height: 154px; }
+      .player-wrap iframe { height: 300px; }
       .track-cover { max-width: 100%; padding: 8px; }
       .btn-link { padding: 11px 14px; font-size: 0.98rem; }
       .social-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -574,8 +500,6 @@
       .hand.second { height: 104px; }
       .cities { grid-template-columns: 1fr 1fr; }
       .lower-grid { gap: 12px; padding: 0 10px 10px; }
-      .support-item { padding: 12px; }
-      .support-item .label { font-size: 0.9rem; }
       .banner-row { grid-template-columns: 1fr; gap: 12px; padding: 0 10px 10px; }
       .banner { min-height: 150px; }
       .footer-note { padding: 10px 12px 14px; }
@@ -588,8 +512,7 @@
       .brand-title p { font-size: 0.74rem; }
       .card-header { padding: 12px 14px; font-size: 0.86rem; }
       .card-body { padding: 12px; }
-      .player-wrap iframe { height: 136px; }
-      .track-cover { border-radius: 16px; }
+      .player-wrap iframe { height: 300px; }
       .social-row { grid-template-columns: 1fr; }
       .social-btn { min-height: 54px; font-size: 0.88rem; }
       .small-box { min-height: 76px; padding: 12px; }
@@ -645,32 +568,66 @@ MARQUEUR 02 — HEADER / LOGO / NAVIGATION
       </header>
 
       <!-- =========================================================
-MARQUEUR 03 — PLAYER RADIO / COVER DYNAMIQUE
+MARQUEUR 03 — PLAYER RADIO / SOUNDLOUD
 ========================================================= -->
       <section class="main-grid" id="latest">
         <article class="card latest-layout">
           <div class="card-header">Dernier titre uploadé</div>
           <div class="card-body">
-            <div class="player-wrap">
+            <!-- =========================================================
+BLOC PLAYER SOUNDCLOUD — DÉBUT
+À remplacer entièrement si tu changes le player
+========================================================= -->
+            <div class="player-wrap" id="bloc-player-soundcloud">
+
               <iframe
-                id="soundcloud-widget"
-                title="BOYINGTON RADIO 24/24"
                 width="100%"
-                height="166"
+                height="450"
                 scrolling="no"
                 frameborder="no"
                 allow="autoplay; encrypted-media"
-                src="">
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&color=%2333c04c&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
               </iframe>
-            </div>
 
-            <div class="track-cover" style="margin-top:14px;">
-              <img id="current-track-cover" src="background-boyington-radio.jpg" alt="Cover de la piste en lecture" />
-            </div>
+              <div style="
+              font-size:10px;
+              color:#cccccc;
+              line-break:anywhere;
+              word-break:normal;
+              overflow:hidden;
+              white-space:nowrap;
+              text-overflow:ellipsis;
+              font-family:Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+              font-weight:100;
+              padding:8px 10px;
+              background:rgba(0,0,0,0.35);
+              border-top:1px solid rgba(255,255,255,0.08);
+              ">
 
-            <a class="btn-link" href="https://soundcloud.com/boyingtonremix/sets/boyington-radio-24-24" target="_blank" rel="noopener" style="margin-top:14px;">
-              ▶ OUVRIR
-            </a>
+                <a
+                  href="https://soundcloud.com/boyingtonremix"
+                  title="@BoyingtonRemixOfficial"
+                  target="_blank"
+                  style="color:#cccccc;text-decoration:none;">
+                  @BoyingtonRemixOfficial
+                </a>
+
+                ·
+
+                <a
+                  href="https://soundcloud.com/boyingtonremix/sets/web-radio-boyington-remix-24"
+                  title="Web-Radio-BOYINGTON-REMIX-24-24"
+                  target="_blank"
+                  style="color:#cccccc;text-decoration:none;">
+                  Web-Radio-BOYINGTON-REMIX-24-24
+                </a>
+
+              </div>
+
+            </div>
+            <!-- =========================================================
+            BLOC PLAYER SOUNDCLOUD — FIN
+            ========================================================= -->
           </div>
         </article>
 
@@ -753,19 +710,13 @@ MARQUEUR 07 — SUPPORT THE PROJECT
             <div class="support-panel">
               <p style="line-height:1.8;color:#d8d8d8;font-size:15px;text-align:center;padding:20px; margin:0;">
                 🎧 <strong>BOYINGTON WEB RADIO 24/24</strong> 🎶<br><br>
-                🌌 Boyington Web Radio immersive diffusant Playlists, Remixes et Mix DJ 24/24.<br>
-                ✨ Une sélection Musicale pensée pour Voyager, Ressentir et Vibrer à travers des Ambiances Nocturnes, 
-                 Lounge, Club et électroniques émotionnelles.<br><br>
-                🎵 Playlists évolutives Chaque Semaine<br>
-                📡 Diffusion Automatique 24/24<br>
-                🔥 Ambiance Radio Premium<br>
+                🌌 Web radio immersive diffusant playlists, remixes et mix DJ 24/24.<br>
+                ✨ Une sélection musicale pensée pour voyager, ressentir et vibrer à travers des ambiances nocturnes, lounge, club et électroniques émotionnelles.<br><br>
+                🎵 Playlists évolutives<br>
+                📡 Diffusion automatique 24/24<br>
+                🔥 Ambiance radio premium<br>
                 🎚️ Univers DJ moderne & cinématique<br><br>
                 🎧 Live Music • DJ Experience • Emotional Electronic Vibes
-                🎧 Créations Playlists/Remixes DJ non commerciales et non Officiel
-                🎶 Soutenez toujours les artistes et labels officiels.
-                ⚠️ Tous les droits sur les œuvres originales appartiennent à leurs propriétaires respectifs.
-                 @BoyingtonRemixOfficial All Rights Reserved : Alias Péppino
-
               </p>
             </div>
           </div>
@@ -788,141 +739,6 @@ MARQUEUR 08 — IMAGES BAS DE PAGE
       <div class="footer-note"><strong>BOYINGTON REMIX</strong> · Créations/Remixes DJ non commerciales et non Officiel</div>
     </div>
   </main>
-
-  <!-- =========================================================
-MARQUEUR 09 — SCRIPT SOUNDCLOUD / PLAYLIST / COVER
-========================================================= -->
-  <script src="https://w.soundcloud.com/player/api.js"></script>
-  <script>
-    (function () {
-      const pad = (n) => String(n).padStart(2, '0');
-      const defaultCover = 'background-boyington-radio.jpg';
-      const coverImg = document.getElementById('current-track-cover');
-      const iframe = document.getElementById('soundcloud-widget');
-
-      const playlistUrn = 'soundcloud:playlists:2239455974';
-
-      const buildPlayerUrl = (urn, startTrack = 0) => {
-        const encoded = encodeURIComponent(urn);
-        return `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/${encoded}&color=%23c0c0c0&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&start_track=${startTrack}`;
-      };
-
-      iframe.src = buildPlayerUrl(playlistUrn, 0);
-
-      const el = {
-        localTime: document.getElementById('local-time'),
-        localDate: document.getElementById('local-date'),
-        hour: document.getElementById('hour-hand'),
-        minute: document.getElementById('minute-hand'),
-        second: document.getElementById('second-hand'),
-        paris: document.getElementById('time-paris'),
-        london: document.getElementById('time-london'),
-        newyork: document.getElementById('time-newyork'),
-        tokyo: document.getElementById('time-tokyo')
-      };
-
-      function formatTime(date, timeZone) {
-        return new Intl.DateTimeFormat('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-          timeZone
-        }).format(date);
-      }
-
-      /* =========================================================
-      MARQUEUR 09 — HORLOGE MONDIALE
-      ========================================================= */
-      function updateClock() {
-        const now = new Date();
-        const h = now.getHours();
-        const m = now.getMinutes();
-        const s = now.getSeconds();
-        const ms = now.getMilliseconds();
-
-        const seconds = s + ms / 1000;
-        const minutes = m + seconds / 60;
-        const hours = (h % 12) + minutes / 60;
-
-        el.hour.style.transform = `translateX(-50%) rotate(${hours * 30}deg)`;
-        el.minute.style.transform = `translateX(-50%) rotate(${minutes * 6}deg)`;
-        el.second.style.transform = `translateX(-50%) rotate(${seconds * 6}deg)`;
-
-        el.localTime.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
-        el.localDate.textContent = now.toLocaleDateString('fr-FR', {
-          weekday: 'long',
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        });
-
-        el.paris.textContent = formatTime(now, 'Europe/Paris');
-        el.london.textContent = formatTime(now, 'Europe/London');
-        el.newyork.textContent = formatTime(now, 'America/New_York');
-        el.tokyo.textContent = formatTime(now, 'Asia/Tokyo');
-      }
-
-      function normalizeArtworkUrl(url) {
-        if (!url) return defaultCover;
-        return url
-          .replace('-large.jpg', '-t500x500.jpg')
-          .replace('-large.png', '-t500x500.png')
-          .replace('-t300x300', '-t500x500');
-      }
-
-      function updateCoverFromSound(sound) {
-        if (!sound) {
-          coverImg.src = defaultCover;
-          return;
-        }
-        const artwork = sound.artwork_url || (sound.user && sound.user.avatar_url);
-        coverImg.src = normalizeArtworkUrl(artwork || defaultCover);
-      }
-
-      /* =========================================================
-      MARQUEUR 10 — LOGIQUE PLAYER SOUNDCLOUD
-      ========================================================= */
-      function bindSoundCloud() {
-        if (!window.SC || !SC.Widget) {
-          coverImg.src = defaultCover;
-          return;
-        }
-
-        const widget = SC.Widget(iframe);
-        let readyPlayed = false;
-
-        const refreshCover = () => {
-          widget.getCurrentSound(function (sound) {
-            updateCoverFromSound(sound);
-          });
-        };
-
-        widget.bind(SC.Widget.Events.READY, function () {
-          refreshCover();
-          try { widget.play(); } catch (e) {}
-          if (!readyPlayed) {
-            readyPlayed = true;
-          }
-        });
-
-        widget.bind(SC.Widget.Events.PLAY, refreshCover);
-        widget.bind(SC.Widget.Events.PLAY_PROGRESS, refreshCover);
-        widget.bind(SC.Widget.Events.FINISH, refreshCover);
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-      bindSoundCloud();
-
-      const visitor = document.getElementById('visitor-counter');
-      visitor.textContent = String(Number(visitor.textContent) || 2063);
-    })();
-  </script>
-
-  <!-- =========================================================
-  MARQUEUR FINAL — FIN PAGE WEB RADIO BOYINGTON
-  ========================================================= -->
 </body>
 </html>
 
