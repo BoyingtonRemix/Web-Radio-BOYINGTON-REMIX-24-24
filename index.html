@@ -539,7 +539,7 @@ MARQUEUR 01 — DÉBUT PAGE WEB RADIO BOYINGTON
           </div>
 
           <div class="track-cover-big">
-            <img id="big-cover-player" src="background-boyington-radio.jpg" alt="Cover Playlist" />
+            <img id="big-cover-player" src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1200'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23111111'/%3E%3Cstop offset='100%25' stop-color='%23333333'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='1200' fill='url(%23g)'/%3E%3Crect x='60' y='60' width='1080' height='1080' rx='48' fill='none' stroke='%23d7d7d7' stroke-opacity='0.18' stroke-width='6'/%3E%3Ctext x='600' y='560' fill='%23d7d7d7' font-family='Arial,Helvetica,sans-serif' font-size='64' font-weight='700' text-anchor='middle'%3EBOYINGTON RADIO%3C/text%3E%3Ctext x='600' y='640' fill='%23b4b4b4' font-family='Arial,Helvetica,sans-serif' font-size='34' text-anchor='middle'%3ECover en attente%3C/text%3E%3C/svg%3E" alt="Cover Playlist" />
           </div>
         </div>
       </article>
@@ -657,7 +657,7 @@ MARQUEUR 09 — SOUNDLOUD WIDGET + HORLOGE + COVER DYNAMIQUE
   const storageKey = 'boyington_last_playlist_index';
   const iframe = document.getElementById('soundcloud-widget');
   const cover = document.getElementById('big-cover-player');
-  const defaultCover = 'background-boyington-radio.jpg';
+  const defaultCover = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1200'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23111111'/%3E%3Cstop offset='100%25' stop-color='%23333333'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='1200' fill='url(%23g)'/%3E%3Crect x='60' y='60' width='1080' height='1080' rx='48' fill='none' stroke='%23d7d7d7' stroke-opacity='0.18' stroke-width='6'/%3E%3Ctext x='600' y='560' fill='%23d7d7d7' font-family='Arial,Helvetica,sans-serif' font-size='64' font-weight='700' text-anchor='middle'%3EBOYINGTON RADIO%3C/text%3E%3Ctext x='600' y='640' fill='%23b4b4b4' font-family='Arial,Helvetica,sans-serif' font-size='34' text-anchor='middle'%3ECover en attente%3C/text%3E%3C/svg%3E";
 
   function buildPlayerUrl(apiUrl) {
     return 'https://w.soundcloud.com/player/?url=' +
@@ -666,8 +666,11 @@ MARQUEUR 09 — SOUNDLOUD WIDGET + HORLOGE + COVER DYNAMIQUE
   }
 
   function pickRandomIndex(excludeIndex) {
-    const indexes = playlistUrls.map((_, i) => i).filter(i => i !== excludeIndex);
-    const pool = indexes.length ? indexes : playlistUrls.map((_, i) => i);
+    const candidates = playlistUrls
+      .map((_, i) => i)
+      .filter(i => i !== excludeIndex);
+
+    const pool = candidates.length ? candidates : playlistUrls.map((_, i) => i);
     return pool[Math.floor(Math.random() * pool.length)];
   }
 
@@ -689,55 +692,9 @@ MARQUEUR 09 — SOUNDLOUD WIDGET + HORLOGE + COVER DYNAMIQUE
     cover.src = normalizeArtworkUrl(artwork || defaultCover);
   }
 
-  function bindSoundCloud() {
-    if (!iframe) return;
-
-    if (!window.SC || !SC.Widget) {
-      iframe.src = buildPlayerUrl(playlistUrls[0]);
-      cover.src = defaultCover;
-      return;
-    }
-
-    const widget = SC.Widget(iframe);
-    let currentIndex = -1;
-
-    function loadPlaylist(index) {
-      currentIndex = index;
-      localStorage.setItem(storageKey, String(index));
-      widget.load(buildPlayerUrl(playlistUrls[index]), {
-        auto_play: true,
-        hide_related: false,
-        show_comments: true,
-        show_user: true,
-        show_reposts: false,
-        show_teaser: true
-      });
-    }
-
-    widget.bind(SC.Widget.Events.READY, function () {
-      const saved = parseInt(localStorage.getItem(storageKey) || '-1', 10);
-      const startIndex = pickRandomIndex(Number.isFinite(saved) ? saved : -1);
-      loadPlaylist(startIndex);
-    });
-
-    widget.bind(SC.Widget.Events.PLAY, function () {
-      widget.getCurrentSound(function (sound) {
-        updateCoverFromSound(sound);
-      });
-    });
-
-    widget.bind(SC.Widget.Events.PLAY_PROGRESS, function () {
-      widget.getCurrentSound(function (sound) {
-        updateCoverFromSound(sound);
-      });
-    });
-
-    widget.bind(SC.Widget.Events.FINISH, function () {
-      const nextIndex = pickRandomIndex(currentIndex);
-      loadPlaylist(nextIndex);
-      widget.getCurrentSound(function (sound) {
-        updateCoverFromSound(sound);
-      });
+  function getCurrentArtwork(widget) {
+    widget.getCurrentSound(function (sound) {
+      updateCoverFromSound(sound);
     });
   }
 
@@ -773,16 +730,73 @@ MARQUEUR 09 — SOUNDLOUD WIDGET + HORLOGE + COVER DYNAMIQUE
     world('Asia/Tokyo', 'time-tokyo');
   }
 
+  function bindSoundCloud() {
+    if (!iframe) return;
+
+    if (!window.SC || !SC.Widget) {
+      iframe.src = buildPlayerUrl(playlistUrls[0]);
+      if (cover) cover.src = defaultCover;
+      return;
+    }
+
+    const widget = SC.Widget(iframe);
+    let currentIndex = -1;
+    let bootstrapped = false;
+
+    function loadPlaylist(index) {
+      currentIndex = index;
+      localStorage.setItem(storageKey, String(index));
+
+      widget.load(buildPlayerUrl(playlistUrls[index]), {
+        auto_play: true,
+        hide_related: false,
+        show_comments: true,
+        show_user: true,
+        show_reposts: false,
+        show_teaser: true,
+        callback: function () {
+          getCurrentArtwork(widget);
+          try { widget.play(); } catch (e) {}
+        }
+      });
+    }
+
+    widget.bind(SC.Widget.Events.READY, function () {
+      if (bootstrapped) return;
+      bootstrapped = true;
+
+      const saved = parseInt(localStorage.getItem(storageKey) || '-1', 10);
+      const startIndex = pickRandomIndex(Number.isFinite(saved) ? saved : -1);
+      loadPlaylist(startIndex);
+    });
+
+    widget.bind(SC.Widget.Events.PLAY, function () {
+      getCurrentArtwork(widget);
+    });
+
+    widget.bind(SC.Widget.Events.PLAY_PROGRESS, function () {
+      getCurrentArtwork(widget);
+    });
+
+    widget.bind(SC.Widget.Events.FINISH, function () {
+      const nextIndex = pickRandomIndex(currentIndex);
+      loadPlaylist(nextIndex);
+    });
+  }
+
   updateClock();
   setInterval(updateClock, 1000);
   bindSoundCloud();
 
   const visitor = document.getElementById('visitor-counter');
-  visitor.textContent = String(Number(visitor.textContent) || 2063);
+  if (visitor) {
+    visitor.textContent = String(Number(visitor.textContent) || 2063);
+  }
 })();
 </script>
 
 </body>
+</html>
 </html>
 
 
