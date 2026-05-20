@@ -406,7 +406,21 @@
       min-height: 140px;
     }
 
-    .featn-bottom: 8px;
+    .feature-card .kicker {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: var(--silver);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .feature-card strong {
+      display: block;
+      margin-bottom: 8px;
       font-size: 1.08rem;
     }
 
@@ -748,38 +762,64 @@
                 scrolling="no"
                 frameborder="no"
                 allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&amp;color=%23ee0f25&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false"
-                title="SoundCloud player - Boyington Web Radio"></ifram
-      <!-- MARQUEUR 03 — PLAYER OFFICIEL -->
-      <section id="player" class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>Player SoundCloud officiel</h2>
-            </div>
-          </div>
-
-          <div class="panel player-wrap">
-            <div class="player-embed">
-              <iframe
-                id="sc-player"
-                width="100%"
-                height="220"
-                scrolling="no"
-                frameborder="no"
-                allow="autoplay; encrypted-media"
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2239796183&amp;color=%23ee0f25&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false"
+                src="about:blank"
                 title="SoundCloud player - Boyington Web Radio"></iframe>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- MARQUEUR 04 — OFFRE / POSITIONNEMENT -->iner">
+      <!-- MARQUEUR 04 — OFFRE / POSITIONNEMENT -->
+      <section id="offer" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Offre / positionnement</h2>
+              <p>Bloc de présentation pour garder la page claire, sérieuse et agréable pour les visiteurs.</p>
+            </div>
+          </div>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <span class="kicker">Image</span>
+              <strong>Vitrine premium</strong>
+              <p>Un design noir, argent et or pour une présence officielle nette et élégante.</p>
+            </div>
+            <div class="feature-card">
+              <span class="kicker">Audio</span>
+              <strong>Player central</strong>
+              <p>La diffusion reste au cœur de la page, avec un accès direct au contenu musical.</p>
+            </div>
+            <div class="feature-card">
+              <span class="kicker">Marque</span>
+              <strong>Identité claire</strong>
+              <p>Le nom officiel et les réseaux restent visibles sans surcharge inutile.</p>
+            </div>
+            <div class="feature-card">
+              <span class="kicker">Évolutif</span>
+              <strong>Facile à maintenir</strong>
+              <p>La structure est séparée par zones pour simplifier les futures mises à jour.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEUR 05 — PLAYLISTS ÉDITABLES -->
+      <section id="playlists" class="section">
+        <div class="container">
           <div class="section-head">
             <div>
               <h2>Playlists / blocs éditables</h2>
-        class="playlist-card">
+              <p>Les playlists sont maintenant lues depuis <strong>playlists.json</strong>. Tu n’as plus qu’à maintenir ce fichier.</p>
+            </div>
+          </div>
+
+          <div class="playlist-grid">
+            <div class="playlist-card">
+              <h3>Playlist principale</h3>
+              <p>Chargée automatiquement depuis le JSON au démarrage de la page.</p>
+            </div>
+            <div class="playlist-card">
               <h3>Rotation aléatoire</h3>
               <p>Le script évite de rejouer la même playlist si plusieurs sont disponibles.</p>
             </div>
@@ -902,10 +942,10 @@
         return;
       }
 
-      const widget = SC.Widget(iframe);
       let playlistPool = [];
       let currentPlaylistIndex = -1;
       let currentPlaylist = null;
+      let widget = null;
       let readyAfterLoad = false;
 
       function getStoredIndex(key) {
@@ -924,6 +964,26 @@
         return index;
       }
 
+      function buildPlayerUrl(playlistUrl) {
+        const encoded = encodeURIComponent(playlistUrl);
+        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ee0f25&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+      }
+
+      function initWidget() {
+        widget = SC.Widget(iframe);
+
+        widget.bind(SC.Widget.Events.READY, function () {
+          if (!readyAfterLoad) {
+            readyAfterLoad = true;
+            startRandomTrackInCurrentPlaylist();
+          }
+        });
+
+        widget.bind(SC.Widget.Events.FINISH, function () {
+          playNextOrLoadAnotherPlaylist();
+        });
+      }
+
       function loadPlaylist(index, autoplay = true) {
         if (!playlistPool.length) return;
 
@@ -932,15 +992,105 @@
         currentPlaylist = playlistPool[safeIndex];
         setStoredIndex(LAST_PLAYLIST_KEY, safeIndex);
 
-        widget.load(currentPlaylist.url, {
-          auto_play: autoplay,
-          color: '#ee0f25',
-          buying: false,
-          sharing: false,
-          download: false,
-          show_artwork: true,
-          show_playcount: false,
-          show_user: false,
-          single_active: true,
-          show_com
+        readyAfterLoad = false;
+        iframe.src = buildPlayerUrl(currentPlaylist.url);
 
+        if (widget && typeof widget.load === 'function') {
+          widget.load(currentPlaylist.url, {
+            auto_play: autoplay,
+            color: '#ee0f25',
+            buying: false,
+            sharing: false,
+            download: false,
+            show_artwork: true,
+            show_playcount: false,
+            show_user: false,
+            single_active: true,
+            show_comments: false,
+            show_reposts: false,
+            show_teaser: false
+          });
+        }
+      }
+
+      function startRandomTrackInCurrentPlaylist() {
+        if (!widget) return;
+
+        widget.getSounds(function (sounds) {
+          const total = Array.isArray(sounds) ? sounds.length : 0;
+          if (!total) return;
+
+          const lastSound = getStoredIndex(LAST_SOUND_KEY);
+          const startIndex = pickRandomIndex(total, lastSound >= 0 ? lastSound : -1);
+          setStoredIndex(LAST_SOUND_KEY, startIndex);
+
+          if (startIndex > 0) {
+            widget.skip(startIndex);
+          }
+
+          widget.play();
+        });
+      }
+
+      function playNextOrLoadAnotherPlaylist() {
+        if (!widget) return;
+
+        widget.getCurrentSoundIndex(function (index) {
+          widget.getSounds(function (sounds) {
+            const total = Array.isArray(sounds) ? sounds.length : 0;
+
+            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
+              widget.next();
+              return;
+            }
+
+            if (playlistPool.length > 1) {
+              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+              loadPlaylist(nextPlaylist, true);
+              return;
+            }
+
+            if (playlistPool.length === 1) {
+              loadPlaylist(0, true);
+            }
+          });
+        });
+      }
+
+      fetch(PLAYLISTS_URL, { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Impossible de charger playlists.json');
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          if (!Array.isArray(data)) {
+            throw new Error('playlists.json doit contenir un tableau JSON.');
+          }
+
+          playlistPool = data
+            .filter(function (item) {
+              return item && typeof item.title === 'string' && typeof item.url === 'string' && item.url.trim().length > 0;
+            })
+            .map(function (item) {
+              return {
+                title: item.title.trim(),
+                url: item.url.trim()
+              };
+            });
+
+          if (!playlistPool.length) return;
+
+          initWidget();
+          const lastPlaylist = getStoredIndex(LAST_PLAYLIST_KEY);
+          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, lastPlaylist);
+          loadPlaylist(initialPlaylistIndex, true);
+        })
+        .catch(function () {
+          return;
+        });
+    })();
+  </script>
+</body>
+</html>
