@@ -614,7 +614,7 @@
     }
     .player-grid{
       display:grid;
-      grid-template-columns:260px 1fr;
+      grid-template-columns:minmax(0, 1fr) 260px;
       gap:16px;
       align-items:stretch;
     }
@@ -626,11 +626,25 @@
       background:
         radial-gradient(circle at 50% 22%, rgba(255,46,63,.16), transparent 26%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-      padding:18px;
+      padding:12px;
       min-height:280px;
       display:flex;
-      flex-direction:column;
-      justify-content:space-between;
+      align-items:stretch;
+      justify-content:center;
+    }
+
+    .player-side .micro-video{
+      width:100%;
+      height:100%;
+      min-height:280px;
+      object-fit:cover;
+      display:block;
+      border-radius:20px;
+      background:#000;
+      border:1px solid rgba(255,255,255,.05);
+      box-shadow:
+        0 0 22px rgba(255,0,0,.18),
+        0 0 54px rgba(255,0,0,.08);
     }
         .mic{
       width:170px;
@@ -1322,9 +1336,8 @@
       .hero-title{font-size:clamp(2.4rem, 12vw, 4.2rem)}
       .hero-copy{font-size:.96rem}
       .player-wrap,.matrix-wrap{padding:14px}
-      .player-side{min-height:auto}
-      .player-side .mic{width:150px;height:200px}
-      .player-side .side-copy{font-size:.88rem}
+      .player-side{min-height:420px}
+      .player-side .micro-video{min-height:420px}
       .world-video-wrap{min-height:200px}
       .world-video{min-height:200px}
       .footer-panel{
@@ -1527,17 +1540,6 @@
 
           <div class="panel player-wrap">
             <div class="player-grid">
-              <div class="player-side">
-                <div class="mic" aria-hidden="true"></div>
-                <div class="eq-bars" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
-                <div class="side-copy">
-                  <strong>Écoute immersive</strong>
-                  
-                </div>
-              </div>
-
               <div class="player-embed">
                 <iframe
                   id="sc-player"
@@ -1548,6 +1550,12 @@
                   allow="autoplay; encrypted-media"
                   src="about:blank"
                   title="SoundCloud player - Boyington Web Radio"></iframe>
+              </div>
+
+              <div class="player-side">
+                <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png" aria-label="Micro animé Boyington Web Radio">
+                  <source src="boyington-radio-micro-animation.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
           </div>
