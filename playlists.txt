@@ -47,7 +47,14 @@ URL=https://soundcloud.com/boyingtonremix/por-siempre-s-boyington-remix
 [PLAYLIST]
 TITLE=Playlist 4 Années 90
 URL=https://soundcloud.com/boyingtonremix/playlist-4-90s
+
 [/PLAYLIST]
+
+[PLAYLIST]
+TITLE=Playlist 5 Nu-Disco
+URL=https://soundcloud.com/boyingtonremix/playlist-5-nu-disco
+[/PLAYLIST]
+
 
 [PLAYLIST]
 TITLE=
