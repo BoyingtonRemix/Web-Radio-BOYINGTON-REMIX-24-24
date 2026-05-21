@@ -1,6 +1,6 @@
 [PLAYLIST]
 TITLE=Playlists 1 Remix
-URL=https://soundcloud.com/boyingtonremix/playlists-remix
+URL=https://soundcloud.com/boyingtonremix/playlists-remix/s-4MxMYv84yrr
 [/PLAYLIST]
 
 [PLAYLIST]
