@@ -332,6 +332,19 @@
       align-items:center;
       margin-top:10px;
     }
+    .mobile-play-note{
+      display:none;
+      margin:12px 0 0;
+      color:var(--muted);
+      font-size:.82rem;
+      line-height:1.45;
+      letter-spacing:.02em;
+    }
+    .mobile-play-note strong{
+      color:#fff;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
     .btn{
       display:inline-flex;
       align-items:center;
@@ -1385,6 +1398,28 @@
       50%{filter:drop-shadow(0 0 16px rgba(255,46,63,.16))}
     }
     @keyframes spin{to{transform:rotate(360deg)}}
+    @media (hover: none) and (pointer: coarse){
+      .social-card,
+      .link-card{
+        border-color:rgba(255,46,63,.28);
+        background:linear-gradient(135deg, rgba(255,46,63,.09), rgba(255,255,255,.02));
+        box-shadow:0 0 0 1px rgba(255,46,63,.08) inset, 0 12px 26px rgba(0,0,0,.22);
+      }
+      .social-ico,
+      .link-icon{
+        border-color:rgba(255,46,63,.38);
+        box-shadow:0 0 18px rgba(255,46,63,.12), inset 0 0 0 1px rgba(255,255,255,.02);
+      }
+      .social-arrow{
+        color:var(--red);
+        text-shadow:0 0 12px rgba(255,46,63,.45);
+      }
+      .social-card:active,
+      .link-card:active,
+      .btn:active{
+        transform:translateY(-1px) scale(.99);
+      }
+    }
 
     @media (max-width:1260px){
       .hero-grid{grid-template-columns:1fr 1fr}
@@ -1420,13 +1455,54 @@
       .gallery-grid,
       .matrix-stats{grid-template-columns:1fr}
       .hero-panel{min-height:420px}
-      .hero-title{font-size:clamp(2.4rem, 12vw, 4.2rem)}
+      .hero-content{padding:18px}
+      .hero-title{font-size:clamp(2.35rem, 12vw, 4.1rem)}
       .hero-copy{font-size:.96rem}
+      .hero-subtitle{font-size:.78rem;line-height:1.45}
+      .badge-row{gap:8px}
+      .badge{
+        padding:8px 12px;
+        font-size:.72rem;
+        letter-spacing:.05em;
+      }
+      .hero-actions{width:100%}
+      .hero-actions .btn{
+        width:100%;
+        justify-content:center;
+      }
+      .mobile-play-note{
+        display:block;
+      }
       .player-wrap,.matrix-wrap{padding:14px}
       .player-side{min-height:auto}
       .player-side .micro-video{min-height:250px}
       .player-side .mic{width:150px;height:200px}
       .player-side .side-copy{font-size:.88rem}
+      .social-grid{
+        gap:12px;
+      }
+      .social-card,
+      .link-card{
+        padding:16px;
+        min-height:112px;
+        border-color:rgba(255,46,63,.26);
+        background:linear-gradient(135deg, rgba(255,46,63,.08), rgba(255,255,255,.02));
+        box-shadow:0 0 0 1px rgba(255,46,63,.08) inset, 0 12px 24px rgba(0,0,0,.22);
+      }
+      .social-ico,
+      .link-icon{
+        border-color:rgba(255,46,63,.34);
+        box-shadow:0 0 14px rgba(255,46,63,.10), inset 0 0 0 1px rgba(255,255,255,.02);
+      }
+      .social-arrow,
+      .link-icon{
+        color:var(--red);
+        text-shadow:0 0 10px rgba(255,46,63,.35);
+      }
+      .social-copy strong,
+      .link-copy h3{
+        font-size:.94rem;
+      }
       .world-video-wrap{min-height:200px}
       .world-video{min-height:200px}
       .footer-panel{
@@ -1594,9 +1670,10 @@
                 </div>
 
                 <div class="hero-actions">
-                  <a class="btn btn-primary" href="#player">▶ ÉCOUTER LA RADIO</a>
+                  <a class="btn btn-primary" href="#player" id="playRadioBtn" aria-label="Écouter la radio">▶ ÉCOUTER LA RADIO</a>
                   <a class="btn btn-secondary" href="#visuels">VOIR LES VISUELS</a>
                 </div>
+                <p class="mobile-play-note">Sur mobile, un tap sur <strong>ÉCOUTER LA RADIO</strong> lance le player.</p>
               </div>
             </div>
           </article>
@@ -1865,6 +1942,42 @@
       const clockEl = document.getElementById('boyingtonClock');
       const heroClockEl = document.getElementById('heroRadioClock');
       const heroDateEl = document.getElementById('heroRadioDate');
+      const playRadioBtn = document.getElementById('playRadioBtn');
+      let mobilePlayRequested = false;
+
+      function isMobileLayout() {
+        return window.matchMedia('(max-width: 960px)').matches || navigator.maxTouchPoints > 0;
+      }
+
+      function requestPlayOnMobile() {
+        mobilePlayRequested = true;
+        const startPlayback = function () {
+          if (!widget) return false;
+          try {
+            widget.play();
+            return true;
+          } catch (e) {
+            return false;
+          }
+        };
+
+        if (widget && startPlayback()) return;
+
+        if (!widget) {
+          createWidget();
+        }
+
+        window.setTimeout(function () {
+          if (widget) {
+            startPlayback();
+          }
+        }, 180);
+        window.setTimeout(function () {
+          if (widget) {
+            startPlayback();
+          }
+        }, 500);
+      }
 
       function updateClock() {
         const now = new Date();
@@ -1947,7 +2060,12 @@
         widget.bind(SC.Widget.Events.READY, function () {
           if (!readyAfterLoad) {
             readyAfterLoad = true;
-            startRandomTrackInCurrentPlaylist();
+            if (mobilePlayRequested) {
+              mobilePlayRequested = false;
+              widget.play();
+            } else {
+              startRandomTrackInCurrentPlaylist();
+            }
           }
         });
 
@@ -2023,6 +2141,21 @@
             }
           });
         });
+      }
+
+
+      if (playRadioBtn) {
+        playRadioBtn.addEventListener('click', function (event) {
+          if (!isMobileLayout()) return;
+          event.preventDefault();
+
+          const playerSection = document.getElementById('player');
+          if (playerSection) {
+            playerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+
+          requestPlayOnMobile();
+        }, { passive: false });
       }
 
       fetch(PLAYLISTS_URL, { cache: 'no-store' })
