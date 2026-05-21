@@ -64,7 +64,7 @@
       z-index:-1;
     }
 
-    .container{width:min(calc(100% - 18px), var(--max));margin:0 auto}
+    .container{width:min(calc(100% - 28px), var(--max));margin:0 auto}
     .panel{
       position:relative;
       overflow:hidden;
@@ -72,15 +72,6 @@
       border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       box-shadow:var(--shadow);
-    }
-
-
-    .topbar{
-      min-height:auto!important;
-    }
-    .topbar-inner{
-      min-height:auto!important;
-      margin-bottom:0!important;
     }
 
     .topbar{
@@ -96,7 +87,7 @@
       align-items:center;
       justify-content:space-between;
       gap:14px;
-      padding:4px 0;
+      padding:12px 0;
     }
     .brand{
       display:flex;
@@ -133,7 +124,14 @@
       font-size:.84rem;
     }
 
-    .onair-pill{
+    .top-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .clock-pill,.date-pill,.onair-pill{
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -144,6 +142,17 @@
       letter-spacing:.08em;
       text-transform:uppercase;
       font-weight:800;
+    }
+    .clock-pill{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--silver);
+      box-shadow:0 0 0 1px rgba(255,46,63,.06) inset;
+    }
+    .date-pill{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--silver);
     }
     .onair-pill{
       background:rgba(255,46,63,.10);
@@ -181,7 +190,7 @@
       box-shadow:0 10px 25px rgba(0,0,0,.24);
     }
 
-    .hero{padding:10px 0 10px}
+    .hero{padding:22px 0 14px}
     .hero-grid{
       display:grid;
       grid-template-columns:1.08fr .92fr;
@@ -189,7 +198,7 @@
       align-items:stretch;
     }
     .hero-panel{
-      min-height:360px;
+      min-height:540px;
       background:
         linear-gradient(135deg, rgba(0,0,0,.56), rgba(0,0,0,.24)),
         url('arrière-plan-boyington-radio.jpg') center/cover no-repeat;
@@ -216,7 +225,7 @@
       position:relative;
       z-index:1;
       height:100%;
-      padding:20px;
+      padding:30px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
@@ -363,7 +372,7 @@
       display:grid;
       grid-template-rows:auto 1fr;
       gap:14px;
-      min-height:360px;
+      min-height:540px;
     }
     .hero-studio{
       position:relative;
@@ -371,7 +380,7 @@
       border:1px solid rgba(255,255,255,.08);
       overflow:hidden;
       background:url('Studio-Console.jpg') center/cover no-repeat;
-      min-height:240px;
+      min-height:360px;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
     }
     .hero-studio::after{
@@ -411,7 +420,7 @@
       background:
         radial-gradient(circle at 50% 28%, rgba(255,46,63,.16), transparent 24%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      min-height:150px;
+      min-height:182px;
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -654,7 +663,7 @@
     .device-mini-card .bars span:nth-child(7){animation-delay:.6s;height:34px}
     .device-mini-card .bars span:nth-child(8){animation-delay:.7s;height:16px}
 
-    .section{padding:12px 0}
+    .section{padding:18px 0}
     .section-head{
       display:flex;
       align-items:end;
@@ -676,7 +685,7 @@
     }
 
     .player-wrap{
-      padding:12px;
+      padding:18px;
       background:
         radial-gradient(circle at 15% 50%, rgba(255,46,63,.08), transparent 22%),
         radial-gradient(circle at 85% 50%, rgba(255,255,255,.06), transparent 20%),
@@ -896,152 +905,30 @@
       margin-bottom:4px;
     }
 
-
     .player-embed{
       position:relative;
       overflow:hidden;
-      border-radius:28px;
-      border:1px solid rgba(255,255,255,.09);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,46,63,.16), transparent 26%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
-        #090909;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.03),
-        0 18px 46px rgba(0,0,0,.36),
-        0 0 0 1px rgba(255,46,63,.07);
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#0d0d0d;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 0 1px rgba(255,46,63,.06);
       min-height:250px;
     }
     .player-embed::before{
       content:"";
       position:absolute;
-      inset:0;
+      inset:-1px;
+      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,46,63,.18), rgba(255,255,255,0));
       pointer-events:none;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), transparent 20%),
-        linear-gradient(180deg, transparent 72%, rgba(255,46,63,.16) 100%);
-      z-index:2;
-      mix-blend-mode:screen;
-      opacity:.9;
+      opacity:.8;
     }
-    .player-frame{
-      position:relative;
-      z-index:1;
-      display:flex;
-      flex-direction:column;
-      height:100%;
-      min-height:250px;
-    }
-    .player-topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 16px 12px;
-      border-bottom:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      backdrop-filter:blur(8px);
-    }
-    .player-top-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-      color:#f3f3f3;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:800;
-      font-size:.74rem;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .player-top-right{
-      flex:0 0 auto;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,46,63,.22);
-      background:rgba(255,46,63,.10);
-      color:#ffdfe4;
-      font-size:.68rem;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-weight:900;
-    }
-    .player-dot{
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:var(--red);
-      box-shadow:0 0 14px rgba(255,46,63,.88);
-      flex:0 0 auto;
-    }
-    .player-screen{
-      position:relative;
-      background:#060606;
-      padding:12px 12px 10px;
-    }
-    .player-screen::before,
-    .player-screen::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      height:26px;
-      pointer-events:none;
-      z-index:2;
-    }
-    .player-screen::before{
-      top:0;
-      background:linear-gradient(180deg, rgba(6,6,6,.82), rgba(6,6,6,0));
-    }
-    .player-screen::after{
-      bottom:0;
-      background:linear-gradient(0deg, rgba(6,6,6,.92), rgba(6,6,6,0));
-    }
-    .player-screen iframe{
+    iframe{
       display:block;
       width:100%;
       border:0;
       position:relative;
       z-index:1;
       min-height:250px;
-      border-radius:20px;
-      background:#000;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.03),
-        inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-    .player-footer{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      justify-content:space-between;
-      align-items:center;
-      padding:12px 16px 14px;
-      border-top:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
-      color:var(--muted);
-      font-size:.72rem;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
-    .player-footer span{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      white-space:nowrap;
-    }
-    .player-footer span::before{
-      content:"";
-      width:6px;
-      height:6px;
-      border-radius:50%;
-      background:var(--red);
-      box-shadow:0 0 10px rgba(255,46,63,.7);
     }
     .player-side{
       display:flex;
@@ -1061,7 +948,6 @@
       box-shadow:0 0 22px rgba(255,0,0,.18), 0 0 54px rgba(255,0,0,.08);
       border:1px solid rgba(255,255,255,.05);
     }
-
 
     .gallery-grid{
       display:grid;
@@ -1111,7 +997,7 @@
     .pager span:first-child{background:var(--red)}
 
     .matrix-wrap{
-      padding:12px;
+      padding:18px;
       background:
         radial-gradient(circle at 20% 20%, rgba(255,46,63,.08), transparent 18%),
         radial-gradient(circle at 80% 80%, rgba(255,255,255,.06), transparent 18%),
@@ -1517,7 +1403,7 @@
       .hero-panel,.hero-side{min-height:auto}
       .hero-content{padding:20px}
       .hero-side{padding:14px}
-      .hero-studio{min-height:220px}
+      .hero-studio{min-height:300px}
       .device{display:none}
       .player-grid{grid-template-columns:1fr}
       .matrix-stats{grid-template-columns:repeat(2, minmax(0, 1fr))}
@@ -1533,10 +1419,10 @@
       .nav{justify-content:flex-start}
       .gallery-grid,
       .matrix-stats{grid-template-columns:1fr}
-      .hero-panel{min-height:320px}
+      .hero-panel{min-height:420px}
       .hero-title{font-size:clamp(2.4rem, 12vw, 4.2rem)}
       .hero-copy{font-size:.96rem}
-      .player-wrap,.matrix-wrap{padding:12px}
+      .player-wrap,.matrix-wrap{padding:14px}
       .player-side{min-height:auto}
       .player-side .micro-video{min-height:250px}
       .player-side .mic{width:150px;height:200px}
@@ -1636,6 +1522,9 @@
             <span>Site officiel</span>
           </div>
         </div>
+
+        <div class="top-right">
+          <div class="date-pill">20.05.2026 | 12:00</div>
           <div class="clock-pill" aria-live="polite">
             <span>DJ World Matrix</span>
             <strong id="boyingtonClock">--:--:--</strong>
@@ -1741,7 +1630,6 @@
           <div class="section-head">
             <div>
               <h2>Lecteur officiel</h2>
-              <p>Habillage premium autour du widget, sans modifier le player SoundCloud lui-même.</p>
             </div>
           </div>
 
@@ -1754,34 +1642,15 @@
               </div>
 
               <div class="player-embed">
-                <div class="player-frame">
-                  <div class="player-topbar">
-                    <div class="player-top-left">
-                      <span class="player-dot"></span>
-                      <span>BOYINGTON SOUND STAGE</span>
-                    </div>
-                    <div class="player-top-right">
-                      <span class="player-dot"></span>
-                      <span>LIVE EMBED</span>
-                    </div>
-                  </div>
-                  <div class="player-screen">
-                    <iframe
-                      id="sc-player"
-                      width="100%"
-                      height="250"
-                      scrolling="no"
-                      frameborder="no"
-                      allow="autoplay; encrypted-media"
-                      src="about:blank"
-                      title="SoundCloud player - Boyington Web Radio"></iframe>
-                  </div>
-                  <div class="player-footer">
-                    <span>Premium audio frame</span>
-                    <span>SoundCloud stable</span>
-                    <span>Boyington Radio 2</span>
-                  </div>
-                </div>
+                <iframe
+                  id="sc-player"
+                  width="100%"
+                  height="250"
+                  scrolling="no"
+                  frameborder="no"
+                  allow="autoplay; encrypted-media"
+                  src="about:blank"
+                  title="SoundCloud player - Boyington Web Radio"></iframe>
               </div>
             </div>
           </div>
@@ -1993,6 +1862,7 @@
       const PLAYER_IFRAME_ID = 'sc-player';
       const PLAYLISTS_URL = 'playlists.txt';
       const iframe = document.getElementById(PLAYER_IFRAME_ID);
+      const clockEl = document.getElementById('boyingtonClock');
       const heroClockEl = document.getElementById('heroRadioClock');
       const heroDateEl = document.getElementById('heroRadioDate');
 
@@ -2011,6 +1881,7 @@
           year: 'numeric'
         }).format(now);
 
+        if (clockEl) clockEl.textContent = timeText;
         if (heroClockEl) heroClockEl.textContent = timeText;
         if (heroDateEl) heroDateEl.textContent = dateText;
       }
