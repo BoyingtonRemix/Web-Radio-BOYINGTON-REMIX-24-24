@@ -57,8 +57,8 @@ URL=https://soundcloud.com/boyingtonremix/playlist-5-nu-disco
 
 
 [PLAYLIST]
-TITLE=
-URL=
+TITLE=Playlist 6 Remix Bootleg
+URL=https://soundcloud.com/boyingtonremix/playmist-6-remix-bootleg
 [/PLAYLIST]
 
 [PLAYLIST]
