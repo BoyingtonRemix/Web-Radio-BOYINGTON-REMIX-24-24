@@ -851,6 +851,24 @@
       z-index:1;
       min-height:280px;
     }
+    .player-side{
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+      padding:12px;
+      min-height:560px;
+    }
+    .player-side .micro-video{
+      width:100%;
+      height:100%;
+      min-height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:24px;
+      background:#000;
+      box-shadow:0 0 22px rgba(255,0,0,.18), 0 0 54px rgba(255,0,0,.08);
+      border:1px solid rgba(255,255,255,.05);
+    }
 
     .gallery-grid{
       display:grid;
@@ -1323,6 +1341,7 @@
       .hero-copy{font-size:.96rem}
       .player-wrap,.matrix-wrap{padding:14px}
       .player-side{min-height:auto}
+      .player-side .micro-video{min-height:420px}
       .player-side .mic{width:150px;height:200px}
       .player-side .side-copy{font-size:.88rem}
       .world-video-wrap{min-height:200px}
@@ -1529,15 +1548,10 @@
 
           <div class="panel player-wrap">
             <div class="player-grid">
-              <div class="player-side">
-                <div class="mic" aria-hidden="true"></div>
-                <div class="eq-bars" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
-                <div class="side-copy">
-                  <strong>Écoute immersive</strong>
-                  
-                </div>
+              <div class="player-side" style="display:flex;align-items:stretch;justify-content:center;padding:12px;min-height:560px;">
+                <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png" style="width:100%;height:100%;min-height:100%;object-fit:cover;display:block;border-radius:24px;background:#000;">
+                  <source src="boyington-radio-micro-animation.mp4" type="video/mp4">
+                </video>
               </div>
 
               <div class="player-embed">
