@@ -414,30 +414,109 @@
       font-size:.88rem;
     }
 
-    .hero-logo-card{
+    .hero-clock-card{
       border-radius:24px;
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 50% 28%, rgba(255,46,63,.10), transparent 24%),
+        radial-gradient(circle at 50% 28%, rgba(255,46,63,.16), transparent 24%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
       min-height:182px;
-      display:grid;
-      place-items:center;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
       padding:18px;
-    }
-    .hero-logo-card img{
-      width:min(210px, 100%);
-      max-height:150px;
-      object-fit:contain;
-      filter:drop-shadow(0 0 16px rgba(255,255,255,.12));
-    }
-    .hero-logo-card .caption-mini{
-      margin-top:10px;
       text-align:center;
+      gap:10px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.02),
+        0 0 20px rgba(255,46,63,.08);
+      position:relative;
+      overflow:hidden;
+      animation:clockGlow 3.2s ease-in-out infinite;
+    }
+    .hero-clock-card::before{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background:radial-gradient(circle at 50% 50%, rgba(255,46,63,.15), transparent 46%);
+      pointer-events:none;
+      animation:clockPulse 2.8s ease-in-out infinite;
+    }
+    .clock-head{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+    .clock-tag{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.24);
+      color:#f1f1f1;
       text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.72rem;
+      font-weight:800;
+      white-space:nowrap;
+    }
+    .clock-pulse{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,46,63,.28);
+      background:rgba(255,46,63,.10);
+      color:#ffe0e4;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.72rem;
+      font-weight:800;
+      white-space:nowrap;
+      box-shadow:0 0 18px rgba(255,46,63,.12);
+      animation:pulseGlow 2.6s ease-in-out infinite;
+    }
+    .clock-pulse .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--red);
+      box-shadow:0 0 14px rgba(255,46,63,.88);
+      animation:wave 1.8s infinite;
+    }
+    .clock-time{
+      position:relative;
+      z-index:1;
+      font-size:clamp(2rem, 4vw, 3.15rem);
+      line-height:1;
+      font-weight:900;
       letter-spacing:.10em;
-      font-size:.78rem;
       color:#fff;
+      text-shadow:
+        0 0 10px rgba(255,46,63,.72),
+        0 0 24px rgba(255,46,63,.30);
+      margin-top:2px;
+    }
+    .clock-date{
+      position:relative;
+      z-index:1;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.78rem;
+      font-weight:700;
+    }
+    .clock-sub{
+      position:relative;
+      z-index:1;
+      color:#ff6b7b;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.70rem;
+      font-weight:800;
     }
 
     .device{
@@ -1284,6 +1363,10 @@
     .footer-wave span:nth-child(6){animation-delay:.5s;height:16px}
     .footer-wave span:nth-child(7){animation-delay:.6s;height:22px}
 
+    @keyframes clockPulse{
+      0%,100%{transform:scale(1); opacity:.7}
+      50%{transform:scale(1.03); opacity:1}
+    }
     @keyframes pulseGlow{
       0%,100%{box-shadow:0 0 0 rgba(255,46,63,0)}
       50%{box-shadow:0 0 18px rgba(255,46,63,.2)}
@@ -1528,11 +1611,15 @@
               </div>
             </div>
 
-            <div class="hero-logo-card">
-              <div>
-                <img src="logo_radio_boyington.png" alt="Logo officiel Boyington Radio" class="logo-contain" />
-                <div class="caption-mini">Logo officiel</div>
+            <div class="hero-clock-card" aria-label="Horloge studio radio">
+              <div class="clock-head">
+                <span class="clock-tag">LIVE RADIO CLOCK</span>
+                <span class="clock-pulse"><span class="dot"></span> ON AIR</span>
               </div>
+
+              <div class="clock-time" id="heroRadioClock">--:--:--</div>
+              <div class="clock-date" id="heroRadioDate">-- --- ----</div>
+              <div class="clock-sub">heure FR temps réel</div>
             </div>
           </aside>
         </div>
@@ -1776,15 +1863,27 @@
       const PLAYLISTS_URL = 'playlists.txt';
       const iframe = document.getElementById(PLAYER_IFRAME_ID);
       const clockEl = document.getElementById('boyingtonClock');
+      const heroClockEl = document.getElementById('heroRadioClock');
+      const heroDateEl = document.getElementById('heroRadioDate');
 
       function updateClock() {
-        if (!clockEl) return;
         const now = new Date();
-        clockEl.textContent = new Intl.DateTimeFormat('fr-FR', {
+        const timeText = new Intl.DateTimeFormat('fr-FR', {
           hour: '2-digit',
           minute: '2-digit',
           second: '2-digit'
         }).format(now);
+
+        const dateText = new Intl.DateTimeFormat('fr-FR', {
+          weekday: 'long',
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        }).format(now);
+
+        if (clockEl) clockEl.textContent = timeText;
+        if (heroClockEl) heroClockEl.textContent = timeText;
+        if (heroDateEl) heroDateEl.textContent = dateText;
       }
 
       updateClock();
