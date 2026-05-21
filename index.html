@@ -632,48 +632,166 @@
       flex-direction:column;
       justify-content:space-between;
     }
-    .mic{
-      width:130px;
-      height:180px;
+        .mic{
+      width:170px;
+      height:230px;
       margin:0 auto;
       position:relative;
-      filter:drop-shadow(0 0 18px rgba(255,46,63,.18));
+      display:grid;
+      place-items:center;
+      filter:drop-shadow(0 0 20px rgba(255,46,63,.18));
     }
-    .mic::before{
-      content:"";
+    .mic-glow{
       position:absolute;
+      inset:18px 16px 16px 16px;
+      border-radius:36px;
+      background:radial-gradient(circle at 50% 50%, rgba(255,46,63,.18), transparent 62%);
+      filter:blur(6px);
+    }
+    .mic-head{
+      position:absolute;
+      top:14px;
       left:50%;
-      top:10px;
-      width:76px;
-      height:102px;
+      width:106px;
+      height:122px;
       transform:translateX(-50%);
-      border-radius:38px;
+      border-radius:52px 52px 38px 38px;
       background:
-        linear-gradient(180deg, #f2f2f2 0%, #8d8d8f 28%, #2f2f31 55%, #090909 100%);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), 0 0 24px rgba(255,255,255,.08);
+        linear-gradient(180deg, #f7f7f7 0%, #cfcfd2 8%, #5c5d61 42%, #17171a 76%, #050505 100%);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.04),
+        inset 0 -16px 24px rgba(0,0,0,.42),
+        0 0 20px rgba(255,255,255,.07);
+      overflow:hidden;
     }
-    .mic::after{
+    .mic-head::before{
       content:"";
       position:absolute;
+      inset:10px 12px 12px 12px;
+      border-radius:32px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.75), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.28));
+      opacity:.55;
+    }
+    .mic-head::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:
+        linear-gradient(90deg, transparent 0 13%, rgba(255,255,255,.12) 13% 14%, transparent 14% 28%, rgba(255,255,255,.10) 28% 29%, transparent 29% 43%, rgba(255,255,255,.08) 43% 44%, transparent 44% 58%, rgba(255,255,255,.10) 58% 59%, transparent 59% 73%, rgba(255,255,255,.08) 73% 74%, transparent 74% 100%),
+        linear-gradient(180deg, transparent 0 8%, rgba(0,0,0,.25) 8% 9%, transparent 9% 100%);
+      opacity:.20;
+      mix-blend-mode:screen;
+    }
+    .mic-mesh{
+      position:absolute;
+      top:20px;
       left:50%;
-      top:92px;
-      width:18px;
+      width:90px;
+      height:108px;
+      transform:translateX(-50%);
+      border-radius:42px 42px 30px 30px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.10) 1px, transparent 1px) 0 0 / 8px 8px,
+        linear-gradient(180deg, rgba(255,255,255,.08) 1px, transparent 1px) 0 0 / 8px 8px;
+      mask-image:linear-gradient(180deg, black 0%, black 72%, transparent 100%);
+      opacity:.28;
+      pointer-events:none;
+    }
+    .mic-body{
+      position:absolute;
+      top:120px;
+      left:50%;
+      width:78px;
       height:78px;
       transform:translateX(-50%);
-      border-radius:9px;
-      background:linear-gradient(180deg, #e5e5e5, #3c3c3c 70%, #090909 100%);
-      box-shadow:0 0 18px rgba(255,255,255,.04);
+      border-radius:16px 16px 20px 20px;
+      background:
+        linear-gradient(180deg, #2d2d31 0%, #131316 40%, #050505 100%);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 0 18px rgba(0,0,0,.35);
     }
-    .mic-base{
+    .mic-body::before{
+      content:"";
+      position:absolute;
+      inset:16px 18px 18px 18px;
+      border-radius:14px;
+      background:radial-gradient(circle at 50% 20%, rgba(255,46,63,.26), transparent 55%);
+      opacity:.75;
+    }
+    .mic-body::after{
+      content:"";
       position:absolute;
       left:50%;
-      bottom:22px;
-      width:112px;
-      height:10px;
+      top:22px;
+      width:30px;
+      height:30px;
+      transform:translateX(-50%);
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.20), transparent 48%),
+        linear-gradient(180deg, rgba(255,46,63,.22), rgba(255,46,63,0));
+      box-shadow:0 0 18px rgba(255,46,63,.18);
+      opacity:.32;
+    }
+    .mic-shock{
+      position:absolute;
+      top:126px;
+      left:50%;
+      width:120px;
+      height:70px;
+      transform:translateX(-50%);
+      border-radius:20px;
+      border:2px solid rgba(255,46,63,.55);
+      opacity:.9;
+      box-shadow:0 0 16px rgba(255,46,63,.12);
+    }
+    .mic-shock::before,
+    .mic-shock::after{
+      content:"";
+      position:absolute;
+      top:10px;
+      width:44px;
+      height:50px;
+      border-left:2px solid rgba(255,46,63,.55);
+      border-right:2px solid rgba(255,46,63,.55);
+      transform:skewX(-24deg);
+      border-radius:10px;
+    }
+    .mic-shock::before{left:8px}
+    .mic-shock::after{
+      right:8px;
+      transform:skewX(24deg);
+    }
+    .mic-stand{
+      position:absolute;
+      top:186px;
+      left:50%;
+      width:22px;
+      height:54px;
+      transform:translateX(-50%);
+      border-radius:12px;
+      background:linear-gradient(180deg, #e9e9ea 0%, #45454a 45%, #111 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.10),
+        0 0 10px rgba(255,255,255,.08);
+    }
+    .mic-stand::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:-10px;
+      width:70px;
+      height:14px;
       transform:translateX(-50%);
       border-radius:999px;
-      background:linear-gradient(90deg, transparent, rgba(255,46,63,.95), transparent);
+      background:linear-gradient(90deg, transparent, rgba(255,46,63,.94), transparent);
+      filter:blur(.2px);
     }
     .eq-bars{
       display:flex;
@@ -1205,7 +1323,7 @@
       .hero-copy{font-size:.96rem}
       .player-wrap,.matrix-wrap{padding:14px}
       .player-side{min-height:auto}
-      .player-side .mic{width:110px;height:150px}
+      .player-side .mic{width:150px;height:200px}
       .player-side .side-copy{font-size:.88rem}
       .world-video-wrap{min-height:200px}
       .world-video{min-height:200px}
@@ -1411,13 +1529,12 @@
             <div class="player-grid">
               <div class="player-side">
                 <div class="mic" aria-hidden="true"></div>
-                <div class="mic-base" aria-hidden="true"></div>
                 <div class="eq-bars" aria-hidden="true">
                   <span></span><span></span><span></span><span></span><span></span><span></span>
                 </div>
                 <div class="side-copy">
                   <strong>Écoute immersive</strong>
-                  Présentation radio plus forte, avec une finition studio sombre et des accents rouges maîtrisés.
+                  
                 </div>
               </div>
 
@@ -1620,9 +1737,7 @@
       BOYINGTON WEB RADIO
     </div>
 
-    <div class="footer-subtitle">
-      Site officiel — noir / argent / <span>rouge</span>
-    </div>
+    
 
     <div class="footer-legal">
       🎧 Diffusion Boyington Web Radio non commerciales<br>
