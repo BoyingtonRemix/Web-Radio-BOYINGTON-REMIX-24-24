@@ -124,14 +124,7 @@
       font-size:.84rem;
     }
 
-    .top-right{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .clock-pill,.date-pill,.onair-pill{
+    .onair-pill{
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -142,17 +135,6 @@
       letter-spacing:.08em;
       text-transform:uppercase;
       font-weight:800;
-    }
-    .clock-pill{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      color:var(--silver);
-      box-shadow:0 0 0 1px rgba(255,46,63,.06) inset;
-    }
-    .date-pill{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      color:var(--silver);
     }
     .onair-pill{
       background:rgba(255,46,63,.10);
@@ -1522,9 +1504,6 @@
             <span>Site officiel</span>
           </div>
         </div>
-
-        <div class="top-right">
-          <div class="date-pill">20.05.2026 | 12:00</div>
           <div class="clock-pill" aria-live="polite">
             <span>DJ World Matrix</span>
             <strong id="boyingtonClock">--:--:--</strong>
@@ -1862,7 +1841,6 @@
       const PLAYER_IFRAME_ID = 'sc-player';
       const PLAYLISTS_URL = 'playlists.txt';
       const iframe = document.getElementById(PLAYER_IFRAME_ID);
-      const clockEl = document.getElementById('boyingtonClock');
       const heroClockEl = document.getElementById('heroRadioClock');
       const heroDateEl = document.getElementById('heroRadioDate');
 
@@ -1881,7 +1859,6 @@
           year: 'numeric'
         }).format(now);
 
-        if (clockEl) clockEl.textContent = timeText;
         if (heroClockEl) heroClockEl.textContent = timeText;
         if (heroDateEl) heroDateEl.textContent = dateText;
       }
