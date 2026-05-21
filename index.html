@@ -3,28 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Boyington Web Radio — site officiel premium avec player SoundCloud, visuels du dépôt GitHub, carte DJ World Matrix et liens officiels." />
+  <meta name="description" content="Boyington Web Radio — site officiel premium noir, argent et rouge avec player SoundCloud, visuels du dépôt GitHub et version mobile responsive." />
   <meta name="theme-color" content="#050505" />
   <title>BOYINGTON WEB RADIO — Site Officiel</title>
   <style>
     :root{
       --bg:#050505;
-      --bg2:#0b0b0d;
-      --panel:rgba(10,10,12,.88);
-      --panel2:rgba(255,255,255,.03);
-      --line:rgba(255,255,255,.1);
+      --bg-2:#0a0a0a;
+      --panel:rgba(12,12,12,.90);
+      --panel-2:rgba(255,255,255,.03);
+      --line:rgba(255,255,255,.10);
       --text:#f6f6f7;
-      --muted:#b7b7bd;
-      --silver:#dadada;
-      --gold:#d9b15f;
-      --gold2:#ffcf6b;
-      --red:#ff3452;
-      --violet:#a855f7;
-      --cyan:#4dd6ff;
-      --shadow:0 28px 100px rgba(0,0,0,.62);
+      --muted:#b8b8bd;
+      --silver:#d9d9dc;
+      --red:#ff2e3f;
+      --red-2:#b80f22;
+      --white:#ffffff;
+      --shadow:0 30px 110px rgba(0,0,0,.66);
       --radius:28px;
       --radius2:20px;
-      --max:1400px;
+      --max:1420px;
     }
 
     *{box-sizing:border-box}
@@ -36,10 +34,10 @@
       color:var(--text);
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at 15% 10%, rgba(217,177,95,.14), transparent 18%),
-        radial-gradient(circle at 85% 8%, rgba(168,85,247,.14), transparent 22%),
-        radial-gradient(circle at 70% 82%, rgba(255,52,82,.08), transparent 18%),
-        linear-gradient(180deg,#090909 0%,#040404 100%);
+        radial-gradient(circle at 14% 10%, rgba(255,46,63,.12), transparent 18%),
+        radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(255,46,63,.05), transparent 20%),
+        linear-gradient(180deg, #090909 0%, #040404 100%);
     }
 
     a{color:inherit;text-decoration:none}
@@ -49,10 +47,10 @@
       content:"";
       position:fixed;inset:0;
       background-image:
-        linear-gradient(rgba(255,255,255,.021) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.021) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
       background-size:36px 36px;
-      mask-image:linear-gradient(180deg, rgba(0,0,0,.6), transparent 96%);
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.62), transparent 96%);
       pointer-events:none;
       z-index:-2;
     }
@@ -60,13 +58,13 @@
       content:"";
       position:fixed;inset:0;
       background:
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,.05), transparent 30%),
-        linear-gradient(180deg, transparent 0%, rgba(0,0,0,.14) 100%);
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.05), transparent 34%),
+        linear-gradient(180deg, transparent 0%, rgba(0,0,0,.16) 100%);
       pointer-events:none;
       z-index:-1;
     }
 
-    .container{width:min(calc(100% - 28px), var(--max)); margin:0 auto}
+    .container{width:min(calc(100% - 28px), var(--max));margin:0 auto}
     .panel{
       position:relative;
       overflow:hidden;
@@ -77,27 +75,37 @@
     }
 
     .topbar{
-      position:sticky; top:0; z-index:100;
+      position:sticky;
+      top:0;
+      z-index:100;
       backdrop-filter:blur(18px);
-      background:linear-gradient(180deg, rgba(8,8,8,.97), rgba(8,8,8,.76));
+      background:linear-gradient(180deg, rgba(8,8,8,.97), rgba(8,8,8,.78));
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .topbar-inner{
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
       padding:12px 0;
     }
+
     .brand{
-      display:flex; align-items:center; gap:14px; min-width:0;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
     }
     .brand-logo{
-      width:58px; height:58px;
+      width:60px;height:60px;
       border-radius:18px;
-      border:1px solid rgba(217,177,95,.55);
+      border:1px solid rgba(255,255,255,.16);
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.2), transparent 30%),
-        linear-gradient(145deg, #37290f 0%, #151515 45%, #000 100%);
-      display:grid; place-items:center;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), 0 0 28px rgba(217,177,95,.12);
+        radial-gradient(circle at 30% 28%, rgba(255,255,255,.18), transparent 30%),
+        linear-gradient(145deg, #2a2a2a 0%, #121212 45%, #000 100%);
+      display:grid;
+      place-items:center;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), 0 0 28px rgba(255,46,63,.10);
       overflow:hidden;
       flex:0 0 auto;
     }
@@ -107,7 +115,7 @@
       text-transform:uppercase;
       letter-spacing:.16em;
       font-size:1rem;
-      line-height:1.1;
+      line-height:1.05;
     }
     .brand-copy span{
       display:block;
@@ -117,19 +125,45 @@
     }
 
     .clock-pill{
-      display:inline-flex; align-items:center; gap:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
       padding:12px 16px;
       border-radius:999px;
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
-      white-space:nowrap;
       color:var(--silver);
+      white-space:nowrap;
       font-size:.9rem;
+      box-shadow:0 0 0 1px rgba(255,46,63,.06) inset;
     }
-    .clock-pill strong{color:#fff; letter-spacing:.08em}
+    .clock-pill strong{color:#fff;letter-spacing:.08em}
+    .onair-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 16px;
+      border-radius:999px;
+      background:rgba(255,46,63,.10);
+      border:1px solid rgba(255,46,63,.26);
+      color:#ffdbe0;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.82rem;
+      box-shadow:0 0 18px rgba(255,46,63,.08);
+    }
+    .onair-pill .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--red);
+      box-shadow:0 0 14px rgba(255,46,63,.88);
+    }
 
     .nav{
-      display:flex; flex-wrap:wrap; justify-content:flex-end; gap:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
     .nav a{
       padding:10px 14px;
@@ -142,7 +176,7 @@
     }
     .nav a:hover{
       transform:translateY(-1px);
-      border-color:rgba(217,177,95,.34);
+      border-color:rgba(255,46,63,.36);
       color:#fff;
       box-shadow:0 10px 25px rgba(0,0,0,.24);
     }
@@ -150,28 +184,30 @@
     .hero{padding:22px 0 14px}
     .hero-grid{
       display:grid;
-      grid-template-columns:1.2fr .8fr;
+      grid-template-columns:1.08fr .92fr;
       gap:18px;
       align-items:stretch;
     }
+
     .hero-panel{
-      min-height:520px;
+      min-height:540px;
       background:
-        linear-gradient(135deg, rgba(0,0,0,.58), rgba(0,0,0,.22)),
+        linear-gradient(135deg, rgba(0,0,0,.56), rgba(0,0,0,.24)),
         url('arrière-plan-boyington-radio.jpg') center/cover no-repeat;
     }
     .hero-overlay{
-      position:absolute; inset:0;
+      position:absolute;inset:0;
       background:
-        radial-gradient(circle at 18% 18%, rgba(217,177,95,.18), transparent 20%),
-        radial-gradient(circle at 82% 20%, rgba(168,85,247,.18), transparent 22%),
-        radial-gradient(circle at 70% 72%, rgba(255,52,82,.12), transparent 16%),
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.62));
+        radial-gradient(circle at 18% 18%, rgba(255,46,63,.20), transparent 18%),
+        radial-gradient(circle at 80% 16%, rgba(255,255,255,.08), transparent 24%),
+        radial-gradient(circle at 70% 70%, rgba(255,46,63,.14), transparent 16%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.64));
     }
     .hero-content{
-      position:relative; z-index:1;
+      position:relative;
+      z-index:1;
       height:100%;
-      padding:28px;
+      padding:30px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
@@ -180,11 +216,13 @@
 
     .badge-row{display:flex;flex-wrap:wrap;gap:10px}
     .badge{
-      display:inline-flex;align-items:center;gap:8px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       padding:9px 14px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.11);
-      background:rgba(0,0,0,.34);
+      background:rgba(0,0,0,.38);
       text-transform:uppercase;
       letter-spacing:.06em;
       font-size:.8rem;
@@ -192,39 +230,35 @@
       backdrop-filter:blur(6px);
     }
     .badge.live{
-      color:#ffe1e5;
-      background:rgba(255,52,82,.12);
-      border-color:rgba(255,52,82,.24);
-      box-shadow:0 0 0 rgba(255,52,82,0);
+      color:#ffe0e4;
+      background:rgba(255,46,63,.12);
+      border-color:rgba(255,46,63,.26);
       animation:pulseGlow 2.6s ease-in-out infinite;
     }
     .badge .dot{
       width:8px;height:8px;border-radius:50%;
       background:var(--red);
-      box-shadow:0 0 14px rgba(255,52,82,.82);
+      box-shadow:0 0 14px rgba(255,46,63,.82);
     }
 
     .hero-title{
       margin:0;
-      font-size:clamp(2.8rem, 5.4vw, 5.6rem);
+      font-size:clamp(2.8rem, 5.8vw, 5.8rem);
       line-height:.9;
       text-transform:uppercase;
       letter-spacing:.02em;
       text-wrap:balance;
       text-shadow:0 10px 28px rgba(0,0,0,.42);
     }
-    .hero-title .gold{color:var(--gold2)}
-    .hero-title .silver{color:var(--silver)}
+    .hero-title .silver{color:#f1f1f1}
     .hero-title .red{color:var(--red)}
 
     .hero-subtitle{
       margin:12px 0 0;
-      max-width:20ch;
-      font-weight:700;
-      letter-spacing:.12em;
-      text-transform:uppercase;
       color:#fff;
-      opacity:.94;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
       font-size:.86rem;
     }
     .hero-copy{
@@ -234,11 +268,57 @@
       line-height:1.72;
       font-size:1rem;
     }
+    .hero-stats{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:14px;
+    }
+    .stat{
+      min-width:120px;
+      padding:16px 14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      flex:1 1 120px;
+    }
+    .stat .ico{
+      width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      font-size:1.05rem;
+    }
+    .stat strong{
+      display:block;
+      font-size:1rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .stat span{
+      color:var(--muted);
+      font-size:.82rem;
+      line-height:1.3;
+    }
+
     .hero-actions{
-      display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:10px;
     }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
       padding:14px 18px;
       border-radius:16px;
       border:1px solid transparent;
@@ -249,9 +329,9 @@
       user-select:none;
     }
     .btn-primary{
-      background:linear-gradient(135deg, var(--red), #c40f26 50%, #7f0610 100%);
+      background:linear-gradient(135deg, var(--red), #c20d23 50%, #820610 100%);
       color:#fff;
-      box-shadow:0 18px 35px rgba(255,52,82,.22);
+      box-shadow:0 18px 35px rgba(255,46,63,.22);
     }
     .btn-primary:hover{transform:translateY(-2px)}
     .btn-secondary{
@@ -261,89 +341,217 @@
     }
     .btn-secondary:hover{
       transform:translateY(-2px);
-      border-color:rgba(217,177,95,.35);
-      background:rgba(217,177,95,.08);
+      border-color:rgba(255,46,63,.32);
+      background:rgba(255,46,63,.07);
     }
 
     .hero-side{
-      display:grid;
-      grid-template-rows:auto auto 1fr;
-      gap:14px;
       padding:16px;
       background:
-        radial-gradient(circle at top right, rgba(217,177,95,.16), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(168,85,247,.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,46,63,.15), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,.06), transparent 28%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-    }
-    .hero-card{
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.28);
-      overflow:hidden;
-    }
-    .hero-card.top{padding:18px}
-    .hero-card h2,.hero-card h3{
-      margin:0;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-    .hero-card h2{font-size:1.08rem;margin-bottom:10px}
-    .hero-card h3{font-size:.92rem;color:var(--gold);margin-bottom:8px}
-    .hero-card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.62;
-      font-size:.93rem;
+      display:grid;
+      grid-template-rows:auto 1fr;
+      gap:14px;
+      min-height:540px;
     }
 
-    .studio-thumb{
+    .hero-studio{
       position:relative;
-      min-height:214px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
       background:url('Studio-Console.jpg') center/cover no-repeat;
+      min-height:360px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
     }
-    .studio-thumb::after{
-      content:""; position:absolute; inset:0;
+    .hero-studio::after{
+      content:"";
+      position:absolute;inset:0;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.58)),
-        radial-gradient(circle at 50% 40%, rgba(255,255,255,.06), transparent 45%);
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.64)),
+        radial-gradient(circle at 50% 36%, rgba(255,255,255,.06), transparent 44%);
     }
-    .studio-thumb .caption{
+    .hero-studio .caption{
       position:absolute;
-      left:14px; right:14px; bottom:14px; z-index:1;
+      left:14px;right:14px;bottom:14px;
+      z-index:1;
       padding:14px 16px;
       border-radius:18px;
       background:rgba(0,0,0,.5);
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
       backdrop-filter:blur(8px);
     }
-
-    .mini-stats{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:12px;
+    .hero-studio .caption strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.92rem;
+      margin-bottom:4px;
     }
-    .mini-stat{
-      padding:16px;
-      border-radius:18px;
+    .hero-studio .caption span{
+      display:block;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:.88rem;
+    }
+
+    .device{
+      position:absolute;
+      right:18px;
+      bottom:-18px;
+      width:min(300px, 40%);
+      max-width:300px;
+      min-width:220px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)),
+        #060606;
+      box-shadow:0 20px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.03);
+      overflow:hidden;
+      z-index:2;
+    }
+    .device-top{
+      height:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0));
+    }
+    .device-notch{
+      width:34%;
+      height:8px;
+      margin:10px auto 0;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+    }
+    .device-body{
+      padding:14px;
+      display:grid;
+      gap:10px;
+    }
+    .device-brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .device-brand .mini-logo{
+      width:34px;height:34px;border-radius:10px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .device-brand .mini-logo img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .device-brand strong{
+      display:block;
+      font-size:.72rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .device-brand span{
+      display:block;
+      color:var(--muted);
+      font-size:.68rem;
+    }
+    .device-hero{
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,46,63,.10), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      padding:14px;
+      display:grid;
+      gap:10px;
+    }
+    .device-hero .onair-mini{
+      justify-self:start;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,46,63,.14);
+      border:1px solid rgba(255,46,63,.32);
+      color:#ffdfe3;
+      font-size:.66rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+    .device-hero h4{
+      margin:0;
+      font-size:1rem;
+      line-height:1;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+    .device-hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:.72rem;
+      line-height:1.45;
+    }
+    .device-cta{
+      display:flex;
+      gap:8px;
+    }
+    .device-cta span{
+      flex:1;
+      padding:8px 10px;
+      border-radius:12px;
       border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.03);
+      text-align:center;
+      font-size:.66rem;
+      text-transform:uppercase;
+      letter-spacing:.10em;
     }
-    .mini-stat strong{
-      display:block;
-      margin-bottom:4px;
-      color:#fff;
-      font-size:1.25rem;
+    .device-mini-card{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      background:rgba(0,0,0,.28);
+      min-height:92px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     }
-    .mini-stat span{color:var(--muted); font-size:.86rem}
+    .device-mini-card .mini-top{
+      padding:10px 10px 0;
+      font-size:.64rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+    .device-mini-card .bars{
+      display:flex;
+      align-items:flex-end;
+      gap:3px;
+      padding:12px 10px 10px;
+      height:58px;
+    }
+    .device-mini-card .bars span{
+      width:4px;
+      border-radius:999px 999px 0 0;
+      background:linear-gradient(180deg, #ff8a95, var(--red));
+      animation:equalize 1.2s ease-in-out infinite;
+    }
+    .device-mini-card .bars span:nth-child(2){animation-delay:.1s;height:24px}
+    .device-mini-card .bars span:nth-child(3){animation-delay:.2s;height:38px}
+    .device-mini-card .bars span:nth-child(4){animation-delay:.3s;height:18px}
+    .device-mini-card .bars span:nth-child(5){animation-delay:.4s;height:42px}
+    .device-mini-card .bars span:nth-child(6){animation-delay:.5s;height:20px}
+    .device-mini-card .bars span:nth-child(7){animation-delay:.6s;height:34px}
+    .device-mini-card .bars span:nth-child(8){animation-delay:.7s;height:16px}
 
     .section{padding:18px 0}
     .section-head{
-      display:flex; align-items:end; justify-content:space-between; gap:18px;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
       margin-bottom:14px;
     }
     .section-head h2{
       margin:0;
-      font-size:clamp(1.5rem, 2.7vw, 2.15rem);
+      font-size:clamp(1.5rem, 2.7vw, 2.12rem);
       text-transform:uppercase;
       letter-spacing:.08em;
     }
@@ -357,8 +565,8 @@
     .player-wrap{
       padding:18px;
       background:
-        radial-gradient(circle at 15% 50%, rgba(255,52,82,.08), transparent 22%),
-        radial-gradient(circle at 85% 50%, rgba(168,85,247,.08), transparent 22%),
+        radial-gradient(circle at 15% 50%, rgba(255,46,63,.08), transparent 22%),
+        radial-gradient(circle at 85% 50%, rgba(255,255,255,.06), transparent 20%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
     }
     .player-grid{
@@ -373,7 +581,7 @@
       border-radius:24px;
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 50% 24%, rgba(217,177,95,.25), transparent 26%),
+        radial-gradient(circle at 50% 22%, rgba(255,46,63,.16), transparent 26%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
       padding:18px;
       min-height:280px;
@@ -386,7 +594,7 @@
       height:180px;
       margin:0 auto;
       position:relative;
-      filter:drop-shadow(0 0 18px rgba(217,177,95,.18));
+      filter:drop-shadow(0 0 18px rgba(255,46,63,.18));
     }
     .mic::before{
       content:"";
@@ -398,9 +606,9 @@
       transform:translateX(-50%);
       border-radius:38px;
       background:
-        linear-gradient(180deg, #f0d08a 0%, #6e4a12 35%, #150f05 100%);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06), 0 0 24px rgba(217,177,95,.22);
+        linear-gradient(180deg, #f2f2f2 0%, #8d8d8f 28%, #2f2f31 55%, #090909 100%);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), 0 0 24px rgba(255,255,255,.08);
     }
     .mic::after{
       content:"";
@@ -411,7 +619,7 @@
       height:78px;
       transform:translateX(-50%);
       border-radius:9px;
-      background:linear-gradient(180deg, #d9b15f, #2b1c07 70%, #090909 100%);
+      background:linear-gradient(180deg, #e5e5e5, #3c3c3c 70%, #090909 100%);
       box-shadow:0 0 18px rgba(255,255,255,.04);
     }
     .mic-base{
@@ -422,7 +630,7 @@
       height:10px;
       transform:translateX(-50%);
       border-radius:999px;
-      background:linear-gradient(90deg, transparent, rgba(217,177,95,.9), transparent);
+      background:linear-gradient(90deg, transparent, rgba(255,46,63,.95), transparent);
     }
     .eq-bars{
       display:flex;
@@ -435,7 +643,7 @@
     .eq-bars span{
       width:8px;
       border-radius:999px 999px 0 0;
-      background:linear-gradient(180deg, #ff5d7b 0%, #ac0f2b 100%);
+      background:linear-gradient(180deg, #ff6b7b 0%, #ab0f23 100%);
       animation:equalize 1.2s ease-in-out infinite;
     }
     .eq-bars span:nth-child(2){animation-delay:.1s;height:30px}
@@ -463,16 +671,16 @@
       border-radius:24px;
       border:1px solid rgba(255,255,255,.08);
       background:#0d0d0d;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 0 1px rgba(255,46,63,.06);
       min-height:280px;
     }
     .player-embed::before{
       content:"";
       position:absolute;
       inset:-1px;
-      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(217,177,95,.18), rgba(255,255,255,0));
+      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,46,63,.18), rgba(255,255,255,0));
       pointer-events:none;
-      opacity:.75;
+      opacity:.8;
     }
     iframe{
       display:block;
@@ -520,8 +728,8 @@
     .matrix-wrap{
       padding:18px;
       background:
-        radial-gradient(circle at 20% 20%, rgba(217,177,95,.08), transparent 18%),
-        radial-gradient(circle at 80% 80%, rgba(168,85,247,.08), transparent 18%),
+        radial-gradient(circle at 20% 20%, rgba(255,46,63,.08), transparent 18%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.06), transparent 18%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
     }
     .matrix-grid{
@@ -543,7 +751,7 @@
       text-transform:uppercase;
       letter-spacing:.08em;
       font-size:1.05rem;
-      color:var(--gold2);
+      color:var(--red);
       text-align:center;
     }
     .matrix-sub{
@@ -552,10 +760,7 @@
       text-align:center;
       font-size:.92rem;
     }
-    .regions{
-      display:grid;
-      gap:10px;
-    }
+    .regions{display:grid;gap:10px}
     .region-row{
       display:flex;
       align-items:center;
@@ -576,15 +781,10 @@
     }
     .pulse-dot{
       width:12px;height:12px;border-radius:50%;
-      box-shadow:0 0 0 0 rgba(255,52,82,.5);
+      box-shadow:0 0 0 0 rgba(255,46,63,.5);
       animation:wave 1.8s infinite;
+      background:var(--red);
     }
-    .region-row:nth-child(1) .pulse-dot{background:#b56dff}
-    .region-row:nth-child(2) .pulse-dot{background:#7ed6ff}
-    .region-row:nth-child(3) .pulse-dot{background:#ffd86b}
-    .region-row:nth-child(4) .pulse-dot{background:#ff7f50}
-    .region-row:nth-child(5) .pulse-dot{background:#e879f9}
-    .region-row:nth-child(6) .pulse-dot{background:#60a5fa}
     .onair{
       color:#ff596e;
       font-weight:800;
@@ -599,13 +799,14 @@
       border-radius:24px;
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 50% 40%, rgba(255,255,255,.04), transparent 42%),
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.2));
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.05), transparent 42%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.18));
       padding:18px;
       min-height:320px;
     }
     .world-grid{
-      position:absolute; inset:18px;
+      position:absolute;
+      inset:18px;
       border-radius:18px;
       background:
         linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
@@ -615,27 +816,29 @@
       pointer-events:none;
     }
     .world-points{
-      position:absolute; inset:18px;
+      position:absolute;
+      inset:18px;
       border-radius:18px;
       background:
-        radial-gradient(circle at 24% 48%, rgba(217,177,95,.95) 0 2px, transparent 3px),
-        radial-gradient(circle at 30% 40%, rgba(217,177,95,.85) 0 2px, transparent 3px),
-        radial-gradient(circle at 38% 56%, rgba(217,177,95,.9) 0 2px, transparent 3px),
-        radial-gradient(circle at 50% 44%, rgba(168,85,247,.9) 0 2px, transparent 3px),
-        radial-gradient(circle at 62% 35%, rgba(168,85,247,.88) 0 2px, transparent 3px),
-        radial-gradient(circle at 70% 50%, rgba(255,52,82,.85) 0 2px, transparent 3px),
-        radial-gradient(circle at 78% 58%, rgba(255,52,82,.88) 0 2px, transparent 3px),
-        radial-gradient(circle at 16% 72%, rgba(77,214,255,.9) 0 2px, transparent 3px),
-        radial-gradient(circle at 82% 74%, rgba(77,214,255,.9) 0 2px, transparent 3px);
+        radial-gradient(circle at 24% 48%, rgba(255,46,63,.95) 0 2px, transparent 3px),
+        radial-gradient(circle at 30% 40%, rgba(255,46,63,.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 38% 56%, rgba(255,46,63,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 50% 44%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 62% 35%, rgba(255,46,63,.88) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 50%, rgba(255,46,63,.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 58%, rgba(255,46,63,.88) 0 2px, transparent 3px),
+        radial-gradient(circle at 16% 72%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 82% 74%, rgba(255,255,255,.9) 0 2px, transparent 3px);
       filter:drop-shadow(0 0 10px rgba(255,255,255,.12));
       opacity:.95;
     }
     .world-silhouette{
-      position:absolute; inset:24px 30px 24px 30px;
+      position:absolute;
+      inset:24px 30px 24px 30px;
       opacity:.95;
       background:
-        linear-gradient(135deg, transparent 0 25%, rgba(217,177,95,.28) 25% 27%, transparent 27% 100%),
-        linear-gradient(145deg, transparent 0 50%, rgba(168,85,247,.22) 50% 52%, transparent 52% 100%);
+        linear-gradient(135deg, transparent 0 25%, rgba(255,46,63,.28) 25% 27%, transparent 27% 100%),
+        linear-gradient(145deg, transparent 0 50%, rgba(255,255,255,.18) 50% 52%, transparent 52% 100%);
       mask-image:
         radial-gradient(circle at 20% 44%, black 0 13%, transparent 14%),
         radial-gradient(circle at 33% 42%, black 0 11%, transparent 12%),
@@ -668,7 +871,7 @@
       border-radius:20px;
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(circle at 50% 0%, rgba(217,177,95,.12), transparent 42%),
+        radial-gradient(circle at 50% 0%, rgba(255,46,63,.10), transparent 42%),
         rgba(255,255,255,.02);
       padding:16px;
       min-height:150px;
@@ -688,7 +891,7 @@
       background:
         radial-gradient(circle, rgba(255,255,255,.12), transparent 52%),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), 0 0 34px rgba(217,177,95,.08);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), 0 0 34px rgba(255,46,63,.08);
       position:relative;
     }
     .stat-circle::after{
@@ -731,8 +934,7 @@
       padding:18px;
       border-radius:22px;
       border:1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       transition:.22s ease;
       display:flex;
       align-items:center;
@@ -742,7 +944,7 @@
     }
     .link-card:hover{
       transform:translateY(-2px);
-      border-color:rgba(217,177,95,.34);
+      border-color:rgba(255,46,63,.32);
       box-shadow:0 14px 30px rgba(0,0,0,.22);
     }
     .link-copy h3{
@@ -765,8 +967,9 @@
       font-weight:900;
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
-      color:var(--gold2);
+      color:#fff;
       flex:0 0 auto;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
     }
 
     .footer{
@@ -774,9 +977,10 @@
       color:var(--muted);
     }
     .gold-line{
-      height:1px;width:100%;
+      height:1px;
+      width:100%;
       margin:18px 0;
-      background:linear-gradient(90deg, transparent, rgba(217,177,95,.58), transparent);
+      background:linear-gradient(90deg, transparent, rgba(255,46,63,.58), transparent);
     }
     .footer-inner{
       display:flex;
@@ -786,6 +990,7 @@
       padding-top:18px;
       border-top:1px solid rgba(255,255,255,.08);
       font-size:.9rem;
+      align-items:center;
     }
     .footer a{
       color:var(--silver);
@@ -794,9 +999,38 @@
     }
     .small{font-size:.88rem;color:var(--muted)}
 
+    .footer-brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .footer-mini-logo{
+      width:46px;height:46px;border-radius:14px;
+      overflow:hidden;border:1px solid rgba(255,255,255,.12);
+      flex:0 0 auto;
+    }
+    .footer-mini-logo img{width:100%;height:100%;object-fit:cover}
+    .footer-wave{
+      display:flex;
+      align-items:flex-end;
+      gap:4px;
+      height:36px;
+      padding:0 8px;
+    }
+    .footer-wave span{
+      width:6px;
+      border-radius:999px 999px 0 0;
+      background:linear-gradient(180deg, #ff7e8a 0%, var(--red) 100%);
+      animation:equalize 1.3s ease-in-out infinite;
+    }
+    .footer-wave span:nth-child(2){animation-delay:.1s;height:18px}
+    .footer-wave span:nth-child(3){animation-delay:.2s;height:30px}
+    .footer-wave span:nth-child(4){animation-delay:.3s;height:12px}
+    .footer-wave span:nth-child(5){animation-delay:.4s;height:26px}
+    .footer-wave span:nth-child(6){animation-delay:.5s;height:16px}
+    .footer-wave span:nth-child(7){animation-delay:.6s;height:22px}
+
     @keyframes pulseGlow{
-      0%,100%{box-shadow:0 0 0 rgba(255,52,82,0)}
-      50%{box-shadow:0 0 18px rgba(255,52,82,.2)}
+      0%,100%{box-shadow:0 0 0 rgba(255,46,63,0)}
+      50%{box-shadow:0 0 18px rgba(255,46,63,.2)}
     }
     @keyframes equalize{
       0%,100%{height:18px}
@@ -809,36 +1043,49 @@
     }
     @keyframes mapPulse{
       0%,100%{filter:drop-shadow(0 0 6px rgba(255,255,255,.08))}
-      50%{filter:drop-shadow(0 0 16px rgba(217,177,95,.14))}
+      50%{filter:drop-shadow(0 0 16px rgba(255,46,63,.16))}
     }
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    @media (max-width:1180px){
+    @media (max-width:1260px){
       .hero-grid{grid-template-columns:1fr 1fr}
       .gallery-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
       .matrix-grid{grid-template-columns:1fr}
       .matrix-stats{grid-template-columns:repeat(3, minmax(0, 1fr))}
+      .device{width:260px}
     }
-    @media (max-width:860px){
-      .topbar-inner,
-      .section-head,
-      .footer-inner{flex-direction:column; align-items:flex-start}
-      .nav{justify-content:flex-start}
-      .hero-grid,
-      .gallery-grid,
-      .links-grid,
-      .matrix-stats{grid-template-columns:1fr}
-      .hero-panel{min-height:420px}
+
+    @media (max-width:960px){
+      .topbar-inner{flex-wrap:wrap}
+      .clock-pill{order:2}
+      .onair-pill{order:3}
+      .nav{order:4;justify-content:flex-start;width:100%}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-panel,.hero-side{min-height:auto}
       .hero-content{padding:20px}
       .hero-side{padding:14px}
+      .hero-studio{min-height:300px}
+      .device{display:none}
       .player-grid{grid-template-columns:1fr}
+      .matrix-stats{grid-template-columns:repeat(2, minmax(0, 1fr))}
+      .links-grid{grid-template-columns:1fr}
     }
-    @media (max-width:560px){
-      .brand-logo{width:50px;height:50px}
-      .hero-panel{min-height:390px}
+
+    @media (max-width:640px){
+      .topbar-inner,
+      .section-head,
+      .footer-inner{flex-direction:column;align-items:flex-start}
+      .nav{justify-content:flex-start}
+      .gallery-grid,
+      .matrix-stats{grid-template-columns:1fr}
+      .hero-panel{min-height:420px}
+      .hero-title{font-size:clamp(2.4rem, 12vw, 4.2rem)}
+      .hero-copy{font-size:.96rem}
       .player-wrap,.matrix-wrap{padding:14px}
-      .player-embed iframe{min-height:330px}
-      .hero-title{font-size:clamp(2.4rem, 12vw, 4rem)}
+      .player-side{min-height:auto}
+      .player-side .mic{width:110px;height:150px}
+      .player-side .side-copy{font-size:.88rem}
+      .footer-brand{width:100%}
     }
   </style>
 </head>
@@ -852,7 +1099,7 @@
           </div>
           <div class="brand-copy">
             <strong>Boyington Web Radio</strong>
-            <span>Site officiel — noir / or / rouge</span>
+            <span>Site officiel — noir / argent / rouge</span>
           </div>
         </div>
 
@@ -861,17 +1108,23 @@
           <strong id="boyingtonClock">--:--:--</strong>
         </div>
 
+        <div class="onair-pill" aria-label="En direct">
+          <span class="dot"></span>
+          ON AIR
+        </div>
+
         <nav class="nav" aria-label="Navigation principale">
-          <a href="#player">Player</a>
-          <a href="#visuels">Visuels</a>
-          <a href="#matrix">DJ World Matrix</a>
-          <a href="#liens">Liens</a>
+          <a href="#accueil">ACCUEIL</a>
+          <a href="#player">RADIO</a>
+          <a href="#visuels">VISUELS</a>
+          <a href="#matrix">DJ WORLD MATRIX</a>
+          <a href="#liens">LIENS OFFICIELS</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero">
+      <section id="accueil" class="hero">
         <div class="container hero-grid">
           <article class="panel hero-panel">
             <div class="hero-overlay"></div>
@@ -884,54 +1137,103 @@
               </div>
 
               <div>
+                <div class="onair-pill" style="width:max-content;margin-bottom:12px;">
+                  <span class="dot"></span> ON AIR
+                </div>
+
                 <h1 class="hero-title">
-                  <span class="gold">BOYINGTON</span><br />
-                  <span class="silver">WEB</span> <span class="red">RADIO</span>
+                  <span class="silver">BOYINGTON</span><br />
+                  <span class="red">WEB RADIO</span>
                 </h1>
                 <p class="hero-subtitle">La radio du son, du mix et de l’énergie</p>
                 <p class="hero-copy">
-                  Une interface plus spectaculaire, plus lisible et plus cinématique, inspirée du visuel final. Le player reste verrouillé, les playlists gardent leur logique officielle, et l’ensemble gagne en impact immédiat.
+                  Une interface premium pensée pour le desktop et le mobile, avec une identité noire, argent et rouge, un player verrouillé, les images du dépôt GitHub intégrées, et une présence visuelle proche de ton mockup final.
                 </p>
-              </div>
 
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#player">▶ Écouter la radio</a>
-                <a class="btn btn-secondary" href="#visuels">Voir les visuels</a>
+                <div class="hero-stats">
+                  <div class="stat">
+                    <div class="ico">♪</div>
+                    <strong>24/7</strong>
+                    <span>Musique non-stop</span>
+                  </div>
+                  <div class="stat">
+                    <div class="ico">◎</div>
+                    <strong>UNIVERS</strong>
+                    <span>DJ & mix</span>
+                  </div>
+                  <div class="stat">
+                    <div class="ico">⌁</div>
+                    <strong>PLAYLISTS</strong>
+                    <span>Enchaînées</span>
+                  </div>
+                  <div class="stat">
+                    <div class="ico">⚡</div>
+                    <strong>ÉNERGIE</strong>
+                    <span>Positive</span>
+                  </div>
+                </div>
+
+                <div class="hero-actions">
+                  <a class="btn btn-primary" href="#player">▶ ÉCOUTER LA RADIO</a>
+                  <a class="btn btn-secondary" href="#visuels">VOIR LES VISUELS</a>
+                </div>
               </div>
             </div>
           </article>
 
-          <aside class="panel hero-side">
-            <div class="hero-card top">
-              <h2>Présentation courte</h2>
-              <p>
-                Design premium noir, or et rouge avec un rendu studio haut de gamme, plus dense visuellement et plus fort sur les écrans larges.
-              </p>
-            </div>
-
-            <div class="hero-card studio-thumb">
+          <aside class="panel hero-side" aria-label="Aperçu visuel">
+            <div class="hero-studio">
               <div class="caption">
-                <h3>Studio / console</h3>
-                <p>L’image du dépôt sert de point d’ancrage visuel principal.</p>
+                <strong>Studio console</strong>
+                <span>Fond principal du site, habillé pour le rendu noir / argent / rouge.</span>
               </div>
             </div>
 
-            <div class="mini-stats">
-              <div class="mini-stat">
-                <strong>24/7</strong>
-                <span>Musique non-stop</span>
+            <div class="device" aria-hidden="true">
+              <div class="device-top">
+                <div class="device-notch"></div>
               </div>
-              <div class="mini-stat">
-                <strong>DJ</strong>
-                <span>Mix & énergie</span>
-              </div>
-              <div class="mini-stat">
-                <strong>TXT</strong>
-                <span>Playlists.txt</span>
-              </div>
-              <div class="mini-stat">
-                <strong>LIVE</strong>
-                <span>On air permanent</span>
+              <div class="device-body">
+                <div class="device-brand">
+                  <div class="mini-logo">
+                    <img src="logo_radio_boyington.png" alt="" />
+                  </div>
+                  <div>
+                    <strong>Boyington</strong>
+                    <span>Web Radio</span>
+                  </div>
+                </div>
+
+                <div class="device-hero">
+                  <div class="onair-mini">ON AIR</div>
+                  <h4>Boyington Web Radio</h4>
+                  <p>Version mobile compacte pour un rendu propre sur smartphone.</p>
+                  <div class="device-cta">
+                    <span>Radio</span>
+                    <span>Playlists</span>
+                  </div>
+                </div>
+
+                <div class="device-mini-card">
+                  <div class="mini-top">Player</div>
+                  <div class="bars">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+
+                <div class="device-mini-card">
+                  <div class="mini-top">Visuels dépôt</div>
+                  <div class="bars">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
+
+                <div class="device-mini-card">
+                  <div class="mini-top">DJ World Matrix</div>
+                  <div class="bars">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                </div>
               </div>
             </div>
           </aside>
@@ -943,7 +1245,7 @@
           <div class="section-head">
             <div>
               <h2>Lecteur officiel</h2>
-              <p>SoundCloud Widget API conservée, avec la logique de playlist aléatoire et enchaînement automatique.</p>
+              <p>SoundCloud Widget API conservée, lecture aléatoire au démarrage et enchaînement automatique actifs.</p>
             </div>
           </div>
 
@@ -957,7 +1259,7 @@
                 </div>
                 <div class="side-copy">
                   <strong>Écoute immersive</strong>
-                  Une présence radio plus forte, avec une finition studio et une animation visuelle discrète.
+                  Présentation radio plus forte, avec une finition studio sombre et des accents rouges maîtrisés.
                 </div>
               </div>
 
@@ -982,7 +1284,7 @@
           <div class="section-head">
             <div>
               <h2>Visuels du dépôt GitHub</h2>
-              <p>Affichage plus cinématique des images du projet, dans une grille plus structurée et plus lumineuse.</p>
+              <p>Les images du dépôt sont affichées de manière nette et premium, pour rester proches du visuel de référence.</p>
             </div>
           </div>
 
@@ -991,7 +1293,7 @@
               <img src="logo_radio_boyington.png" alt="Logo Boyington Radio" />
               <div class="body">
                 <strong>Logo officiel</strong>
-                <p>Identité visuelle verrouillée, noir et or, version radio premium.</p>
+                <p>Identité visuelle verrouillée, noir et argent, signature du projet.</p>
               </div>
             </article>
 
@@ -999,7 +1301,7 @@
               <img src="Studio-Console.jpg" alt="Studio Console Boyington" />
               <div class="body">
                 <strong>Studio Console</strong>
-                <p>Le visuel le plus fort pour l’ambiance de la page d’accueil.</p>
+                <p>Image forte pour l’ambiance studio et le rendu premium.</p>
               </div>
             </article>
 
@@ -1007,7 +1309,7 @@
               <img src="arrière-plan-boyington-radio.jpg" alt="Arrière-plan Boyington Radio" />
               <div class="body">
                 <strong>Arrière-plan radio</strong>
-                <p>Fond officiel utilisé pour créer la profondeur du hero.</p>
+                <p>Visuel principal utilisé pour donner de la profondeur au hero.</p>
               </div>
             </article>
 
@@ -1015,7 +1317,7 @@
               <img src="image_studio-bas.jpg" alt="Image studio bas Boyington" />
               <div class="body">
                 <strong>Studio bas</strong>
-                <p>Bloc complémentaire pour équilibrer la composition globale.</p>
+                <p>Complément visuel pour garder un ensemble équilibré et cohérent.</p>
               </div>
             </article>
           </div>
@@ -1027,7 +1329,7 @@
           <div class="section-head">
             <div>
               <h2>DJ World Matrix</h2>
-              <p>Une zone mondiale stylisée pour donner une lecture “réseau mondial” au projet radio.</p>
+              <p>Une zone mondiale stylisée pour renforcer l’univers radio et l’idée de diffusion globale.</p>
             </div>
           </div>
 
@@ -1080,7 +1382,7 @@
           <div class="section-head">
             <div>
               <h2>Liens officiels</h2>
-              <p>Accès direct aux réseaux publics du projet, dans une mise en avant plus large et plus élégante.</p>
+              <p>Les liens visibles reprennent l’esthétique du mockup, avec des cartes larges et lisibles.</p>
             </div>
           </div>
 
@@ -1109,17 +1411,27 @@
       <div class="container">
         <div class="gold-line"></div>
         <div class="footer-inner">
-          <div>
-            <strong>BOYINGTON WEB RADIO</strong><br />
-            <span class="small">Version finale prête à copier dans le dépôt GitHub.</span>
+          <div class="footer-brand">
+            <div class="footer-mini-logo">
+              <img src="logo_radio_boyington.png" alt="Logo Boyington Radio" />
+            </div>
+            <div>
+              <strong>BOYINGTON WEB RADIO</strong><br />
+              <span class="small">Version finale prête à copier dans le dépôt GitHub.</span>
+            </div>
           </div>
+
+          <div>
+            <div class="footer-wave" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="small" style="margin-top:8px;text-align:center;">LA RADIO DU SON, DU MIX ET DE L’ÉNERGIE</div>
+          </div>
+
           <div>
             <span class="small">Facebook :</span> <a href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">LoranBoyington</a><br />
-            <span class="small">TikTok :</span> <a href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">@boyingtonremixofficiel</a>
-          </div>
-          <div>
-            <span class="small">Playlists :</span> <strong>playlists.txt</strong><br />
-            <span class="small">Player :</span> SoundCloud Widget API
+            <span class="small">TikTok :</span> <a href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">@boyingtonremixofficiel</a><br />
+            <span class="small">Playlists :</span> <strong>playlists.txt</strong>
           </div>
         </div>
       </div>
@@ -1195,7 +1507,7 @@
 
       function buildPlayerUrl(playlistUrl) {
         const encoded = encodeURIComponent(playlistUrl);
-        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ee0f25&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
       }
 
       function createWidget() {
@@ -1231,7 +1543,7 @@
         readyAfterLoad = false;
         widget.load(currentPlaylist.url, {
           auto_play: autoplay,
-          color: '#ee0f25',
+          color: '#ff2e3f',
           buying: false,
           sharing: false,
           download: false,
