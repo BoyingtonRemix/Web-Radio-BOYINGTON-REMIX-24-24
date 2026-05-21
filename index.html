@@ -3,22 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Boyington Web Radio — site officiel premium noir, argent et rouge avec player SoundCloud, visuels du dépôt GitHub et version mobile responsive." />
+  <meta name="description" content="Boyington Web Radio — site officiel premium noir, argent et rouge avec player SoundCloud, visuels du dépôt GitHub et réseaux officiels." />
   <meta name="theme-color" content="#050505" />
   <title>BOYINGTON WEB RADIO — Site Officiel</title>
   <style>
     :root{
       --bg:#050505;
-      --bg-2:#0a0a0a;
-      --panel:rgba(12,12,12,.90);
-      --panel-2:rgba(255,255,255,.03);
+      --bg2:#0b0b0b;
+      --panel:rgba(10,10,10,.90);
+      --panel2:rgba(255,255,255,.03);
       --line:rgba(255,255,255,.10);
-      --text:#f6f6f7;
-      --muted:#b8b8bd;
-      --silver:#d9d9dc;
+      --text:#f5f5f6;
+      --muted:#b7b7bc;
+      --silver:#dfdfdf;
       --red:#ff2e3f;
-      --red-2:#b80f22;
-      --white:#ffffff;
+      --red2:#c31225;
       --shadow:0 30px 110px rgba(0,0,0,.66);
       --radius:28px;
       --radius2:20px;
@@ -35,13 +34,14 @@
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
         radial-gradient(circle at 14% 10%, rgba(255,46,63,.12), transparent 18%),
-        radial-gradient(circle at 86% 8%, rgba(255,255,255,.06), transparent 20%),
+        radial-gradient(circle at 86% 8%, rgba(255,255,255,.05), transparent 18%),
         radial-gradient(circle at 50% 100%, rgba(255,46,63,.05), transparent 20%),
-        linear-gradient(180deg, #090909 0%, #040404 100%);
+        linear-gradient(180deg,#090909 0%,#040404 100%);
     }
 
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
+
     .shell{position:relative;isolation:isolate;min-height:100vh}
     .shell::before{
       content:"";
@@ -89,7 +89,6 @@
       gap:14px;
       padding:12px 0;
     }
-
     .brand{
       display:flex;
       align-items:center;
@@ -124,33 +123,40 @@
       font-size:.84rem;
     }
 
-    .clock-pill{
+    .top-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .clock-pill,.date-pill,.onair-pill{
       display:inline-flex;
       align-items:center;
       gap:10px;
       padding:12px 16px;
       border-radius:999px;
+      white-space:nowrap;
+      font-size:.84rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+    .clock-pill{
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.08);
       color:var(--silver);
-      white-space:nowrap;
-      font-size:.9rem;
       box-shadow:0 0 0 1px rgba(255,46,63,.06) inset;
     }
-    .clock-pill strong{color:#fff;letter-spacing:.08em}
+    .date-pill{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--silver);
+    }
     .onair-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:12px 16px;
-      border-radius:999px;
       background:rgba(255,46,63,.10);
       border:1px solid rgba(255,46,63,.26);
-      color:#ffdbe0;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:.82rem;
+      color:#ffe0e4;
       box-shadow:0 0 18px rgba(255,46,63,.08);
     }
     .onair-pill .dot{
@@ -164,6 +170,7 @@
       gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
+      width:100%;
     }
     .nav a{
       padding:10px 14px;
@@ -173,6 +180,7 @@
       color:var(--silver);
       font-size:.86rem;
       transition:.22s ease;
+      letter-spacing:.04em;
     }
     .nav a:hover{
       transform:translateY(-1px);
@@ -188,7 +196,6 @@
       gap:18px;
       align-items:stretch;
     }
-
     .hero-panel{
       min-height:540px;
       background:
@@ -263,7 +270,7 @@
     }
     .hero-copy{
       margin:14px 0 0;
-      max-width:64ch;
+      max-width:62ch;
       color:rgba(255,255,255,.92);
       line-height:1.72;
       font-size:1rem;
@@ -356,7 +363,6 @@
       gap:14px;
       min-height:540px;
     }
-
     .hero-studio{
       position:relative;
       border-radius:24px;
@@ -379,7 +385,7 @@
       z-index:1;
       padding:14px 16px;
       border-radius:18px;
-      background:rgba(0,0,0,.5);
+      background:rgba(0,0,0,.50);
       border:1px solid rgba(255,255,255,.10);
       backdrop-filter:blur(8px);
     }
@@ -388,12 +394,12 @@
       text-transform:uppercase;
       letter-spacing:.08em;
       font-size:.92rem;
-      margin-bottom:4px;
+      margin-bottom:2px;
     }
     .hero-studio .caption span{
       display:block;
       color:var(--muted);
-      line-height:1.5;
+      line-height:1.45;
       font-size:.88rem;
     }
 
@@ -709,6 +715,7 @@
       width:100%;
       aspect-ratio:1/1;
       object-fit:cover;
+      background:#080808;
     }
     .gallery-card .body{padding:14px}
     .gallery-card .body strong{
@@ -724,6 +731,19 @@
       line-height:1.55;
       font-size:.9rem;
     }
+    .pager{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      margin-top:10px;
+    }
+    .pager span{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:rgba(255,255,255,.26);
+    }
+    .pager span:first-child{background:var(--red)}
 
     .matrix-wrap{
       padding:18px;
@@ -925,6 +945,70 @@
       font-size:.82rem;
     }
 
+    .social-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:14px;
+    }
+    .social-card{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      min-height:122px;
+      cursor:pointer;
+      transition:.22s ease;
+    }
+    .social-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,46,63,.36);
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+    }
+    .social-left{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .social-ico{
+      width:68px;
+      height:68px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:1.7rem;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      flex:0 0 auto;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+    .social-copy{min-width:0}
+    .social-copy strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1rem;
+      margin:0 0 4px;
+    }
+    .social-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:.88rem;
+      line-height:1.45;
+      word-break:break-all;
+    }
+    .social-arrow{
+      font-size:1.7rem;
+      color:#fff;
+      opacity:.9;
+      flex:0 0 auto;
+    }
+
     .links-grid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -966,71 +1050,6 @@
       flex:0 0 auto;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
     }
-    .social-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      gap:14px;
-    }
-    .social-card{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:18px;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      min-height:122px;
-      cursor:pointer;
-      transition:.22s ease;
-    }
-    .social-card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(255,46,63,.36);
-      box-shadow:0 14px 30px rgba(0,0,0,.22);
-    }
-    .social-left{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width:0;
-    }
-    .social-ico{
-      width:68px;
-      height:68px;
-      border-radius:18px;
-      display:grid;
-      place-items:center;
-      font-weight:900;
-      font-size:1.7rem;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      flex:0 0 auto;
-    }
-    .social-copy{
-      min-width:0;
-    }
-    .social-copy strong{
-      display:block;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:1rem;
-      margin:0 0 4px;
-    }
-    .social-copy span{
-      display:block;
-      color:var(--muted);
-      font-size:.88rem;
-      line-height:1.45;
-      word-break:break-all;
-    }
-    .social-arrow{
-      font-size:1.7rem;
-      color:#fff;
-      opacity:.9;
-      flex:0 0 auto;
-    }
-
 
     .footer{
       padding:24px 0 34px;
@@ -1058,7 +1077,6 @@
       text-underline-offset:2px;
     }
     .small{font-size:.88rem;color:var(--muted)}
-
     .footer-brand{
       display:flex;align-items:center;gap:12px;
     }
@@ -1074,6 +1092,7 @@
       gap:4px;
       height:36px;
       padding:0 8px;
+      justify-content:center;
     }
     .footer-wave span{
       width:6px;
@@ -1117,9 +1136,9 @@
 
     @media (max-width:960px){
       .topbar-inner{flex-wrap:wrap}
-      .clock-pill{order:2}
-      .onair-pill{order:3}
-      .nav{order:4;justify-content:flex-start;width:100%}
+      .brand{width:100%}
+      .top-right{width:100%;justify-content:space-between}
+      .nav{justify-content:flex-start;width:100%}
       .hero-grid{grid-template-columns:1fr}
       .hero-panel,.hero-side{min-height:auto}
       .hero-content{padding:20px}
@@ -1136,6 +1155,7 @@
       .topbar-inner,
       .section-head,
       .footer-inner{flex-direction:column;align-items:flex-start}
+      .top-right{justify-content:flex-start}
       .nav{justify-content:flex-start}
       .gallery-grid,
       .matrix-stats{grid-template-columns:1fr}
@@ -1164,14 +1184,16 @@
           </div>
         </div>
 
-        <div class="clock-pill" aria-live="polite">
-          <span>DJ World Matrix</span>
-          <strong id="boyingtonClock">--:--:--</strong>
-        </div>
-
-        <div class="onair-pill" aria-label="En direct">
-          <span class="dot"></span>
-          ON AIR
+        <div class="top-right">
+          <div class="date-pill">20.05.2026 | 12:00</div>
+          <div class="clock-pill" aria-live="polite">
+            <span>DJ World Matrix</span>
+            <strong id="boyingtonClock">--:--:--</strong>
+          </div>
+          <div class="onair-pill" aria-label="En direct">
+            <span class="dot"></span>
+            ON AIR
+          </div>
         </div>
 
         <nav class="nav" aria-label="Navigation principale">
@@ -1179,8 +1201,8 @@
           <a href="#player">RADIO</a>
           <a href="#visuels">VISUELS</a>
           <a href="#matrix">DJ WORLD MATRIX</a>
-          <a href="#reseaux">RÉSEAUX</a>
-          <a href="#liens">LIENS OFFICIELS</a>
+          <a href="#reseaux">LIENS OFFICIELS</a>
+          <a href="#footer">CONTACT</a>
         </nav>
       </div>
     </header>
@@ -1247,7 +1269,7 @@
             <div class="hero-studio">
               <div class="caption">
                 <strong>Studio console</strong>
-                <span>Fond principal du site, habillé pour le rendu noir / argent / rouge.</span>
+                <span>Vue premium du dépôt, habillée pour le rendu noir / argent / rouge.</span>
               </div>
             </div>
 
@@ -1326,85 +1348,12 @@
         </div>
       </section>
 
-
-      
-<section id="reseaux" class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>Boyington Réseaux Officiels</h2>
-              <p>Accès direct aux plateformes officielles Boyington.</p>
-            </div>
-          </div>
-
-          <div class="social-grid">
-
-            <a class="social-card" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">
-              <div class="social-left">
-                <div class="social-ico">f</div>
-                <div class="social-copy">
-                  <strong>Facebook Officiel</strong>
-                  <span>facebook.com/LoranBoyington</span>
-                </div>
-              </div>
-              <div class="social-arrow">→</div>
-            </a>
-
-            <a class="social-card" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener noreferrer">
-              <div class="social-left">
-                <div class="social-ico">DJ</div>
-                <div class="social-copy">
-                  <strong>Groupe DJs Officiel</strong>
-                  <span>DjsSetMusicForPeople</span>
-                </div>
-              </div>
-              <div class="social-arrow">→</div>
-            </a>
-
-            <a class="social-card" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">
-              <div class="social-left">
-                <div class="social-ico">♪</div>
-                <div class="social-copy">
-                  <strong>TikTok Officiel</strong>
-                  <span>@boyingtonremixofficiel</span>
-                </div>
-              </div>
-              <div class="social-arrow">→</div>
-            </a>
-
-            <a class="social-card" href="https://www.youtube.com/@BoyingtonCollection" target="_blank" rel="noopener noreferrer">
-              <div class="social-left">
-                <div class="social-ico">▶</div>
-                <div class="social-copy">
-                  <strong>YouTube Officiel</strong>
-                  <span>@BoyingtonCollection</span>
-                </div>
-              </div>
-              <div class="social-arrow">→</div>
-            </a>
-
-            <a class="social-card" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">
-              <div class="social-left">
-                <div class="social-ico">S</div>
-                <div class="social-copy">
-                  <strong>SoundCloud Officiel</strong>
-                  <span>soundcloud.com/boyingtonremix</span>
-                </div>
-              </div>
-              <div class="social-arrow">→</div>
-            </a>
-
-          </div>
-        </div>
-      </section>
-
-
       <section id="visuels" class="section">
         <div class="container">
           <div class="section-head">
             <div>
               <h2>Visuels du dépôt GitHub</h2>
-              <p>Les images du dépôt sont affichées de manière nette et premium, pour rester proches du visuel de référence.</p>
+              <p>Les images du dépôt restent lisibles, nettes et structurées pour garder une lecture premium.</p>
             </div>
           </div>
 
@@ -1440,6 +1389,10 @@
                 <p>Complément visuel pour garder un ensemble équilibré et cohérent.</p>
               </div>
             </article>
+          </div>
+
+          <div class="pager" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
           </div>
         </div>
       </section>
@@ -1497,35 +1450,76 @@
         </div>
       </section>
 
-      <section id="liens" class="section">
+      <section id="reseaux" class="section">
         <div class="container">
           <div class="section-head">
             <div>
-              <h2>Liens officiels</h2>
-              <p>Raccourcis cliquables.</p>
+              <h2>Boyington Réseaux Officiels</h2>
+              <p>Accès direct aux plateformes officielles Boyington.</p>
             </div>
           </div>
 
-          <div class="links-grid">
-            <a class="link-card" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Facebook officiel Boyington">
-              <div class="link-copy">
-                <h3>Facebook</h3>
+          <div class="social-grid">
+            <a class="social-card" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Facebook officiel Boyington">
+              <div class="social-left">
+                <div class="social-ico">f</div>
+                <div class="social-copy">
+                  <strong>Facebook Officiel</strong>
+                  <span>facebook.com/LoranBoyington</span>
+                </div>
               </div>
-              <div class="link-icon">f</div>
+              <div class="social-arrow">→</div>
             </a>
 
-            <a class="link-card" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir TikTok officiel Boyington">
-              <div class="link-copy">
-                <h3>TikTok</h3>
+            <a class="social-card" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir groupe Facebook officiel DJ">
+              <div class="social-left">
+                <div class="social-ico">DJ</div>
+                <div class="social-copy">
+                  <strong>Groupe DJs Officiel</strong>
+                  <span>DjsSetMusicForPeople</span>
+                </div>
               </div>
-              <div class="link-icon">♪</div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir TikTok officiel Boyington">
+              <div class="social-left">
+                <div class="social-ico">♪</div>
+                <div class="social-copy">
+                  <strong>TikTok Officiel</strong>
+                  <span>@boyingtonremixofficiel</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://www.youtube.com/@BoyingtonCollection" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir YouTube officiel Boyington">
+              <div class="social-left">
+                <div class="social-ico">▶</div>
+                <div class="social-copy">
+                  <strong>YouTube Officiel</strong>
+                  <span>@BoyingtonCollection</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir SoundCloud officiel Boyington">
+              <div class="social-left">
+                <div class="social-ico">S</div>
+                <div class="social-copy">
+                  <strong>SoundCloud Officiel</strong>
+                  <span>soundcloud.com/boyingtonremix</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
             </a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
+    <footer id="footer" class="footer">
       <div class="container">
         <div class="gold-line"></div>
         <div class="footer-inner">
@@ -1546,7 +1540,8 @@
           </div>
 
           <div>
-            <span class="small">Playlists :</span> <strong>playlists.txt</strong>
+            <span class="small">Playlists :</span> <strong>playlists.txt</strong><br />
+            <span class="small">Contact :</span> <strong>Réseaux officiels</strong>
           </div>
         </div>
       </div>
