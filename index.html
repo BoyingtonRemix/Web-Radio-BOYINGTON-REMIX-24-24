@@ -1092,7 +1092,7 @@
     }
 
     .footer{
-      padding:24px 0 34px;
+      padding:18px 0 24px;
       color:var(--muted);
     }
     .gold-line{
@@ -1209,7 +1209,13 @@
       .player-side .side-copy{font-size:.88rem}
       .world-video-wrap{min-height:200px}
       .world-video{min-height:200px}
-      .footer-brand{width:100%}
+      .footer-panel{
+        grid-template-columns:1fr;
+        gap:14px;
+      }
+      .footer-right{
+        justify-self:start;
+      }
     }
   </style>
 </head>
@@ -1533,27 +1539,30 @@
     <footer id="footer" class="footer">
       <div class="container">
         <div class="gold-line"></div>
-        <div class="footer-inner">
-          <div class="footer-brand">
+        <div class="footer-panel">
+          <div class="footer-left">
             <div class="footer-mini-logo">
               <img src="logo_radio_boyington.png" alt="Logo Boyington Radio" />
             </div>
-            <div>
-              <strong>BOYINGTON WEB RADIO</strong><br />
-              <span class="small">Version finale prête à copier dans le dépôt GitHub.</span>
+            <div class="footer-copy">
+              <strong>BOYINGTON WEB RADIO</strong>
+              <span>Site officiel — noir / argent / rouge</span>
             </div>
           </div>
 
-          <div>
-            <div class="footer-wave" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            </div>
+          <div class="footer-wave" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
           </div>
 
-          <div>
-            <span class="small">Playlists :</span> <strong>playlists.txt</strong><br />
-            <span class="small">Contact :</span> <strong>Réseaux officiels</strong>
-          </div>
+          
+<div class="footer-right">
+  🎧 Diffusion Boyington Web Radio non commerciales<br>
+  🎶 Soutenez toujours les artistes et labels officiels.<br>
+  ⚠️ Tous les droits sur les œuvres originales appartiennent à leurs propriétaires respectifs.<br>
+  © BoyingtonWebRadioOfficial — All Rights Reserved<br>
+  Alias Péppino
+</div>
+
         </div>
       </div>
     </footer>
