@@ -966,6 +966,71 @@
       flex:0 0 auto;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
     }
+    .social-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:14px;
+    }
+    .social-card{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      min-height:122px;
+      cursor:pointer;
+      transition:.22s ease;
+    }
+    .social-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,46,63,.36);
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+    }
+    .social-left{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .social-ico{
+      width:68px;
+      height:68px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:1.7rem;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      flex:0 0 auto;
+    }
+    .social-copy{
+      min-width:0;
+    }
+    .social-copy strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1rem;
+      margin:0 0 4px;
+    }
+    .social-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:.88rem;
+      line-height:1.45;
+      word-break:break-all;
+    }
+    .social-arrow{
+      font-size:1.7rem;
+      color:#fff;
+      opacity:.9;
+      flex:0 0 auto;
+    }
+
 
     .footer{
       padding:24px 0 34px;
@@ -1064,6 +1129,7 @@
       .player-grid{grid-template-columns:1fr}
       .matrix-stats{grid-template-columns:repeat(2, minmax(0, 1fr))}
       .links-grid{grid-template-columns:1fr}
+      .social-grid{grid-template-columns:1fr}
     }
 
     @media (max-width:640px){
@@ -1113,6 +1179,7 @@
           <a href="#player">RADIO</a>
           <a href="#visuels">VISUELS</a>
           <a href="#matrix">DJ WORLD MATRIX</a>
+          <a href="#reseaux">RÉSEAUX</a>
           <a href="#liens">LIENS OFFICIELS</a>
         </nav>
       </div>
@@ -1259,6 +1326,79 @@
         </div>
       </section>
 
+
+      
+<section id="reseaux" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Boyington Réseaux Officiels</h2>
+              <p>Accès direct aux plateformes officielles Boyington.</p>
+            </div>
+          </div>
+
+          <div class="social-grid">
+
+            <a class="social-card" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">
+              <div class="social-left">
+                <div class="social-ico">f</div>
+                <div class="social-copy">
+                  <strong>Facebook Officiel</strong>
+                  <span>facebook.com/LoranBoyington</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener noreferrer">
+              <div class="social-left">
+                <div class="social-ico">DJ</div>
+                <div class="social-copy">
+                  <strong>Groupe DJs Officiel</strong>
+                  <span>DjsSetMusicForPeople</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">
+              <div class="social-left">
+                <div class="social-ico">♪</div>
+                <div class="social-copy">
+                  <strong>TikTok Officiel</strong>
+                  <span>@boyingtonremixofficiel</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://www.youtube.com/@BoyingtonCollection" target="_blank" rel="noopener noreferrer">
+              <div class="social-left">
+                <div class="social-ico">▶</div>
+                <div class="social-copy">
+                  <strong>YouTube Officiel</strong>
+                  <span>@BoyingtonCollection</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer">
+              <div class="social-left">
+                <div class="social-ico">S</div>
+                <div class="social-copy">
+                  <strong>SoundCloud Officiel</strong>
+                  <span>soundcloud.com/boyingtonremix</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+
       <section id="visuels" class="section">
         <div class="container">
           <div class="section-head">
@@ -1362,21 +1502,21 @@
           <div class="section-head">
             <div>
               <h2>Liens officiels</h2>
-              <p>Accès direct aux réseaux publics.</p>
+              <p>Raccourcis cliquables.</p>
             </div>
           </div>
 
           <div class="links-grid">
             <a class="link-card" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Facebook officiel Boyington">
               <div class="link-copy">
-                <h3>Facebook officiel</h3>
+                <h3>Facebook</h3>
               </div>
               <div class="link-icon">f</div>
             </a>
 
             <a class="link-card" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir TikTok officiel Boyington">
               <div class="link-copy">
-                <h3>TikTok officiel</h3>
+                <h3>TikTok</h3>
               </div>
               <div class="link-icon">♪</div>
             </a>
