@@ -627,7 +627,7 @@
         radial-gradient(circle at 50% 22%, rgba(255,46,63,.16), transparent 26%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
       padding:18px;
-      min-height:280px;
+      min-height:250px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
@@ -833,7 +833,7 @@
       border:1px solid rgba(255,255,255,.08);
       background:#0d0d0d;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 0 1px rgba(255,46,63,.06);
-      min-height:280px;
+      min-height:250px;
     }
     .player-embed::before{
       content:"";
@@ -849,19 +849,19 @@
       border:0;
       position:relative;
       z-index:1;
-      min-height:280px;
+      min-height:250px;
     }
     .player-side{
       display:flex;
       align-items:stretch;
       justify-content:center;
       padding:12px;
-      min-height:560px;
+      min-height:250px;
     }
     .player-side .micro-video{
       width:100%;
-      height:100%;
-      min-height:100%;
+      height:250px;
+      min-height:250px;
       object-fit:cover;
       display:block;
       border-radius:24px;
@@ -1341,7 +1341,7 @@
       .hero-copy{font-size:.96rem}
       .player-wrap,.matrix-wrap{padding:14px}
       .player-side{min-height:auto}
-      .player-side .micro-video{min-height:420px}
+      .player-side .micro-video{min-height:250px}
       .player-side .mic{width:150px;height:200px}
       .player-side .side-copy{font-size:.88rem}
       .world-video-wrap{min-height:200px}
@@ -1548,8 +1548,8 @@
 
           <div class="panel player-wrap">
             <div class="player-grid">
-              <div class="player-side" style="display:flex;align-items:stretch;justify-content:center;padding:12px;min-height:560px;">
-                <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png" style="width:100%;height:100%;min-height:100%;object-fit:cover;display:block;border-radius:24px;background:#000;">
+              <div class="player-side">
+                <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png">
                   <source src="boyington-radio-micro-animation.mp4" type="video/mp4">
                 </video>
               </div>
@@ -1558,7 +1558,7 @@
                 <iframe
                   id="sc-player"
                   width="100%"
-                  height="340"
+                  height="250"
                   scrolling="no"
                   frameborder="no"
                   allow="autoplay; encrypted-media"
