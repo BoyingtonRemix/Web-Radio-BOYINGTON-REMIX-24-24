@@ -71,6 +71,10 @@ TITLE=Playlist 8 Remix 2025
 URL=https://soundcloud.com/boyingtonremix/playlist-8-remix-2025
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 9 Remix Dance Disco
+URL=https://soundcloud.com/boyingtonremix/playlist-9-remix-dance-disco
+[/PLAYLIST]
 
 
 
