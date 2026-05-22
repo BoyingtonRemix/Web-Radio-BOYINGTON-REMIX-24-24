@@ -62,6 +62,14 @@ URL=https://soundcloud.com/boyingtonremix/playmist-6-remix-bootleg
 [/PLAYLIST]
 
 [PLAYLIST]
+TITLE=Playlist 7 Pete Bellis & Tommy
+URL=https://soundcloud.com/boyingtonremix/playlist-7-pete-bellis-tommy
+[/PLAYLIST]
+
+
+
+
+[PLAYLIST]
 TITLE=
 URL=
 [/PLAYLIST]
