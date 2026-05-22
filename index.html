@@ -86,7 +86,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap:14px;
       padding:12px 0;
     }
     .brand{
@@ -905,6 +905,7 @@
       margin-bottom:4px;
     }
 
+    
     .player-embed{
       position:relative;
       overflow:hidden;
@@ -912,7 +913,72 @@
       border:1px solid rgba(255,255,255,.08);
       background:#0d0d0d;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 0 1px rgba(255,46,63,.06);
-      min-height:250px;
+      min-height:auto;
+      display:flex;
+      flex-direction:column;
+    }
+
+    #sc-player{
+      width:100%;
+      height:210px;
+      border:0;
+      display:block;
+      background:#040404;
+    }
+
+    .player-ticker{
+      position:relative;
+      overflow:hidden;
+      height:44px;
+      border-top:1px solid rgba(255,46,63,.18);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.98), rgba(20,0,3,.96));
+      display:flex;
+      align-items:center;
+      padding:0 14px;
+    }
+
+    .player-ticker::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, transparent, rgba(255,46,63,.12), transparent);
+      pointer-events:none;
+      opacity:.75;
+    }
+
+    .player-ticker-track{
+      position:relative;
+      z-index:1;
+      display:flex;
+      width:max-content;
+      white-space:nowrap;
+      align-items:center;
+      gap:18px;
+      color:#f1cd63;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+      font-weight:800;
+      animation:tickerMove 16s linear infinite;
+      will-change:transform;
+    }
+
+    .player-ticker-track span{
+      display:inline-flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    .player-ticker-chip{
+      color:#ff7b86;
+      text-shadow:0 0 10px rgba(255,46,63,.20);
+    }
+
+    @keyframes tickerMove{
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
     }
     .player-embed::before{
       content:"";
@@ -1564,451 +1630,6 @@
   }
 }
 
-
-    /* ============================== */
-    /* Boyington Radio Player Premium */
-    /* ============================== */
-    .player-section{
-      padding:18px;
-      margin-bottom:20px;
-    }
-
-    .player-wrap{
-      position:relative;
-      padding:18px;
-      border-radius:28px;
-      border:1px solid rgba(255,46,63,.26);
-      background:
-        radial-gradient(circle at 14% 18%, rgba(255,46,63,.15), transparent 18%),
-        radial-gradient(circle at 86% 16%, rgba(212,175,55,.08), transparent 16%),
-        linear-gradient(180deg, rgba(8,8,8,.98), rgba(2,2,2,.96));
-      box-shadow:
-        0 24px 90px rgba(0,0,0,.66),
-        inset 0 0 0 1px rgba(255,255,255,.03);
-      overflow:hidden;
-    }
-
-    .player-wrap::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, transparent 0%, rgba(255,46,63,.06) 50%, transparent 100%);
-      pointer-events:none;
-    }
-
-    .player-grid{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns:280px minmax(0,1fr);
-      gap:16px;
-      align-items:stretch;
-    }
-
-    .player-side{
-      border-radius:24px;
-      border:1px solid rgba(255,46,63,.20);
-      background:
-        radial-gradient(circle at 50% 10%, rgba(255,46,63,.18), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      min-height:420px;
-    }
-
-    .micro-video{
-      width:100%;
-      flex:1 1 auto;
-      object-fit:cover;
-      display:block;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.06);
-      background:#000;
-      box-shadow:
-        0 0 22px rgba(255,46,63,.16),
-        inset 0 0 0 1px rgba(255,255,255,.03);
-    }
-
-    .player-eq{
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      gap:5px;
-      height:46px;
-      margin-top:14px;
-    }
-
-    .player-eq span{
-      width:7px;
-      border-radius:999px 999px 0 0;
-      background:linear-gradient(180deg, #ff6b7b 0%, #ab0f23 100%);
-      animation:equalize 1.2s ease-in-out infinite;
-    }
-
-    .player-eq span:nth-child(2){animation-delay:.1s;height:24px}
-    .player-eq span:nth-child(3){animation-delay:.2s;height:38px}
-    .player-eq span:nth-child(4){animation-delay:.3s;height:18px}
-    .player-eq span:nth-child(5){animation-delay:.4s;height:42px}
-    .player-eq span:nth-child(6){animation-delay:.5s;height:22px}
-    .player-eq span:nth-child(7){animation-delay:.6s;height:34px}
-    .player-eq span:nth-child(8){animation-delay:.7s;height:16px}
-
-    .player-side-copy{
-      margin-top:14px;
-      text-align:center;
-      color:var(--muted);
-      line-height:1.6;
-      font-size:.92rem;
-    }
-
-    .player-side-copy strong{
-      display:block;
-      color:#fff;
-      text-transform:uppercase;
-      letter-spacing:.10em;
-      margin-bottom:4px;
-      font-size:.9rem;
-    }
-
-    .player-main{
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.08);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,46,63,.12), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-      padding:18px;
-      min-width:0;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    .player-topline{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:flex-start;
-      flex-wrap:wrap;
-    }
-
-    .player-topline-left{
-      min-width:0;
-    }
-
-    .player-live-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,46,63,.12);
-      border:1px solid rgba(255,46,63,.28);
-      color:#ffe0e4;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:.72rem;
-      font-weight:800;
-      box-shadow:0 0 18px rgba(255,46,63,.08);
-    }
-
-    .player-live-pill .dot{
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:var(--red);
-      box-shadow:0 0 14px rgba(255,46,63,.88);
-    }
-
-    .player-kicker{
-      margin-top:10px;
-      color:var(--red);
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      font-size:.78rem;
-      font-weight:800;
-    }
-
-    .player-brand-mini{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(212,175,55,.22);
-      background:rgba(212,175,55,.06);
-      color:var(--gold-light);
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:.72rem;
-      font-weight:800;
-    }
-
-    .player-body{
-      display:grid;
-      grid-template-columns:160px 1fr;
-      gap:16px;
-      align-items:center;
-    }
-
-    .player-cover{
-      width:160px;
-      aspect-ratio:1/1;
-      overflow:hidden;
-      border-radius:22px;
-      border:1px solid rgba(255,46,63,.28);
-      box-shadow:0 0 24px rgba(255,46,63,.10);
-      background:#050505;
-    }
-
-    .player-cover img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .player-meta h3{
-      margin:0;
-      color:#fff;
-      font-size:1.55rem;
-      line-height:1.15;
-      letter-spacing:.02em;
-    }
-
-    .player-meta p{
-      margin:8px 0 0;
-      color:var(--muted);
-      line-height:1.65;
-      font-size:.96rem;
-    }
-
-    .player-flags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:12px;
-    }
-
-    .player-flags span{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-      color:#f1f1f1;
-      font-size:.72rem;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      font-weight:700;
-    }
-
-    .player-flags span.accent{
-      border-color:rgba(255,46,63,.28);
-      background:rgba(255,46,63,.08);
-      color:#ffdfe3;
-    }
-
-    .player-embed-shell{
-      position:relative;
-      overflow:hidden;
-      min-height:190px;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.08);
-      background:#040404;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.03),
-        0 0 0 1px rgba(255,46,63,.05);
-    }
-
-    .player-embed-shell::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.04), transparent 18%, transparent 82%, rgba(255,46,63,.05));
-      pointer-events:none;
-      z-index:2;
-    }
-
-    .soundcloud-iframe{
-      width:100%;
-      height:230px;
-      border:0;
-      display:block;
-      background:#040404;
-      filter:brightness(.92) contrast(1.06) saturate(.92);
-    }
-
-    .player-footer{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .player-services{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:12px;
-      margin-top:2px;
-    }
-
-    .service-card{
-      position:relative;
-      overflow:hidden;
-      min-height:92px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.02),
-        0 0 18px rgba(0,0,0,.18);
-      padding:14px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .service-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(135deg, rgba(255,46,63,.10), transparent 55%);
-      pointer-events:none;
-    }
-
-    .service-ico{
-      width:44px;
-      height:44px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      flex:0 0 auto;
-      background:
-        radial-gradient(circle at 30% 28%, rgba(255,255,255,.18), transparent 28%),
-        linear-gradient(145deg, rgba(255,46,63,.30), rgba(59,6,14,.92));
-      border:1px solid rgba(255,46,63,.22);
-      color:#fff;
-      font-weight:900;
-      font-size:1.02rem;
-      box-shadow:
-        0 0 18px rgba(255,46,63,.12),
-        inset 0 0 0 1px rgba(255,255,255,.04);
-      position:relative;
-      z-index:1;
-    }
-
-    .service-copy{
-      position:relative;
-      z-index:1;
-      min-width:0;
-      line-height:1.25;
-    }
-
-    .service-copy strong{
-      display:block;
-      color:#fff;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:.80rem;
-      margin-bottom:4px;
-    }
-
-    .service-copy span{
-      display:block;
-      color:var(--muted);
-      font-size:.72rem;
-      line-height:1.35;
-    }
-
-    .player-chip{
-      padding:10px 14px;
-      border-radius:999px;
-      background:rgba(255,46,63,.10);
-      border:1px solid rgba(255,46,63,.24);
-      color:#ffdfe4;
-      font-size:.72rem;
-      font-weight:800;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
-
-    .player-sign{
-      color:var(--gold-light);
-      text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:.78rem;
-      font-weight:800;
-    }
-
-    @media(max-width:1100px){
-      .player-grid{
-        grid-template-columns:1fr;
-      }
-
-      .player-side{
-        min-height:auto;
-      }
-
-      .player-body{
-        grid-template-columns:130px 1fr;
-      }
-
-      .player-services{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media(max-width:700px){
-      .player-section{
-        padding:12px;
-      }
-
-      .player-wrap{
-        padding:12px;
-        border-radius:22px;
-      }
-
-      .player-grid{
-        gap:12px;
-      }
-
-      .player-side,
-      .player-main{
-        padding:14px;
-        border-radius:20px;
-      }
-
-      .player-body{
-        grid-template-columns:1fr;
-      }
-
-      .player-cover{
-        width:100%;
-        aspect-ratio:1/1;
-      }
-
-      .player-services{
-        grid-template-columns:1fr;
-      }
-
-      .soundcloud-iframe{
-        height:230px;
-      }
-
-      .player-footer{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-    }
-
-    @keyframes equalize{
-      0%,100%{height:18px}
-      50%{height:52px}
-    }
 </style>
 </head>
 <body>
@@ -2132,7 +1753,6 @@
           <div class="section-head">
             <div>
               <h2>Lecteur officiel</h2>
-              <p>Habillage premium du player SoundCloud, sans toucher à la logique playlists.txt.</p>
             </div>
           </div>
 
@@ -2142,101 +1762,30 @@
                 <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png">
                   <source src="boyington-radio-micro-animation.mp4" type="video/mp4">
                 </video>
-
-                <div class="player-eq" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span>
-                  <span></span><span></span><span></span><span></span>
-                </div>
-
-                <div class="player-side-copy">
-                  <strong>Studio pulse</strong>
-                  Micro en scène • ambiance live • univers radio premium
-                </div>
               </div>
 
-              <div class="player-main">
-                <div class="player-topline">
-                  <div class="player-topline-left">
-                    <div class="player-live-pill"><span class="dot"></span> ON AIR</div>
-                    <div class="player-kicker">BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC</div>
+              <div class="player-embed">
+                <iframe
+                  id="sc-player"
+                  width="100%"
+                  height="210"
+                  scrolling="no"
+                  frameborder="no"
+                  allow="autoplay; encrypted-media"
+                  src="about:blank"
+                  title="SoundCloud player - Boyington Web Radio"></iframe>
+
+                <div class="player-ticker" aria-label="Playlist instruction">
+                  <div class="player-ticker-track">
+                    <span><span class="player-ticker-chip">PRESS F5</span> TO LOAD A NEW RANDOM PLAYLIST</span>
+                    <span aria-hidden="true"><span class="player-ticker-chip">PRESS F5</span> TO LOAD A NEW RANDOM PLAYLIST</span>
                   </div>
-
-                  <div class="player-brand-mini">SoundCloud Live</div>
-                </div>
-
-                <div class="player-body">
-                  <div class="player-cover">
-                    <img src="logo_radio_boyington.png" alt="Boyington Web Radio">
-                  </div>
-
-                  <div class="player-meta">
-                    <h3>Lecture automatique</h3>
-                    <p>Playlists SoundCloud • rotation aléatoire • enchaînement continu</p>
-
-                    <div class="player-flags">
-                      <span class="accent">Now Playing</span>
-                      <span>Worldwide</span>
-                      <span>Premium Sound</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="player-embed-shell">
-                  <iframe
-                    id="sc-player"
-                    width="100%"
-                    height="190"
-                    scrolling="no"
-                    frameborder="no"
-                    allow="autoplay; encrypted-media"
-                    src="about:blank"
-                    title="SoundCloud player - Boyington Web Radio"></iframe>
-                </div>
-
-                <div class="player-services" aria-label="Services rapides">
-                  <div class="service-card">
-                    <div class="service-ico">01</div>
-                    <div class="service-copy">
-                      <strong>Service 01</strong>
-                      <span>Emplacement à personnaliser</span>
-                    </div>
-                  </div>
-
-                  <div class="service-card">
-                    <div class="service-ico">02</div>
-                    <div class="service-copy">
-                      <strong>Service 02</strong>
-                      <span>Emplacement à personnaliser</span>
-                    </div>
-                  </div>
-
-                  <div class="service-card">
-                    <div class="service-ico">03</div>
-                    <div class="service-copy">
-                      <strong>Service 03</strong>
-                      <span>Emplacement à personnaliser</span>
-                    </div>
-                  </div>
-
-                  <div class="service-card">
-                    <div class="service-ico">04</div>
-                    <div class="service-copy">
-                      <strong>Service 04</strong>
-                      <span>Emplacement à personnaliser</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="player-footer">
-                  <div class="player-chip">Live from the studio</div>
-                  <div class="player-sign">Boyington Radio • Music is Life</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
 
       <section id="visuels" class="section">
         <div class="container">
