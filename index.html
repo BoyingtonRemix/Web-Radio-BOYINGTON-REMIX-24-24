@@ -1847,6 +1847,82 @@
       flex-wrap:wrap;
     }
 
+    .player-services{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:12px;
+      margin-top:2px;
+    }
+
+    .service-card{
+      position:relative;
+      overflow:hidden;
+      min-height:92px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.02),
+        0 0 18px rgba(0,0,0,.18);
+      padding:14px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .service-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg, rgba(255,46,63,.10), transparent 55%);
+      pointer-events:none;
+    }
+
+    .service-ico{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      background:
+        radial-gradient(circle at 30% 28%, rgba(255,255,255,.18), transparent 28%),
+        linear-gradient(145deg, rgba(255,46,63,.30), rgba(59,6,14,.92));
+      border:1px solid rgba(255,46,63,.22);
+      color:#fff;
+      font-weight:900;
+      font-size:1.02rem;
+      box-shadow:
+        0 0 18px rgba(255,46,63,.12),
+        inset 0 0 0 1px rgba(255,255,255,.04);
+      position:relative;
+      z-index:1;
+    }
+
+    .service-copy{
+      position:relative;
+      z-index:1;
+      min-width:0;
+      line-height:1.25;
+    }
+
+    .service-copy strong{
+      display:block;
+      color:#fff;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.80rem;
+      margin-bottom:4px;
+    }
+
+    .service-copy span{
+      display:block;
+      color:var(--muted);
+      font-size:.72rem;
+      line-height:1.35;
+    }
+
     .player-chip{
       padding:10px 14px;
       border-radius:999px;
@@ -1879,6 +1955,10 @@
       .player-body{
         grid-template-columns:130px 1fr;
       }
+
+      .player-services{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media(max-width:700px){
@@ -1910,8 +1990,12 @@
         aspect-ratio:1/1;
       }
 
+      .player-services{
+        grid-template-columns:1fr;
+      }
+
       .soundcloud-iframe{
-        height:780px;
+        height:720px;
       }
 
       .player-footer{
@@ -2100,12 +2184,46 @@
                   <iframe
                     id="sc-player"
                     width="100%"
-                    height="340"
+                    height="300"
                     scrolling="no"
                     frameborder="no"
                     allow="autoplay; encrypted-media"
                     src="about:blank"
                     title="SoundCloud player - Boyington Web Radio"></iframe>
+                </div>
+
+                <div class="player-services" aria-label="Services rapides">
+                  <div class="service-card">
+                    <div class="service-ico">01</div>
+                    <div class="service-copy">
+                      <strong>Service 01</strong>
+                      <span>Emplacement à personnaliser</span>
+                    </div>
+                  </div>
+
+                  <div class="service-card">
+                    <div class="service-ico">02</div>
+                    <div class="service-copy">
+                      <strong>Service 02</strong>
+                      <span>Emplacement à personnaliser</span>
+                    </div>
+                  </div>
+
+                  <div class="service-card">
+                    <div class="service-ico">03</div>
+                    <div class="service-copy">
+                      <strong>Service 03</strong>
+                      <span>Emplacement à personnaliser</span>
+                    </div>
+                  </div>
+
+                  <div class="service-card">
+                    <div class="service-ico">04</div>
+                    <div class="service-copy">
+                      <strong>Service 04</strong>
+                      <span>Emplacement à personnaliser</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="player-footer">
