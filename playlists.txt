@@ -76,6 +76,11 @@ TITLE=Playlist 9 Remix Dance Disco
 URL=https://soundcloud.com/boyingtonremix/playlist-9-remix-dance-disco
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playslit 10 Jackers Revenge
+URL=https://soundcloud.com/boyingtonremix/playslit-10-jackers-revenge
+[/PLAYLIST]
+
 
 
 [PLAYLIST]
