@@ -66,6 +66,11 @@ TITLE=Playlist 7 Pete Bellis & Tommy
 URL=https://soundcloud.com/boyingtonremix/playlist-7-pete-bellis-tommy
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 8 Remix 2025
+URL=https://soundcloud.com/boyingtonremix/playlist-8-remix-2025
+[/PLAYLIST]
+
 
 
 
