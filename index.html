@@ -926,28 +926,38 @@
       background:#040404;
     }
 
-    .player-ticker{
-      position:relative;
-      overflow:hidden;
-      height:44px;
-      border-top:1px solid rgba(255,46,63,.18);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.98), rgba(20,0,3,.96));
-      display:flex;
-      align-items:center;
-      padding:0 14px;
-    }
+   .player-ticker{
+  overflow:hidden;
+  white-space:nowrap;
+  position:relative;
+  width:100%;
+  background:rgba(0,0,0,.88);
+  border-top:1px solid rgba(255,46,63,.22);
+  padding:10px 0;
+}
 
-    .player-ticker::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, transparent, rgba(255,46,63,.12), transparent);
-      pointer-events:none;
-      opacity:.75;
-    }
+.player-ticker-track{
+  display:inline-block;
+  white-space:nowrap;
+  min-width:max-content;
+  padding-left:100%;
+  animation:tickerMove 20s linear infinite;
+  color:#f1cd63;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.75rem;
+  font-weight:800;
+}
 
+@keyframes tickerMove{
+  0%{
+    transform:translateX(0);
+  }
+
+  100%{
+    transform:translateX(-100%);
+  }
+}
     .player-ticker-track{
       position:relative;
       z-index:1;
