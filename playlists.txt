@@ -54,6 +54,11 @@ TITLE=Playlist 11 Remix Dance Années 80
 URL=https://soundcloud.com/boyingtonremix/playlist-11-remix-eighties
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 12 Dance EDM Hits Club 2026
+URL=https://soundcloud.com/boyingtonremix/playlist-12-dance-edm-hits
+[/PLAYLIST]
+
 
 
 [PLAYLIST]
