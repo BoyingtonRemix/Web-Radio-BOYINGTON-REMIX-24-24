@@ -1,6 +1,7 @@
 [PLAYLIST]
 TITLE=Playlists 1 Remix
 URL=https://soundcloud.com/boyingtonremix/playlists-remix
+[PLAYLIST]
 
 [PLAYLIST]
 TITLE=Playlist 2 Maxi 45T
@@ -13,41 +14,8 @@ URL=https://soundcloud.com/boyingtonremix/playlist-3-maxi-45t-80
 [/PLAYLIST]
 
 [PLAYLIST]
-TITLE=Only My Love (Funk Original Mix) par Boyington Remix
-URL=https://soundcloud.com/boyingtonremix/only-my-love-funk-original-mix
-[/PLAYLIST]
-
-[PLAYLIST]
-TITLE=Vraiment (Remix émotionnel) par Boyington Remix
-URL=https://soundcloud.com/boyingtonremix/truly-remix-emotional
-[/PLAYLIST]
-
-[PLAYLIST]
-TITLE=Chasing Paradise (Original Mix) par Boyington Remix
-URL=https://soundcloud.com/boyingtonremix/chasing-paradise-original-mix
-[/PLAYLIST]
-
-[PLAYLIST]
-TITLE=Pour toujours à tes côtés — Remix de Boyington (Mix original)
-URL=https://soundcloud.com/boyingtonremix/forever-by-your-side-boyington
-[/PLAYLIST]
-
-[PLAYLIST]
-TITLE=Jamais loin de toi — Remix de Boyington (Mix Reggae Original)
-URL=https://soundcloud.com/boyingtonremix/never-far-from-you-boyington
-
-[/PLAYLIST]
-
-[PLAYLIST]
-TITLE=Por Siempre Sí — Boyington Remix (Remix Espagnol)
-URL=https://soundcloud.com/boyingtonremix/por-siempre-s-boyington-remix
-
-[/PLAYLIST]
-
-[PLAYLIST]
 TITLE=Playlist 4 Années 90
 URL=https://soundcloud.com/boyingtonremix/playlist-4-90s
-
 [/PLAYLIST]
 
 [PLAYLIST]
