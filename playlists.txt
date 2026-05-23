@@ -49,6 +49,11 @@ TITLE=Playslit 10 Jackers Revenge
 URL=https://soundcloud.com/boyingtonremix/playslit-10-jackers-revenge
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 11 Remix Dance Années 80
+URL=https://soundcloud.com/boyingtonremix/playlist-11-remix-eighties
+[/PLAYLIST]
+
 
 
 [PLAYLIST]
