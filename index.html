@@ -213,8 +213,10 @@
       border:2px solid rgba(255,68,68,.45);
       box-shadow:0 0 30px rgba(255,44,44,.20), inset 0 0 40px rgba(255,44,44,.10);
     }
+    .mic-art video,
     .mic-art img{
       width:min(100%, 360px);
+      height:min(100%, 560px);
       object-fit:contain;
       filter: drop-shadow(0 0 20px rgba(255,50,50,.22));
       z-index:1;
@@ -574,10 +576,10 @@
 
     <main class="main-grid" id="accueil">
       <aside class="panel mic" id="visuels">
-        <div class="mic-art">
-          <img src="image_studio-bas.jpg" alt="Micro studio Boyington" />
-        </div>
-      </aside>
+    <div class="mic-art">
+      <video class="mic-video" src="boyington-radio-micro-animation.mp4" poster="image_studio-bas.jpg" autoplay muted loop playsinline></video>
+    </div>
+  </aside>
 
       <section class="panel center" id="radio">
         <article class="hero-card">
@@ -599,13 +601,14 @@
 
         <div class="player-wrap" aria-label="Lecteur SoundCloud">
           <iframe
-            title="SoundCloud Player"
-            scrolling="no"
-            allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/BOYINGTONREMIX/sets/playlist-aleatoire&amp;color=%23ff3341&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false">
-          </iframe>
+        id="soundcloudPlayer"
+        title="SoundCloud Player"
+        scrolling="no"
+        allow="autoplay"
+        src="about:blank">
+      </iframe>
         </div>
-        <div class="player-note">Player SoundCloud verrouillé • playlists.txt officiel • lecture aléatoire conservée</div>
+        <div class="player-note">Player SoundCloud verrouillé • playlists.txt officiel • lecture aléatoire conservée • chargement automatique des playlists • chargement automatique des playlists</div>
 
         <div class="stats">
           <div class="stat-card">
@@ -667,18 +670,128 @@
 
   <script>
     const matrixTime = document.getElementById('matrixTime');
+    const playerNote = document.querySelector('.player-note');
+    const playlistButton = document.querySelector('.playlist-btn');
+    const soundcloudPlayer = document.getElementById('soundcloudPlayer');
+
     function tickClock(){
       const now = new Date();
       const pad = n => String(n).padStart(2,'0');
       matrixTime.textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
     }
+
+    function buildEmbedUrl(soundcloudUrl){
+      return `https://w.soundcloud.com/player/?url=${encodeURIComponent(soundcloudUrl)}&color=%23ff3341&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false`;
+    }
+
+    function normalizeUrl(url){
+      return url.replace(/[),.;]+$/g, '').trim();
+    }
+
+    function parsePlaylistsTxt(text){
+      const playlists = [];
+      const lines = text.split(/\r?\n/);
+      let current = null;
+
+      const pushCurrent = () => {
+        if (current && current.url) {
+          playlists.push({ title: current.title || 'Playlist aléatoire', url: normalizeUrl(current.url) });
+        }
+      };
+
+      for (const rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line || line.startsWith('#')) continue;
+
+        if (/^\[PLAYLIST\]/i.test(line)) {
+          pushCurrent();
+          current = { title: 'Playlist aléatoire', url: '' };
+
+          const inlineTitle = line.match(/TITLE\s*=\s*(.*?)\s+URL\s*=\s*(https?:\/\/\S+)/i);
+          if (inlineTitle) {
+            current.title = inlineTitle[1].trim() || current.title;
+            current.url = inlineTitle[2].trim();
+            continue;
+          }
+
+          const titleOnly = line.match(/TITLE\s*=\s*(.*)$/i);
+          if (titleOnly && titleOnly[1].trim()) {
+            current.title = titleOnly[1].trim();
+          }
+          const urlOnly = line.match(/URL\s*=\s*(https?:\/\/\S+)/i);
+          if (urlOnly) current.url = urlOnly[1].trim();
+          continue;
+        }
+
+        const titleMatch = line.match(/^TITLE\s*=\s*(.+)$/i);
+        if (titleMatch) {
+          if (!current) current = { title: 'Playlist aléatoire', url: '' };
+          current.title = titleMatch[1].trim();
+          continue;
+        }
+
+        const urlMatch = line.match(/^URL\s*=\s*(https?:\/\/\S+)/i);
+        if (urlMatch) {
+          if (!current) current = { title: 'Playlist aléatoire', url: '' };
+          current.url = urlMatch[1].trim();
+          continue;
+        }
+
+        const directUrlMatch = line.match(/^(https?:\/\/(?:soundcloud\.com|on\.soundcloud\.com)\/\S+)/i);
+        if (directUrlMatch) {
+          if (!current) current = { title: 'Playlist aléatoire', url: '' };
+          current.url = directUrlMatch[1].trim();
+        }
+      }
+
+      pushCurrent();
+      return playlists;
+    }
+
+    function setRandomPlaylist(initial = false){
+      const playlists = window.__boyingtonPlaylists || [];
+      if (!playlists.length) return;
+
+      const chosen = playlists[Math.floor(Math.random() * playlists.length)];
+      soundcloudPlayer.src = buildEmbedUrl(chosen.url);
+
+      if (playerNote) {
+        playerNote.textContent = `${initial ? 'Playlist chargée automatiquement' : 'Playlist changée'} • ${chosen.title}`;
+      }
+    }
+
+    async function loadPlaylists(){
+      try {
+        const response = await fetch('playlists.txt', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const txt = await response.text();
+        const playlists = parsePlaylistsTxt(txt);
+
+        if (!playlists.length) {
+          throw new Error('Aucune playlist valide trouvée dans playlists.txt');
+        }
+
+        window.__boyingtonPlaylists = playlists;
+        setRandomPlaylist(true);
+        playerNote.textContent = `Playlists chargées • ${playlists.length} entrée(s) détectée(s) dans playlists.txt`;
+      } catch (error) {
+        console.warn('Boyington Radio: chargement playlists.txt impossible.', error);
+        window.__boyingtonPlaylists = [];
+        playerNote.textContent = 'playlists.txt non chargé • vérifie le chemin ou le déploiement GitHub Pages';
+        soundcloudPlayer.src = 'about:blank';
+      }
+    }
+
     tickClock();
     setInterval(tickClock, 1000);
+    document.addEventListener('DOMContentLoaded', loadPlaylists);
 
-    document.querySelector('.playlist-btn')?.addEventListener('click', () => {
-      const iframe = document.querySelector('.player-wrap iframe');
-      if (!iframe) return;
-      iframe.contentWindow?.postMessage({ method: 'play' }, '*');
+    playlistButton?.addEventListener('click', async () => {
+      if (!window.__boyingtonPlaylists || !window.__boyingtonPlaylists.length) {
+        await loadPlaylists();
+        return;
+      }
+      setRandomPlaylist(false);
     });
   </script>
 </body>
