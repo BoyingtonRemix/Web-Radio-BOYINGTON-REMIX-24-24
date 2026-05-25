@@ -59,6 +59,15 @@ TITLE=Playlist 12 Dance EDM Hits Club 2026
 URL=https://soundcloud.com/boyingtonremix/playlist-12-dance-edm-hits
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 13 Disco Gurls GhostMasters
+URL=https://soundcloud.com/boyingtonremix/playlist-13-disco-gurls
+[/PLAYLIST]
+
+[PLAYLIST]
+TITLE=Playlist 14 Disco Gurls Vol2
+URL=https://soundcloud.com/boyingtonremix/playlist-14-disco-gurls-vol2
+[/PLAYLIST]
 
 
 [PLAYLIST]
