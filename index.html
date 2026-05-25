@@ -1695,32 +1695,34 @@
 
           <div class="gallery-grid">
             <article class="gallery-card">
-              <img src="logo_radio_boyington.png" alt="Logo officiel Boyington Radio" class="logo-contain" />
+              <video class="gallery-video" autoplay muted loop playsinline preload="metadata" aria-label="Gold Audio Signal animé" poster="dj-world-matrix.jpg">
+                <source src="boyington-live-audio-signal2.mp4" type="video/mp4" />
+              </video>
               <div class="body">
-                <strong>Logo officiel</strong>
+                <strong>GOLD AUDIO SIGNAL</strong>
               </div>
             </article>
 
             <article class="gallery-card">
-              <img src="Studio-Console.jpg" alt="Studio Console Boyington" />
+              <img src="logo_remix_boyington.png" alt="Logo Boyington Remix" class="logo-contain" />
               <div class="body">
-                <strong>Studio console</strong>
+                <strong>BOYINGTON REMIX</strong>
               </div>
             </article>
 
             <article class="gallery-card">
-              <img src="arrière-plan-boyington-radio.jpg" alt="Arrière-plan Boyington Radio" />
+              <img src="logo_radio_boyington.png" alt="Logo Boyington Radio" class="logo-contain" />
               <div class="body">
-                <strong>Arrière-plan radio</strong>
+                <strong>BOYINGTON RADIO</strong>
               </div>
             </article>
 
             <article class="gallery-card">
-              <video class="gallery-video" autoplay muted loop playsinline preload="metadata" aria-label="Live Audio Signal animé">
+              <video class="gallery-video" autoplay muted loop playsinline preload="metadata" aria-label="Red Audio Signal animé">
                 <source src="boyington-live-audio-signal.mp4" type="video/mp4" />
               </video>
               <div class="body">
-                <strong>Live Audio Signal</strong>
+                <strong>RED AUDIO SIGNAL</strong>
               </div>
             </article>
           </div>
@@ -1886,7 +1888,269 @@
 
   </div>
 
-  <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+  <script>
+    (function () {
+      const PLAYER_IFRAME_ID = 'sc-player';
+      const PLAYLISTS_URL = 'playlists.txt';
+      const iframe = document.getElementById(PLAYER_IFRAME_ID);
+      const randomPlaylistBtn = document.getElementById('randomPlaylistBtn');
+      const clockEl = document.getElementById('boyingtonClock');
+      const heroClockEl = document.getElementById('heroRadioClock');
+      const heroDateEl = document.getElementById('heroRadioDate');
+
+      function updateClock() {
+        const now = new Date();
+        const timeText = new Intl.DateTimeFormat('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }).format(now);
+
+        const dateText = new Intl.DateTimeFormat('fr-FR', {
+          weekday: 'long',
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        }).format(now);
+
+        if (clockEl) clockEl.textContent = timeText;
+        if (heroClockEl) heroClockEl.textContent = timeText;
+        if (heroDateEl) heroDateEl.textContent = dateText;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
+
+      let playlistPool = [];
+      let currentPlaylistIndex = -1;
+      let widget = null;
+      let readyAfterLoad = false;
+      let pendingAutoplay = false;
+      let pendingRandomizeTrack = false;
+      let widgetInitTimer = null;
+
+      function normalizeEntry(item) {
+        if (!item || typeof item !== 'object') return null;
+        const url = typeof item.url === 'string' ? item.url.trim() : '';
+        const title = (typeof item.title === 'string' && item.title.trim())
+          ? item.title.trim()
+          : (typeof item.titre === 'string' && item.titre.trim())
+            ? item.titre.trim()
+            : 'Sans titre';
+        if (!url) return null;
+        return { title, url };
+      }
+
+      function parsePlaylistText(rawText) {
+        const blocks = rawText.split(/\[PLAYLIST\]/i);
+        const entries = [];
+
+        blocks.forEach(function (block, index) {
+          if (index === 0) return;
+          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
+          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
+          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
+          const title = titleMatch ? titleMatch[1].trim() : '';
+          const url = urlMatch ? urlMatch[1].trim() : '';
+
+          if (url) entries.push({ title: title || 'Sans titre', url });
+        });
+
+        return entries.map(normalizeEntry).filter(Boolean);
+      }
+
+      function pickRandomIndex(length, avoidIndex = -1) {
+        if (length <= 1) return 0;
+        const randomBytes = new Uint32Array(1);
+        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
+        let index = randomBytes[0] % length;
+        if (index === avoidIndex) index = (index + 1) % length;
+        return index;
+      }
+
+      function isMobileDevice() {
+        const mobilePattern = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|webOS|BlackBerry/i;
+        return mobilePattern.test(navigator.userAgent) || window.matchMedia('(max-width: 960px)').matches;
+      }
+
+      function buildPlayerUrl(playlistUrl) {
+        const encoded = encodeURIComponent(playlistUrl);
+        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+      }
+
+      function startRandomTrackInCurrentPlaylist() {
+        if (!widget) return;
+
+        widget.getSounds(function (sounds) {
+          const total = Array.isArray(sounds) ? sounds.length : 0;
+          if (!total) return;
+
+          const startIndex = pickRandomIndex(total, -1);
+          if (startIndex > 0) widget.skip(startIndex);
+          widget.play();
+        });
+      }
+
+      function bindWidgetEvents() {
+        if (!widget) return;
+
+        widget.bind(SC.Widget.Events.READY, function () {
+          if (readyAfterLoad) return;
+          readyAfterLoad = true;
+
+          if (pendingRandomizeTrack) {
+            startRandomTrackInCurrentPlaylist();
+          } else {
+            widget.play();
+          }
+
+          pendingAutoplay = false;
+          pendingRandomizeTrack = false;
+        });
+
+        widget.bind(SC.Widget.Events.FINISH, function () {
+          playNextOrLoadAnotherPlaylist();
+        });
+      }
+
+      function createWidget() {
+        if (widget) return widget;
+        widget = SC.Widget(iframe);
+        bindWidgetEvents();
+        return widget;
+      }
+
+      function reloadWidgetFromIframe() {
+        if (widgetInitTimer) {
+          window.clearTimeout(widgetInitTimer);
+          widgetInitTimer = null;
+        }
+
+        widget = null;
+        readyAfterLoad = false;
+
+        widgetInitTimer = window.setTimeout(function () {
+          createWidget();
+          widgetInitTimer = null;
+        }, 150);
+      }
+
+      function loadPlaylist(index, autoplay = true, randomizeTrack = autoplay, forceIframeReload = false) {
+        if (!playlistPool.length) return;
+
+        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
+        currentPlaylistIndex = safeIndex;
+        const currentPlaylist = playlistPool[safeIndex];
+
+        pendingAutoplay = autoplay;
+        pendingRandomizeTrack = randomizeTrack;
+        readyAfterLoad = false;
+
+        if (!widget || forceIframeReload) {
+          iframe.src = buildPlayerUrl(currentPlaylist.url);
+          reloadWidgetFromIframe();
+          return;
+        }
+
+        widget.load(currentPlaylist.url, {
+          auto_play: autoplay,
+          color: '#ff2e3f',
+          buying: false,
+          sharing: false,
+          download: false,
+          show_artwork: true,
+          show_playcount: false,
+          show_user: false,
+          single_active: true,
+          show_comments: false,
+          show_reposts: false,
+          show_teaser: false
+        });
+
+        if (autoplay) {
+          window.setTimeout(function () {
+            if (!widget) return;
+            try {
+              widget.play();
+            } catch (error) {}
+            if (randomizeTrack) {
+              startRandomTrackInCurrentPlaylist();
+            }
+          }, isMobileDevice() ? 220 : 120);
+        }
+      }
+
+      function playRandomPlaylist() {
+        if (!playlistPool.length) return;
+        const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+        const mobileFallback = isMobileDevice();
+        loadPlaylist(nextPlaylist, true, true, mobileFallback);
+
+        if (mobileFallback) {
+          window.setTimeout(function () {
+            if (!widget) return;
+            try {
+              widget.play();
+            } catch (error) {}
+            startRandomTrackInCurrentPlaylist();
+          }, 300);
+        }
+      }
+
+      function playNextOrLoadAnotherPlaylist() {
+        if (!widget) return;
+
+        widget.getCurrentSoundIndex(function (index) {
+          widget.getSounds(function (sounds) {
+            const total = Array.isArray(sounds) ? sounds.length : 0;
+
+            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
+              widget.next();
+              return;
+            }
+
+            if (playlistPool.length > 1) {
+              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+              loadPlaylist(nextPlaylist, true, true, isMobileDevice());
+              return;
+            }
+
+            if (playlistPool.length === 1) {
+              loadPlaylist(0, true);
+            }
+          });
+        });
+      }
+
+      if (randomPlaylistBtn) {
+        randomPlaylistBtn.addEventListener('click', function () {
+          playRandomPlaylist();
+        });
+      }
+
+      fetch(PLAYLISTS_URL, { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
+          return response.text();
+        })
+        .then(function (rawText) {
+          playlistPool = parsePlaylistText(rawText);
+          if (!playlistPool.length) return;
+
+          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
+          currentPlaylistIndex = initialPlaylistIndex;
+          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
+          createWidget();
+          if (randomPlaylistBtn) randomPlaylistBtn.disabled = false;
+        })
+        .catch(function () {
+          return;
+        });
+    })();
+  </script>
   <script>
     (function () {
       const PLAYER_IFRAME_ID = 'sc-player';
