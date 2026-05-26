@@ -74,6 +74,20 @@ TITLE=Playlist 15 Miami After Disco
 URL=https://soundcloud.com/boyingtonremix/playlist-15-miami-after-disco
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=ExtraMix Ep 208 Mixed by Loran Boyington ( NuDisco Funk)
+URL=https://soundcloud.com/boyingtonremix/extramix-ep-208-mixed-by-loran
+[/PLAYLIST]
+
+[PLAYLIST]
+TITLE=ExtraMix Ep 207 Mixed by Loran Boyington (Special Remix)
+URL=https://soundcloud.com/boyingtonremix/extramix-ep-207-mixed-by-loran
+[/PLAYLIST]
+
+[PLAYLIST]
+TITLE=ExtraMix Ep 208 Mixed by Loran Boyington ( NuDisco Funk)
+URL=https://soundcloud.com/boyingtonremix/extramix-ep-208-mixed-by-1
+[/PLAYLIST]
 
 
 [PLAYLIST]
