@@ -94,6 +94,10 @@ TITLE=ExtraMix Ep 205 Mixed by Loran Boyington (House NuDisco Funk)
 URL=https://soundcloud.com/boyingtonremix/extramix-ep-205-mixed-by-loran
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=ExtraMix Ep 204 Mixed by Loran Boyington (House NuDisco Funk)
+URL=https://soundcloud.com/boyingtonremix/extramix-ep-204-mixed-by-loran
+[/PLAYLIST]
 
 
 
