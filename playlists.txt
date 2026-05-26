@@ -100,10 +100,14 @@ URL=https://soundcloud.com/boyingtonremix/extramix-ep-204-mixed-by-loran
 [/PLAYLIST]
 
 [PLAYLIST]
+TITLE=ExtraMix Ep 203 Mixed by Loran Boyington (NuDisco House)
+URL=https://soundcloud.com/boyingtonremix/extramix-ep-203-mixed-by-loran
+[/PLAYLIST]
+
+[PLAYLIST]
 TITLE=ExtraMix Ep 202 Mixed by Loran Boyington (Funk NuDisco House)
 URL=https://soundcloud.com/boyingtonremix/extramix-ep-202-mixed-by-loran
 [/PLAYLIST]
-
 
 
 [PLAYLIST]
