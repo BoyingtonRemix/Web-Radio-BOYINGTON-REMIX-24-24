@@ -85,8 +85,8 @@ URL=https://soundcloud.com/boyingtonremix/extramix-ep-207-mixed-by-loran
 [/PLAYLIST]
 
 [PLAYLIST]
-TITLE=ExtraMix Ep 208 Mixed by Loran Boyington ( NuDisco Funk)
-URL=https://soundcloud.com/boyingtonremix/extramix-ep-208-mixed-by-1
+TITLE=ExtraMix Ep 206 Mixé par Loran Boyington (House NuDisco Funk)
+URL=https://soundcloud.com/boyingtonremix/extramix-ep-206-mixed-by-loran
 [/PLAYLIST]
 
 
