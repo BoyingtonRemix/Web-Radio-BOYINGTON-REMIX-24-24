@@ -69,6 +69,12 @@ TITLE=Playlist 14 Disco Gurls Vol2
 URL=https://soundcloud.com/boyingtonremix/playlist-14-disco-gurls-vol2
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 15 Miami After Disco
+URL=https://soundcloud.com/boyingtonremix/playlist-15-miami-after-disco
+[/PLAYLIST]
+
+
 
 [PLAYLIST]
 TITLE=
