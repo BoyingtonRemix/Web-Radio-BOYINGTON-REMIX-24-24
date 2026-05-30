@@ -1975,22 +1975,24 @@
         </div>
       </section>
 
+      
       <section id="world-feed" class="section world-feed">
         <div class="container">
           <div class="world-feed-box">
             <div class="world-feed-head">
               <strong>Réseau mondial</strong>
-              <span>Villes connectées • flux international</span>
+              <span>Températures en direct • flux international</span>
             </div>
             <div class="world-feed-track" aria-label="Réseau mondial défilant">
-              <div class="world-feed-marquee">
-                <span>🌍 PARIS • LONDON • NEW YORK • DUBAI • TOKYO • MADRID • ROME • DUBLIN • MONTREAL • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC</span>
-                <span aria-hidden="true">🌍 PARIS • LONDON • NEW YORK • DUBAI • TOKYO • MADRID • ROME • DUBLIN • MONTREAL • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC</span>
+              <div class="world-feed-marquee" id="worldWeatherTicker">
+                <span>🌍 Chargement des températures mondiales...</span>
+                <span aria-hidden="true">🌍 Chargement des températures mondiales...</span>
               </div>
             </div>
           </div>
         </div>
       </section>
+
 
     </main>
 
@@ -2056,6 +2058,63 @@
 
       updateClock();
       setInterval(updateClock, 1000);
+
+      const worldCities = [
+        { label: 'PARIS', latitude: 48.8566, longitude: 2.3522 },
+        { label: 'LONDON', latitude: 51.5072, longitude: -0.1276 },
+        { label: 'NEW YORK', latitude: 40.7128, longitude: -74.0060 },
+        { label: 'DUBAI', latitude: 25.2048, longitude: 55.2708 },
+        { label: 'TOKYO', latitude: 35.6762, longitude: 139.6503 },
+        { label: 'MADRID', latitude: 40.4168, longitude: -3.7038 },
+        { label: 'ROME', latitude: 41.9028, longitude: 12.4964 },
+        { label: 'DUBLIN', latitude: 53.3498, longitude: -6.2603 },
+        { label: 'MONTREAL', latitude: 45.5017, longitude: -73.5673 }
+      ];
+
+      const worldWeatherTicker = document.getElementById('worldWeatherTicker');
+
+      function formatTemp(value) {
+        if (typeof value !== 'number' || Number.isNaN(value)) return '--';
+        return Math.round(value);
+      }
+
+      async function fetchCityTemperature(city) {
+        const url = new URL('https://api.open-meteo.com/v1/forecast');
+        url.searchParams.set('latitude', city.latitude);
+        url.searchParams.set('longitude', city.longitude);
+        url.searchParams.set('current', 'temperature_2m');
+        url.searchParams.set('temperature_unit', 'celsius');
+        url.searchParams.set('timezone', 'auto');
+
+        const response = await fetch(url.toString(), { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Weather request failed for ${city.label}`);
+        const data = await response.json();
+        return formatTemp(data && data.current && data.current.temperature_2m);
+      }
+
+      async function updateWorldWeatherTicker() {
+        if (!worldWeatherTicker) return;
+
+        try {
+          const temps = await Promise.all(worldCities.map(async (city) => {
+            try {
+              const temp = await fetchCityTemperature(city);
+              return `${city.label} ${temp}°C`;
+            } catch (_error) {
+              return `${city.label} --°C`;
+            }
+          }));
+
+          const line = `🌍 ${temps.join(' • ')} • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC`;
+          worldWeatherTicker.innerHTML = `<span>${line}</span><span aria-hidden="true">${line}</span>`;
+        } catch (_error) {
+          const fallback = '🌍 PARIS --°C • LONDON --°C • NEW YORK --°C • DUBAI --°C • TOKYO --°C • MADRID --°C • ROME --°C • DUBLIN --°C • MONTREAL --°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC';
+          worldWeatherTicker.innerHTML = `<span>${fallback}</span><span aria-hidden="true">${fallback}</span>`;
+        }
+      }
+
+      updateWorldWeatherTicker();
+      setInterval(updateWorldWeatherTicker, 30 * 60 * 1000);
 
       if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
 
