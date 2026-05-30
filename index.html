@@ -33,9 +33,11 @@
       color:var(--text);
       font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at 14% 10%, rgba(255,46,63,.12), transparent 18%),
-        radial-gradient(circle at 86% 8%, rgba(255,255,255,.05), transparent 18%),
+        linear-gradient(180deg, rgba(0,0,0,.62), rgba(0,0,0,.78)),
+        radial-gradient(circle at 14% 10%, rgba(255,46,63,.14), transparent 18%),
+        radial-gradient(circle at 86% 8%, rgba(255,255,255,.04), transparent 18%),
         radial-gradient(circle at 50% 100%, rgba(255,46,63,.05), transparent 20%),
+        url('arrière-plan-boyington-radio.jpg') center center / cover fixed no-repeat,
         linear-gradient(180deg,#090909 0%,#040404 100%);
     }
 
@@ -200,7 +202,7 @@
     .hero-panel{
       min-height:540px;
       background:
-        linear-gradient(135deg, rgba(0,0,0,.56), rgba(0,0,0,.24)),
+        linear-gradient(135deg, rgba(0,0,0,.72), rgba(0,0,0,.42)),
         url('arrière-plan-boyington-radio.jpg') center/cover no-repeat;
     }
     .hero-panel::before{
