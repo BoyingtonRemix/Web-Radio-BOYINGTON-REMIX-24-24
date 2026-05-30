@@ -109,6 +109,14 @@ TITLE=ExtraMix Ep 202 Mixed by Loran Boyington (Funk NuDisco House)
 URL=https://soundcloud.com/boyingtonremix/extramix-ep-202-mixed-by-loran
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 17 EDM 2026
+URL=https://soundcloud.com/boyingtonremix/playlist-17-edm-2026-2?
+[/PLAYLIST]
+
+
+
+
 
 [PLAYLIST]
 TITLE=
