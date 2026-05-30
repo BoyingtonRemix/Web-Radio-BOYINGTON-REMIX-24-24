@@ -129,6 +129,13 @@ TITLE=Playlist 20 Non-Stop Soul Groove
 URL=https://soundcloud.com/boyingtonremix/playlist-20-non-stop-soul
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 21 Non-Stop Soul Groove 2
+URL=https://soundcloud.com/boyingtonremix/playlist-21-non-stop-soul
+[/PLAYLIST]
+
+
+
 
 [PLAYLIST]
 TITLE=
