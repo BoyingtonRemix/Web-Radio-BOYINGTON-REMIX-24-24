@@ -1095,7 +1095,6 @@
         radial-gradient(circle at 50% 40%, rgba(255,255,255,.05), transparent 42%),
         linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.18));
       padding:18px;
-      min-height:320px;
       display:flex;
       flex-direction:column;
       gap:12px;
@@ -1875,6 +1874,21 @@
                   </video>
                   <div class="world-badge">GLOBAL FEED</div>
                 </div>
+
+                <div class="world-feed-box" style="margin-top:8px;">
+                  <div class="world-feed-head">
+                    <strong>Réseau mondial</strong>
+                    <span>Températures en direct • flux international</span>
+                  </div>
+                  <div class="world-feed-track" aria-label="Réseau mondial défilant">
+                    <div class="world-feed-marquee">
+                      <span>🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
+                      <span aria-hidden="true">🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
+                      <span aria-hidden="true">🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
               <div class="matrix-stats">
@@ -1974,27 +1988,7 @@
           </div>
         </div>
       </section>
-
-      
-      <section id="world-feed" class="section world-feed">
-        <div class="container">
-          <div class="world-feed-box">
-            <div class="world-feed-head">
-              <strong>Réseau mondial</strong>
-              <span>Températures en direct • flux international</span>
-            </div>
-            <div class="world-feed-track" aria-label="Réseau mondial défilant">
-              <div class="world-feed-marquee" id="worldWeatherTicker">
-                <span>🌍 Chargement des températures mondiales...</span>
-                <span aria-hidden="true">🌍 Chargement des températures mondiales...</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-    </main>
+</main>
 
     <footer id="footer" class="footer">      <div class="container">
         <div class="gold-line"></div>
