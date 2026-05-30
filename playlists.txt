@@ -124,9 +124,10 @@ TITLE=Playlist 19 Non-Stop Funk Disco Party
 URL=https://soundcloud.com/boyingtonremix/playlist-19-non-stop-funk
 [/PLAYLIST]
 
-
-
-
+[PLAYLIST]
+TITLE=Playlist 20 Non-Stop Soul Groove
+URL=https://soundcloud.com/boyingtonremix/playlist-20-non-stop-soul
+[/PLAYLIST]
 
 
 [PLAYLIST]
