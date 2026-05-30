@@ -114,6 +114,12 @@ TITLE=Playlist 17 EDM 2026
 URL=https://soundcloud.com/boyingtonremix/playlist-17-edm-2026-2?
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 18 Non Stop 70s Funk
+URL=https://soundcloud.com/boyingtonremix/playlist-18-non-stop-70s-funk
+[/PLAYLIST]
+
+
 
 
 
