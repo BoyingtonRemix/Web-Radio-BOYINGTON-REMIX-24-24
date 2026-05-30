@@ -1508,60 +1508,6 @@
       color:var(--red);
       font-style:normal;
     }
-
-    .weather-panel{
-      padding:18px;
-      background:
-        radial-gradient(circle at 18% 0%, rgba(255,46,63,.10), transparent 22%),
-        radial-gradient(circle at 82% 100%, rgba(255,255,255,.06), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
-    }
-    .weather-grid{
-      display:grid;
-      grid-template-columns:repeat(6, minmax(0, 1fr));
-      gap:12px;
-    }
-    .weather-cell{
-      padding:16px 14px;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.28);
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
-      min-height:112px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:8px;
-    }
-    .weather-cell .city{
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:#d9d9df;
-      font-size:.86rem;
-    }
-    .weather-cell .temp{
-      font-size:2rem;
-      line-height:1;
-      font-weight:900;
-      color:#fff;
-      text-shadow:0 0 16px rgba(255,46,63,.10);
-    }
-    .weather-cell .meta{
-      color:var(--muted);
-      font-size:.8rem;
-      line-height:1.35;
-    }
-    .weather-callout{
-      margin-top:14px;
-      padding:12px 14px;
-      border-radius:16px;
-      border:1px solid rgba(255,46,63,.18);
-      background:rgba(255,46,63,.08);
-      color:#f4dfe3;
-      font-size:.88rem;
-      line-height:1.55;
-      text-align:center;
-    }
     @keyframes worldFeedScroll{
       0%{transform:translateX(0)}
       100%{transform:translateX(-33.3333%)}
@@ -1935,7 +1881,7 @@
                     <span>Températures en direct • flux international</span>
                   </div>
                   <div class="world-feed-track" aria-label="Réseau mondial défilant">
-                    <div id="worldWeatherTicker" class="world-feed-marquee" aria-live="polite">
+                    <div class="world-feed-marquee">
                       <span>🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
                       <span aria-hidden="true">🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
                       <span aria-hidden="true">🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
@@ -1960,32 +1906,6 @@
                   <div class="ticker">Live 24/7</div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <section id="worldweather" class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <h2>World Weather Matrix</h2>
-              <p>Températures mondiales en temps réel sur les hubs clés du réseau Boyington.</p>
-            </div>
-          </div>
-
-          <div class="panel weather-panel">
-            <div id="worldWeatherMatrix" class="weather-grid" aria-live="polite">
-              <div class="weather-cell"><div class="city">PARIS</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
-              <div class="weather-cell"><div class="city">LONDON</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
-              <div class="weather-cell"><div class="city">NEW YORK</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
-              <div class="weather-cell"><div class="city">DUBAI</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
-              <div class="weather-cell"><div class="city">TOKYO</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
-              <div class="weather-cell"><div class="city">MONTREAL</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
-            </div>
-            <div class="weather-callout">
-              Synchronisation automatique des températures avec le bandeau défilant mondial.
             </div>
           </div>
         </div>
@@ -2063,15 +1983,14 @@
           <div class="panel" style="overflow:hidden;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));">
             <video autoplay muted loop playsinline preload="metadata"
               style="width:100%;display:block;border-radius:22px;object-fit:cover;background:#000;">
-              <source src="dj-world-matrix.mp4" type="video/mp4" />
+              <source src="bannierre-boyington.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
       </section>
 </main>
 
-    <footer id="footer" class="footer">
-      <div class="container">
+    <footer id="footer" class="footer">      <div class="container">
         <div class="gold-line"></div>
         
 <div class="footer-panel footer-centered">
@@ -2147,7 +2066,6 @@
       ];
 
       const worldWeatherTicker = document.getElementById('worldWeatherTicker');
-      const worldWeatherMatrix = document.getElementById('worldWeatherMatrix');
 
       function formatTemp(value) {
         if (typeof value !== 'number' || Number.isNaN(value)) return '--';
@@ -2169,46 +2087,23 @@
       }
 
       async function updateWorldWeatherTicker() {
-        const cities = worldCities;
+        if (!worldWeatherTicker) return;
 
         try {
-          const temps = await Promise.all(cities.map(async (city) => {
+          const temps = await Promise.all(worldCities.map(async (city) => {
             try {
               const temp = await fetchCityTemperature(city);
-              return { label: city.label, temp };
+              return `${city.label} ${temp}°C`;
             } catch (_error) {
-              return { label: city.label, temp: '--' };
+              return `${city.label} --°C`;
             }
           }));
 
-          const line = `🌍 ${temps.map(item => `${item.label} ${item.temp}°C`).join(' • ')} • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC`;
-          if (worldWeatherTicker) {
-            worldWeatherTicker.innerHTML = `<span>${line}</span><span aria-hidden="true">${line}</span><span aria-hidden="true">${line}</span>`;
-          }
-
-          if (worldWeatherMatrix) {
-            worldWeatherMatrix.innerHTML = temps.map(item => `
-              <div class="weather-cell">
-                <div class="city">${item.label}</div>
-                <div class="temp">${item.temp}°C</div>
-                <div class="meta">Mise à jour live</div>
-              </div>
-            `).join('');
-          }
+          const line = `🌍 ${temps.join(' • ')} • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC`;
+          worldWeatherTicker.innerHTML = `<span>${line}</span><span aria-hidden="true">${line}</span>`;
         } catch (_error) {
-          const fallbackLine = '🌍 PARIS --°C • LONDON --°C • NEW YORK --°C • DUBAI --°C • TOKYO --°C • MADRID --°C • ROME --°C • DUBLIN --°C • MONTREAL --°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC';
-          if (worldWeatherTicker) {
-            worldWeatherTicker.innerHTML = `<span>${fallbackLine}</span><span aria-hidden="true">${fallbackLine}</span><span aria-hidden="true">${fallbackLine}</span>`;
-          }
-          if (worldWeatherMatrix) {
-            worldWeatherMatrix.innerHTML = cities.map(city => `
-              <div class="weather-cell">
-                <div class="city">${city.label}</div>
-                <div class="temp">--°C</div>
-                <div class="meta">Connexion indisponible</div>
-              </div>
-            `).join('');
-          }
+          const fallback = '🌍 PARIS --°C • LONDON --°C • NEW YORK --°C • DUBAI --°C • TOKYO --°C • MADRID --°C • ROME --°C • DUBLIN --°C • MONTREAL --°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC';
+          worldWeatherTicker.innerHTML = `<span>${fallback}</span><span aria-hidden="true">${fallback}</span>`;
         }
       }
 
