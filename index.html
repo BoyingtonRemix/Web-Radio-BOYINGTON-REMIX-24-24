@@ -3,1302 +3,2653 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#080808" />
-  <title>Boyington Radio 6 — World Network Live</title>
+  <meta name="description" content="Boyington Web Radio — site officiel premium noir, argent et rouge avec player SoundCloud, visuels du dépôt GitHub et réseaux officiels." />
+  <meta name="theme-color" content="#050505" />
+  <title>BOYINGTON WEB RADIO — Site Officiel</title>
   <style>
-    :root {
-      --bg: #060607;
-      --bg2: #0b0b10;
-      --panel: rgba(14, 14, 18, 0.86);
-      --panel2: rgba(20, 20, 26, 0.72);
-      --line: rgba(255, 196, 67, 0.18);
-      --gold: #e7c15a;
-      --gold2: #b8860b;
-      --red: #d21f2b;
-      --red2: #ff4b57;
-      --violet: #7c4dff;
-      --amber: #ff9f1c;
-      --text: #f5f0e6;
-      --muted: #b7b0a2;
-      --shadow: 0 18px 60px rgba(0,0,0,.52);
-      --radius: 24px;
-      --radius2: 18px;
-      --maxw: 1500px;
+    :root{
+      --bg:#050505;
+      --bg2:#0b0b0b;
+      --panel:rgba(10,10,10,.90);
+      --panel2:rgba(255,255,255,.03);
+      --line:rgba(255,255,255,.10);
+      --text:#f5f5f6;
+      --muted:#b7b7bc;
+      --silver:#dfdfdf;
+      --red:#ff2e3f;
+      --red2:#c31225;
+      --shadow:0 30px 110px rgba(0,0,0,.66);
+      --radius:28px;
+      --radius2:20px;
+      --max:1420px;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      overflow-x:hidden;
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:
-        radial-gradient(circle at top, rgba(126,78,255,.12), transparent 26%),
-        radial-gradient(circle at bottom right, rgba(210,31,43,.10), transparent 22%),
-        linear-gradient(180deg, #050506, #0a0a0f 30%, #050506 100%);
-      color: var(--text);
-      overflow-x: hidden;
+        radial-gradient(circle at 14% 10%, rgba(255,46,63,.12), transparent 18%),
+        radial-gradient(circle at 86% 8%, rgba(255,255,255,.05), transparent 18%),
+        radial-gradient(circle at 50% 100%, rgba(255,46,63,.05), transparent 20%),
+        linear-gradient(180deg,#090909 0%,#040404 100%);
     }
-    a { color: inherit; text-decoration: none; }
-    img, video { display: block; max-width: 100%; }
-    .wrap {
-      width: min(calc(100% - 24px), var(--maxw));
-      margin: 0 auto;
-    }
-    .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.09);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.06);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .glow {
-      position: relative;
-      isolation: isolate;
-    }
-    .glow::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(231,193,90,.9), rgba(210,31,43,.8), rgba(124,77,255,.55));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      z-index: -1;
-    }
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(18px);
-      background: rgba(5,5,7,.72);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 0;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-    .brand img {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 18px rgba(231,193,90,.35));
-    }
-    .brand-title {
-      min-width: 0;
-    }
-    .brand-title .kicker {
-      text-transform: uppercase;
-      letter-spacing: .26em;
-      font-size: .67rem;
-      color: rgba(245,240,230,.68);
-    }
-    .brand-title h1 {
-      margin: 2px 0 0;
-      font-size: clamp(1.05rem, 2vw, 1.55rem);
-      line-height: 1.05;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      color: var(--text);
-      font-size: .82rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .dot-live {
-      width: 9px; height: 9px; border-radius: 50%; background: var(--red2);
-      box-shadow: 0 0 0 0 rgba(255,75,87,.8);
-      animation: pulse 1.7s infinite;
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255,75,87,.85); }
-      70% { box-shadow: 0 0 0 11px rgba(255,75,87,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,75,87,0); }
-    }
-    .cta {
-      border: 0;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 12px 18px;
-      background: linear-gradient(135deg, rgba(231,193,90,.98), rgba(210,31,43,.92));
-      color: #111;
-      font-weight: 800;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      box-shadow: 0 14px 34px rgba(210,31,43,.22);
-      transition: transform .2s ease, filter .2s ease;
-    }
-    .cta:hover { transform: translateY(-1px); filter: brightness(1.05); }
 
-    .hero {
-      position: relative;
-      min-height: calc(100svh - 78px);
-      display: grid;
-      align-items: center;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255,255,255,.07);
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+
+    .shell{position:relative;isolation:isolate;min-height:100vh}
+    .shell::before{
+      content:"";
+      position:fixed;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size:36px 36px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.62), transparent 96%);
+      pointer-events:none;
+      z-index:-2;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .shell::after{
+      content:"";
+      position:fixed;inset:0;
       background:
-        linear-gradient(180deg, rgba(5,5,6,.38), rgba(5,5,6,.78)),
-        radial-gradient(circle at 50% 10%, rgba(231,193,90,.12), transparent 28%),
-        radial-gradient(circle at 80% 25%, rgba(124,77,255,.12), transparent 18%);
-      z-index: 1;
-      pointer-events: none;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: .22;
-      filter: saturate(1.1) contrast(1.05) brightness(.8);
-      transform: scale(1.02);
-    }
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1.25fr .95fr;
-      gap: 18px;
-      align-items: stretch;
-      padding: 28px 0 30px;
-    }
-    .hero-copy, .hero-panel {
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .hero-copy {
-      padding: clamp(20px, 3vw, 34px);
-      background: linear-gradient(180deg, rgba(15,15,19,.84), rgba(9,9,12,.72));
-    }
-    .hero-copy .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      font-size: .78rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(245,240,230,.76);
-    }
-    .hero-copy h2 {
-      margin: 18px 0 10px;
-      font-size: clamp(2.4rem, 6vw, 5.9rem);
-      line-height: .9;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-    }
-    .hero-copy h2 span {
-      display: block;
-      background: linear-gradient(135deg, var(--gold), #fff1a9 45%, #fff 70%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 28px rgba(231,193,90,.12);
-    }
-    .hero-copy p {
-      margin: 14px 0 0;
-      max-width: 62ch;
-      color: rgba(245,240,230,.74);
-      line-height: 1.75;
-      font-size: 1rem;
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-      font-weight: 700;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-    .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(231,193,90,.28); }
-    .btn.primary {
-      background: linear-gradient(135deg, rgba(231,193,90,.96), rgba(210,31,43,.94));
-      color: #0d0d0f;
-      border-color: transparent;
-    }
-    .hero-meta {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .mini-stat {
-      padding: 14px 15px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.07);
-    }
-    .mini-stat .label {
-      font-size: .72rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: rgba(245,240,230,.62);
-    }
-    .mini-stat .value {
-      margin-top: 7px;
-      font-size: clamp(1.05rem, 1.8vw, 1.5rem);
-      font-weight: 800;
-      letter-spacing: .03em;
-    }
-    .hero-panel {
-      position: relative;
-      min-height: 100%;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      background: linear-gradient(180deg, rgba(18,18,24,.96), rgba(9,9,12,.8));
-    }
-    .panel-head {
-      padding: 16px 18px 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .panel-head strong {
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      font-size: .82rem;
-      color: var(--gold);
-    }
-    .panel-head .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: .8rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: rgba(245,240,230,.72);
-    }
-    .matrix-video {
-      position: relative;
-      min-height: 420px;
-      border-radius: 0;
-      overflow: hidden;
-    }
-    .matrix-video video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: .92;
-      filter: saturate(1.06) contrast(1.04) brightness(.76);
-    }
-    .matrix-overlay {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      align-content: space-between;
-      padding: 16px;
-      background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.42));
-      pointer-events: none;
-    }
-    .matrix-badge, .matrix-ticker, .matrix-corner {
-      pointer-events: none;
-    }
-    .matrix-badge {
-      justify-self: start;
-      align-self: start;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.42);
-      border: 1px solid rgba(255,255,255,.09);
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      font-size: .74rem;
-      color: rgba(255,255,255,.9);
-      backdrop-filter: blur(10px);
-    }
-    .matrix-badge .dot-live { width: 8px; height: 8px; }
-    .matrix-corner {
-      justify-self: end;
-      align-self: end;
-      text-align: right;
-      display: grid;
-      gap: 6px;
-    }
-    .matrix-corner .live-clock {
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: .14em;
-      color: #fff;
-      text-shadow: 0 0 18px rgba(255,255,255,.16);
-    }
-    .matrix-corner .subtitle {
-      color: rgba(245,240,230,.74);
-      font-size: .76rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-    .matrix-ticker {
-      white-space: nowrap;
-      overflow: hidden;
-      border-top: 1px solid rgba(255,255,255,.07);
-      background: linear-gradient(90deg, rgba(210,31,43,.12), rgba(231,193,90,.06));
-    }
-    .ticker-track {
-      display: inline-flex;
-      gap: 42px;
-      align-items: center;
-      min-width: 200%;
-      padding: 12px 0;
-      animation: ticker 28s linear infinite;
-      font-size: .82rem;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: rgba(245,240,230,.82);
-    }
-    .ticker-track span { white-space: nowrap; }
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.05), transparent 34%),
+        linear-gradient(180deg, transparent 0%, rgba(0,0,0,.16) 100%);
+      pointer-events:none;
+      z-index:-1;
     }
 
-    .section {
-      padding: 26px 0;
-    }
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-    .section-head h3 {
-      margin: 0;
-      font-size: clamp(1.3rem, 2.8vw, 2.1rem);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .section-head p {
-      margin: 0;
-      color: rgba(245,240,230,.68);
-      max-width: 64ch;
-      line-height: 1.6;
-    }
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .stat-card, .card, .player-box, .weather-card, .clock-card {
-      border-radius: var(--radius2);
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(20,20,26,.9), rgba(11,11,16,.82));
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: var(--shadow);
-    }
-    .stat-card {
-      padding: 18px;
-      min-height: 140px;
-      position: relative;
-    }
-    .stat-card::after {
-      content: "";
-      position: absolute;
-      inset: auto 16px 16px 16px;
-      height: 3px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--gold), var(--red), var(--violet));
-      opacity: .86;
-    }
-    .stat-card .label {
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: rgba(245,240,230,.65);
-      font-size: .72rem;
-    }
-    .stat-card .num {
-      margin-top: 12px;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      letter-spacing: .03em;
-    }
-    .stat-card .desc {
-      margin-top: 10px;
-      color: rgba(245,240,230,.72);
-      line-height: 1.55;
-      font-size: .96rem;
+    .container{width:min(calc(100% - 28px), var(--max));margin:0 auto}
+    .panel{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
     }
 
-    .ticker-panel {
-      padding: 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      overflow: hidden;
-      position: relative;
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(18px);
+      background:linear-gradient(180deg, rgba(8,8,8,.97), rgba(8,8,8,.78));
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .ticker-panel .label {
-      flex: 0 0 auto;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(231,193,90,.14);
-      border: 1px solid rgba(231,193,90,.18);
-      color: var(--gold);
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-size: .78rem;
-      font-weight: 800;
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 0;
     }
-    .ticker-panel .marquee {
-      overflow: hidden;
-      white-space: nowrap;
-      flex: 1;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
     }
-    .ticker-panel .marquee span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 26s linear infinite;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(245,240,230,.84);
-      font-size: .84rem;
+    .brand-logo{
+      width:74px;height:74px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(circle at 30% 28%, rgba(255,255,255,.18), transparent 30%),
+        linear-gradient(145deg, #2a2a2a 0%, #121212 45%, #000 100%);
+      display:grid;
+      place-items:center;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), 0 0 28px rgba(255,46,63,.10);
+      overflow:hidden;
+      flex:0 0 auto;
     }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+    .brand-logo img{width:100%;height:100%;object-fit:contain;padding:4px}
+    .logo-contain{object-fit:contain;background:#070707}
+    .brand-copy strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:1rem;
+      line-height:1.05;
     }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 14px;
-    }
-    .player-box {
-      padding: 18px;
-    }
-    .player-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-    .player-top h4 {
-      margin: 0;
-      font-size: 1.05rem;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-    .player-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .ghost-btn {
-      border: 1px solid rgba(255,255,255,.09);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 11px 14px;
-      cursor: pointer;
-      font-weight: 700;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
-    .soundcloud-frame {
-      position: relative;
-      border-radius: 18px;
-      overflow: hidden;
-      background: #0b0b0f;
-      border: 1px solid rgba(255,255,255,.08);
-      min-height: 360px;
-    }
-    .soundcloud-frame iframe {
-      width: 100%;
-      height: 100%;
-      min-height: 360px;
-      border: 0;
-      display: block;
-    }
-    .player-note {
-      margin-top: 10px;
-      color: rgba(245,240,230,.68);
-      font-size: .92rem;
-      line-height: 1.55;
-    }
-    .stack {
-      display: grid;
-      gap: 14px;
-    }
-    .panel-mini {
-      padding: 18px;
-    }
-    .panel-mini h4 {
-      margin: 0 0 10px;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      font-size: .98rem;
-    }
-    .signal-bars {
-      display: grid;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .bar {
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.06);
-      overflow: hidden;
-    }
-    .bar > span {
-      display: block;
-      height: 100%;
-      width: 72%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, rgba(231,193,90,.96), rgba(210,31,43,.96), rgba(124,77,255,.9));
-      animation: breathe 2.4s ease-in-out infinite alternate;
-      transform-origin: left center;
-    }
-    .bar:nth-child(2) > span { width: 46%; animation-duration: 2.1s; }
-    .bar:nth-child(3) > span { width: 88%; animation-duration: 1.8s; }
-    .bar:nth-child(4) > span { width: 61%; animation-duration: 2.6s; }
-    @keyframes breathe {
-      from { filter: brightness(.92); transform: scaleX(.76); }
-      to { filter: brightness(1.15); transform: scaleX(1); }
-    }
-    .subgrid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .weather-grid, .clock-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .weather-card, .clock-card {
-      padding: 16px;
-      min-height: 148px;
-      position: relative;
-    }
-    .weather-card .city, .clock-card .city {
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      font-size: .78rem;
-      color: rgba(245,240,230,.62);
-    }
-    .weather-card .temp, .clock-card .time {
-      margin-top: 10px;
-      font-weight: 900;
-      font-size: clamp(1.8rem, 4vw, 2.7rem);
-      letter-spacing: .03em;
-    }
-    .weather-card .meta, .clock-card .meta {
-      margin-top: 10px;
-      color: rgba(245,240,230,.72);
-      line-height: 1.5;
-      font-size: .94rem;
-    }
-    .weather-card .badge {
-      margin-top: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(210,31,43,.12);
-      color: #ff8d94;
-      border: 1px solid rgba(210,31,43,.16);
-      text-transform: uppercase;
-      letter-spacing: .15em;
-      font-size: .72rem;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: 1.15fr .95fr .9fr;
-      gap: 14px;
-    }
-    .card.media {
-      min-height: 240px;
-      position: relative;
-    }
-    .card.media img, .card.media video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(1.05) contrast(1.04) brightness(.86);
-    }
-    .card.media .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.54));
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-      padding: 16px;
-    }
-    .overlay .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      align-self: start;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.36);
-      border: 1px solid rgba(255,255,255,.12);
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: .72rem;
-    }
-    .overlay h4 {
-      margin: 12px 0 0;
-      font-size: 1.12rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-    }
-    .overlay p {
-      margin: 6px 0 0;
-      color: rgba(245,240,230,.72);
-      line-height: 1.55;
-      font-size: .92rem;
-    }
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .link-card {
-      display: block;
-      padding: 18px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(210,31,43,.16), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.08);
-      min-height: 120px;
-      transition: transform .2s ease, border-color .2s ease;
-    }
-    .link-card:hover { transform: translateY(-2px); border-color: rgba(231,193,90,.26); }
-    .link-card .name {
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      font-size: .76rem;
-      color: rgba(245,240,230,.66);
-    }
-    .link-card .url {
-      margin-top: 10px;
-      font-size: 1.02rem;
-      font-weight: 800;
-      line-height: 1.4;
-    }
-    footer {
-      padding: 26px 0 36px;
-      color: rgba(245,240,230,.66);
-      border-top: 1px solid rgba(255,255,255,.07);
-      margin-top: 24px;
-    }
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .footer-inner small {
-      line-height: 1.6;
-      max-width: 70ch;
-    }
-    .footer-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      color: rgba(245,240,230,.82);
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      font-size: .76rem;
+    .brand-copy span{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      font-size:.84rem;
     }
 
-    @media (max-width: 1180px) {
-      .hero-grid, .two-col, .gallery, .grid-4, .links-grid { grid-template-columns: 1fr 1fr; }
-      .subgrid { grid-template-columns: 1fr; }
-      .gallery .media:nth-child(1) { grid-column: 1 / -1; }
+    .top-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
-    @media (max-width: 860px) {
-      .topbar-inner, .hero-actions, .section-head, .footer-inner, .player-top, .top-actions {
-        flex-direction: column;
-        align-items: flex-start;
+    .clock-pill,.date-pill,.onair-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:999px;
+      white-space:nowrap;
+      font-size:.84rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+    .clock-pill{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--silver);
+      box-shadow:0 0 0 1px rgba(255,46,63,.06) inset;
+    }
+    .date-pill{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--silver);
+    }
+    .onair-pill{
+      background:rgba(255,46,63,.10);
+      border:1px solid rgba(255,46,63,.26);
+      color:#ffe0e4;
+      box-shadow:0 0 18px rgba(255,46,63,.08);
+    }
+    .onair-pill .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--red);
+      box-shadow:0 0 14px rgba(255,46,63,.88);
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      width:100%;
+    }
+    .nav a{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.09);
+      background:rgba(255,255,255,.03);
+      color:var(--silver);
+      font-size:.86rem;
+      transition:.22s ease;
+      letter-spacing:.04em;
+    }
+    .nav a:hover{
+      transform:translateY(-1px);
+      border-color:rgba(255,46,63,.36);
+      color:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,.24);
+    }
+
+    .hero{padding:22px 0 14px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .hero-panel{
+      min-height:540px;
+      background:
+        linear-gradient(135deg, rgba(0,0,0,.56), rgba(0,0,0,.24)),
+        url('arrière-plan-boyington-radio.jpg') center/cover no-repeat;
+    }
+    .hero-panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        url('logo_radio_boyington.png') center/42% no-repeat;
+      background-size:min(520px, 46%);
+      opacity:.08;
+      pointer-events:none;
+    }
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,46,63,.20), transparent 18%),
+        radial-gradient(circle at 80% 16%, rgba(255,255,255,.08), transparent 24%),
+        radial-gradient(circle at 70% 70%, rgba(255,46,63,.14), transparent 16%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.64));
+    }
+    .hero-content{
+      position:relative;
+      z-index:1;
+      height:100%;
+      padding:30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .badge-row{display:flex;flex-wrap:wrap;gap:10px}
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.11);
+      background:rgba(0,0,0,.38);
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      font-size:.8rem;
+      color:var(--silver);
+      backdrop-filter:blur(6px);
+    }
+    .badge.live{
+      color:#ffe0e4;
+      background:rgba(255,46,63,.12);
+      border-color:rgba(255,46,63,.26);
+      animation:pulseGlow 2.6s ease-in-out infinite;
+    }
+    .badge .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--red);
+      box-shadow:0 0 14px rgba(255,46,63,.82);
+    }
+
+    .hero-title{
+      margin:0;
+      font-size:clamp(2.8rem, 5.8vw, 5.8rem);
+      line-height:.9;
+      text-transform:uppercase;
+      letter-spacing:.02em;
+      text-wrap:balance;
+      text-shadow:0 10px 28px rgba(0,0,0,.42);
+    }
+    .hero-title .silver{color:#f1f1f1}
+    .hero-title .red{color:var(--red)}
+
+    .hero-subtitle{
+      margin:12px 0 0;
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:.86rem;
+    }
+    .hero-copy{
+      margin:14px 0 0;
+      max-width:62ch;
+      color:rgba(255,255,255,.92);
+      line-height:1.72;
+      font-size:1rem;
+    }
+    .hero-stats{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:14px;
+    }
+    .stat{
+      min-width:120px;
+      padding:16px 14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.22);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      flex:1 1 120px;
+    }
+    .stat .ico{
+      width:42px;height:42px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      font-size:1.05rem;
+    }
+    .stat strong{
+      display:block;
+      font-size:1rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .stat span{
+      color:var(--muted);
+      font-size:.82rem;
+      line-height:1.3;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 18px;
+      border-radius:16px;
+      border:1px solid transparent;
+      font-weight:700;
+      letter-spacing:.02em;
+      transition:.22s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--red), #c20d23 50%, #820610 100%);
+      color:#fff;
+      box-shadow:0 18px 35px rgba(255,46,63,.22);
+    }
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-secondary{
+      background:rgba(255,255,255,.04);
+      border-color:rgba(255,255,255,.10);
+      color:var(--text);
+    }
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,46,63,.32);
+      background:rgba(255,46,63,.07);
+    }
+
+    .hero-side{
+      padding:16px;
+      background:
+        radial-gradient(circle at top right, rgba(255,46,63,.15), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,.06), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      display:grid;
+      grid-template-rows:auto 1fr;
+      gap:14px;
+      min-height:540px;
+    }
+    .hero-studio{
+      position:relative;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      background:url('Studio-Console.jpg') center/cover no-repeat;
+      min-height:360px;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+    }
+    .hero-studio::after{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.64)),
+        radial-gradient(circle at 50% 36%, rgba(255,255,255,.06), transparent 44%);
+    }
+    .hero-studio .caption{
+      position:absolute;
+      left:14px;right:14px;bottom:14px;
+      z-index:1;
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(0,0,0,.50);
+      border:1px solid rgba(255,255,255,.10);
+      backdrop-filter:blur(8px);
+    }
+    .hero-studio .caption strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.92rem;
+      margin-bottom:2px;
+    }
+    .hero-studio .caption span{
+      display:block;
+      color:var(--muted);
+      line-height:1.45;
+      font-size:.88rem;
+    }
+
+    .hero-clock-card{
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,46,63,.16), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      min-height:182px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:18px;
+      text-align:center;
+      gap:10px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.02),
+        0 0 20px rgba(255,46,63,.08);
+      position:relative;
+      overflow:hidden;
+      animation:clockGlow 3.2s ease-in-out infinite;
+    }
+    .hero-clock-card::before{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background:radial-gradient(circle at 50% 50%, rgba(255,46,63,.15), transparent 46%);
+      pointer-events:none;
+      animation:clockPulse 2.8s ease-in-out infinite;
+    }
+    .clock-head{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      position:relative;
+      z-index:1;
+    }
+    .clock-tag{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.24);
+      color:#f1f1f1;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.72rem;
+      font-weight:800;
+      white-space:nowrap;
+    }
+    .clock-pulse{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,46,63,.28);
+      background:rgba(255,46,63,.10);
+      color:#ffe0e4;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.72rem;
+      font-weight:800;
+      white-space:nowrap;
+      box-shadow:0 0 18px rgba(255,46,63,.12);
+      animation:pulseGlow 2.6s ease-in-out infinite;
+    }
+    .clock-pulse .dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--red);
+      box-shadow:0 0 14px rgba(255,46,63,.88);
+      animation:wave 1.8s infinite;
+    }
+    .clock-time{
+      position:relative;
+      z-index:1;
+      font-size:clamp(2rem, 4vw, 3.15rem);
+      line-height:1;
+      font-weight:900;
+      letter-spacing:.10em;
+      color:#fff;
+      text-shadow:
+        0 0 10px rgba(255,46,63,.72),
+        0 0 24px rgba(255,46,63,.30);
+      margin-top:2px;
+    }
+    .clock-date{
+      position:relative;
+      z-index:1;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.78rem;
+      font-weight:700;
+    }
+    .clock-sub{
+      position:relative;
+      z-index:1;
+      color:#ff6b7b;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.70rem;
+      font-weight:800;
+    }
+
+    .device{
+      position:absolute;
+      right:18px;
+      bottom:-18px;
+      width:min(300px, 40%);
+      max-width:300px;
+      min-width:220px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)),
+        #060606;
+      box-shadow:0 20px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.03);
+      overflow:hidden;
+      z-index:2;
+    }
+    .device-top{
+      height:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0));
+    }
+    .device-notch{
+      width:34%;
+      height:8px;
+      margin:10px auto 0;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+    }
+    .device-body{
+      padding:14px;
+      display:grid;
+      gap:10px;
+    }
+    .device-brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .device-brand .mini-logo{
+      width:34px;height:34px;border-radius:10px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .device-brand .mini-logo img{
+      width:100%;height:100%;object-fit:cover;
+    }
+    .device-brand strong{
+      display:block;
+      font-size:.72rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .device-brand span{
+      display:block;
+      color:var(--muted);
+      font-size:.68rem;
+    }
+    .device-hero{
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,46,63,.10), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      padding:14px;
+      display:grid;
+      gap:10px;
+    }
+    .device-hero .onair-mini{
+      justify-self:start;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,46,63,.14);
+      border:1px solid rgba(255,46,63,.32);
+      color:#ffdfe3;
+      font-size:.66rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+    .device-hero h4{
+      margin:0;
+      font-size:1rem;
+      line-height:1;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+    .device-hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:.72rem;
+      line-height:1.45;
+    }
+    .device-cta{
+      display:flex;
+      gap:8px;
+    }
+    .device-cta span{
+      flex:1;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      text-align:center;
+      font-size:.66rem;
+      text-transform:uppercase;
+      letter-spacing:.10em;
+    }
+    .device-mini-card{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      background:rgba(0,0,0,.28);
+      min-height:92px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .device-mini-card .mini-top{
+      padding:10px 10px 0;
+      font-size:.64rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+    }
+    .device-mini-card .bars{
+      display:flex;
+      align-items:flex-end;
+      gap:3px;
+      padding:12px 10px 10px;
+      height:58px;
+    }
+    .device-mini-card .bars span{
+      width:4px;
+      border-radius:999px 999px 0 0;
+      background:linear-gradient(180deg, #ff8a95, var(--red));
+      animation:equalize 1.2s ease-in-out infinite;
+    }
+    .device-mini-card .bars span:nth-child(2){animation-delay:.1s;height:24px}
+    .device-mini-card .bars span:nth-child(3){animation-delay:.2s;height:38px}
+    .device-mini-card .bars span:nth-child(4){animation-delay:.3s;height:18px}
+    .device-mini-card .bars span:nth-child(5){animation-delay:.4s;height:42px}
+    .device-mini-card .bars span:nth-child(6){animation-delay:.5s;height:20px}
+    .device-mini-card .bars span:nth-child(7){animation-delay:.6s;height:34px}
+    .device-mini-card .bars span:nth-child(8){animation-delay:.7s;height:16px}
+
+    .section{padding:18px 0}
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:14px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size:clamp(1.5rem, 2.7vw, 2.12rem);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+    .section-head p{
+      margin:0;
+      max-width:72ch;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .player-wrap{
+      padding:18px;
+      background:
+        radial-gradient(circle at 15% 50%, rgba(255,46,63,.08), transparent 22%),
+        radial-gradient(circle at 85% 50%, rgba(255,255,255,.06), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+    .player-grid{
+      display:grid;
+      grid-template-columns:260px 1fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .player-side{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 22%, rgba(255,46,63,.16), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      padding:18px;
+      min-height:250px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+        .mic{
+      width:170px;
+      height:230px;
+      margin:0 auto;
+      position:relative;
+      display:grid;
+      place-items:center;
+      filter:drop-shadow(0 0 20px rgba(255,46,63,.18));
+    }
+    .mic-glow{
+      position:absolute;
+      inset:18px 16px 16px 16px;
+      border-radius:36px;
+      background:radial-gradient(circle at 50% 50%, rgba(255,46,63,.18), transparent 62%);
+      filter:blur(6px);
+    }
+    .mic-head{
+      position:absolute;
+      top:14px;
+      left:50%;
+      width:106px;
+      height:122px;
+      transform:translateX(-50%);
+      border-radius:52px 52px 38px 38px;
+      background:
+        linear-gradient(180deg, #f7f7f7 0%, #cfcfd2 8%, #5c5d61 42%, #17171a 76%, #050505 100%);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.04),
+        inset 0 -16px 24px rgba(0,0,0,.42),
+        0 0 20px rgba(255,255,255,.07);
+      overflow:hidden;
+    }
+    .mic-head::before{
+      content:"";
+      position:absolute;
+      inset:10px 12px 12px 12px;
+      border-radius:32px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.75), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.28));
+      opacity:.55;
+    }
+    .mic-head::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      background:
+        linear-gradient(90deg, transparent 0 13%, rgba(255,255,255,.12) 13% 14%, transparent 14% 28%, rgba(255,255,255,.10) 28% 29%, transparent 29% 43%, rgba(255,255,255,.08) 43% 44%, transparent 44% 58%, rgba(255,255,255,.10) 58% 59%, transparent 59% 73%, rgba(255,255,255,.08) 73% 74%, transparent 74% 100%),
+        linear-gradient(180deg, transparent 0 8%, rgba(0,0,0,.25) 8% 9%, transparent 9% 100%);
+      opacity:.20;
+      mix-blend-mode:screen;
+    }
+    .mic-mesh{
+      position:absolute;
+      top:20px;
+      left:50%;
+      width:90px;
+      height:108px;
+      transform:translateX(-50%);
+      border-radius:42px 42px 30px 30px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.10) 1px, transparent 1px) 0 0 / 8px 8px,
+        linear-gradient(180deg, rgba(255,255,255,.08) 1px, transparent 1px) 0 0 / 8px 8px;
+      mask-image:linear-gradient(180deg, black 0%, black 72%, transparent 100%);
+      opacity:.28;
+      pointer-events:none;
+    }
+    .mic-body{
+      position:absolute;
+      top:120px;
+      left:50%;
+      width:78px;
+      height:78px;
+      transform:translateX(-50%);
+      border-radius:16px 16px 20px 20px;
+      background:
+        linear-gradient(180deg, #2d2d31 0%, #131316 40%, #050505 100%);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 0 18px rgba(0,0,0,.35);
+    }
+    .mic-body::before{
+      content:"";
+      position:absolute;
+      inset:16px 18px 18px 18px;
+      border-radius:14px;
+      background:radial-gradient(circle at 50% 20%, rgba(255,46,63,.26), transparent 55%);
+      opacity:.75;
+    }
+    .mic-body::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:22px;
+      width:30px;
+      height:30px;
+      transform:translateX(-50%);
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.20), transparent 48%),
+        linear-gradient(180deg, rgba(255,46,63,.22), rgba(255,46,63,0));
+      box-shadow:0 0 18px rgba(255,46,63,.18);
+      opacity:.32;
+    }
+    .mic-shock{
+      position:absolute;
+      top:126px;
+      left:50%;
+      width:120px;
+      height:70px;
+      transform:translateX(-50%);
+      border-radius:20px;
+      border:2px solid rgba(255,46,63,.55);
+      opacity:.9;
+      box-shadow:0 0 16px rgba(255,46,63,.12);
+    }
+    .mic-shock::before,
+    .mic-shock::after{
+      content:"";
+      position:absolute;
+      top:10px;
+      width:44px;
+      height:50px;
+      border-left:2px solid rgba(255,46,63,.55);
+      border-right:2px solid rgba(255,46,63,.55);
+      transform:skewX(-24deg);
+      border-radius:10px;
+    }
+    .mic-shock::before{left:8px}
+    .mic-shock::after{
+      right:8px;
+      transform:skewX(24deg);
+    }
+    .mic-stand{
+      position:absolute;
+      top:186px;
+      left:50%;
+      width:22px;
+      height:54px;
+      transform:translateX(-50%);
+      border-radius:12px;
+      background:linear-gradient(180deg, #e9e9ea 0%, #45454a 45%, #111 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.10),
+        0 0 10px rgba(255,255,255,.08);
+    }
+    .mic-stand::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:-10px;
+      width:70px;
+      height:14px;
+      transform:translateX(-50%);
+      border-radius:999px;
+      background:linear-gradient(90deg, transparent, rgba(255,46,63,.94), transparent);
+      filter:blur(.2px);
+    }
+    .eq-bars{
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      gap:6px;
+      height:52px;
+      margin-top:14px;
+    }
+    .eq-bars span{
+      width:8px;
+      border-radius:999px 999px 0 0;
+      background:linear-gradient(180deg, #ff6b7b 0%, #ab0f23 100%);
+      animation:equalize 1.2s ease-in-out infinite;
+    }
+    .eq-bars span:nth-child(2){animation-delay:.1s;height:30px}
+    .eq-bars span:nth-child(3){animation-delay:.2s;height:48px}
+    .eq-bars span:nth-child(4){animation-delay:.3s;height:18px}
+    .eq-bars span:nth-child(5){animation-delay:.4s;height:44px}
+    .eq-bars span:nth-child(6){animation-delay:.5s;height:24px}
+    .player-side .side-copy{
+      text-align:center;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.6;
+    }
+    .player-side .side-copy strong{
+      display:block;
+      color:#fff;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:4px;
+    }
+
+    .player-embed{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#0d0d0d;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 0 1px rgba(255,46,63,.06);
+      min-height:250px;
+    }
+
+    .player-actions{
+      display:flex;
+      justify-content:center;
+      margin-top:14px;
+      width:100%;
+    }
+    .player-actions .btn{
+      min-width:min(320px, 100%);
+    }
+    .btn:disabled{
+      opacity:.58;
+      cursor:not-allowed;
+      transform:none !important;
+    }
+    .player-embed::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,46,63,.18), rgba(255,255,255,0));
+      pointer-events:none;
+      opacity:.8;
+    }
+    iframe{
+      display:block;
+      width:100%;
+      border:0;
+      position:relative;
+      z-index:1;
+      min-height:250px;
+    }
+    .player-side{
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+      padding:12px;
+      min-height:250px;
+    }
+    .player-side .micro-video{
+      width:100%;
+      height:250px;
+      min-height:250px;
+      object-fit:cover;
+      display:block;
+      border-radius:24px;
+      background:#000;
+      box-shadow:0 0 22px rgba(255,0,0,.18), 0 0 54px rgba(255,0,0,.08);
+      border:1px solid rgba(255,255,255,.05);
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:14px;
+    }
+    .gallery-card{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      box-shadow:var(--shadow);
+      transition:.22s ease;
+    }
+    .gallery-card:hover{transform:translateY(-2px)}
+    .gallery-card img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      background:#080808;
+    }
+    .gallery-card img.logo-contain{
+      object-fit:contain;
+      padding:18px;
+      background:#050505;
+    }
+    .gallery-video{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      display:block;
+      background:#080808;
+    }
+    .gallery-card .body{padding:14px}
+    .gallery-card .body strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.95rem;
+      text-align:center;
+    }
+    .pager{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      margin-top:10px;
+    }
+    .pager span{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:rgba(255,255,255,.26);
+    }
+    .pager span:first-child{background:var(--red)}
+
+    .matrix-wrap{
+      padding:18px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,46,63,.08), transparent 18%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,.06), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+    }
+    .matrix-grid{
+      display:grid;
+      grid-template-columns:280px 1fr 280px;
+      gap:16px;
+      align-items:stretch;
+    }
+    .matrix-card{
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.32);
+      overflow:hidden;
+      padding:18px;
+      min-height:320px;
+    }
+    .matrix-title{
+      margin:0 0 6px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1.05rem;
+      color:var(--red);
+      text-align:center;
+    }
+    .matrix-sub{
+      margin:0 0 18px;
+      color:var(--muted);
+      text-align:center;
+      font-size:.92rem;
+    }
+    .regions{display:grid;gap:10px}
+    .region-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+      font-size:.9rem;
+    }
+    .region-name{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+    }
+    .pulse-dot{
+      width:12px;height:12px;border-radius:50%;
+      box-shadow:0 0 0 0 rgba(255,46,63,.5);
+      animation:wave 1.8s infinite;
+      background:var(--red);
+    }
+    .onair{
+      color:#ff596e;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:.84rem;
+    }
+
+    .world-map{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.05), transparent 42%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.18));
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .world-head{
+      margin:0;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1.05rem;
+      color:var(--red);
+      text-align:center;
+    }
+    .world-sub{
+      margin:0;
+      color:var(--muted);
+      text-align:center;
+      font-size:.92rem;
+      line-height:1.4;
+    }
+    .world-video-wrap{
+      position:relative;
+      flex:1 1 auto;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:#060606;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+      min-height:240px;
+    }
+    .world-video-wrap::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.34)),
+        radial-gradient(circle at 50% 50%, rgba(255,46,63,.10), transparent 55%);
+      pointer-events:none;
+      z-index:1;
+    }
+    .world-video{
+      width:100%;
+      height:100%;
+      min-height:240px;
+      object-fit:cover;
+      display:block;
+      background:#000;
+    }
+    .world-badge{
+      position:absolute;
+      left:14px;
+      bottom:14px;
+      z-index:2;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(0,0,0,.48);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      font-size:.72rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      backdrop-filter:blur(6px);
+    }
+
+    .matrix-stats{
+      display:grid;
+      gap:12px;
+      align-content:space-between;
+    }
+    .stat-card{
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,46,63,.10), transparent 42%),
+        rgba(255,255,255,.02);
+      padding:16px;
+      min-height:150px;
+    }
+    .stat-card h3{
+      margin:0 0 8px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1rem;
+      text-align:center;
+    }
+    .stat-circle{
+      width:92px;height:92px;margin:10px auto 14px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle, rgba(255,255,255,.12), transparent 52%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.04), 0 0 34px rgba(255,46,63,.08);
+      position:relative;
+    }
+    .stat-circle::after{
+      content:"";
+      position:absolute; inset:16px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);
+      animation:spin 8s linear infinite;
+    }
+    .stat-circle strong{
+      font-size:1.5rem;
+      color:#fff;
+      text-shadow:0 0 16px rgba(255,255,255,.12);
+    }
+    .stat-card p{
+      margin:0;
+      text-align:center;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.55;
+    }
+    .ticker{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:#ff5b70;
+      text-align:center;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:.82rem;
+    }
+
+    .social-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:14px;
+    }
+    .social-card{
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px;
+      border-radius:22px;
+      border:1px solid rgba(255,46,63,.24);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255,46,63,.18), transparent 28%),
+        radial-gradient(circle at 82% 78%, rgba(255,180,60,.08), transparent 24%),
+        linear-gradient(135deg, rgba(255,46,63,.10), rgba(255,255,255,.03));
+      backdrop-filter:blur(18px) saturate(1.35);
+      -webkit-backdrop-filter:blur(18px) saturate(1.35);
+      min-height:122px;
+      cursor:pointer;
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 10px 30px rgba(0,0,0,.22),
+        0 0 20px rgba(255,46,63,.07);
+    }
+    .social-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.10), rgba(255,255,255,0) 30%, rgba(255,255,255,.05) 55%, rgba(255,255,255,0) 70%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .social-card::after{
+      content:"";
+      position:absolute;
+      inset:1px;
+      border-radius:inherit;
+      border:1px solid rgba(255,255,255,.04);
+      pointer-events:none;
+    }
+    .social-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,46,63,.45);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.04),
+        0 14px 34px rgba(0,0,0,.28),
+        0 0 26px rgba(255,46,63,.14);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255,46,63,.24), transparent 26%),
+        radial-gradient(circle at 82% 78%, rgba(255,180,60,.10), transparent 24%),
+        linear-gradient(135deg, rgba(255,46,63,.14), rgba(255,255,255,.04));
+    }
+    .social-left{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .social-ico{
+      width:68px;
+      height:68px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:1.7rem;
+      color:#fff;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,.12), transparent 42%),
+        linear-gradient(180deg, rgba(255,46,63,.22), rgba(75,0,8,.26));
+      border:1px solid rgba(255,46,63,.30);
+      flex:0 0 auto;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 0 18px rgba(255,46,63,.12);
+      text-shadow:0 0 10px rgba(255,255,255,.10);
+    }
+    .social-copy{min-width:0; position:relative; z-index:1;}
+    .social-copy strong{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1rem;
+      margin:0 0 4px;
+      color:#fff;
+    }
+    .social-copy span{
+      display:block;
+      color:#d1c4c6;
+      font-size:.88rem;
+      line-height:1.45;
+      word-break:break-all;
+    }
+    .social-arrow{
+      position:relative;
+      z-index:1;
+      font-size:1.7rem;
+      color:#ffe3e6;
+      opacity:.95;
+      flex:0 0 auto;
+      text-shadow:0 0 10px rgba(255,46,63,.22);
+    }
+
+    .links-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+    .link-card{
+      padding:18px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      transition:.22s ease;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      min-height:116px;
+      cursor:pointer;
+    }
+    .link-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,46,63,.32);
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+    }.link-copy h3{
+      margin:0;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1.02rem;
+    }
+    .link-icon{
+      width:70px;height:70px;
+      border-radius:18px;
+      display:grid;place-items:center;
+      font-size:2rem;
+      font-weight:900;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color:#fff;
+      flex:0 0 auto;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+
+    .footer{
+      padding:18px 0 24px;
+      color:var(--muted);
+    }
+    .gold-line{
+      height:1px;
+      width:100%;
+      margin:18px 0;
+      background:linear-gradient(90deg, transparent, rgba(255,46,63,.58), transparent);
+    }
+    .footer-inner{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:12px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.08);
+      font-size:.9rem;
+      align-items:center;
+    }
+    .footer a{
+      color:var(--silver);
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
+    .small{font-size:.88rem;color:var(--muted)}
+    .footer-brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .footer-mini-logo{
+      width:58px;height:58px;border-radius:16px;
+      overflow:hidden;border:1px solid rgba(255,255,255,.12);
+      flex:0 0 auto;
+      background:#070707;
+    }
+    .footer-mini-logo img{width:100%;height:100%;object-fit:cover}
+    .footer-wave{
+      display:flex;
+      align-items:flex-end;
+      gap:4px;
+      height:36px;
+      padding:0 8px;
+      justify-content:center;
+    }
+    .footer-wave span{
+      width:6px;
+      border-radius:999px 999px 0 0;
+      background:linear-gradient(180deg, #ff7e8a 0%, var(--red) 100%);
+      animation:equalize 1.3s ease-in-out infinite;
+    }
+    .footer-wave span:nth-child(2){animation-delay:.1s;height:18px}
+    .footer-wave span:nth-child(3){animation-delay:.2s;height:30px}
+    .footer-wave span:nth-child(4){animation-delay:.3s;height:12px}
+    .footer-wave span:nth-child(5){animation-delay:.4s;height:26px}
+    .footer-wave span:nth-child(6){animation-delay:.5s;height:16px}
+    .footer-wave span:nth-child(7){animation-delay:.6s;height:22px}
+
+    @keyframes clockPulse{
+      0%,100%{transform:scale(1); opacity:.7}
+      50%{transform:scale(1.03); opacity:1}
+    }
+    @keyframes pulseGlow{
+      0%,100%{box-shadow:0 0 0 rgba(255,46,63,0)}
+      50%{box-shadow:0 0 18px rgba(255,46,63,.2)}
+    }
+    @keyframes equalize{
+      0%,100%{height:18px}
+      50%{height:52px}
+    }
+    @keyframes wave{
+      0%{transform:scale(.8); box-shadow:0 0 0 0 rgba(255,255,255,.08)}
+      70%{transform:scale(1); box-shadow:0 0 0 10px rgba(255,255,255,0)}
+      100%{transform:scale(.8); box-shadow:0 0 0 0 rgba(255,255,255,0)}
+    }
+    @keyframes mapPulse{
+      0%,100%{filter:drop-shadow(0 0 6px rgba(255,255,255,.08))}
+      50%{filter:drop-shadow(0 0 16px rgba(255,46,63,.16))}
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .world-feed{
+      padding:18px 0 0;
+    }
+    .world-feed-box{
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(135deg, rgba(255,46,63,.10), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+    }
+    .world-feed-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 18px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.22);
+      flex-wrap:wrap;
+    }
+    .world-feed-head strong{
+      color:#fff;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:1rem;
+    }
+    .world-feed-head span{
+      color:var(--muted);
+      font-size:.86rem;
+    }
+    .world-feed-track{
+      overflow:hidden;
+      white-space:nowrap;
+      padding:12px 0;
+      background:rgba(0,0,0,.24);
+    }
+    .world-feed-marquee{
+      display:inline-flex;
+      align-items:center;
+      gap:3rem;
+      min-width:300%;
+      animation:worldFeedScroll 28s linear infinite;
+      padding-left:0;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#f1f1f1;
+    }
+    .world-feed-marquee span{
+      white-space:nowrap;
+    }
+    .world-feed-marquee em{
+      color:var(--red);
+      font-style:normal;
+    }
+
+    .weather-panel{
+      padding:18px;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,46,63,.10), transparent 22%),
+        radial-gradient(circle at 82% 100%, rgba(255,255,255,.06), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+    }
+    .weather-grid{
+      display:grid;
+      grid-template-columns:repeat(6, minmax(0, 1fr));
+      gap:12px;
+    }
+    .weather-cell{
+      padding:16px 14px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.28);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+      min-height:112px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:8px;
+    }
+    .weather-cell .city{
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#d9d9df;
+      font-size:.86rem;
+    }
+    .weather-cell .temp{
+      font-size:2rem;
+      line-height:1;
+      font-weight:900;
+      color:#fff;
+      text-shadow:0 0 16px rgba(255,46,63,.10);
+    }
+    .weather-cell .meta{
+      color:var(--muted);
+      font-size:.8rem;
+      line-height:1.35;
+    }
+    .weather-callout{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,46,63,.18);
+      background:rgba(255,46,63,.08);
+      color:#f4dfe3;
+      font-size:.88rem;
+      line-height:1.55;
+      text-align:center;
+    }
+    @keyframes worldFeedScroll{
+      0%{transform:translateX(0)}
+      100%{transform:translateX(-33.3333%)}
+    }
+
+
+
+    @media (max-width:1260px){
+      .hero-grid{grid-template-columns:1fr 1fr}
+      .gallery-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .matrix-grid{grid-template-columns:1fr}
+      .matrix-stats{grid-template-columns:repeat(3, minmax(0, 1fr))}
+      .device{width:260px}
+    }
+
+    @media (max-width:960px){
+      .topbar-inner{flex-wrap:wrap}
+      .brand{width:100%}
+      .top-right{width:100%;justify-content:space-between}
+      .nav{justify-content:flex-start;width:100%}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-panel,.hero-side{min-height:auto}
+      .hero-content{padding:20px}
+      .hero-side{padding:14px}
+      .hero-studio{min-height:300px}
+      .device{display:none}
+      .player-grid{grid-template-columns:1fr}
+      .matrix-stats{grid-template-columns:repeat(2, minmax(0, 1fr))}
+      .links-grid{grid-template-columns:1fr}
+      .social-grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width:640px){
+      .topbar-inner,
+      .section-head,
+      .footer-inner{flex-direction:column;align-items:flex-start}
+      .top-right{justify-content:flex-start}
+      .nav{justify-content:flex-start}
+      .gallery-grid,
+      .matrix-stats{grid-template-columns:1fr}
+      .hero-panel{min-height:420px}
+      .hero-title{font-size:clamp(2.4rem, 12vw, 4.2rem)}
+      .hero-copy{font-size:.96rem}
+      .player-wrap,.matrix-wrap{padding:14px}
+      .player-side{min-height:auto}
+      .player-side .micro-video{min-height:250px}
+      .player-side .mic{width:150px;height:200px}
+      .player-side .side-copy{font-size:.88rem}
+      .world-video-wrap{min-height:200px}
+      .world-video{min-height:200px}
+      .footer-panel{
+        grid-template-columns:1fr;
+        gap:14px;
       }
-      .hero-grid, .two-col, .gallery, .grid-4, .weather-grid, .clock-grid, .links-grid {
-        grid-template-columns: 1fr;
+      .footer-right{
+        justify-self:start;
       }
-      .hero { min-height: auto; }
-      .hero-copy h2 { font-size: clamp(2.1rem, 12vw, 4.1rem); }
-      .hero-meta { grid-template-columns: 1fr; }
-      .matrix-video { min-height: 300px; }
-      .soundcloud-frame iframe, .soundcloud-frame { min-height: 320px; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
-    }
-  </style>
+  
+.footer-centered{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px 20px 10px;
+}
+
+.footer-center-wrap{
+  max-width:900px;
+  width:100%;
+}
+
+.footer-big-logo{
+  width:96px;
+  height:96px;
+  margin:0 auto 18px;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 25px rgba(255,46,63,.15);
+  background:#050505;
+}
+
+.footer-big-logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.footer-main-title{
+  color:#f1f1f1;
+  font-size:2rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  margin-bottom:10px;
+}
+
+.footer-subtitle{
+  color:#b8b8b8;
+  font-size:1.1rem;
+  margin-bottom:34px;
+}
+
+.footer-subtitle span{
+  color:#ff2e3f;
+}
+
+.footer-legal{
+  color:#cfcfcf;
+  line-height:1.9;
+  font-size:1.02rem;
+}
+
+@media(max-width:768px){
+  .footer-main-title{
+    font-size:1.4rem;
+  }
+
+  .footer-subtitle{
+    font-size:1rem;
+  }
+
+  .footer-legal{
+    font-size:.92rem;
+    line-height:1.7;
+  }
+}
+
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <div class="brand">
-        <img src="logo_radio_boyington.png" alt="Logo Boyington Radio" />
-        <div class="brand-title">
-          <div class="kicker">Official World Broadcast</div>
-          <h1>Boyington Radio 6</h1>
+  <div class="shell">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand" aria-label="Boyington Web Radio">
+          <div class="brand-logo">
+            <img src="logo_radio_boyington.png" alt="Logo Boyington Radio" />
+          </div>
+          <div class="brand-copy">
+            <strong>Boyington Web Radio</strong>
+            <span>Site officiel</span>
+          </div>
         </div>
+
+        <div class="top-right">
+          <div class="date-pill">20.05.2026 | 12:00</div>
+          <div class="clock-pill" aria-live="polite">
+            <span></span>
+            <strong id="boyingtonClock">--:--:--</strong>
+          </div>
+          <div class="onair-pill" aria-label="En direct">
+            <span class="dot"></span>
+            ON AIR
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Navigation principale">
+          <a href="#accueil">ACCUEIL</a>
+          <a href="#player">RADIO</a>
+          <a href="#visuels">VISUELS</a>
+          <a href="#matrix">RÉSEAU MONDIAL</a>
+          <a href="#reseaux">LIENS OFFICIELS</a>
+          <a href="#footer">CONTACT</a>
+        </nav>
       </div>
+    </header>
 
-      <div class="top-actions">
-        <div class="pill"><span class="dot-live"></span><span>Live now</span></div>
-        <div class="pill" id="topClock">--:--:--</div>
-        <button class="cta" id="listenBtn">Écouter la radio</button>
-      </div>
-    </div>
-  </header>
+    <main>
+      <section id="accueil" class="hero">
+        <div class="container hero-grid">
+          <article class="panel hero-panel">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+              <div class="badge-row">
+                <span class="badge live"><span class="dot"></span> En direct / 24h24</span>
+                <span class="badge">SoundCloud officiel</span>
+                <span class="badge">Lecture aléatoire</span>
+                <span class="badge">Mix & Remix</span>
+              </div>
 
-  <main>
-    <section class="hero">
-      <video class="hero-bg" src="dj-world-matrix.mp4" autoplay muted loop playsinline></video>
-      <div class="wrap hero-grid">
-        <article class="hero-copy glow glass">
-          <div class="eyebrow"><span class="dot-live"></span> BOYINGTON WORLD NETWORK</div>
-          <h2><span>Radio mondiale</span> en direct</h2>
-          <p>
-            Une plateforme premium orientée diffusion internationale, avec centre visuel DJ World Matrix,
-            atmosphère cinématique noire et dorée, signaux audio dynamiques, météo mondiale, horloges live
-            et player SoundCloud verrouillé.
-          </p>
+              <div>
+                <div class="onair-pill" style="width:max-content;margin-bottom:12px;">
+                  <span class="dot"></span> ON AIR
+                </div>
 
-          <div class="hero-actions">
-            <button class="btn primary" id="openPlayerBtn">Ouvrir le player</button>
-            <a class="btn" href="#world">World network</a>
-            <a class="btn" href="#player">Player</a>
+                <h1 class="hero-title">
+                  <span class="silver">BOYINGTON</span><br />
+                  <span class="red">WEB RADIO</span>
+                </h1>
+                <p class="hero-subtitle">La radio du son, du mix et de l’énergie</p>
+
+                <div class="hero-stats">
+                  <div class="stat">
+                    <div class="ico">♪</div>
+                    <strong>24/7</strong>
+                    <span>Musique non-stop</span>
+                  </div>
+                  <div class="stat">
+                    <div class="ico">◎</div>
+                    <strong>UNIVERS</strong>
+                    <span>DJ & mix</span>
+                  </div>
+                  <div class="stat">
+                    <div class="ico">⌁</div>
+                    <strong>PLAYLISTS</strong>
+                    <span>Enchaînées</span>
+                  </div>
+                  <div class="stat">
+                    <div class="ico">⚡</div>
+                    <strong>ÉNERGIE</strong>
+                    <span>Positive</span>
+                  </div>
+                </div>
+
+                <div class="hero-actions">
+                  <a class="btn btn-primary" href="#player">▶ ÉCOUTER LA RADIO</a>
+                  <a class="btn btn-secondary" href="#visuels">VOIR LES VISUELS</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="panel hero-side" aria-label="Aperçu visuel">
+            <div class="hero-studio">
+              <video autoplay muted loop playsinline preload="metadata" poster="Studio-Console.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+                <source src="studio-console-animation.mp4" type="video/mp4">
+              </video>
+              <div class="caption">
+                <strong>Studio console</strong>
+              </div>
+            </div>
+
+            <div class="hero-clock-card" aria-label="Horloge studio radio">
+              <div class="clock-head">
+                <span class="clock-tag">LIVE RADIO CLOCK</span>
+                <span class="clock-pulse"><span class="dot"></span> ON AIR</span>
+              </div>
+
+              <div class="clock-time" id="heroRadioClock">--:--:--</div>
+              <div class="clock-date" id="heroRadioDate">-- --- ----</div>
+              <div class="clock-sub">heure FR temps réel</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="player" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Lecteur officiel</h2>
+            </div>
           </div>
 
-          <div class="hero-meta">
-            <div class="mini-stat">
-              <div class="label">World stream status</div>
-              <div class="value" id="streamStatus">ACTIVE</div>
-            </div>
-            <div class="mini-stat">
-              <div class="label">Countries online</div>
-              <div class="value" id="countryCount">87</div>
-            </div>
-            <div class="mini-stat">
-              <div class="label">Live connections</div>
-              <div class="value" id="liveConnections">12,458</div>
-            </div>
-          </div>
-        </article>
+          <div class="panel player-wrap">
+            <div class="player-grid">
+              <div class="player-side">
+                <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png">
+                  <source src="boyington-radio-micro-animation.mp4" type="video/mp4">
+                </video>
+              </div>
 
-        <aside class="hero-panel glow glass">
-          <div class="panel-head">
-            <strong>DJ World Matrix</strong>
-            <div class="status"><span class="dot-live"></span><span id="heroClock">--:--:--</span></div>
+              <div class="player-embed">
+                <iframe
+                  id="sc-player"
+                  width="100%"
+                  height="250"
+                  scrolling="no"
+                  frameborder="no"
+                  allow="autoplay; encrypted-media"
+                  src="about:blank"
+                  title="SoundCloud player - Boyington Web Radio"></iframe>
+              </div>
+            </div>
+
+            <div class="player-actions">
+              <button id="randomPlaylistBtn" class="btn btn-primary" type="button" disabled>
+                🔀 PLAYLIST ALÉATOIRE
+              </button>
+            </div>
           </div>
-          <div class="matrix-video">
-            <video src="dj-world-matrix.mp4" autoplay muted loop playsinline></video>
-            <div class="matrix-overlay">
-              <div class="matrix-badge"><span class="dot-live"></span> World network online</div>
-              <div class="matrix-corner">
-                <div class="live-clock" id="matrixClock">--:--:--</div>
-                <div class="subtitle">Broadcast command center</div>
+        </div>
+      </section>
+
+      <section id="visuels" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Visuels Studio Images</h2>
+            </div>
+          </div>
+
+          <div class="gallery-grid">
+            <article class="gallery-card">
+              <video class="gallery-video" autoplay muted loop playsinline preload="metadata" aria-label="Gold Audio Signal animé" poster="dj-world-matrix.jpg">
+                <source src="boyington-live-audio-signal2.mp4" type="video/mp4" />
+              </video>
+              <div class="body">
+                <strong>GOLD AUDIO SIGNAL</strong>
+              </div>
+            </article>
+
+            <article class="gallery-card">
+              <img src="logo_remix_boyington.png" alt="Logo Boyington Remix" class="logo-contain" />
+              <div class="body">
+                <strong>BOYINGTON REMIX</strong>
+              </div>
+            </article>
+
+            <article class="gallery-card">
+              <img src="logo_radio_boyington.png" alt="Logo Boyington Radio" class="logo-contain" />
+              <div class="body">
+                <strong>BOYINGTON RADIO</strong>
+              </div>
+            </article>
+
+            <article class="gallery-card">
+              <video class="gallery-video" autoplay muted loop playsinline preload="metadata" aria-label="Red Audio Signal animé">
+                <source src="boyington-live-audio-signal.mp4" type="video/mp4" />
+              </video>
+              <div class="body">
+                <strong>RED AUDIO SIGNAL</strong>
+              </div>
+            </article>
+          </div>
+
+          <div class="pager" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="matrix" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Réseau mondial</h2>
+            </div>
+          </div>
+
+          <div class="panel matrix-wrap">
+            <div class="matrix-grid">
+              <div class="matrix-card">
+                <h3 class="matrix-title">Zones actives</h3>
+                <p class="matrix-sub">Diffusion mondiale / connexion permanente</p>
+
+                <div class="regions">
+                  <div class="region-row"><div class="region-name"><span class="pulse-dot"></span>Europe</div><div class="onair">ON AIR</div></div>
+                  <div class="region-row"><div class="region-name"><span class="pulse-dot"></span>Amérique du Nord</div><div class="onair">ON AIR</div></div>
+                  <div class="region-row"><div class="region-name"><span class="pulse-dot"></span>Amérique du Sud</div><div class="onair">ON AIR</div></div>
+                  <div class="region-row"><div class="region-name"><span class="pulse-dot"></span>Afrique</div><div class="onair">ON AIR</div></div>
+                  <div class="region-row"><div class="region-name"><span class="pulse-dot"></span>Asie</div><div class="onair">ON AIR</div></div>
+                  <div class="region-row"><div class="region-name"><span class="pulse-dot"></span>Océanie</div><div class="onair">ON AIR</div></div>
+                </div>
+              </div>
+
+              <div class="world-map">
+                <div class="world-head">World Network</div>
+                <div class="world-sub">Animation Pika intégrée</div>
+                <div class="world-video-wrap">
+                  <video class="world-video" autoplay muted loop playsinline poster="dj-world-matrix.jpg" aria-label="Réseau mondial animé">
+                    <source src="dj-world-matrix.mp4" type="video/mp4" />
+                    <img src="dj-world-matrix.jpg" alt="Réseau mondial" />
+                  </video>
+                  <div class="world-badge">GLOBAL FEED</div>
+                </div>
+
+                <div class="world-feed-box" style="margin-top:8px;">
+                  <div class="world-feed-head">
+                    <strong>Réseau mondial</strong>
+                    <span>Températures en direct • flux international</span>
+                  </div>
+                  <div class="world-feed-track" aria-label="Réseau mondial défilant">
+                    <div id="worldWeatherTicker" class="world-feed-marquee" aria-live="polite">
+                      <span>🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
+                      <span aria-hidden="true">🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
+                      <span aria-hidden="true">🌍 PARIS 22°C • LONDON 19°C • NEW YORK 27°C • DUBAI 38°C • TOKYO 29°C • MADRID 33°C • ROME 30°C • DUBLIN 18°C • MONTREAL 24°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC •</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="matrix-stats">
+                <div class="stat-card">
+                  <h3>Connexion globale</h3>
+                  <div class="stat-circle"><strong id="djConnected">128</strong></div>
+                  <p>DJ connectés dans la sphère Boyington.</p>
+                  <div class="ticker">Unis par la musique</div>
+                </div>
+
+                <div class="stat-card">
+                  <h3>Auditeurs en direct</h3>
+                  <div class="stat-circle"><strong id="liveListeners">2548</strong></div>
+                  <p>Audience animée par le flux radio et les playlists officielles.</p>
+                  <div class="ticker">Live 24/7</div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="matrix-ticker">
-            <div class="ticker-track">
-              <span>Paris • London • Ibiza • New York • Miami • Tokyo • Dubai • Berlin • Rio • Montreal • BOYINGTON RADIO LIVE</span>
-              <span>Paris • London • Ibiza • New York • Miami • Tokyo • Dubai • Berlin • Rio • Montreal • BOYINGTON RADIO LIVE</span>
+        </div>
+
+      </section>
+
+      <section id="worldweather" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>World Weather Matrix</h2>
+              <p>Températures mondiales en temps réel sur les hubs clés du réseau Boyington.</p>
             </div>
           </div>
-        </aside>
-      </div>
-    </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="ticker-panel glass glow">
-          <div class="label">Live feed</div>
-          <div class="marquee">
-            <span id="newsTicker">Loading world broadcast feed…</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="world">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h3>World Network Live Center</h3>
-            <p>Le cœur premium du site : connexions mondiales, météo automatique, horaires synchronisés et données broadcast lisibles sur mobile comme sur desktop.</p>
-          </div>
-          <div class="pill"><span class="dot-live"></span><span id="networkPulse">NETWORK SYNC</span></div>
-        </div>
-
-        <div class="grid-4">
-          <div class="stat-card glow">
-            <div class="label">Active listeners</div>
-            <div class="num" id="activeListeners">12,458</div>
-            <div class="desc">Estimation visuelle du trafic live et de l’audience connectée à la diffusion mondiale.</div>
-          </div>
-          <div class="stat-card glow">
-            <div class="label">Countries online</div>
-            <div class="num" id="countriesOnlineCard">87</div>
-            <div class="desc">Connexion symbolique du réseau international BOYINGTON RADIO.</div>
-          </div>
-          <div class="stat-card glow">
-            <div class="label">Signal strength</div>
-            <div class="num" id="signalStrength">98%</div>
-            <div class="desc">Barre signal premium synchronisée avec le rythme visuel du site.</div>
-          </div>
-          <div class="stat-card glow">
-            <div class="label">World clock sync</div>
-            <div class="num" id="syncState">LIVE</div>
-            <div class="desc">Horloge centrale temps réel pilotant le réseau des villes principales.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap two-col">
-        <div class="player-box glow glass" id="player">
-          <div class="player-top">
-            <h4>SoundCloud player locked</h4>
-            <div class="player-actions">
-              <button class="ghost-btn" id="randomPlaylistBtn">Playlist aléatoire</button>
-              <button class="ghost-btn" id="reloadPlayerBtn">Recharger</button>
+          <div class="panel weather-panel">
+            <div id="worldWeatherMatrix" class="weather-grid" aria-live="polite">
+              <div class="weather-cell"><div class="city">PARIS</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
+              <div class="weather-cell"><div class="city">LONDON</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
+              <div class="weather-cell"><div class="city">NEW YORK</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
+              <div class="weather-cell"><div class="city">DUBAI</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
+              <div class="weather-cell"><div class="city">TOKYO</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
+              <div class="weather-cell"><div class="city">MONTREAL</div><div class="temp">--°C</div><div class="meta">Connexion live</div></div>
             </div>
-          </div>
-          <div class="soundcloud-frame">
-            <iframe
-              id="soundcloudIframe"
-              title="Boyington Radio SoundCloud"
-              allow="autoplay"
-              scrolling="no"
-              src="about:blank">
-            </iframe>
-          </div>
-          <div class="player-note" id="playerNote">
-            Le bloc player reste stable. Les playlists sont lues depuis <strong>playlists.txt</strong> et une playlist est chargée au hasard au démarrage.
-          </div>
-        </div>
-
-        <div class="stack">
-          <div class="panel-mini glow glass">
-            <h4>Audio signal center</h4>
-            <div class="signal-bars" aria-hidden="true">
-              <div class="bar"><span></span></div>
-              <div class="bar"><span></span></div>
-              <div class="bar"><span></span></div>
-              <div class="bar"><span></span></div>
-            </div>
-            <p class="player-note">Habillage HUD rouge/or, effet broadcast et mouvement discret pour renforcer l’identité radio premium.</p>
-          </div>
-
-          <div class="panel-mini glow glass">
-            <h4>World weather matrix</h4>
-            <div class="weather-grid" id="weatherGrid">
-              <div class="weather-card"><div class="city">Loading…</div><div class="temp">--°C</div><div class="meta">Fetching live weather.</div></div>
+            <div class="weather-callout">
+              Synchronisation automatique des températures avec le bandeau défilant mondial.
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h3>World time network</h3>
-            <p>Heures synchronisées sur les hubs clés de la diffusion internationale.</p>
+      <section id="reseaux" class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Boyington Réseaux Officiels</h2>
+              <p>Accès direct aux plateformes officielles.</p>
+            </div>
+          </div>
+
+          <div class="social-grid">
+            <a class="social-card" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Facebook officiel Boyington">
+              <div class="social-left">
+                <div class="social-ico">f</div>
+                <div class="social-copy">
+                  <strong>Facebook Officiel</strong>
+                  <span>facebook.com/LoranBoyington</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://www.facebook.com/groups/DjsSetMusicForPeople" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir groupe Facebook officiel DJ">
+              <div class="social-left">
+                <div class="social-ico">DJ</div>
+                <div class="social-copy">
+                  <strong>Groupe DJs Officiel</strong>
+                  <span>DjsSetMusicForPeople</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir TikTok officiel Boyington">
+              <div class="social-left">
+                <div class="social-ico">♪</div>
+                <div class="social-copy">
+                  <strong>TikTok Officiel</strong>
+                  <span>@boyingtonremixofficiel</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://www.youtube.com/@BoyingtonCollection" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir YouTube officiel Boyington">
+              <div class="social-left">
+                <div class="social-ico">▶</div>
+                <div class="social-copy">
+                  <strong>YouTube Officiel</strong>
+                  <span>@BoyingtonCollection</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
+
+            <a class="social-card" href="https://soundcloud.com/boyingtonremix" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir SoundCloud officiel Boyington">
+              <div class="social-left">
+                <div class="social-ico">S</div>
+                <div class="social-copy">
+                  <strong>SoundCloud Officiel</strong>
+                  <span>soundcloud.com/boyingtonremix</span>
+                </div>
+              </div>
+              <div class="social-arrow">→</div>
+            </a>
           </div>
         </div>
-        <div class="clock-grid" id="clockGrid"></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h3>Visual gallery</h3>
-            <p>Une galerie sobre et cinématique, pensée pour montrer les éléments du dépôt sans casser la cohérence premium noir/or/rouge.</p>
+      </section>
+      <section id="banner-video" class="section">
+        <div class="container">
+          <div class="panel" style="overflow:hidden;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));">
+            <video autoplay muted loop playsinline preload="metadata"
+              style="width:100%;display:block;border-radius:22px;object-fit:cover;background:#000;">
+              <source src="dj-world-matrix.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
-        <div class="gallery">
-          <article class="card media glow">
-            <img src="arrière-plan-boyington-radio.jpg" alt="Arrière-plan Boyington Radio" />
-            <div class="overlay">
-              <div class="tag"><span class="dot-live"></span> Official background</div>
-              <h4>Broadcast atmosphere</h4>
-              <p>Arrière-plan officiel du projet, renforçant la scène radio cinématique.</p>
-            </div>
-          </article>
-          <article class="card media glow">
-            <img src="Studio-Console.jpg" alt="Studio Console" />
-            <div class="overlay">
-              <div class="tag">Studio console</div>
-              <h4>Mix room control</h4>
-              <p>Un encart orienté régie audio, avec lecture visuelle claire sur desktop et mobile.</p>
-            </div>
-          </article>
-          <article class="card media glow">
-            <img src="image_studio-bas.jpg" alt="Studio bas" />
-            <div class="overlay">
-              <div class="tag">Lower studio</div>
-              <h4>Visual anchor</h4>
-              <p>Bloc de soutien visuel pour équilibrer le hero et les panneaux de données live.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+      </section>
+</main>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h3>Official links</h3>
-            <p>Liens publics intégrés au design premium, avec style glass rouge et lisibilité renforcée.</p>
-          </div>
-        </div>
-        <div class="links-grid">
-          <a class="link-card glow" href="https://www.facebook.com/LoranBoyington/" target="_blank" rel="noopener noreferrer">
-            <div class="name">Facebook</div>
-            <div class="url">Loran Boyington</div>
-          </a>
-          <a class="link-card glow" href="https://www.tiktok.com/@boyingtonremixofficiel" target="_blank" rel="noopener noreferrer">
-            <div class="name">TikTok</div>
-            <div class="url">@boyingtonremixofficiel</div>
-          </a>
-          <a class="link-card glow" href="https://boyingtonremix.github.io/Web-Radio-BOYINGTON-REMIX-24-24/" target="_blank" rel="noopener noreferrer">
-            <div class="name">Web radio</div>
-            <div class="url">Site officiel indexé</div>
-          </a>
-          <a class="link-card glow" href="https://soundcloud.com" target="_blank" rel="noopener noreferrer">
-            <div class="name">SoundCloud</div>
-            <div class="url">Official stream zone</div>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-inner">
-      <small>
-        BOYINGTON REMIX / BOYINGTON RADIO — contenu visuel et structure protégés, univers premium noir/or/rouge, player SoundCloud verrouillé,
-        playlists.txt utilisé comme système de gestion officiel. Tous droits réservés © Alias Péppino.
-      </small>
-      <div class="footer-badge"><span class="dot-live"></span> World broadcast ready</div>
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="gold-line"></div>
+        
+<div class="footer-panel footer-centered">
+  <div class="footer-center-wrap">
+    <div class="footer-big-logo">
+      <img src="logo_radio_boyington.png" alt="Boyington Web Radio">
     </div>
-  </footer>
 
-  <script src="https://w.soundcloud.com/player/api.js"></script>
+    <div class="footer-main-title">
+      BOYINGTON WEB RADIO
+    </div>
+
+    
+
+    <div class="footer-legal">
+      🎧 Diffusion Boyington Web Radio non commerciales<br>
+      🎶 Soutenez toujours les artistes et labels officiels.<br>
+      ⚠️ Tous les droits sur les œuvres originales appartiennent à leurs propriétaires respectifs.<br>
+      © BoyingtonWebRadioOfficial — All Rights Reserved<br>
+      Alias Péppino
+    </div>
+  </div>
+</div>
+
+</footer>
+
+  </div>
+
+    <script src="https://w.soundcloud.com/player/api.js"></script>
   <script>
-    const APP = {
-      cities: [
-        { name: 'Paris', tz: 'Europe/Paris', lat: 48.8566, lon: 2.3522 },
-        { name: 'London', tz: 'Europe/London', lat: 51.5072, lon: -0.1276 },
-        { name: 'New York', tz: 'America/New_York', lat: 40.7128, lon: -74.0060 },
-        { name: 'Miami', tz: 'America/New_York', lat: 25.7617, lon: -80.1918 },
-        { name: 'Tokyo', tz: 'Asia/Tokyo', lat: 35.6762, lon: 139.6503 },
-        { name: 'Dubai', tz: 'Asia/Dubai', lat: 25.2048, lon: 55.2708 }
-      ],
-      weatherCache: new Map(),
-      playlists: [],
-      currentPlaylistUrl: '',
-      widget: null,
-      manualPlayerOpen: false,
-    };
+    (function () {
+      const PLAYER_IFRAME_ID = 'sc-player';
+      const PLAYLISTS_URL = 'playlists.txt';
+      const iframe = document.getElementById(PLAYER_IFRAME_ID);
+      const randomPlaylistBtn = document.getElementById('randomPlaylistBtn');
+      const clockEl = document.getElementById('boyingtonClock');
+      const heroClockEl = document.getElementById('heroRadioClock');
+      const heroDateEl = document.getElementById('heroRadioDate');
 
-    const el = (id) => document.getElementById(id);
+      function updateClock() {
+        const now = new Date();
+        const timeText = new Intl.DateTimeFormat('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }).format(now);
 
-    function pad(n) { return String(n).padStart(2, '0'); }
+        const dateText = new Intl.DateTimeFormat('fr-FR', {
+          weekday: 'long',
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        }).format(now);
 
-    function formatNow(tz) {
-      return new Intl.DateTimeFormat('fr-FR', {
-        timeZone: tz,
-        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
-      }).format(new Date());
-    }
-
-    function updateClocks() {
-      const d = new Date();
-      const top = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      el('topClock').textContent = top;
-      el('heroClock').textContent = top;
-      el('matrixClock').textContent = top;
-
-      const grid = el('clockGrid');
-      if (!grid.dataset.ready) {
-        grid.innerHTML = APP.cities.map(c => `
-          <div class="clock-card glow">
-            <div class="city">${c.name}</div>
-            <div class="time" data-clock="${c.tz}">${formatNow(c.tz)}</div>
-            <div class="meta">World time sync live.</div>
-          </div>`).join('');
-        grid.dataset.ready = '1';
-      } else {
-        grid.querySelectorAll('[data-clock]').forEach(node => {
-          node.textContent = formatNow(node.dataset.clock);
-        });
+        if (clockEl) clockEl.textContent = timeText;
+        if (heroClockEl) heroClockEl.textContent = timeText;
+        if (heroDateEl) heroDateEl.textContent = dateText;
       }
-    }
 
-    function setNewsTicker() {
-      const feed = [
-        'Boyington Radio live world network online',
-        'Premium black gold red broadcast center',
-        'SoundCloud player locked and stable',
-        'Playlist random mode available',
-        'DJ World Matrix hero active',
-        'Global weather matrix synchronized'
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      const worldCities = [
+        { label: 'PARIS', latitude: 48.8566, longitude: 2.3522 },
+        { label: 'LONDON', latitude: 51.5072, longitude: -0.1276 },
+        { label: 'NEW YORK', latitude: 40.7128, longitude: -74.0060 },
+        { label: 'DUBAI', latitude: 25.2048, longitude: 55.2708 },
+        { label: 'TOKYO', latitude: 35.6762, longitude: 139.6503 },
+        { label: 'MADRID', latitude: 40.4168, longitude: -3.7038 },
+        { label: 'ROME', latitude: 41.9028, longitude: 12.4964 },
+        { label: 'DUBLIN', latitude: 53.3498, longitude: -6.2603 },
+        { label: 'MONTREAL', latitude: 45.5017, longitude: -73.5673 }
       ];
-      let idx = 0;
-      const render = () => {
-        const text = feed[idx % feed.length];
-        el('newsTicker').textContent = `► ${text} • ► ${feed[(idx+1)%feed.length]} • ► ${feed[(idx+2)%feed.length]} •`;
-        idx += 1;
-      };
-      render();
-      setInterval(render, 6000);
-    }
 
-    async function loadWeather() {
-      const grid = el('weatherGrid');
-      const cells = [];
-      for (const city of APP.cities) {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,weather_code,wind_speed_10m&timezone=auto`;
+      const worldWeatherTicker = document.getElementById('worldWeatherTicker');
+      const worldWeatherMatrix = document.getElementById('worldWeatherMatrix');
+
+      function formatTemp(value) {
+        if (typeof value !== 'number' || Number.isNaN(value)) return '--';
+        return Math.round(value);
+      }
+
+      async function fetchCityTemperature(city) {
+        const url = new URL('https://api.open-meteo.com/v1/forecast');
+        url.searchParams.set('latitude', city.latitude);
+        url.searchParams.set('longitude', city.longitude);
+        url.searchParams.set('current', 'temperature_2m');
+        url.searchParams.set('temperature_unit', 'celsius');
+        url.searchParams.set('timezone', 'auto');
+
+        const response = await fetch(url.toString(), { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Weather request failed for ${city.label}`);
+        const data = await response.json();
+        return formatTemp(data && data.current && data.current.temperature_2m);
+      }
+
+      async function updateWorldWeatherTicker() {
+        const cities = worldCities;
+
         try {
-          const res = await fetch(url, { cache: 'no-store' });
-          if (!res.ok) throw new Error('weather fetch failed');
-          const data = await res.json();
-          const temp = data?.current?.temperature_2m;
-          const code = data?.current?.weather_code;
-          const meta = weatherLabel(code);
-          cells.push({ name: city.name, temp, meta });
-          APP.weatherCache.set(city.name, temp);
-        } catch {
-          const fallback = fallbackTemp(city.name);
-          cells.push({ name: city.name, temp: fallback.temp, meta: fallback.meta });
+          const temps = await Promise.all(cities.map(async (city) => {
+            try {
+              const temp = await fetchCityTemperature(city);
+              return { label: city.label, temp };
+            } catch (_error) {
+              return { label: city.label, temp: '--' };
+            }
+          }));
+
+          const line = `🌍 ${temps.map(item => `${item.label} ${item.temp}°C`).join(' • ')} • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC`;
+          if (worldWeatherTicker) {
+            worldWeatherTicker.innerHTML = `<span>${line}</span><span aria-hidden="true">${line}</span><span aria-hidden="true">${line}</span>`;
+          }
+
+          if (worldWeatherMatrix) {
+            worldWeatherMatrix.innerHTML = temps.map(item => `
+              <div class="weather-cell">
+                <div class="city">${item.label}</div>
+                <div class="temp">${item.temp}°C</div>
+                <div class="meta">Mise à jour live</div>
+              </div>
+            `).join('');
+          }
+        } catch (_error) {
+          const fallbackLine = '🌍 PARIS --°C • LONDON --°C • NEW YORK --°C • DUBAI --°C • TOKYO --°C • MADRID --°C • ROME --°C • DUBLIN --°C • MONTREAL --°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC';
+          if (worldWeatherTicker) {
+            worldWeatherTicker.innerHTML = `<span>${fallbackLine}</span><span aria-hidden="true">${fallbackLine}</span><span aria-hidden="true">${fallbackLine}</span>`;
+          }
+          if (worldWeatherMatrix) {
+            worldWeatherMatrix.innerHTML = cities.map(city => `
+              <div class="weather-cell">
+                <div class="city">${city.label}</div>
+                <div class="temp">--°C</div>
+                <div class="meta">Connexion indisponible</div>
+              </div>
+            `).join('');
+          }
         }
       }
-      grid.innerHTML = cells.map(item => `
-        <div class="weather-card glow">
-          <div class="city">${item.name}</div>
-          <div class="temp">${Math.round(item.temp)}°C</div>
-          <div class="meta">${item.meta}</div>
-          <div class="badge"><span class="dot-live"></span> live weather</div>
-        </div>
-      `).join('');
-    }
 
-    function weatherLabel(code) {
-      const map = {
-        0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
-        45: 'Fog', 48: 'Freezing fog', 51: 'Light drizzle', 53: 'Drizzle', 55: 'Dense drizzle',
-        61: 'Rain', 63: 'Moderate rain', 65: 'Heavy rain', 71: 'Snow', 73: 'Snow', 75: 'Heavy snow',
-        80: 'Rain showers', 81: 'Heavy showers', 82: 'Violent showers', 95: 'Thunderstorm'
-      };
-      return map[code] || 'Live conditions';
-    }
+      updateWorldWeatherTicker();
+      setInterval(updateWorldWeatherTicker, 30 * 60 * 1000);
 
-    function fallbackTemp(city) {
-      const base = { Paris: 22, London: 18, 'New York': 25, Miami: 31, Tokyo: 24, Dubai: 38 };
-      return { temp: base[city] ?? 20, meta: 'Fallback display' };
-    }
+      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
 
-    function parsePlaylists(text) {
-      const blocks = text.split(/\n\s*\n/);
-      const out = [];
-      for (const block of blocks) {
-        const title = /TITLE\s*=\s*(.+)/i.exec(block)?.[1]?.trim();
-        const url = /URL\s*=\s*(.+)/i.exec(block)?.[1]?.trim();
-        if (title && url) out.push({ title, url });
+      let playlistPool = [];
+      let currentPlaylistIndex = -1;
+      let widget = null;
+      let readyAfterLoad = false;
+      let pendingAutoplay = false;
+      let pendingRandomizeTrack = false;
+      let widgetInitTimer = null;
+
+      function normalizeEntry(item) {
+        if (!item || typeof item !== 'object') return null;
+        const url = typeof item.url === 'string' ? item.url.trim() : '';
+        const title = (typeof item.title === 'string' && item.title.trim())
+          ? item.title.trim()
+          : (typeof item.titre === 'string' && item.titre.trim())
+            ? item.titre.trim()
+            : 'Sans titre';
+        if (!url) return null;
+        return { title, url };
       }
-      return out;
-    }
 
-    function buildSoundCloudUrl(trackUrl) {
-      const params = new URLSearchParams({
-        url: trackUrl,
-        color: '#e7c15a',
-        auto_play: 'false',
-        hide_related: 'true',
-        show_comments: 'false',
-        show_user: 'false',
-        show_reposts: 'false',
-        visual: 'false',
-        buying: 'false',
-        sharing: 'false',
-        download: 'false',
-        buying: 'false',
-        show_teaser: 'false',
-        callback: '0'
-      });
-      return `https://w.soundcloud.com/player/?${params.toString()}`;
-    }
+      function parsePlaylistText(rawText) {
+        const blocks = rawText.split(/\[PLAYLIST\]/i);
+        const entries = [];
 
-    function loadPlayer(url) {
-      if (!url) {
-        el('soundcloudIframe').src = 'about:blank';
-        el('playerNote').textContent = 'Aucune playlist détectée dans playlists.txt. Vérifie le format [PLAYLIST] TITLE= ... URL= ...';
-        return;
+        blocks.forEach(function (block, index) {
+          if (index === 0) return;
+          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
+          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
+          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
+          const title = titleMatch ? titleMatch[1].trim() : '';
+          const url = urlMatch ? urlMatch[1].trim() : '';
+
+          if (url) entries.push({ title: title || 'Sans titre', url });
+        });
+
+        return entries.map(normalizeEntry).filter(Boolean);
       }
-      APP.currentPlaylistUrl = url;
-      el('soundcloudIframe').src = buildSoundCloudUrl(url);
-      el('playerNote').textContent = `Playlist active : ${url}`;
-      if (window.SC && SC.Widget) {
-        const widget = SC.Widget(el('soundcloudIframe'));
-        APP.widget = widget;
-        widget.unbind(SC.Widget.Events.FINISH);
-        widget.bind(SC.Widget.Events.FINISH, () => {
-          playRandomPlaylist(true);
+
+      function pickRandomIndex(length, avoidIndex = -1) {
+        if (length <= 1) return 0;
+        const randomBytes = new Uint32Array(1);
+        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
+        let index = randomBytes[0] % length;
+        if (index === avoidIndex) index = (index + 1) % length;
+        return index;
+      }
+
+      function isMobileDevice() {
+        const mobilePattern = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|webOS|BlackBerry/i;
+        return mobilePattern.test(navigator.userAgent) || window.matchMedia('(max-width: 960px)').matches;
+      }
+
+      function buildPlayerUrl(playlistUrl) {
+        const encoded = encodeURIComponent(playlistUrl);
+        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+      }
+
+      function startRandomTrackInCurrentPlaylist() {
+        if (!widget) return;
+
+        widget.getSounds(function (sounds) {
+          const total = Array.isArray(sounds) ? sounds.length : 0;
+          if (!total) return;
+
+          const startIndex = pickRandomIndex(total, -1);
+          if (startIndex > 0) widget.skip(startIndex);
+          widget.play();
         });
       }
-    }
 
-    async function loadPlaylists() {
-      try {
-        const res = await fetch('playlists.txt', { cache: 'no-store' });
-        if (!res.ok) throw new Error('playlist file unavailable');
-        const text = await res.text();
-        APP.playlists = parsePlaylists(text);
-      } catch {
-        APP.playlists = [];
+      function bindWidgetEvents() {
+        if (!widget) return;
+
+        widget.bind(SC.Widget.Events.READY, function () {
+          if (readyAfterLoad) return;
+          readyAfterLoad = true;
+
+          if (pendingRandomizeTrack) {
+            startRandomTrackInCurrentPlaylist();
+          } else {
+            widget.play();
+          }
+
+          pendingAutoplay = false;
+          pendingRandomizeTrack = false;
+        });
+
+        widget.bind(SC.Widget.Events.FINISH, function () {
+          playNextOrLoadAnotherPlaylist();
+        });
       }
-      if (APP.playlists.length) {
-        playRandomPlaylist(false);
-      } else {
-        loadPlayer('');
+
+      function createWidget() {
+        if (widget) return widget;
+        widget = SC.Widget(iframe);
+        bindWidgetEvents();
+        return widget;
       }
-    }
 
-    function playRandomPlaylist(chain = false) {
-      if (!APP.playlists.length) return loadPlayer('');
-      let pool = APP.playlists;
-      if (APP.playlists.length > 1 && APP.currentPlaylistUrl && !chain) {
-        pool = APP.playlists.filter(p => p.url !== APP.currentPlaylistUrl);
-        if (!pool.length) pool = APP.playlists;
+      function reloadWidgetFromIframe() {
+        if (widgetInitTimer) {
+          window.clearTimeout(widgetInitTimer);
+          widgetInitTimer = null;
+        }
+
+        widget = null;
+        readyAfterLoad = false;
+
+        widgetInitTimer = window.setTimeout(function () {
+          createWidget();
+          widgetInitTimer = null;
+        }, 150);
       }
-      const pick = pool[Math.floor(Math.random() * pool.length)];
-      loadPlayer(pick.url);
-      el('playerNote').textContent = `${chain ? 'Chaine automatique' : 'Playlist aléatoire'} : ${pick.title}`;
-    }
 
-    function initButtons() {
-      el('listenBtn').addEventListener('click', () => {
-        document.querySelector('#player').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-      el('openPlayerBtn').addEventListener('click', () => {
-        document.querySelector('#player').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-      el('randomPlaylistBtn').addEventListener('click', () => playRandomPlaylist(false));
-      el('reloadPlayerBtn').addEventListener('click', () => {
-        if (APP.currentPlaylistUrl) loadPlayer(APP.currentPlaylistUrl);
-        else playRandomPlaylist(false);
-      });
-    }
+      function loadPlaylist(index, autoplay = true, randomizeTrack = autoplay, forceIframeReload = false) {
+        if (!playlistPool.length) return;
 
-    function animateNumbers() {
-      const listeners = el('activeListeners');
-      const countries = el('countryCount');
-      const countriesCard = el('countriesOnlineCard');
-      const signal = el('signalStrength');
-      const live = el('liveConnections');
-      const current = Math.floor(11500 + Math.random() * 1200);
-      const currentCountries = 82 + Math.floor(Math.random() * 9);
-      const currentSignal = 95 + Math.floor(Math.random() * 5);
-      const currentConnections = 12000 + Math.floor(Math.random() * 900);
-      listeners.textContent = current.toLocaleString('fr-FR');
-      countries.textContent = String(currentCountries);
-      countriesCard.textContent = String(currentCountries);
-      signal.textContent = `${currentSignal}%`;
-      live.textContent = currentConnections.toLocaleString('fr-FR');
-    }
+        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
+        currentPlaylistIndex = safeIndex;
+        const currentPlaylist = playlistPool[safeIndex];
 
-    function setNetworkLabels() {
-      const variants = ['NETWORK SYNC', 'WORLD ONLINE', 'LIVE BROADCAST', 'SATELLITE LINK', 'DJ MATRIX'];
-      let i = 0;
-      setInterval(() => {
-        el('networkPulse').textContent = variants[i % variants.length];
-        el('streamStatus').textContent = ['ACTIVE', 'LOCKED', 'LIVE', 'SYNCED'][i % 4];
-        el('syncState').textContent = ['LIVE', 'SYNC', 'READY'][i % 3];
-        i += 1;
-      }, 5000);
-    }
+        pendingAutoplay = autoplay;
+        pendingRandomizeTrack = randomizeTrack;
+        readyAfterLoad = false;
 
-    async function init() {
-      initButtons();
-      setNewsTicker();
-      setNetworkLabels();
-      updateClocks();
-      animateNumbers();
-      await loadWeather();
-      await loadPlaylists();
-      setInterval(updateClocks, 1000);
-      setInterval(animateNumbers, 7000);
-      setInterval(loadWeather, 30 * 60 * 1000);
-    }
+        if (!widget || forceIframeReload) {
+          iframe.src = buildPlayerUrl(currentPlaylist.url);
+          reloadWidgetFromIframe();
+          return;
+        }
 
-    document.addEventListener('DOMContentLoaded', init);
+        widget.load(currentPlaylist.url, {
+          auto_play: autoplay,
+          color: '#ff2e3f',
+          buying: false,
+          sharing: false,
+          download: false,
+          show_artwork: true,
+          show_playcount: false,
+          show_user: false,
+          single_active: true,
+          show_comments: false,
+          show_reposts: false,
+          show_teaser: false
+        });
+
+        if (autoplay) {
+          window.setTimeout(function () {
+            if (!widget) return;
+            try {
+              widget.play();
+            } catch (error) {}
+            if (randomizeTrack) {
+              startRandomTrackInCurrentPlaylist();
+            }
+          }, isMobileDevice() ? 220 : 120);
+        }
+      }
+
+      function playRandomPlaylist() {
+        if (!playlistPool.length) return;
+        const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+        const mobileFallback = isMobileDevice();
+        loadPlaylist(nextPlaylist, true, true, mobileFallback);
+
+        if (mobileFallback) {
+          window.setTimeout(function () {
+            if (!widget) return;
+            try {
+              widget.play();
+            } catch (error) {}
+            startRandomTrackInCurrentPlaylist();
+          }, 300);
+        }
+      }
+
+      function playNextOrLoadAnotherPlaylist() {
+        if (!widget) return;
+
+        widget.getCurrentSoundIndex(function (index) {
+          widget.getSounds(function (sounds) {
+            const total = Array.isArray(sounds) ? sounds.length : 0;
+
+            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
+              widget.next();
+              return;
+            }
+
+            if (playlistPool.length > 1) {
+              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+              loadPlaylist(nextPlaylist, true, true, isMobileDevice());
+              return;
+            }
+
+            if (playlistPool.length === 1) {
+              loadPlaylist(0, true);
+            }
+          });
+        });
+      }
+
+      if (randomPlaylistBtn) {
+        randomPlaylistBtn.addEventListener('click', function () {
+          playRandomPlaylist();
+        });
+      }
+
+      fetch(PLAYLISTS_URL, { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
+          return response.text();
+        })
+        .then(function (rawText) {
+          playlistPool = parsePlaylistText(rawText);
+          if (!playlistPool.length) return;
+
+          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
+          currentPlaylistIndex = initialPlaylistIndex;
+          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
+          createWidget();
+          if (randomPlaylistBtn) randomPlaylistBtn.disabled = false;
+        })
+        .catch(function () {
+          return;
+        });
+    })();
+  </script>
+  <script>
+    (function () {
+      const PLAYER_IFRAME_ID = 'sc-player';
+      const PLAYLISTS_URL = 'playlists.txt';
+      const iframe = document.getElementById(PLAYER_IFRAME_ID);
+      const randomPlaylistBtn = document.getElementById('randomPlaylistBtn');
+      const clockEl = document.getElementById('boyingtonClock');
+      const heroClockEl = document.getElementById('heroRadioClock');
+      const heroDateEl = document.getElementById('heroRadioDate');
+
+      function updateClock() {
+        const now = new Date();
+        const timeText = new Intl.DateTimeFormat('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }).format(now);
+
+        const dateText = new Intl.DateTimeFormat('fr-FR', {
+          weekday: 'long',
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        }).format(now);
+
+        if (clockEl) clockEl.textContent = timeText;
+        if (heroClockEl) heroClockEl.textContent = timeText;
+        if (heroDateEl) heroDateEl.textContent = dateText;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
+
+      let playlistPool = [];
+      let currentPlaylistIndex = -1;
+      let widget = null;
+      let readyAfterLoad = false;
+
+      function normalizeEntry(item) {
+        if (!item || typeof item !== 'object') return null;
+        const url = typeof item.url === 'string' ? item.url.trim() : '';
+        const title = (typeof item.title === 'string' && item.title.trim())
+          ? item.title.trim()
+          : (typeof item.titre === 'string' && item.titre.trim())
+            ? item.titre.trim()
+            : 'Sans titre';
+        if (!url) return null;
+        return { title, url };
+      }
+
+      function parsePlaylistText(rawText) {
+        const blocks = rawText.split(/\[PLAYLIST\]/i);
+        const entries = [];
+
+        blocks.forEach(function (block, index) {
+          if (index === 0) return;
+          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
+          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
+          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
+          const title = titleMatch ? titleMatch[1].trim() : '';
+          const url = urlMatch ? urlMatch[1].trim() : '';
+
+          if (url) entries.push({ title: title || 'Sans titre', url });
+        });
+
+        return entries.map(normalizeEntry).filter(Boolean);
+      }
+
+      function pickRandomIndex(length, avoidIndex = -1) {
+        if (length <= 1) return 0;
+        const randomBytes = new Uint32Array(1);
+        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
+        let index = randomBytes[0] % length;
+        if (index === avoidIndex) index = (index + 1) % length;
+        return index;
+      }
+
+      function buildPlayerUrl(playlistUrl) {
+        const encoded = encodeURIComponent(playlistUrl);
+        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+      }
+
+      function createWidget() {
+        if (widget) return widget;
+        widget = SC.Widget(iframe);
+
+        widget.bind(SC.Widget.Events.READY, function () {
+          if (!readyAfterLoad) {
+            readyAfterLoad = true;
+            startRandomTrackInCurrentPlaylist();
+          }
+        });
+
+        widget.bind(SC.Widget.Events.FINISH, function () {
+          playNextOrLoadAnotherPlaylist();
+        });
+
+        return widget;
+      }
+
+      function loadPlaylist(index, autoplay = true, randomizeTrack = autoplay) {
+        if (!playlistPool.length) return;
+
+        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
+        currentPlaylistIndex = safeIndex;
+        const currentPlaylist = playlistPool[safeIndex];
+
+        if (!widget) {
+          iframe.src = buildPlayerUrl(currentPlaylist.url);
+          return;
+        }
+
+        readyAfterLoad = false;
+        widget.load(currentPlaylist.url, {
+          auto_play: autoplay,
+          color: '#ff2e3f',
+          buying: false,
+          sharing: false,
+          download: false,
+          show_artwork: true,
+          show_playcount: false,
+          show_user: false,
+          single_active: true,
+          show_comments: false,
+          show_reposts: false,
+          show_teaser: false
+        });
+
+        if (autoplay && randomizeTrack) {
+          window.setTimeout(function () {
+            startRandomTrackInCurrentPlaylist();
+          }, 1200);
+        }
+      }
+
+      function startRandomTrackInCurrentPlaylist() {
+        if (!widget) return;
+
+        widget.getSounds(function (sounds) {
+          const total = Array.isArray(sounds) ? sounds.length : 0;
+          if (!total) return;
+
+          const startIndex = pickRandomIndex(total, -1);
+          if (startIndex > 0) widget.skip(startIndex);
+          widget.play();
+        });
+      }
+
+      function playRandomPlaylist() {
+        if (!playlistPool.length) return;
+        const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+        loadPlaylist(nextPlaylist, true, true);
+      }
+
+      function playNextOrLoadAnotherPlaylist() {
+        if (!widget) return;
+
+        widget.getCurrentSoundIndex(function (index) {
+          widget.getSounds(function (sounds) {
+            const total = Array.isArray(sounds) ? sounds.length : 0;
+
+            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
+              widget.next();
+              return;
+            }
+
+            if (playlistPool.length > 1) {
+              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+              loadPlaylist(nextPlaylist, true, true);
+              return;
+            }
+
+            if (playlistPool.length === 1) {
+              loadPlaylist(0, true);
+            }
+          });
+        });
+      }
+
+      if (randomPlaylistBtn) {
+        randomPlaylistBtn.addEventListener('click', function () {
+          playRandomPlaylist();
+        });
+      }
+
+      fetch(PLAYLISTS_URL, { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
+          return response.text();
+        })
+        .then(function (rawText) {
+          playlistPool = parsePlaylistText(rawText);
+          if (!playlistPool.length) return;
+
+          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
+          currentPlaylistIndex = initialPlaylistIndex;
+          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
+          createWidget();
+          if (randomPlaylistBtn) randomPlaylistBtn.disabled = false;
+        })
+        .catch(function () {
+          return;
+        });
+    })();
   </script>
 </body>
 </html>
