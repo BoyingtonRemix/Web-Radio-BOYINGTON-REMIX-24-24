@@ -1000,6 +1000,7 @@
       flex-direction:column;
       justify-content:flex-start;
       gap:8px;
+      min-height:210px;
     }
     .spectrum-stage-head{
       display:flex;
@@ -1020,7 +1021,7 @@
       position:relative;
       display:grid;
       align-items:end;
-      gap:3px;
+      gap:2px;
       width:100%;
       overflow:hidden;
       border-radius:16px;
@@ -1054,8 +1055,8 @@
           hsla(var(--hue, 0) 100% 42% / .98) 100%);
     }
     .spectrum-large{
-      height:158px;
-      gap:3px;
+      height:182px;
+      gap:2px;
       border:0;
       background:
         linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.02));
@@ -1064,6 +1065,7 @@
       box-shadow:
         0 0 8px rgba(255,255,255,.04),
         0 0 12px rgba(0,0,0,.10);
+      border-radius:5px 5px 3px 3px;
     }
     .spectrum-caption{
       margin-top:auto;
@@ -1880,7 +1882,6 @@
                 <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png">
                   <source src="boyington-radio-micro-animation.mp4" type="video/mp4">
                 </video>
-                <div class="spectrum spectrum-mini" id="microSpectrum" data-bars="18" data-mode="mini" aria-hidden="true"></div>
               </div>
 
               <div class="player-embed">
@@ -2240,9 +2241,9 @@
 
         const mode = el.dataset.mode || 'hero';
         const width = window.innerWidth || document.documentElement.clientWidth || 1280;
-        const count = mode === 'mini'
-          ? 18
-          : (width < 700 ? 88 : width < 1100 ? 112 : 124);
+        const count = mode === 'hero'
+          ? (width < 700 ? 88 : width < 1100 ? 112 : 124)
+          : 18;
 
         el.innerHTML = '';
         el.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
@@ -2253,22 +2254,14 @@
           bar.className = 'bar';
 
           const ratio = count > 1 ? i / (count - 1) : 0;
-          const hue = mode === 'mini' ? 0 : Math.round(360 * ratio * 0.82);
+          const hue = Math.round(360 * ratio * 0.82);
           bar.style.setProperty('--hue', hue);
-          bar.style.background = mode === 'mini'
-            ? 'linear-gradient(180deg, rgba(255,136,149,.98), rgba(171,15,35,.98))'
-            : `linear-gradient(180deg, hsl(${hue} 100% 68%) 0%, hsl(${hue} 100% 54%) 58%, hsl(${hue} 100% 36%) 100%)`;
+          bar.style.background = `linear-gradient(180deg, hsl(${hue} 100% 68%) 0%, hsl(${hue} 100% 54%) 58%, hsl(${hue} 100% 36%) 100%)`;
 
           const seed = (Math.sin((i + 1) * 12.9898 + spectrumSeed) * 43758.5453) % 1;
-          const speed = mode === 'mini'
-            ? 1.18 + ((i % 5) * 0.12)
-            : 0.92 + (ratio * 1.35) + ((i % 11) * 0.04);
-          const floor = mode === 'mini'
-            ? 0.16 + (i % 3) * 0.02
-            : 0.10 + (Math.sin(i * 0.37) * 0.02) + (ratio < 0.10 || ratio > 0.90 ? 0.03 : 0);
-          const lift = mode === 'mini'
-            ? 0.64 + ((i % 6) * 0.03)
-            : 0.82 + (Math.sin(i * 0.23) * 0.11);
+          const speed = 1.20 + (ratio * 1.95) + ((i % 11) * 0.07);
+          const floor = 0.08 + (Math.sin(i * 0.37) * 0.015) + (ratio < 0.10 || ratio > 0.90 ? 0.02 : 0);
+          const lift = 0.92 + (Math.sin(i * 0.23) * 0.08);
 
           bar.dataset.seed = String(seed);
           bar.dataset.speed = String(speed);
@@ -2290,41 +2283,33 @@
         const t = nowMs / 1000;
 
         spectrumState.forEach((bars, el) => {
-          const mode = el.dataset.mode || 'hero';
           const total = bars.length || 1;
 
           bars.forEach((state, idx) => {
-            const center = 1 - Math.abs((idx / Math.max(total - 1, 1)) * 2 - 1);
+            const arch = 1 - Math.abs((idx / Math.max(total - 1, 1)) * 2 - 1);
             const carrier = Math.sin((t * state.speed) + (state.seed * 11.71)) * 0.5 + 0.5;
-            const carrier2 = Math.sin((t * (state.speed * 0.41)) + (state.seed * 17.33) + idx * 0.09) * 0.5 + 0.5;
-            const pulse = Math.sin((t * (mode === 'mini' ? 2.45 : 2.05)) + idx * (mode === 'mini' ? 0.48 : 0.22)) * 0.5 + 0.5;
+            const carrier2 = Math.sin((t * (state.speed * 0.62)) + (state.seed * 17.33) + idx * 0.11) * 0.5 + 0.5;
+            const pulse = Math.sin((t * 3.20) + idx * 0.18) * 0.5 + 0.5;
+            const pulse2 = Math.sin((t * 4.60) + idx * 0.07 + state.seed) * 0.5 + 0.5;
 
             let target = state.floor
-              + (state.lift * 0.18)
-              + (carrier * (mode === 'mini' ? 0.44 : 0.30))
-              + (carrier2 * (mode === 'mini' ? 0.18 : 0.14))
-              + (pulse * (mode === 'mini' ? 0.16 : 0.12));
+              + (state.lift * 0.14)
+              + (carrier * 0.26)
+              + (carrier2 * 0.14)
+              + (pulse * 0.18)
+              + (pulse2 * 0.08)
+              + (arch * 0.10)
+              + (Math.sin(t * 2.80 + idx * 0.17) * 0.5 + 0.5) * 0.10;
 
-            if (mode === 'hero') {
-              const arch = Math.max(0, 1 - Math.abs(idx - total * 0.5) / (total * 0.5));
-              const wave = Math.max(0, Math.sin(t * 1.18 + arch * 6.3));
-              const pulse2 = Math.max(0, Math.sin(t * 2.25 + idx * 0.11));
-              target += arch * 0.22 + wave * 0.16 + pulse2 * 0.10;
-              if (idx > total * 0.76) target *= 0.70 + arch * 0.30;
-            } else {
-              const hump = Math.max(0, Math.sin(t * 2.25 + idx * 0.34));
-              target += hump * 0.22;
-            }
-
-            target = Math.min(0.98, Math.max(0.08, target));
-            state.current += (target - state.current) * 0.30;
+            target = Math.min(0.98, Math.max(0.06, target));
+            state.current += (target - state.current) * 0.42;
 
             const rect = el.getBoundingClientRect();
             const maxHeight = Math.max(34, rect.height - 10);
             const pixelHeight = Math.max(10, Math.round(maxHeight * state.current));
             state.bar.style.height = `${pixelHeight}px`;
-            state.bar.style.opacity = String(0.88 + state.current * 0.12);
-            state.bar.style.transform = `translate3d(0, ${Math.max(0, (maxHeight - pixelHeight) * 0.006)}px, 0)`;
+            state.bar.style.opacity = String(0.90 + state.current * 0.10);
+            state.bar.style.transform = `translate3d(0, ${Math.max(0, (maxHeight - pixelHeight) * 0.004)}px, 0)`;
           });
         });
 
