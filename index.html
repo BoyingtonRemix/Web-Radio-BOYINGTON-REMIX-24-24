@@ -979,26 +979,20 @@
       border:1px solid rgba(255,255,255,.05);
     }
 
-    
     .player-eq-overlay{
       position:absolute;
       left:0;
       right:0;
       bottom:0;
-      height:124px;
-      padding:12px 16px 12px;
+      height:92px;
+      padding:10px 16px 8px;
       z-index:3;
       pointer-events:none;
-      overflow:hidden;
       background:
-        linear-gradient(180deg,
-          rgba(255,255,255,0) 0%,
-          rgba(255,255,255,.30) 18%,
-          rgba(255,255,255,.86) 58%,
-          rgba(255,255,255,.98) 100%);
-      backdrop-filter:blur(3px) saturate(1.06);
-      -webkit-backdrop-filter:blur(3px) saturate(1.06);
-      border-top:1px solid rgba(0,0,0,.04);
+        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.10) 16%, rgba(255,255,255,.42) 58%, rgba(255,255,255,.88) 100%);
+      backdrop-filter:blur(2px) saturate(1.06);
+      -webkit-backdrop-filter:blur(2px) saturate(1.06);
+      overflow:hidden;
     }
     .player-eq-track{
       width:100%;
@@ -1008,27 +1002,23 @@
       align-items:flex-end;
       gap:2px;
       overflow:hidden;
-      transform:translateZ(0);
+      white-space:nowrap;
     }
     .player-eq-bar{
-      flex:0 0 4px;
+      flex:0 0 auto;
       width:4px;
-      min-width:4px;
-      position:relative;
-      align-self:flex-end;
-      height:12%;
-      border-radius:999px 999px 4px 4px;
-      background:linear-gradient(180deg,
-        var(--bar-top, rgba(255,255,255,.98)) 0%,
-        var(--bar-mid, rgba(200,200,200,.98)) 58%,
-        var(--bar-bottom, rgba(120,120,120,.98)) 100%);
+      min-height:4px;
+      border-radius:999px 999px 2px 2px;
+      background:linear-gradient(180deg, currentColor 0%, rgba(0,0,0,.74) 100%);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.18),
-        0 0 8px var(--bar-glow, rgba(255,255,255,.35)),
-        0 0 18px var(--bar-glow, rgba(255,255,255,.18));
-      transform-origin:bottom center;
-      will-change:height, transform, filter, opacity;
+        0 0 6px currentColor,
+        0 0 12px currentColor,
+        0 0 18px currentColor;
       opacity:.98;
+      transform-origin:bottom center;
+      will-change:transform, opacity, filter;
+      animation: boyingtonEqWave var(--dur, .92s) ease-in-out infinite alternate;
+      animation-delay: var(--delay, 0s);
     }
     .player-eq-bar::after{
       content:"";
@@ -1036,18 +1026,10 @@
       left:0;
       right:0;
       top:0;
-      height:38%;
+      height:42%;
       border-radius:inherit;
-      background:linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,0));
-      pointer-events:none;
-      opacity:.70;
-      filter:blur(1px);
-    }
-
-
-
-    .player-eq-track, .player-eq-overlay{
-      max-width:100%;
+      background:linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,0));
+      opacity:.52;
     }
 
     .gallery-grid{
@@ -1538,6 +1520,11 @@
       50%{filter:drop-shadow(0 0 16px rgba(255,46,63,.16))}
     }
     @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes boyingtonEqWave{
+      0%{transform:scaleY(.30); filter:saturate(1.02) brightness(.95);}
+      50%{transform:scaleY(1.08); filter:saturate(1.18) brightness(1.08);}
+      100%{transform:scaleY(.48); filter:saturate(1.06) brightness(1);}
+    }
 
     .world-feed{
       padding:18px 0 0;
@@ -2635,146 +2622,52 @@
         });
     })();
       
-    (function initBoyingtonSurfaceEqualizer() {
-      const track = document.getElementById('boyingtonEqTrack');
-      if (!track) return;
+(function initBoyingtonSurfaceEqualizer() {
+        const track = document.getElementById('boyingtonEqTrack');
+        if (!track) return;
 
-      /* ===============================================================
-         REPAIRS RAPIDES — ÉGALISEUR
-         - BAR_COUNT        : densité des barres
-         - FRAME_MS         : vitesse de mise à jour
-         - AMP_MIN / AMP_MAX: plage des hauteurs
-         - WAVE_SPEED       : vitesse de variation
-         - REFLECT_ALPHA    : reflet visuel
-         =============================================================== */
-      const BAR_COUNT = 128;
-      const FRAME_MS = 42;
-      const AMP_MIN = 18;
-      const AMP_MAX = 100;
-      const WAVE_SPEED = 1.65;
-      const REFLECT_ALPHA = 0.34;
+        const BAR_COUNT = 132;
+        const COLORS = [
+          '#ff006e',
+          '#ff1744',
+          '#ff3d00',
+          '#ff9100',
+          '#ffd600',
+          '#b6ff00',
+          '#00ff66',
+          '#00ffd5',
+          '#00b7ff',
+          '#2962ff',
+          '#7c4dff',
+          '#ff00ff'
+        ];
 
-      const bars = [];
-      const palette = [
-        [255, 0, 110],   // fluo rose
-        [255, 23, 68],   // rouge néon
-        [255, 69, 0],    // orange
-        [255, 204, 0],   // jaune
-        [182, 255, 0],   // lime
-        [0, 255, 102],   // vert fluo
-        [0, 255, 213],   // cyan
-        [0, 183, 255],   // bleu clair
-        [0, 76, 255],    // bleu électrique
-        [122, 0, 255],   // violet
-        [255, 0, 255],   // magenta
-        [255, 96, 176]   // rose doux
-      ];
-
-      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-      const lerp = (a, b, t) => a + (b - a) * t;
-
-      function colorAt(i) {
-        const t = i / Math.max(1, BAR_COUNT - 1);
-        const segment = t * (palette.length - 1);
-        const idx = Math.floor(segment);
-        const frac = segment - idx;
-        const a = palette[idx];
-        const b = palette[Math.min(idx + 1, palette.length - 1)];
-
-        const r = Math.round(lerp(a[0], b[0], frac));
-        const g = Math.round(lerp(a[1], b[1], frac));
-        const bl = Math.round(lerp(a[2], b[2], frac));
-
-        const top = `rgba(${Math.min(255, Math.round(r * 1.08))}, ${Math.min(255, Math.round(g * 1.08))}, ${Math.min(255, Math.round(bl * 1.08))}, .99)`;
-        const mid = `rgba(${Math.round(r * .92)}, ${Math.round(g * .92)}, ${Math.round(bl * .92)}, .99)`;
-        const bottom = `rgba(${Math.round(r * .62)}, ${Math.round(g * .62)}, ${Math.round(bl * .62)}, .99)`;
-        const glow = `rgba(${r}, ${g}, ${bl}, ${REFLECT_ALPHA})`;
-        return { top, mid, bottom, glow };
-      }
-
-      function createBars() {
         track.innerHTML = '';
-        bars.length = 0;
 
-        for (let i = 0; i < BAR_COUNT; i++) {
+        function colorFor(index) {
+          const ratio = index / Math.max(1, BAR_COUNT - 1);
+          const colorIndex = Math.floor(ratio * (COLORS.length - 1));
+          return COLORS[colorIndex] || COLORS[COLORS.length - 1];
+        }
+
+        function createBar(index) {
           const bar = document.createElement('span');
           bar.className = 'player-eq-bar';
-          const c = colorAt(i);
-          bar.style.setProperty('--bar-top', c.top);
-          bar.style.setProperty('--bar-mid', c.mid);
-          bar.style.setProperty('--bar-bottom', c.bottom);
-          bar.style.setProperty('--bar-glow', c.glow);
-          bar.dataset.phase = (Math.random() * Math.PI * 2).toFixed(6);
-          bar.dataset.speed = (0.65 + Math.random() * 1.55).toFixed(6);
-          bar.dataset.base = (0.10 + Math.random() * 0.16).toFixed(6);
-          bar.dataset.amp = (0.46 + Math.random() * 0.42).toFixed(6);
-          bar.dataset.current = bar.dataset.base;
-          bar.dataset.swell = (0.35 + Math.random() * 0.60).toFixed(6);
-
-          const startH = clamp(
-            AMP_MIN + (Math.random() * (AMP_MAX - AMP_MIN)),
-            AMP_MIN,
-            AMP_MAX
-          );
-          bar.style.height = `${startH}%`;
+          bar.style.color = colorFor(index);
+          bar.style.height = `${18 + Math.random() * 68}%`;
+          bar.style.setProperty('--dur', `${0.56 + Math.random() * 0.68}s`);
+          bar.style.setProperty('--delay', `${Math.random() * 0.42}s`);
+          bar.style.animationTimingFunction = 'cubic-bezier(.42, 0, .18, 1)';
           track.appendChild(bar);
-          bars.push(bar);
-        }
-      }
-
-      let lastTs = 0;
-      let rafId = 0;
-
-      function animate(ts) {
-        if (!lastTs) lastTs = ts;
-        const delta = ts - lastTs;
-
-        if (delta >= FRAME_MS) {
-          lastTs = ts;
-
-          const time = ts * 0.001;
-          for (let i = 0; i < bars.length; i++) {
-            const bar = bars[i];
-            const phase = parseFloat(bar.dataset.phase);
-            const speed = parseFloat(bar.dataset.speed);
-            const base = parseFloat(bar.dataset.base);
-            const amp = parseFloat(bar.dataset.amp);
-            const swell = parseFloat(bar.dataset.swell);
-
-            const waveA = Math.sin((time * WAVE_SPEED * speed) + phase);
-            const waveB = Math.sin((time * (WAVE_SPEED * 0.62) * (1.1 + (i % 7) * 0.05)) + phase * 1.7);
-            const waveC = Math.cos((time * (WAVE_SPEED * 1.38) * (0.9 + (i % 11) * 0.03)) + phase * 0.8);
-
-            const burst = Math.abs(waveA * 0.55 + waveB * 0.30 + waveC * 0.15);
-            const peak = Math.pow(burst, 1.28);
-            const floor = base * 0.26;
-            const height = clamp(
-              (AMP_MIN + (AMP_MAX - AMP_MIN) * (floor + peak * amp * 0.88 + swell * 0.06)),
-              AMP_MIN * 0.8,
-              AMP_MAX
-            );
-
-            bar.style.height = `${height}%`;
-            bar.style.opacity = String(0.82 + peak * 0.18);
-            bar.style.transform = `translateY(${Math.max(0, (1 - peak) * 0.25)}px) scaleY(${1 + peak * 0.12})`;
-            bar.style.filter = `saturate(${1.15 + peak * 0.65}) brightness(${1 + peak * 0.35})`;
-          }
         }
 
-        rafId = window.requestAnimationFrame(animate);
-      }
+        for (let i = 0; i < BAR_COUNT; i += 1) {
+          createBar(i);
+        }
 
-      createBars();
-      rafId = window.requestAnimationFrame(animate);
-
-      window.addEventListener('resize', function () {
-        // keep a single line: recreate only if the overlay width changes materially
-        // (no wrap, no second row)
-        const shouldRebuild = track.children.length !== BAR_COUNT;
-        if (shouldRebuild) createBars();
-      }, { passive: true });
-    })();
-
+        // Keep the same smooth “mic equalizer” feel: no JS loop needed.
+        // The CSS animation is enough and avoids freezes / double lines.
+      })();
 </script>
 </body>
 </html>
