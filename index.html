@@ -980,22 +980,23 @@
     }
 
     
+    
     .player-eq-overlay{
       position:absolute;
       left:0;
       right:0;
       bottom:0;
-      height:124px;
-      padding:12px 16px 12px;
+      height:132px;
+      padding:10px 12px 10px;
       z-index:3;
       pointer-events:none;
       overflow:hidden;
       background:
         linear-gradient(180deg,
           rgba(255,255,255,0) 0%,
-          rgba(255,255,255,.30) 18%,
-          rgba(255,255,255,.86) 58%,
-          rgba(255,255,255,.98) 100%);
+          rgba(255,255,255,.22) 14%,
+          rgba(255,255,255,.88) 64%,
+          rgba(255,255,255,.99) 100%);
       backdrop-filter:blur(3px) saturate(1.06);
       -webkit-backdrop-filter:blur(3px) saturate(1.06);
       border-top:1px solid rgba(0,0,0,.04);
@@ -1006,14 +1007,14 @@
       display:flex;
       flex-wrap:nowrap;
       align-items:flex-end;
-      gap:2px;
+      justify-content:space-between;
+      gap:1px;
       overflow:hidden;
       transform:translateZ(0);
     }
     .player-eq-bar{
-      flex:0 0 4px;
-      width:4px;
-      min-width:4px;
+      flex:1 1 0;
+      min-width:2px;
       position:relative;
       align-self:flex-end;
       height:12%;
@@ -1047,6 +1048,7 @@
 
 
     .player-eq-track, .player-eq-overlay{
+
       max-width:100%;
     }
 
@@ -2635,46 +2637,54 @@
         });
     })();
       
+    
     (function initBoyingtonSurfaceEqualizer() {
       const track = document.getElementById('boyingtonEqTrack');
       if (!track) return;
 
       /* ===============================================================
-         REPAIRS RAPIDES — ÉGALISEUR
-         - BAR_COUNT        : densité des barres
+         REPAIRÉ — ÉGALISEUR PLEINE LARGEUR
+         - BAR_COUNT        : densité calculée selon la largeur
          - FRAME_MS         : vitesse de mise à jour
          - AMP_MIN / AMP_MAX: plage des hauteurs
          - WAVE_SPEED       : vitesse de variation
          - REFLECT_ALPHA    : reflet visuel
          =============================================================== */
-      const BAR_COUNT = 128;
       const FRAME_MS = 42;
       const AMP_MIN = 18;
       const AMP_MAX = 100;
       const WAVE_SPEED = 1.65;
       const REFLECT_ALPHA = 0.34;
+      const MIN_BAR_COUNT = 112;
+      const MAX_BAR_COUNT = 182;
+      const TARGET_BAR_WIDTH = 5.25;
 
       const bars = [];
       const palette = [
-        [255, 0, 110],   // fluo rose
-        [255, 23, 68],   // rouge néon
-        [255, 69, 0],    // orange
-        [255, 204, 0],   // jaune
-        [182, 255, 0],   // lime
-        [0, 255, 102],   // vert fluo
-        [0, 255, 213],   // cyan
-        [0, 183, 255],   // bleu clair
-        [0, 76, 255],    // bleu électrique
-        [122, 0, 255],   // violet
-        [255, 0, 255],   // magenta
-        [255, 96, 176]   // rose doux
+        [255, 0, 110],
+        [255, 23, 68],
+        [255, 69, 0],
+        [255, 204, 0],
+        [182, 255, 0],
+        [0, 255, 102],
+        [0, 255, 213],
+        [0, 183, 255],
+        [0, 76, 255],
+        [122, 0, 255],
+        [255, 0, 255],
+        [255, 96, 176]
       ];
 
       const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
       const lerp = (a, b, t) => a + (b - a) * t;
 
-      function colorAt(i) {
-        const t = i / Math.max(1, BAR_COUNT - 1);
+      function getDesiredBarCount() {
+        const width = track.clientWidth || track.getBoundingClientRect().width || 0;
+        return clamp(Math.round(width / TARGET_BAR_WIDTH), MIN_BAR_COUNT, MAX_BAR_COUNT);
+      }
+
+      function colorAt(i, count) {
+        const t = i / Math.max(1, count - 1);
         const segment = t * (palette.length - 1);
         const idx = Math.floor(segment);
         const frac = segment - idx;
@@ -2693,13 +2703,16 @@
       }
 
       function createBars() {
+        const desiredCount = getDesiredBarCount();
+        if (bars.length === desiredCount) return;
+
         track.innerHTML = '';
         bars.length = 0;
 
-        for (let i = 0; i < BAR_COUNT; i++) {
+        for (let i = 0; i < desiredCount; i++) {
           const bar = document.createElement('span');
           bar.className = 'player-eq-bar';
-          const c = colorAt(i);
+          const c = colorAt(i, desiredCount);
           bar.style.setProperty('--bar-top', c.top);
           bar.style.setProperty('--bar-mid', c.mid);
           bar.style.setProperty('--bar-bottom', c.bottom);
@@ -2708,7 +2721,6 @@
           bar.dataset.speed = (0.65 + Math.random() * 1.55).toFixed(6);
           bar.dataset.base = (0.10 + Math.random() * 0.16).toFixed(6);
           bar.dataset.amp = (0.46 + Math.random() * 0.42).toFixed(6);
-          bar.dataset.current = bar.dataset.base;
           bar.dataset.swell = (0.35 + Math.random() * 0.60).toFixed(6);
 
           const startH = clamp(
@@ -2723,7 +2735,6 @@
       }
 
       let lastTs = 0;
-      let rafId = 0;
 
       function animate(ts) {
         if (!lastTs) lastTs = ts;
@@ -2761,20 +2772,20 @@
           }
         }
 
-        rafId = window.requestAnimationFrame(animate);
+        window.requestAnimationFrame(animate);
       }
 
       createBars();
-      rafId = window.requestAnimationFrame(animate);
+      window.requestAnimationFrame(animate);
 
+      let resizeTimer = 0;
       window.addEventListener('resize', function () {
-        // keep a single line: recreate only if the overlay width changes materially
-        // (no wrap, no second row)
-        const shouldRebuild = track.children.length !== BAR_COUNT;
-        if (shouldRebuild) createBars();
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(function () {
+          createBars();
+        }, 120);
       }, { passive: true });
     })();
-
 </script>
 </body>
 </html>
