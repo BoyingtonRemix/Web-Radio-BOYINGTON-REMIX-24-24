@@ -979,158 +979,112 @@
       border:1px solid rgba(255,255,255,.05);
     }
 
-    .eq-stage{
-      position:relative;
-      margin-top:16px;
-      padding:64px 18px 20px;
-      border-radius:28px;
-      border:1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.34), rgba(0,0,0,.84)),
-        radial-gradient(circle at 50% 0%, rgba(255,46,63,.18), transparent 28%),
-        radial-gradient(circle at 18% 22%, rgba(255,180,60,.12), transparent 20%),
-        radial-gradient(circle at 82% 22%, rgba(140,80,255,.10), transparent 20%);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.03),
-        0 18px 50px rgba(0,0,0,.38);
-      overflow:hidden;
-    }
-    .eq-stage::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, transparent 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,.42) 100%);
-      pointer-events:none;
-      z-index:0;
-    }
-    .eq-stage::after{
-      content:"";
-      position:absolute;
-      left:0;right:0;bottom:0;
-      height:36px;
-      background:linear-gradient(180deg, transparent, rgba(255,255,255,.05));
-      opacity:.28;
-      pointer-events:none;
-      z-index:0;
-    }
-    .eq-float-btn{
-      position:absolute;
-      top:-28px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:3;
-      width:100%;
-      display:flex;
-      justify-content:center;
-      pointer-events:none;
-    }
-    .eq-float-btn .btn{
-      pointer-events:auto;
-      min-width:min(510px, calc(100% - 36px));
-      box-shadow:
-        0 18px 38px rgba(255,46,63,.32),
-        0 0 0 1px rgba(255,255,255,.12) inset;
-    }
-    .eq-visual{
-      position:relative;
-      z-index:1;
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .eq-bars-row{
-      display:flex;
-      align-items:flex-end;
-      gap:2px;
-      width:100%;
-      height:176px;
-      min-height:176px;
-      overflow:hidden;
-      padding:0 2px;
-    }
-    .eq-bar,
-    .eq-bar-reflect{
-      flex:1 1 0;
-      min-width:4px;
-      border-radius:999px 999px 0 0;
-      transform-origin:center bottom;
-      will-change:height, transform, opacity;
-      transition:
-        height 28ms linear,
-        transform 28ms linear,
-        opacity 28ms linear;
-      background:linear-gradient(
-        180deg,
-        hsl(var(--h) 100% 72%),
-        hsl(var(--h) 100% 54%)
-      );
-      box-shadow:
-        0 0 16px hsla(var(--h), 100%, 60%, .34),
-        0 0 28px hsla(var(--h), 100%, 60%, .12);
-    }
-    .eq-bar{
-      filter:saturate(1.18);
-    }
-    .eq-reflection{
-      display:flex;
-      align-items:flex-start;
-      gap:2px;
-      width:100%;
-      height:66px;
-      overflow:hidden;
-      opacity:.86;
-      transform:translateY(-2px);
-      mask-image:linear-gradient(180deg, rgba(0,0,0,.7), transparent 100%);
-    }
-    .eq-bar-reflect{
-      opacity:.34;
-      filter:blur(1.1px) saturate(1.1);
-      transform:scaleY(-1);
-      transform-origin:center top;
-    }
-    .eq-stage .eq-bar-reflect{
-      box-shadow:
-        0 0 10px hsla(var(--h), 100%, 60%, .22),
-        0 0 22px hsla(var(--h), 100%, 60%, .08);
-    }
 
-    @media (max-width: 960px){
-      .eq-stage{
-        padding-top:58px;
-      }
-      .eq-float-btn .btn{
-        min-width:min(420px, calc(100% - 30px));
-      }
-      .eq-bars-row{
-        height:150px;
-        min-height:150px;
-      }
-      .eq-reflection{
-        height:54px;
-      }
-    }
 
-    @media (max-width: 640px){
-      .eq-stage{
-        padding:56px 12px 16px;
-      }
-      .eq-bars-row{
-        height:132px;
-        min-height:132px;
-        gap:1px;
-      }
-      .eq-reflection{
-        height:46px;
-        gap:1px;
-      }
-      .eq-bar,
-      .eq-bar-reflect{
-        min-width:3px;
-      }
-    }
-
+.eq-module{
+  margin-top:8px;
+  position:relative;
+}
+.eq-actions{
+  display:flex;
+  justify-content:center;
+  margin-top:-18px;
+  margin-bottom:12px;
+  position:relative;
+  z-index:5;
+}
+.eq-actions .btn{
+  min-width:min(420px, 100%);
+  box-shadow:0 18px 38px rgba(255,46,63,.28), 0 0 26px rgba(255,46,63,.16);
+}
+.eq-stage{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255,46,63,.18), transparent 24%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.06), transparent 20%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.62));
+  min-height:250px;
+  padding:34px 14px 18px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.eq-stage::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.62)),
+    radial-gradient(circle at 50% 100%, rgba(255,46,63,.12), transparent 50%);
+  pointer-events:none;
+}
+.eq-stage::after{
+  content:"";
+  position:absolute;
+  inset:auto 4% 10px 4%;
+  height:2px;
+  background:linear-gradient(90deg, transparent, rgba(255,46,63,.55), rgba(255,255,255,.16), rgba(255,46,63,.55), transparent);
+  opacity:.7;
+  filter:blur(.2px);
+  pointer-events:none;
+}
+.eq-track,
+.eq-reflect{
+  position:relative;
+  display:grid;
+  grid-auto-flow:column;
+  align-items:end;
+  gap:2px;
+  width:100%;
+}
+.eq-track{
+  height:170px;
+  z-index:1;
+}
+.eq-reflect{
+  height:64px;
+  margin-top:8px;
+  transform:scaleY(-0.42);
+  transform-origin:center top;
+  opacity:.30;
+  filter:blur(.15px) saturate(1.05);
+  mask-image:linear-gradient(180deg, rgba(0,0,0,.72), rgba(0,0,0,.20) 55%, transparent 100%);
+}
+.eq-bar{
+  position:relative;
+  min-width:3px;
+  overflow:hidden;
+  border-radius:999px 999px 0 0;
+  background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.18));
+  box-shadow:
+    0 0 10px rgba(255,255,255,.06),
+    0 0 18px rgba(255,46,63,.08);
+  transform:translateZ(0);
+  will-change:transform;
+}
+.eq-bar i{
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:inherit;
+  transform-origin:bottom center;
+  will-change:transform;
+  background:inherit;
+  box-shadow:inherit;
+}
+.eq-floor-glow{
+  position:absolute;
+  left:50%;
+  right:50%;
+  bottom:0;
+  height:24px;
+  background:radial-gradient(circle at center, rgba(255,46,63,.45), transparent 68%);
+  pointer-events:none;
+  transform:translateX(-50%);
+  filter:blur(8px);
+  opacity:.85;
+}
 
     .gallery-grid{
       display:grid;
@@ -1950,19 +1904,23 @@
                   title="SoundCloud player - Boyington Web Radio"></iframe>
               </div>
             </div>
-            <div class="eq-stage">
-              <div class="eq-float-btn">
-                <button id="randomPlaylistBtn" class="btn btn-primary" type="button" disabled>
-                  🔀 PLAYLIST ALÉATOIRE
-                </button>
-              </div>
 
-              <div class="eq-visual" aria-hidden="true">
-                <div class="eq-bars-row" id="eqBars"></div>
-                <div class="eq-reflection" id="eqBarsReflection"></div>
-              </div>
-            </div>
+            
+<div class="eq-module" aria-label="Égaliseur audio">
+  <div class="player-actions eq-actions">
+    <button id="randomPlaylistBtn" class="btn btn-primary" type="button" disabled>
+      🔀 PLAYLIST ALÉATOIRE
+    </button>
+  </div>
+
+  <div class="eq-stage">
+    <div class="eq-track" id="boyingtonEq" aria-hidden="true"></div>
+    <div class="eq-reflect" id="boyingtonEqReflect" aria-hidden="true"></div>
+    <div class="eq-floor-glow" aria-hidden="true"></div>
+  </div>
 </div>
+
+          </div>
         </div>
       </section>
 
@@ -2193,608 +2151,387 @@
 
   </div>
 
-    <script src="https://w.soundcloud.com/player/api.js"></script>
-  <script>
-    (function () {
-      const PLAYER_IFRAME_ID = 'sc-player';
-      const PLAYLISTS_URL = 'playlists.txt';
-      const iframe = document.getElementById(PLAYER_IFRAME_ID);
-      const randomPlaylistBtn = document.getElementById('randomPlaylistBtn');
-      const clockEl = document.getElementById('boyingtonClock');
-      const heroClockEl = document.getElementById('heroRadioClock');
-      const heroDateEl = document.getElementById('heroRadioDate');
+    
+<script src="https://w.soundcloud.com/player/api.js"></script>
+<script>
+(() => {
+  const PLAYLISTS_URL = 'playlists.txt';
+  const iframe = document.getElementById('sc-player');
+  const randomPlaylistBtn = document.getElementById('randomPlaylistBtn');
+  const clockEl = document.getElementById('boyingtonClock');
+  const heroClockEl = document.getElementById('heroRadioClock');
+  const heroDateEl = document.getElementById('heroRadioDate');
+  const worldWeatherTicker = document.getElementById('worldWeatherTicker');
+  const eqTrack = document.getElementById('boyingtonEq');
+  const eqReflect = document.getElementById('boyingtonEqReflect');
 
-      const eqBarsEl = document.getElementById('eqBars');
-      const eqBarsReflectionEl = document.getElementById('eqBarsReflection');
+  let widget = null;
+  let playlistPool = [];
+  let currentPlaylistIndex = -1;
+  let readyAfterLoad = false;
+  let widgetInitTimer = null;
 
-      function updateClock() {
-        const now = new Date();
-        const timeText = new Intl.DateTimeFormat('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        }).format(now);
+  function updateClock() {
+    const now = new Date();
+    const timeText = new Intl.DateTimeFormat('fr-FR', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    }).format(now);
 
-        const dateText = new Intl.DateTimeFormat('fr-FR', {
-          weekday: 'long',
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        }).format(now);
+    const dateText = new Intl.DateTimeFormat('fr-FR', {
+      weekday: 'long',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    }).format(now);
 
-        if (clockEl) clockEl.textContent = timeText;
-        if (heroClockEl) heroClockEl.textContent = timeText;
-        if (heroDateEl) heroDateEl.textContent = dateText;
-      }
+    if (clockEl) clockEl.textContent = timeText;
+    if (heroClockEl) heroClockEl.textContent = timeText;
+    if (heroDateEl) heroDateEl.textContent = dateText;
+  }
 
-      updateClock();
-      setInterval(updateClock, 1000);
+  updateClock();
+  setInterval(updateClock, 1000);
 
-      const EQ_BAR_COUNT = 168;
-      const eqState = [];
-      let eqTick = 0;
-      let eqTimer = null;
+  const worldCities = [
+    { label: 'PARIS', latitude: 48.8566, longitude: 2.3522 },
+    { label: 'LONDON', latitude: 51.5072, longitude: -0.1276 },
+    { label: 'NEW YORK', latitude: 40.7128, longitude: -74.0060 },
+    { label: 'DUBAI', latitude: 25.2048, longitude: 55.2708 },
+    { label: 'TOKYO', latitude: 35.6762, longitude: 139.6503 },
+    { label: 'MADRID', latitude: 40.4168, longitude: -3.7038 },
+    { label: 'ROME', latitude: 41.9028, longitude: 12.4964 },
+    { label: 'DUBLIN', latitude: 53.3498, longitude: -6.2603 },
+    { label: 'MONTREAL', latitude: 45.5017, longitude: -73.5673 }
+  ];
 
-      function buildEqualizer() {
-        if (!eqBarsEl || !eqBarsReflectionEl) return;
+  function formatTemp(value) {
+    if (typeof value !== 'number' || Number.isNaN(value)) return '--';
+    return Math.round(value);
+  }
 
-        eqBarsEl.innerHTML = '';
-        eqBarsReflectionEl.innerHTML = '';
-        eqState.length = 0;
+  async function fetchCityTemperature(city) {
+    const url = new URL('https://api.open-meteo.com/v1/forecast');
+    url.searchParams.set('latitude', city.latitude);
+    url.searchParams.set('longitude', city.longitude);
+    url.searchParams.set('current', 'temperature_2m');
+    url.searchParams.set('temperature_unit', 'celsius');
+    url.searchParams.set('timezone', 'auto');
 
-        for (let i = 0; i < EQ_BAR_COUNT; i += 1) {
-          const hue = Math.round((i / Math.max(1, EQ_BAR_COUNT - 1)) * 330);
-          const bar = document.createElement('span');
-          bar.className = 'eq-bar';
-          bar.style.setProperty('--h', String(hue));
+    const response = await fetch(url.toString(), { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Weather request failed for ${city.label}`);
+    const data = await response.json();
+    return formatTemp(data?.current?.temperature_2m);
+  }
 
-          const reflection = document.createElement('span');
-          reflection.className = 'eq-bar-reflect';
-          reflection.style.setProperty('--h', String(hue));
-
-          eqBarsEl.appendChild(bar);
-          eqBarsReflectionEl.appendChild(reflection);
-
-          eqState.push({
-            bar,
-            reflection,
-            value: 0.38 + Math.random() * 0.24,
-            impulse: Math.random() * 0.35,
-            drift: Math.random() * Math.PI * 2
-          });
-        }
-      }
-
-      function animateEqualizer() {
-        if (!eqState.length) return;
-
-        eqTick += 0.135;
-        const mid = (eqState.length - 1) / 2;
-
-        for (let i = 0; i < eqState.length; i += 1) {
-          const item = eqState[i];
-          const pos = i / Math.max(1, eqState.length - 1);
-          const dist = Math.abs(i - mid) / Math.max(1, mid);
-
-          const lowWave = Math.sin(eqTick * 1.9 + pos * 14 + item.drift) * 0.22;
-          const midWave = Math.sin(eqTick * 4.8 + pos * 30 + item.drift * 0.6) * 0.14;
-          const highWave = Math.cos(eqTick * 7.2 + pos * 42 + i * 0.13) * 0.08;
-          const randomKick = Math.random() < 0.08 ? 0.28 + Math.random() * 0.42 : 0;
-          const edgeLift = (1 - dist) * 0.16;
-          const target = 0.22 + lowWave + midWave + highWave + randomKick + edgeLift;
-
-          item.impulse *= 0.92;
-          item.value = item.value * 0.42 + Math.max(0.06, Math.min(1, target + item.impulse)) * 0.58;
-
-          const height = 10 + Math.pow(item.value, 1.12) * 182;
-          const scaleX = 0.84 + item.value * 0.22;
-
-          item.bar.style.height = height.toFixed(1) + 'px';
-          item.bar.style.transform = `scaleX(${scaleX.toFixed(3)})`;
-          item.bar.style.opacity = '1';
-
-          item.reflection.style.height = Math.max(8, height * 0.56).toFixed(1) + 'px';
-          item.reflection.style.transform = `scaleX(${scaleX.toFixed(3)}) scaleY(-1)`;
-          item.reflection.style.opacity = String(Math.min(0.38, 0.10 + item.value * 0.24));
-        }
-      }
-
-      buildEqualizer();
-      animateEqualizer();
-      eqTimer = window.setInterval(animateEqualizer, 28);
-
-      const worldCities = [
-        { label: 'PARIS', latitude: 48.8566, longitude: 2.3522 },
-        { label: 'LONDON', latitude: 51.5072, longitude: -0.1276 },
-        { label: 'NEW YORK', latitude: 40.7128, longitude: -74.0060 },
-        { label: 'DUBAI', latitude: 25.2048, longitude: 55.2708 },
-        { label: 'TOKYO', latitude: 35.6762, longitude: 139.6503 },
-        { label: 'MADRID', latitude: 40.4168, longitude: -3.7038 },
-        { label: 'ROME', latitude: 41.9028, longitude: 12.4964 },
-        { label: 'DUBLIN', latitude: 53.3498, longitude: -6.2603 },
-        { label: 'MONTREAL', latitude: 45.5017, longitude: -73.5673 }
-      ];
-
-      const worldWeatherTicker = document.getElementById('worldWeatherTicker');
-
-      function formatTemp(value) {
-        if (typeof value !== 'number' || Number.isNaN(value)) return '--';
-        return Math.round(value);
-      }
-
-      async function fetchCityTemperature(city) {
-        const url = new URL('https://api.open-meteo.com/v1/forecast');
-        url.searchParams.set('latitude', city.latitude);
-        url.searchParams.set('longitude', city.longitude);
-        url.searchParams.set('current', 'temperature_2m');
-        url.searchParams.set('temperature_unit', 'celsius');
-        url.searchParams.set('timezone', 'auto');
-
-        const response = await fetch(url.toString(), { cache: 'no-store' });
-        if (!response.ok) throw new Error(`Weather request failed for ${city.label}`);
-        const data = await response.json();
-        return formatTemp(data && data.current && data.current.temperature_2m);
-      }
-
-      async function updateWorldWeatherTicker() {
-        if (!worldWeatherTicker) return;
-
+  async function updateWorldWeatherTicker() {
+    if (!worldWeatherTicker) return;
+    try {
+      const temps = await Promise.all(worldCities.map(async (city) => {
         try {
-          const temps = await Promise.all(worldCities.map(async (city) => {
-            try {
-              const temp = await fetchCityTemperature(city);
-              return `${city.label} ${temp}°C`;
-            } catch (_error) {
-              return `${city.label} --°C`;
-            }
-          }));
-
-          const line = `🌍 ${temps.join(' • ')} • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC`;
-          worldWeatherTicker.innerHTML = `<span>${line}</span><span aria-hidden="true">${line}</span>`;
+          const temp = await fetchCityTemperature(city);
+          return `${city.label} ${temp}°C`;
         } catch (_error) {
-          const fallback = '🌍 PARIS --°C • LONDON --°C • NEW YORK --°C • DUBAI --°C • TOKYO --°C • MADRID --°C • ROME --°C • DUBLIN --°C • MONTREAL --°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC';
-          worldWeatherTicker.innerHTML = `<span>${fallback}</span><span aria-hidden="true">${fallback}</span>`;
+          return `${city.label} --°C`;
         }
-      }
+      }));
+      const line = `🌍 ${temps.join(' • ')} • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC`;
+      worldWeatherTicker.innerHTML = `<span>${line}</span><span aria-hidden="true">${line}</span><span aria-hidden="true">${line}</span>`;
+    } catch (_error) {
+      const fallback = '🌍 PARIS --°C • LONDON --°C • NEW YORK --°C • DUBAI --°C • TOKYO --°C • MADRID --°C • ROME --°C • DUBLIN --°C • MONTREAL --°C • BOYINGTON WEB RADIO • 24/7 NON STOP MUSIC';
+      worldWeatherTicker.innerHTML = `<span>${fallback}</span><span aria-hidden="true">${fallback}</span><span aria-hidden="true">${fallback}</span>`;
+    }
+  }
 
-      updateWorldWeatherTicker();
-      setInterval(updateWorldWeatherTicker, 30 * 60 * 1000);
+  updateWorldWeatherTicker();
+  setInterval(updateWorldWeatherTicker, 30 * 60 * 1000);
 
-      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
+  function normalizeEntry(item) {
+    if (!item || typeof item !== 'object') return null;
+    const url = typeof item.url === 'string' ? item.url.trim() : '';
+    const title = (typeof item.title === 'string' && item.title.trim())
+      ? item.title.trim()
+      : (typeof item.titre === 'string' && item.titre.trim())
+        ? item.titre.trim()
+        : 'Sans titre';
+    if (!url) return null;
+    return { title, url };
+  }
 
-      let playlistPool = [];
-      let currentPlaylistIndex = -1;
-      let widget = null;
-      let readyAfterLoad = false;
-      let pendingAutoplay = false;
-      let pendingRandomizeTrack = false;
-      let widgetInitTimer = null;
+  function parsePlaylistText(rawText) {
+    const blocks = rawText.split(/\[PLAYLIST\]/i);
+    const entries = [];
 
-      function normalizeEntry(item) {
-        if (!item || typeof item !== 'object') return null;
-        const url = typeof item.url === 'string' ? item.url.trim() : '';
-        const title = (typeof item.title === 'string' && item.title.trim())
-          ? item.title.trim()
-          : (typeof item.titre === 'string' && item.titre.trim())
-            ? item.titre.trim()
-            : 'Sans titre';
-        if (!url) return null;
-        return { title, url };
-      }
+    blocks.forEach((block, index) => {
+      if (index === 0) return;
+      const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
+      const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
+      const urlMatch = content.match(/URL\s*=\s*(.+)/i);
+      const title = titleMatch ? titleMatch[1].trim() : '';
+      const url = urlMatch ? urlMatch[1].trim() : '';
+      if (url) entries.push({ title: title || 'Sans titre', url });
+    });
 
-      function parsePlaylistText(rawText) {
-        const blocks = rawText.split(/\[PLAYLIST\]/i);
-        const entries = [];
+    return entries.map(normalizeEntry).filter(Boolean);
+  }
 
-        blocks.forEach(function (block, index) {
-          if (index === 0) return;
-          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
-          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
-          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
-          const title = titleMatch ? titleMatch[1].trim() : '';
-          const url = urlMatch ? urlMatch[1].trim() : '';
+  function pickRandomIndex(length, avoidIndex = -1) {
+    if (length <= 1) return 0;
+    const randomBytes = new Uint32Array(1);
+    (window.crypto || window.msCrypto).getRandomValues(randomBytes);
+    let index = randomBytes[0] % length;
+    if (index === avoidIndex) index = (index + 1) % length;
+    return index;
+  }
 
-          if (url) entries.push({ title: title || 'Sans titre', url });
-        });
+  function isMobileDevice() {
+    const mobilePattern = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|webOS|BlackBerry/i;
+    return mobilePattern.test(navigator.userAgent) || window.matchMedia('(max-width: 960px)').matches;
+  }
 
-        return entries.map(normalizeEntry).filter(Boolean);
-      }
+  function buildPlayerUrl(playlistUrl) {
+    const encoded = encodeURIComponent(playlistUrl);
+    return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+  }
 
-      function pickRandomIndex(length, avoidIndex = -1) {
-        if (length <= 1) return 0;
-        const randomBytes = new Uint32Array(1);
-        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
-        let index = randomBytes[0] % length;
-        if (index === avoidIndex) index = (index + 1) % length;
-        return index;
-      }
+  function startRandomTrackInCurrentPlaylist() {
+    if (!widget) return;
+    try {
+      widget.getSounds((sounds) => {
+        const total = Array.isArray(sounds) ? sounds.length : 0;
+        if (!total) return;
+        const startIndex = pickRandomIndex(total);
+        if (startIndex > 0) widget.skip(startIndex);
+        widget.play();
+      });
+    } catch (_error) {}
+  }
 
-      function isMobileDevice() {
-        const mobilePattern = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|webOS|BlackBerry/i;
-        return mobilePattern.test(navigator.userAgent) || window.matchMedia('(max-width: 960px)').matches;
-      }
+  function bindWidgetEvents() {
+    if (!widget) return;
 
-      function buildPlayerUrl(playlistUrl) {
-        const encoded = encodeURIComponent(playlistUrl);
-        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
-      }
+    widget.bind(SC.Widget.Events.READY, () => {
+      if (readyAfterLoad) return;
+      readyAfterLoad = true;
+      widget.play();
+      startRandomTrackInCurrentPlaylist();
+    });
 
-      function startRandomTrackInCurrentPlaylist() {
+    widget.bind(SC.Widget.Events.FINISH, () => {
+      playNextOrLoadAnotherPlaylist();
+    });
+  }
+
+  function createWidget() {
+    if (widget) return widget;
+    widget = SC.Widget(iframe);
+    bindWidgetEvents();
+    return widget;
+  }
+
+  function reloadWidgetFromIframe() {
+    if (widgetInitTimer) {
+      window.clearTimeout(widgetInitTimer);
+      widgetInitTimer = null;
+    }
+
+    widget = null;
+    readyAfterLoad = false;
+    widgetInitTimer = window.setTimeout(() => {
+      createWidget();
+      widgetInitTimer = null;
+    }, 120);
+  }
+
+  function loadPlaylist(index, autoplay = true, randomizeTrack = autoplay, forceIframeReload = false) {
+    if (!playlistPool.length) return;
+
+    const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
+    currentPlaylistIndex = safeIndex;
+    const currentPlaylist = playlistPool[safeIndex];
+
+    readyAfterLoad = false;
+
+    if (!widget || forceIframeReload) {
+      iframe.src = buildPlayerUrl(currentPlaylist.url);
+      reloadWidgetFromIframe();
+      return;
+    }
+
+    widget.load(currentPlaylist.url, {
+      auto_play: autoplay,
+      color: '#ff2e3f',
+      buying: false,
+      sharing: false,
+      download: false,
+      show_artwork: true,
+      show_playcount: false,
+      show_user: false,
+      single_active: true,
+      show_comments: false,
+      show_reposts: false,
+      show_teaser: false
+    });
+
+    if (autoplay) {
+      window.setTimeout(() => {
         if (!widget) return;
+        try { widget.play(); } catch (_error) {}
+        if (randomizeTrack) startRandomTrackInCurrentPlaylist();
+      }, isMobileDevice() ? 220 : 120);
+    }
+  }
 
-        widget.getSounds(function (sounds) {
+  function playRandomPlaylist() {
+    if (!playlistPool.length) return;
+    const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+    loadPlaylist(nextPlaylist, true, true, isMobileDevice());
+  }
+
+  function playNextOrLoadAnotherPlaylist() {
+    if (!widget) return;
+
+    try {
+      widget.getCurrentSoundIndex((index) => {
+        widget.getSounds((sounds) => {
           const total = Array.isArray(sounds) ? sounds.length : 0;
-          if (!total) return;
 
-          const startIndex = pickRandomIndex(total, -1);
-          if (startIndex > 0) widget.skip(startIndex);
-          widget.play();
-        });
-      }
-
-      function bindWidgetEvents() {
-        if (!widget) return;
-
-        widget.bind(SC.Widget.Events.READY, function () {
-          if (readyAfterLoad) return;
-          readyAfterLoad = true;
-
-          if (pendingRandomizeTrack) {
-            startRandomTrackInCurrentPlaylist();
-          } else {
-            widget.play();
+          if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
+            widget.next();
+            return;
           }
 
-          pendingAutoplay = false;
-          pendingRandomizeTrack = false;
-        });
-
-        widget.bind(SC.Widget.Events.FINISH, function () {
-          playNextOrLoadAnotherPlaylist();
-        });
-      }
-
-      function createWidget() {
-        if (widget) return widget;
-        widget = SC.Widget(iframe);
-        bindWidgetEvents();
-        return widget;
-      }
-
-      function reloadWidgetFromIframe() {
-        if (widgetInitTimer) {
-          window.clearTimeout(widgetInitTimer);
-          widgetInitTimer = null;
-        }
-
-        widget = null;
-        readyAfterLoad = false;
-
-        widgetInitTimer = window.setTimeout(function () {
-          createWidget();
-          widgetInitTimer = null;
-        }, 150);
-      }
-
-      function loadPlaylist(index, autoplay = true, randomizeTrack = autoplay, forceIframeReload = false) {
-        if (!playlistPool.length) return;
-
-        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
-        currentPlaylistIndex = safeIndex;
-        const currentPlaylist = playlistPool[safeIndex];
-
-        pendingAutoplay = autoplay;
-        pendingRandomizeTrack = randomizeTrack;
-        readyAfterLoad = false;
-
-        if (!widget || forceIframeReload) {
-          iframe.src = buildPlayerUrl(currentPlaylist.url);
-          reloadWidgetFromIframe();
-          return;
-        }
-
-        widget.load(currentPlaylist.url, {
-          auto_play: autoplay,
-          color: '#ff2e3f',
-          buying: false,
-          sharing: false,
-          download: false,
-          show_artwork: true,
-          show_playcount: false,
-          show_user: false,
-          single_active: true,
-          show_comments: false,
-          show_reposts: false,
-          show_teaser: false
-        });
-
-        if (autoplay) {
-          window.setTimeout(function () {
-            if (!widget) return;
-            try {
-              widget.play();
-            } catch (error) {}
-            if (randomizeTrack) {
-              startRandomTrackInCurrentPlaylist();
-            }
-          }, isMobileDevice() ? 220 : 120);
-        }
-      }
-
-      function playRandomPlaylist() {
-        if (!playlistPool.length) return;
-        const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-        const mobileFallback = isMobileDevice();
-        loadPlaylist(nextPlaylist, true, true, mobileFallback);
-
-        if (mobileFallback) {
-          window.setTimeout(function () {
-            if (!widget) return;
-            try {
-              widget.play();
-            } catch (error) {}
-            startRandomTrackInCurrentPlaylist();
-          }, 300);
-        }
-      }
-
-      function playNextOrLoadAnotherPlaylist() {
-        if (!widget) return;
-
-        widget.getCurrentSoundIndex(function (index) {
-          widget.getSounds(function (sounds) {
-            const total = Array.isArray(sounds) ? sounds.length : 0;
-
-            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
-              widget.next();
-              return;
-            }
-
-            if (playlistPool.length > 1) {
-              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-              loadPlaylist(nextPlaylist, true, true, isMobileDevice());
-              return;
-            }
-
-            if (playlistPool.length === 1) {
-              loadPlaylist(0, true);
-            }
-          });
-        });
-      }
-
-      if (randomPlaylistBtn) {
-        randomPlaylistBtn.addEventListener('click', function () {
-          playRandomPlaylist();
-        });
-      }
-
-      fetch(PLAYLISTS_URL, { cache: 'no-store' })
-        .then(function (response) {
-          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
-          return response.text();
-        })
-        .then(function (rawText) {
-          playlistPool = parsePlaylistText(rawText);
-          if (!playlistPool.length) return;
-
-          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
-          currentPlaylistIndex = initialPlaylistIndex;
-          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
-          createWidget();
-          if (randomPlaylistBtn) randomPlaylistBtn.disabled = false;
-        })
-        .catch(function () {
-          return;
-        });
-    })();
-  </script>
-  <script>
-    (function () {
-      const PLAYER_IFRAME_ID = 'sc-player';
-      const PLAYLISTS_URL = 'playlists.txt';
-      const iframe = document.getElementById(PLAYER_IFRAME_ID);
-      const randomPlaylistBtn = document.getElementById('randomPlaylistBtn');
-      const clockEl = document.getElementById('boyingtonClock');
-      const heroClockEl = document.getElementById('heroRadioClock');
-      const heroDateEl = document.getElementById('heroRadioDate');
-
-      function updateClock() {
-        const now = new Date();
-        const timeText = new Intl.DateTimeFormat('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        }).format(now);
-
-        const dateText = new Intl.DateTimeFormat('fr-FR', {
-          weekday: 'long',
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        }).format(now);
-
-        if (clockEl) clockEl.textContent = timeText;
-        if (heroClockEl) heroClockEl.textContent = timeText;
-        if (heroDateEl) heroDateEl.textContent = dateText;
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-
-      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
-
-      let playlistPool = [];
-      let currentPlaylistIndex = -1;
-      let widget = null;
-      let readyAfterLoad = false;
-
-      function normalizeEntry(item) {
-        if (!item || typeof item !== 'object') return null;
-        const url = typeof item.url === 'string' ? item.url.trim() : '';
-        const title = (typeof item.title === 'string' && item.title.trim())
-          ? item.title.trim()
-          : (typeof item.titre === 'string' && item.titre.trim())
-            ? item.titre.trim()
-            : 'Sans titre';
-        if (!url) return null;
-        return { title, url };
-      }
-
-      function parsePlaylistText(rawText) {
-        const blocks = rawText.split(/\[PLAYLIST\]/i);
-        const entries = [];
-
-        blocks.forEach(function (block, index) {
-          if (index === 0) return;
-          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
-          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
-          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
-          const title = titleMatch ? titleMatch[1].trim() : '';
-          const url = urlMatch ? urlMatch[1].trim() : '';
-
-          if (url) entries.push({ title: title || 'Sans titre', url });
-        });
-
-        return entries.map(normalizeEntry).filter(Boolean);
-      }
-
-      function pickRandomIndex(length, avoidIndex = -1) {
-        if (length <= 1) return 0;
-        const randomBytes = new Uint32Array(1);
-        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
-        let index = randomBytes[0] % length;
-        if (index === avoidIndex) index = (index + 1) % length;
-        return index;
-      }
-
-      function buildPlayerUrl(playlistUrl) {
-        const encoded = encodeURIComponent(playlistUrl);
-        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
-      }
-
-      function createWidget() {
-        if (widget) return widget;
-        widget = SC.Widget(iframe);
-
-        widget.bind(SC.Widget.Events.READY, function () {
-          if (!readyAfterLoad) {
-            readyAfterLoad = true;
-            startRandomTrackInCurrentPlaylist();
+          if (playlistPool.length > 1) {
+            const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+            loadPlaylist(nextPlaylist, true, true, isMobileDevice());
+            return;
           }
-        });
 
-        widget.bind(SC.Widget.Events.FINISH, function () {
-          playNextOrLoadAnotherPlaylist();
+          if (playlistPool.length === 1) loadPlaylist(0, true, true);
         });
+      });
+    } catch (_error) {}
+  }
 
-        return widget;
+  if (randomPlaylistBtn) {
+    randomPlaylistBtn.addEventListener('click', playRandomPlaylist);
+  }
+
+  function buildEqualizer() {
+    if (!eqTrack || !eqReflect) return;
+
+    const stage = eqTrack.parentElement;
+    const stageWidth = stage ? stage.clientWidth : 1200;
+    const count = Math.max(140, Math.min(180, Math.floor(stageWidth / 8)));
+    const gap = 2;
+
+    eqTrack.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
+    eqTrack.style.gap = `${gap}px`;
+    eqReflect.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
+    eqReflect.style.gap = `${gap}px`;
+
+    eqTrack.innerHTML = '';
+    eqReflect.innerHTML = '';
+
+    const bars = [];
+    const refBars = [];
+    const states = [];
+    const config = [];
+
+    for (let i = 0; i < count; i++) {
+      const hue = Math.round((i / Math.max(1, count - 1)) * 310);
+      const bar = document.createElement('span');
+      bar.className = 'eq-bar';
+      bar.style.background = `linear-gradient(180deg, hsl(${hue} 100% 72%), hsl(${hue} 100% 52%))`;
+      bar.style.boxShadow = `0 0 14px hsla(${hue},100%,60%,.22), 0 0 24px hsla(${hue},100%,60%,.12)`;
+      const inner = document.createElement('i');
+      bar.appendChild(inner);
+      eqTrack.appendChild(bar);
+      bars.push(inner);
+
+      const ref = document.createElement('span');
+      ref.className = 'eq-bar';
+      ref.style.background = `linear-gradient(180deg, hsl(${hue} 100% 72%), hsl(${hue} 100% 52%))`;
+      ref.style.boxShadow = `0 0 12px hsla(${hue},100%,60%,.14)`;
+      const refInner = document.createElement('i');
+      ref.appendChild(refInner);
+      eqReflect.appendChild(ref);
+      refBars.push(refInner);
+
+      states.push(0.28 + Math.random() * 0.34);
+      config.push({
+        phase: Math.random() * Math.PI * 2,
+        speed: 4.2 + Math.random() * 6.2,
+        secondary: 5.0 + Math.random() * 7.4,
+        spike: 0.18 + Math.random() * 0.42,
+        bias: 0.12 + Math.random() * 0.28
+      });
+    }
+
+    let lastWidth = stageWidth;
+    let rebuildRequested = false;
+
+    const animate = (now) => {
+      const t = now * 0.001;
+      const aliveWidth = stage ? stage.clientWidth : lastWidth;
+
+      if (Math.abs(aliveWidth - lastWidth) > 100 && !rebuildRequested) {
+        rebuildRequested = true;
+        window.setTimeout(() => buildEqualizer(), 160);
+        return;
       }
 
-      function loadPlaylist(index, autoplay = true, randomizeTrack = autoplay) {
-        if (!playlistPool.length) return;
+      for (let i = 0; i < bars.length; i++) {
+        const c = config[i];
+        const wave1 = (Math.sin(t * c.speed + c.phase) + 1) * 0.5;
+        const wave2 = (Math.sin(t * c.secondary + c.phase * 0.73) + 1) * 0.5;
+        const wave3 = (Math.sin(t * 12.5 + i * 0.48) + 1) * 0.5;
+        const pulse = Math.pow(Math.max(0, Math.sin(t * 3.0 + i * 0.06)), 6);
+        let level = c.bias + wave1 * 0.36 + wave2 * 0.28 + wave3 * 0.14 + pulse * c.spike;
+        level = Math.max(0.06, Math.min(1.0, level));
+        states[i] = states[i] * 0.64 + level * 0.36;
 
-        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
-        currentPlaylistIndex = safeIndex;
-        const currentPlaylist = playlistPool[safeIndex];
+        const mainScale = 0.08 + states[i] * 1.06;
+        const refScale = 0.05 + states[i] * 0.42;
 
-        if (!widget) {
-          iframe.src = buildPlayerUrl(currentPlaylist.url);
-          return;
-        }
-
-        readyAfterLoad = false;
-        widget.load(currentPlaylist.url, {
-          auto_play: autoplay,
-          color: '#ff2e3f',
-          buying: false,
-          sharing: false,
-          download: false,
-          show_artwork: true,
-          show_playcount: false,
-          show_user: false,
-          single_active: true,
-          show_comments: false,
-          show_reposts: false,
-          show_teaser: false
-        });
-
-        if (autoplay && randomizeTrack) {
-          window.setTimeout(function () {
-            startRandomTrackInCurrentPlaylist();
-          }, 1200);
-        }
+        bars[i].style.transform = `scaleY(${mainScale})`;
+        refBars[i].style.transform = `scaleY(${refScale})`;
       }
 
-      function startRandomTrackInCurrentPlaylist() {
-        if (!widget) return;
+      requestAnimationFrame(animate);
+    };
 
-        widget.getSounds(function (sounds) {
-          const total = Array.isArray(sounds) ? sounds.length : 0;
-          if (!total) return;
+    requestAnimationFrame(animate);
+  }
 
-          const startIndex = pickRandomIndex(total, -1);
-          if (startIndex > 0) widget.skip(startIndex);
-          widget.play();
-        });
-      }
+  window.addEventListener('resize', () => {
+    window.clearTimeout(widgetInitTimer);
+    window.clearTimeout(buildEqualizer._resizeTimer);
+    buildEqualizer._resizeTimer = window.setTimeout(buildEqualizer, 180);
+  });
 
-      function playRandomPlaylist() {
-        if (!playlistPool.length) return;
-        const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-        loadPlaylist(nextPlaylist, true, true);
-      }
+  buildEqualizer();
 
-      function playNextOrLoadAnotherPlaylist() {
-        if (!widget) return;
+  fetch(PLAYLISTS_URL, { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error('Impossible de charger playlists.txt');
+      return response.text();
+    })
+    .then((rawText) => {
+      playlistPool = parsePlaylistText(rawText);
+      if (!playlistPool.length) return;
 
-        widget.getCurrentSoundIndex(function (index) {
-          widget.getSounds(function (sounds) {
-            const total = Array.isArray(sounds) ? sounds.length : 0;
-
-            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
-              widget.next();
-              return;
-            }
-
-            if (playlistPool.length > 1) {
-              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-              loadPlaylist(nextPlaylist, true, true);
-              return;
-            }
-
-            if (playlistPool.length === 1) {
-              loadPlaylist(0, true);
-            }
-          });
-        });
-      }
-
-      if (randomPlaylistBtn) {
-        randomPlaylistBtn.addEventListener('click', function () {
-          playRandomPlaylist();
-        });
-      }
-
-      fetch(PLAYLISTS_URL, { cache: 'no-store' })
-        .then(function (response) {
-          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
-          return response.text();
-        })
-        .then(function (rawText) {
-          playlistPool = parsePlaylistText(rawText);
-          if (!playlistPool.length) return;
-
-          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
-          currentPlaylistIndex = initialPlaylistIndex;
-          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
-          createWidget();
-          if (randomPlaylistBtn) randomPlaylistBtn.disabled = false;
-        })
-        .catch(function () {
-          return;
-        });
-    })();
-  </script>
+      const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
+      currentPlaylistIndex = initialPlaylistIndex;
+      iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
+      createWidget();
+      if (randomPlaylistBtn) randomPlaylistBtn.disabled = false;
+    })
+    .catch(() => {
+      // Keep interface functional even if playlists.txt is unavailable.
+    });
+})();
+</script>
 </body>
 </html>
