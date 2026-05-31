@@ -89,7 +89,10 @@
       box-shadow:var(--shadow);
     }
 
-    .topbar{
+    /* ===============================================================
+   BLOC HEADER / TOPBAR
+   =============================================================== */
+.topbar{
       position:sticky;
       top:0;
       z-index:100;
@@ -205,7 +208,10 @@
       box-shadow:0 10px 25px rgba(0,0,0,.24);
     }
 
-    .hero{padding:22px 0 14px}
+    /* ===============================================================
+   BLOC HERO PRINCIPAL
+   =============================================================== */
+.hero{padding:22px 0 14px}
     .hero-grid{
       display:grid;
       grid-template-columns:1.08fr .92fr;
@@ -378,7 +384,10 @@
       background:rgba(255,46,63,.07);
     }
 
-    .hero-side{
+    /* ===============================================================
+   BLOC HERO DROIT / HORLOGE
+   =============================================================== */
+.hero-side{
       padding:16px;
       background:
         radial-gradient(circle at top right, rgba(255,46,63,.15), transparent 26%),
@@ -699,7 +708,10 @@
       line-height:1.6;
     }
 
-    .player-wrap{
+    /* ===============================================================
+   BLOC PLAYER OFFICIEL
+   =============================================================== */
+.player-wrap{
       padding:18px;
       background:
         radial-gradient(circle at 15% 50%, rgba(255,46,63,.08), transparent 22%),
@@ -925,11 +937,9 @@
       overflow:hidden;
       border-radius:24px;
       border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, #f8f8f8 0%, #ececec 100%);
+      background:#0d0d0d;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.03), 0 0 0 1px rgba(255,46,63,.06);
-      min-height:460px;
-      display:flex;
-      flex-direction:column;
+      min-height:250px;
     }
 
     .player-actions{
@@ -953,20 +963,14 @@
       background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,46,63,.18), rgba(255,255,255,0));
       pointer-events:none;
       opacity:.8;
-      z-index:0;
-    }
-    .player-embed > *{
-      position:relative;
-      z-index:1;
     }
     iframe{
       display:block;
       width:100%;
       border:0;
+      position:relative;
+      z-index:1;
       min-height:250px;
-      height:250px;
-      flex:0 0 250px;
-      background:#fff;
     }
     .player-side{
       display:flex;
@@ -987,98 +991,76 @@
       border:1px solid rgba(255,255,255,.05);
     }
 
-    .spectrum-stage{
-      margin:0;
-      padding:12px 14px 10px;
-      border-top:0;
-      border-radius:0 0 24px 24px;
+    /* ===================================================================
+   🧰 REPAIRS RAPIDES — ÉGALISEUR (ZONE PRIORITAIRE)
+   -------------------------------------------------------------------
+   BAR_COUNT        : nombre total de barres.
+   SPEED_MULTIPLIER : vitesse globale (1 = normal, 2 = 2x, etc.).
+   AMP_MIN          : hauteur minimale des barres.
+   AMP_MAX          : hauteur maximale des barres.
+   BAR_GAP          : espace entre les barres.
+   REFLECT_ALPHA    : intensité du reflet.
+   BAR_RADIUS       : rondeur des barres.
+   =================================================================== */
+    /* ===============================================================
+   BLOC ÉGALISEUR
+   =============================================================== */
+.player-eq-overlay{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:112px;
+      padding:14px 18px 12px;
+      z-index:3;
+      pointer-events:none;
       background:
-        linear-gradient(180deg, #fbfbfb 0%, #f0f0f0 100%);
-      box-shadow:none;
-      flex:1 1 auto;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-start;
-      gap:8px;
-      min-height:210px;
+        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.28) 20%, rgba(255,255,255,.84) 62%, rgba(255,255,255,.98) 100%);
+      backdrop-filter:blur(3px) saturate(1.08);
+      -webkit-backdrop-filter:blur(3px) saturate(1.08);
+      border-top:1px solid rgba(0,0,0,.04);
     }
-    .spectrum-stage-head{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-      flex-wrap:wrap;
-      text-transform:uppercase;
-      letter-spacing:.10em;
-      font-size:.70rem;
-      font-weight:800;
-      color:#6b6b6b;
-    }
-    .spectrum-stage-head span:last-child{
-      color:#a1a1a1;
-    }
-    .spectrum{
-      position:relative;
-      display:grid;
-      align-items:end;
-      gap:2px;
+    .player-eq-track{
       width:100%;
-      overflow:hidden;
-      border-radius:16px;
-      padding:8px 10px 6px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.06));
+      height:100%;
+      display:grid;
+      grid-template-columns:repeat(160, minmax(0, 1fr));
+      gap:2px;
+      align-items:end;
+      transform:translateZ(0);
     }
-    .spectrum::before{
+    .player-eq-bar{
+      position:relative;
+      align-self:end;
+      height:14%;
+      border-radius:999px 999px 4px 4px;
+      background:linear-gradient(180deg, var(--bar-top, rgba(60,60,60,.96)) 0%, var(--bar-mid, rgba(25,25,25,.96)) 62%, var(--bar-bottom, rgba(10,10,10,.98)) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 0 6px rgba(0,0,0,.15),
+        0 0 12px var(--bar-glow, rgba(0,0,0,.18));
+      transform-origin:bottom center;
+      will-change:height, filter, opacity;
+      opacity:.98;
+      min-height:4px;
+    }
+    .player-eq-bar::after{
       content:"";
       position:absolute;
-      left:0; right:0; bottom:0;
-      height:36%;
-      background:linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,0));
-      opacity:.24;
+      left:0;
+      right:0;
+      top:0;
+      height:40%;
+      border-radius:inherit;
+      background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
       pointer-events:none;
-      z-index:0;
-    }
-    .spectrum .bar{
-      position:relative;
-      z-index:1;
-      border-radius:6px 6px 3px 3px;
-      transform-origin:bottom center;
-      transition:height 72ms linear, opacity 72ms linear, transform 72ms linear;
-      will-change:height, transform, opacity;
-      min-height:8px;
-      box-shadow:0 0 10px rgba(255,255,255,.06);
-      background:
-        linear-gradient(180deg,
-          hsla(var(--hue, 0) 100% 72% / .98) 0%,
-          hsla(var(--hue, 0) 100% 56% / .98) 58%,
-          hsla(var(--hue, 0) 100% 42% / .98) 100%);
-    }
-    .spectrum-large{
-      height:182px;
-      gap:2px;
-      border:0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.02));
-    }
-    .spectrum-large .bar{
-      box-shadow:
-        0 0 8px rgba(255,255,255,.04),
-        0 0 12px rgba(0,0,0,.10);
-      border-radius:5px 5px 3px 3px;
-    }
-    .spectrum-caption{
-      margin-top:auto;
-      text-align:center;
-      color:#8a8a8a;
-      font-size:.78rem;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      padding-top:1px;
+      opacity:.65;
     }
 
-    .gallery-grid{
-
+    /* ===============================================================
+   BLOC VISUELS
+   =============================================================== */
+.gallery-grid{
       display:grid;
       grid-template-columns:repeat(4, minmax(0, 1fr));
       gap:14px;
@@ -1132,7 +1114,10 @@
     }
     .pager span:first-child{background:var(--red)}
 
-    .matrix-wrap{
+    /* ===============================================================
+   BLOC RÉSEAU MONDIAL
+   =============================================================== */
+.matrix-wrap{
       padding:18px;
       background:
         radial-gradient(circle at 20% 20%, rgba(255,46,63,.08), transparent 18%),
@@ -1335,7 +1320,10 @@
       font-size:.82rem;
     }
 
-    .social-grid{
+    /* ===============================================================
+   BLOC RÉSEAUX SOCIAUX
+   =============================================================== */
+.social-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
       gap:14px;
@@ -1487,7 +1475,10 @@
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
     }
 
-    .footer{
+    /* ===============================================================
+   BLOC FOOTER
+   =============================================================== */
+.footer{
       padding:18px 0 24px;
       color:var(--muted);
     }
@@ -1753,6 +1744,27 @@
 </style>
 </head>
 <body>
+<!-- ================================================================ -->
+<!--  BOYINGTON WEB RADIO 6 — MARQUEURS ULTRA VISIBLES                -->
+<!--                                                                 -->
+<!--  01  FOND GÉNÉRAL DE PAGE                                         -->
+<!--  02  TOPBAR / HEADER                                              -->
+<!--  03  HERO PRINCIPAL                                               -->
+<!--  04  HERO DROIT / HORLOGE LIVE                                   -->
+<!--  05  PLAYER OFFICIEL                                             -->
+<!--  06  ÉGALISEUR DANS LA SURFACE BLANCHE DU PLAYER                 -->
+<!--  07  REPAIRS RAPIDES ÉGALISEUR                                   -->
+<!--  08  VISUELS STUDIO                                              -->
+<!--  09  RÉSEAU MONDIAL                                             -->
+<!--  10  LIENS OFFICIELS / RÉSEAUX SOCIAUX                           -->
+<!--  11  FOOTER / BAS DE PAGE                                        -->
+<!--  12  JAVASCRIPT GÉNÉRAL / HORLOGE / PLAYLIST / ÉGALISEUR        -->
+<!--                                                                 -->
+<!--  Lecture rapide :                                                 -->
+<!--  - Chaque bloc est séparé par de grandes barres de repérage.      -->
+<!--  - Les réglages de l’égaliseur sont visibles dans le CSS/JS.      -->
+<!--  - Le player SoundCloud reste verrouillé.                         -->
+<!-- ================================================================ -->
   <div class="shell">
     <header class="topbar">
       <div class="container topbar-inner">
@@ -1790,7 +1802,12 @@
     </header>
 
     <main>
-      <section id="accueil" class="hero">
+      <!-- ================================================================ -->
+<!-- 🔴 01 — FOND GÉNÉRAL DE PAGE + HERO PRINCIPAL                      -->
+<!--     Début de la grande zone d’accueil : fond, image, titre,         -->
+<!--     badges live, stats et boutons d’action.                          -->
+<!-- ================================================================ -->
+<section id="accueil" class="hero">
         <div class="container hero-grid">
           <article class="panel hero-panel">
             <div class="hero-overlay"></div>
@@ -1868,7 +1885,12 @@
         </div>
       </section>
 
-      <section id="player" class="section">
+      <!-- ================================================================ -->
+<!-- 🟠 02 — PLAYER OFFICIEL                                             -->
+<!--     Micro vidéo à gauche + iframe SoundCloud à droite.               -->
+<!--     Le bouton PLAYLIST ALÉATOIRE reste sous le player.              -->
+<!-- ================================================================ -->
+<section id="player" class="section">
         <div class="container">
           <div class="section-head">
             <div>
@@ -1894,14 +1916,14 @@
                   allow="autoplay; encrypted-media"
                   src="about:blank"
                   title="SoundCloud player - Boyington Web Radio"></iframe>
-
-                <div class="spectrum-stage" aria-label="Equaliseur principal">
-                  <div class="spectrum-stage-head">
-                    <span>LIVE SPECTRUM</span>
-                    <span>MIC / PLAYER SYNC</span>
-                  </div>
-                  <div class="spectrum spectrum-large" id="playerSpectrum" data-bars="120" data-mode="hero" aria-hidden="true"></div>
-                  <div class="spectrum-caption">BOYINGTON WEB RADIO — VISUEL AUDIO SYNCHRONISÉ</div>
+                <!-- REPAIR EQ: zone rapide à ajuster
+                 - changer le nombre de barres via BAR_COUNT
+                 - accélérer via SPEED_MULTIPLIER
+                 - assombrir via la palette JS
+                 - réduire le reflet via REFLECT_ALPHA
+            -->
+                <div class="player-eq-overlay" aria-hidden="true">
+                  <div class="player-eq-track" id="boyingtonEqTrack"></div>
                 </div>
               </div>
             </div>
@@ -1915,7 +1937,11 @@
         </div>
       </section>
 
-      <section id="visuels" class="section">
+      <!-- ================================================================ -->
+<!-- 🟡 03 — VISUELS STUDIO                                              -->
+<!--     Galerie d’images et de vidéos du dépôt GitHub.                  -->
+<!-- ================================================================ -->
+<section id="visuels" class="section">
         <div class="container">
           <div class="section-head">
             <div>
@@ -1963,7 +1989,11 @@
         </div>
       </section>
 
-      <section id="matrix" class="section">
+      <!-- ================================================================ -->
+<!-- 🟢 04 — RÉSEAU MONDIAL                                              -->
+<!--     Carte / vidéo / météo / flux international.                     -->
+<!-- ================================================================ -->
+<section id="matrix" class="section">
         <div class="container">
           <div class="section-head">
             <div>
@@ -2034,7 +2064,11 @@
         </div>
       </section>
 
-      <section id="reseaux" class="section">
+      <!-- ================================================================ -->
+<!-- 🔵 05 — LIENS OFFICIELS / RÉSEAUX SOCIAUX                           -->
+<!--     Cartes de liens officiels, format glass rouge.                  -->
+<!-- ================================================================ -->
+<section id="reseaux" class="section">
         <div class="container">
           <div class="section-head">
             <div>
@@ -2113,7 +2147,11 @@
       </section>
 </main>
 
-    <footer id="footer" class="footer">      <div class="container">
+    <!-- ================================================================ -->
+<!-- 🟣 06 — FOOTER / BAS DE PAGE                                        -->
+<!--     Logo final, mentions légales, identité et signature.             -->
+<!-- ================================================================ -->
+<footer id="footer" class="footer">      <div class="container">
         <div class="gold-line"></div>
         
 <div class="footer-panel footer-centered">
@@ -2152,12 +2190,6 @@
       const clockEl = document.getElementById('boyingtonClock');
       const heroClockEl = document.getElementById('heroRadioClock');
       const heroDateEl = document.getElementById('heroRadioDate');
-      const worldWeatherTicker = document.getElementById('worldWeatherTicker');
-
-      const spectrumNodes = Array.from(document.querySelectorAll('.spectrum'));
-      const spectrumState = new Map();
-      let spectrumRaf = 0;
-      let spectrumSeed = 0;
 
       function updateClock() {
         const now = new Date();
@@ -2179,10 +2211,8 @@
         if (heroDateEl) heroDateEl.textContent = dateText;
       }
 
-      function formatTemp(value) {
-        if (typeof value !== 'number' || Number.isNaN(value)) return '--';
-        return Math.round(value);
-      }
+      updateClock();
+      setInterval(updateClock, 1000);
 
       const worldCities = [
         { label: 'PARIS', latitude: 48.8566, longitude: 2.3522 },
@@ -2195,6 +2225,13 @@
         { label: 'DUBLIN', latitude: 53.3498, longitude: -6.2603 },
         { label: 'MONTREAL', latitude: 45.5017, longitude: -73.5673 }
       ];
+
+      const worldWeatherTicker = document.getElementById('worldWeatherTicker');
+
+      function formatTemp(value) {
+        if (typeof value !== 'number' || Number.isNaN(value)) return '--';
+        return Math.round(value);
+      }
 
       async function fetchCityTemperature(city) {
         const url = new URL('https://api.open-meteo.com/v1/forecast');
@@ -2231,104 +2268,8 @@
         }
       }
 
-      function isMobileDevice() {
-        const mobilePattern = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|webOS|BlackBerry/i;
-        return mobilePattern.test(navigator.userAgent) || window.matchMedia('(max-width: 960px)').matches;
-      }
-
-      function initSpectrum(el) {
-        if (!el) return;
-
-        const mode = el.dataset.mode || 'hero';
-        const width = window.innerWidth || document.documentElement.clientWidth || 1280;
-        const count = mode === 'hero'
-          ? (width < 700 ? 88 : width < 1100 ? 112 : 124)
-          : 18;
-
-        el.innerHTML = '';
-        el.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
-
-        const bars = [];
-        for (let i = 0; i < count; i += 1) {
-          const bar = document.createElement('span');
-          bar.className = 'bar';
-
-          const ratio = count > 1 ? i / (count - 1) : 0;
-          const hue = Math.round(360 * ratio * 0.82);
-          bar.style.setProperty('--hue', hue);
-          bar.style.background = `linear-gradient(180deg, hsl(${hue} 100% 68%) 0%, hsl(${hue} 100% 54%) 58%, hsl(${hue} 100% 36%) 100%)`;
-
-          const seed = (Math.sin((i + 1) * 12.9898 + spectrumSeed) * 43758.5453) % 1;
-          const speed = 1.20 + (ratio * 1.95) + ((i % 11) * 0.07);
-          const floor = 0.08 + (Math.sin(i * 0.37) * 0.015) + (ratio < 0.10 || ratio > 0.90 ? 0.02 : 0);
-          const lift = 0.92 + (Math.sin(i * 0.23) * 0.08);
-
-          bar.dataset.seed = String(seed);
-          bar.dataset.speed = String(speed);
-          bar.dataset.floor = String(floor);
-          bar.dataset.lift = String(lift);
-          el.appendChild(bar);
-          bars.push({ bar, current: floor, seed, speed, floor, lift, index: i });
-        }
-
-        spectrumState.set(el, bars);
-      }
-
-      function refreshSpectrums() {
-        spectrumSeed += 1;
-        spectrumNodes.forEach(initSpectrum);
-      }
-
-      function animateSpectrums(nowMs) {
-        const t = nowMs / 1000;
-
-        spectrumState.forEach((bars, el) => {
-          const total = bars.length || 1;
-
-          bars.forEach((state, idx) => {
-            const arch = 1 - Math.abs((idx / Math.max(total - 1, 1)) * 2 - 1);
-            const carrier = Math.sin((t * state.speed) + (state.seed * 11.71)) * 0.5 + 0.5;
-            const carrier2 = Math.sin((t * (state.speed * 0.62)) + (state.seed * 17.33) + idx * 0.11) * 0.5 + 0.5;
-            const pulse = Math.sin((t * 3.20) + idx * 0.18) * 0.5 + 0.5;
-            const pulse2 = Math.sin((t * 4.60) + idx * 0.07 + state.seed) * 0.5 + 0.5;
-
-            let target = state.floor
-              + (state.lift * 0.14)
-              + (carrier * 0.26)
-              + (carrier2 * 0.14)
-              + (pulse * 0.18)
-              + (pulse2 * 0.08)
-              + (arch * 0.10)
-              + (Math.sin(t * 2.80 + idx * 0.17) * 0.5 + 0.5) * 0.10;
-
-            target = Math.min(0.98, Math.max(0.06, target));
-            state.current += (target - state.current) * 0.42;
-
-            const rect = el.getBoundingClientRect();
-            const maxHeight = Math.max(34, rect.height - 10);
-            const pixelHeight = Math.max(10, Math.round(maxHeight * state.current));
-            state.bar.style.height = `${pixelHeight}px`;
-            state.bar.style.opacity = String(0.90 + state.current * 0.10);
-            state.bar.style.transform = `translate3d(0, ${Math.max(0, (maxHeight - pixelHeight) * 0.004)}px, 0)`;
-          });
-        });
-
-        spectrumRaf = window.requestAnimationFrame(animateSpectrums);
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-
       updateWorldWeatherTicker();
       setInterval(updateWorldWeatherTicker, 30 * 60 * 1000);
-
-      spectrumNodes.forEach(initSpectrum);
-      spectrumRaf = window.requestAnimationFrame(animateSpectrums);
-
-      window.addEventListener('resize', function () {
-        window.clearTimeout(window.__boyingtonSpectrumResizeTimer);
-        window.__boyingtonSpectrumResizeTimer = window.setTimeout(refreshSpectrums, 150);
-      });
 
       if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
 
@@ -2336,8 +2277,9 @@
       let currentPlaylistIndex = -1;
       let widget = null;
       let readyAfterLoad = false;
-      let widgetInitTimer = null;
+      let pendingAutoplay = false;
       let pendingRandomizeTrack = false;
+      let widgetInitTimer = null;
 
       function normalizeEntry(item) {
         if (!item || typeof item !== 'object') return null;
@@ -2362,6 +2304,7 @@
           const urlMatch = content.match(/URL\s*=\s*(.+)/i);
           const title = titleMatch ? titleMatch[1].trim() : '';
           const url = urlMatch ? urlMatch[1].trim() : '';
+
           if (url) entries.push({ title: title || 'Sans titre', url });
         });
 
@@ -2375,6 +2318,11 @@
         let index = randomBytes[0] % length;
         if (index === avoidIndex) index = (index + 1) % length;
         return index;
+      }
+
+      function isMobileDevice() {
+        const mobilePattern = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|webOS|BlackBerry/i;
+        return mobilePattern.test(navigator.userAgent) || window.matchMedia('(max-width: 960px)').matches;
       }
 
       function buildPlayerUrl(playlistUrl) {
@@ -2401,11 +2349,14 @@
         widget.bind(SC.Widget.Events.READY, function () {
           if (readyAfterLoad) return;
           readyAfterLoad = true;
+
           if (pendingRandomizeTrack) {
             startRandomTrackInCurrentPlaylist();
           } else {
             widget.play();
           }
+
+          pendingAutoplay = false;
           pendingRandomizeTrack = false;
         });
 
@@ -2443,14 +2394,15 @@
         currentPlaylistIndex = safeIndex;
         const currentPlaylist = playlistPool[safeIndex];
 
+        pendingAutoplay = autoplay;
+        pendingRandomizeTrack = randomizeTrack;
+        readyAfterLoad = false;
+
         if (!widget || forceIframeReload) {
           iframe.src = buildPlayerUrl(currentPlaylist.url);
           reloadWidgetFromIframe();
           return;
         }
-
-        readyAfterLoad = false;
-        pendingRandomizeTrack = !!randomizeTrack;
 
         widget.load(currentPlaylist.url, {
           auto_play: autoplay,
@@ -2470,8 +2422,12 @@
         if (autoplay) {
           window.setTimeout(function () {
             if (!widget) return;
-            try { widget.play(); } catch (_error) {}
-            if (randomizeTrack) startRandomTrackInCurrentPlaylist();
+            try {
+              widget.play();
+            } catch (error) {}
+            if (randomizeTrack) {
+              startRandomTrackInCurrentPlaylist();
+            }
           }, isMobileDevice() ? 220 : 120);
         }
       }
@@ -2479,7 +2435,18 @@
       function playRandomPlaylist() {
         if (!playlistPool.length) return;
         const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-        loadPlaylist(nextPlaylist, true, true, isMobileDevice());
+        const mobileFallback = isMobileDevice();
+        loadPlaylist(nextPlaylist, true, true, mobileFallback);
+
+        if (mobileFallback) {
+          window.setTimeout(function () {
+            if (!widget) return;
+            try {
+              widget.play();
+            } catch (error) {}
+            startRandomTrackInCurrentPlaylist();
+          }, 300);
+        }
       }
 
       function playNextOrLoadAnotherPlaylist() {
@@ -2532,6 +2499,375 @@
           return;
         });
     })();
+  </script>
+  <script>
+    (function () {
+      const PLAYER_IFRAME_ID = 'sc-player';
+      const PLAYLISTS_URL = 'playlists.txt';
+      const iframe = document.getElementById(PLAYER_IFRAME_ID);
+      const randomPlaylistBtn = document.getElementById('randomPlaylistBtn');
+      const clockEl = document.getElementById('boyingtonClock');
+      const heroClockEl = document.getElementById('heroRadioClock');
+      const heroDateEl = document.getElementById('heroRadioDate');
+
+      function updateClock() {
+        const now = new Date();
+        const timeText = new Intl.DateTimeFormat('fr-FR', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }).format(now);
+
+        const dateText = new Intl.DateTimeFormat('fr-FR', {
+          weekday: 'long',
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric'
+        }).format(now);
+
+        if (clockEl) clockEl.textContent = timeText;
+        if (heroClockEl) heroClockEl.textContent = timeText;
+        if (heroDateEl) heroDateEl.textContent = dateText;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
+
+      let playlistPool = [];
+      let currentPlaylistIndex = -1;
+      let widget = null;
+      let readyAfterLoad = false;
+
+      function normalizeEntry(item) {
+        if (!item || typeof item !== 'object') return null;
+        const url = typeof item.url === 'string' ? item.url.trim() : '';
+        const title = (typeof item.title === 'string' && item.title.trim())
+          ? item.title.trim()
+          : (typeof item.titre === 'string' && item.titre.trim())
+            ? item.titre.trim()
+            : 'Sans titre';
+        if (!url) return null;
+        return { title, url };
+      }
+
+      function parsePlaylistText(rawText) {
+        const blocks = rawText.split(/\[PLAYLIST\]/i);
+        const entries = [];
+
+        blocks.forEach(function (block, index) {
+          if (index === 0) return;
+          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
+          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
+          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
+          const title = titleMatch ? titleMatch[1].trim() : '';
+          const url = urlMatch ? urlMatch[1].trim() : '';
+
+          if (url) entries.push({ title: title || 'Sans titre', url });
+        });
+
+        return entries.map(normalizeEntry).filter(Boolean);
+      }
+
+      function pickRandomIndex(length, avoidIndex = -1) {
+        if (length <= 1) return 0;
+        const randomBytes = new Uint32Array(1);
+        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
+        let index = randomBytes[0] % length;
+        if (index === avoidIndex) index = (index + 1) % length;
+        return index;
+      }
+
+      function buildPlayerUrl(playlistUrl) {
+        const encoded = encodeURIComponent(playlistUrl);
+        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
+      }
+
+      function createWidget() {
+        if (widget) return widget;
+        widget = SC.Widget(iframe);
+
+        widget.bind(SC.Widget.Events.READY, function () {
+          if (!readyAfterLoad) {
+            readyAfterLoad = true;
+            startRandomTrackInCurrentPlaylist();
+          }
+        });
+
+        widget.bind(SC.Widget.Events.FINISH, function () {
+          playNextOrLoadAnotherPlaylist();
+        });
+
+        return widget;
+      }
+
+      function loadPlaylist(index, autoplay = true, randomizeTrack = autoplay) {
+        if (!playlistPool.length) return;
+
+        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
+        currentPlaylistIndex = safeIndex;
+        const currentPlaylist = playlistPool[safeIndex];
+
+        if (!widget) {
+          iframe.src = buildPlayerUrl(currentPlaylist.url);
+          return;
+        }
+
+        readyAfterLoad = false;
+        widget.load(currentPlaylist.url, {
+          auto_play: autoplay,
+          color: '#ff2e3f',
+          buying: false,
+          sharing: false,
+          download: false,
+          show_artwork: true,
+          show_playcount: false,
+          show_user: false,
+          single_active: true,
+          show_comments: false,
+          show_reposts: false,
+          show_teaser: false
+        });
+
+        if (autoplay && randomizeTrack) {
+          window.setTimeout(function () {
+            startRandomTrackInCurrentPlaylist();
+          }, 1200);
+        }
+      }
+
+      function startRandomTrackInCurrentPlaylist() {
+        if (!widget) return;
+
+        widget.getSounds(function (sounds) {
+          const total = Array.isArray(sounds) ? sounds.length : 0;
+          if (!total) return;
+
+          const startIndex = pickRandomIndex(total, -1);
+          if (startIndex > 0) widget.skip(startIndex);
+          widget.play();
+        });
+      }
+
+      function playRandomPlaylist() {
+        if (!playlistPool.length) return;
+        const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+        loadPlaylist(nextPlaylist, true, true);
+      }
+
+      function playNextOrLoadAnotherPlaylist() {
+        if (!widget) return;
+
+        widget.getCurrentSoundIndex(function (index) {
+          widget.getSounds(function (sounds) {
+            const total = Array.isArray(sounds) ? sounds.length : 0;
+
+            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
+              widget.next();
+              return;
+            }
+
+            if (playlistPool.length > 1) {
+              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
+              loadPlaylist(nextPlaylist, true, true);
+              return;
+            }
+
+            if (playlistPool.length === 1) {
+              loadPlaylist(0, true);
+            }
+          });
+        });
+      }
+
+      if (randomPlaylistBtn) {
+        randomPlaylistBtn.addEventListener('click', function () {
+          playRandomPlaylist();
+        });
+      }
+
+      fetch(PLAYLISTS_URL, { cache: 'no-store' })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
+          return response.text();
+        })
+        .then(function (rawText) {
+          playlistPool = parsePlaylistText(rawText);
+          if (!playlistPool.length) return;
+
+          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
+          currentPlaylistIndex = initialPlaylistIndex;
+          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
+          createWidget();
+          if (randomPlaylistBtn) randomPlaylistBtn.disabled = false;
+        })
+        .catch(function () {
+          return;
+        });
+    })();
+      (/* ===================================================================
+   🎛️ JAVASCRIPT ÉGALISEUR — RÉGLAGES VISIBLES
+   -------------------------------------------------------------------
+   - Ici on règle la vitesse.
+   - Ici on règle l’amplitude.
+   - Ici on règle le nombre de barres.
+   - Ici on règle la fluidité.
+   =================================================================== */
+    function initBoyingtonSurfaceEqualizer() {
+        const track = document.getElementById('boyingtonEqTrack');
+        if (!track) return;
+
+        /* =========================================================
+           BOYINGTON RADIO — REPAIRS RAPIDES (ÉGALISEUR)
+           ---------------------------------------------------------
+           1) BAR_COUNT          : plus haut = plus de barres.
+           2) SPEED_MULTIPLIER   : plus haut = animation plus rapide.
+           3) SMOOTHING         : plus bas = plus nerveux / plus vif.
+           4) AMP_MIN / AMP_MAX : plus haut = barres qui montent plus.
+           5) REFLECT_ALPHA     : plus haut = reflet plus visible.
+           6) Palette           : ici pour foncer / éclaircir les barres.
+           Astuce rapide :
+             - vitesse trop lente  -> augmente SPEED_MULTIPLIER
+             - barres trop basses  -> augmente AMP_MAX
+             - effet figé          -> baisse SMOOTHING
+             - trop peu dense      -> augmente BAR_COUNT
+           ========================================================= */
+
+        const EQ_CONFIG = {
+          BAR_COUNT: 180,
+          SPEED_MULTIPLIER: 2.35,
+          SMOOTHING: 0.56,
+          AMP_MIN: 0.46,
+          AMP_MAX: 0.88,
+          BASE_MIN: 0.06,
+          BASE_MAX: 0.20,
+          WANDER_MIN: 0.22,
+          WANDER_MAX: 1.00,
+          MIN_HEIGHT: 0.08,
+          MAX_HEIGHT: 1.00,
+          REFLECT_ALPHA: 0.16
+        };
+
+        const bars = [];
+        const palette = [
+          [74, 18, 18],    // deep red
+          [108, 34, 18],   // ember
+          [140, 64, 20],   // copper
+          [160, 118, 18],  // amber
+          [128, 150, 24],  // yellow-green
+          [54, 140, 48],   // green
+          [20, 150, 120],  // teal
+          [22, 112, 190],  // blue
+          [78, 78, 212],   // indigo
+          [120, 54, 192],  // violet
+          [164, 48, 170],  // magenta
+          [180, 46, 92]    // rose
+        ];
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        function lerp(a, b, t) {
+          return a + (b - a) * t;
+        }
+
+        function colorAt(i) {
+          const t = i / Math.max(1, EQ_CONFIG.BAR_COUNT - 1);
+          const segment = t * (palette.length - 1);
+          const idx = Math.floor(segment);
+          const frac = segment - idx;
+          const a = palette[idx];
+          const b = palette[Math.min(idx + 1, palette.length - 1)];
+          const r = Math.round(lerp(a[0], b[0], frac));
+          const g = Math.round(lerp(a[1], b[1], frac));
+          const bch = Math.round(lerp(a[2], b[2], frac));
+
+          return {
+            top: `rgba(${Math.round(r * 1.06)}, ${Math.round(g * 1.06)}, ${Math.round(bch * 1.06)}, .96)`,
+            mid: `rgba(${Math.round(r * .82)}, ${Math.round(g * .82)}, ${Math.round(bch * .82)}, .98)`,
+            bottom: `rgba(${Math.round(r * .54)}, ${Math.round(g * .54)}, ${Math.round(bch * .54)}, .98)`,
+            glow: `rgba(${Math.round(r * .95)}, ${Math.round(g * .95)}, ${Math.round(bch * .95)}, ${EQ_CONFIG.REFLECT_ALPHA})`
+          };
+        }
+
+        function createBars() {
+          track.innerHTML = '';
+          bars.length = 0;
+
+          for (let i = 0; i < EQ_CONFIG.BAR_COUNT; i += 1) {
+            const bar = document.createElement('span');
+            bar.className = 'player-eq-bar';
+
+            const colors = colorAt(i);
+            bar.style.setProperty('--bar-top', colors.top);
+            bar.style.setProperty('--bar-mid', colors.mid);
+            bar.style.setProperty('--bar-bottom', colors.bottom);
+            bar.style.setProperty('--bar-glow', colors.glow);
+
+            const phase = (Math.random() * Math.PI * 2).toFixed(5);
+            const speed = (0.95 + Math.random() * 3.10).toFixed(5);
+            const base = (EQ_CONFIG.BASE_MIN + Math.random() * EQ_CONFIG.BASE_MAX).toFixed(5);
+            const amp = (EQ_CONFIG.AMP_MIN + Math.random() * (EQ_CONFIG.AMP_MAX - EQ_CONFIG.AMP_MIN)).toFixed(5);
+            const wander = (EQ_CONFIG.WANDER_MIN + Math.random() * (EQ_CONFIG.WANDER_MAX - EQ_CONFIG.WANDER_MIN)).toFixed(5);
+
+            bar.dataset.phase = phase;
+            bar.dataset.speed = speed;
+            bar.dataset.base = base;
+            bar.dataset.amp = amp;
+            bar.dataset.current = (0.12 + Math.random() * 0.28).toFixed(5);
+            bar.dataset.wander = wander;
+
+            const current = parseFloat(bar.dataset.current);
+            bar.style.height = `${clamp(8 + current * 82, 8, 96)}%`;
+
+            track.appendChild(bar);
+            bars.push(bar);
+          }
+        }
+
+        function animate(now) {
+          const t = (now / 1000) * EQ_CONFIG.SPEED_MULTIPLIER;
+
+          for (let i = 0; i < bars.length; i += 1) {
+            const bar = bars[i];
+            const phase = parseFloat(bar.dataset.phase);
+            const speed = parseFloat(bar.dataset.speed);
+            const base = parseFloat(bar.dataset.base);
+            const amp = parseFloat(bar.dataset.amp);
+            const wander = parseFloat(bar.dataset.wander);
+
+            const wave1 = Math.sin(t * speed + phase);
+            const wave2 = Math.sin(t * (speed * 0.51) + phase * 1.31 + i * 0.09);
+            const wave3 = Math.sin(t * (speed * 1.37) + phase * 0.27 + i * 0.03);
+            const pulse = Math.max(0, Math.sin(t * (2.8 + wander) + phase * 2.0 + i * 0.11));
+            const spike = Math.pow(pulse, 5.0);
+
+            const target = clamp(
+              base + amp * (0.42 * wave1 + 0.28 * wave2 + 0.18 * wave3 + 0.70) + spike * 0.28,
+              EQ_CONFIG.MIN_HEIGHT,
+              EQ_CONFIG.MAX_HEIGHT
+            );
+
+            const current = parseFloat(bar.dataset.current);
+            const next = current + (target - current) * EQ_CONFIG.SMOOTHING;
+            bar.dataset.current = next.toFixed(5);
+
+            const pct = clamp(8 + next * 92, 8, 100);
+            bar.style.height = `${pct}%`;
+            bar.style.opacity = `${0.82 + next * 0.18}`;
+          }
+
+          requestAnimationFrame(animate);
+        }
+
+        createBars();
+        requestAnimationFrame(animate);
+
+        window.addEventListener('resize', () => {
+          track.style.gridTemplateColumns = `repeat(${EQ_CONFIG.BAR_COUNT}, minmax(0, 1fr))`;
+        }, { passive: true });
+      })();
+
   </script>
 </body>
 </html>
