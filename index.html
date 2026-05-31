@@ -906,71 +906,6 @@
     .eq-bars span:nth-child(4){animation-delay:.3s;height:18px}
     .eq-bars span:nth-child(5){animation-delay:.4s;height:44px}
     .eq-bars span:nth-child(6){animation-delay:.5s;height:24px}
-
-    /* Boyington Radio 6: equalizer synchronisé et plus net */
-    .audio-meter{
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      gap:5px;
-      width:100%;
-      height:54px;
-      margin-top:12px;
-      padding:0 6px;
-    }
-    .audio-meter .bar{
-      width:6px;
-      height:18px;
-      border-radius:7px 7px 0 0;
-      background:linear-gradient(180deg, #ffd7dc 0%, #ff5a6b 42%, #8b0d1e 100%);
-      box-shadow:0 0 0 1px rgba(255,255,255,.04) inset;
-      transform-origin:bottom center;
-      opacity:.98;
-      will-change:height;
-    }
-    .audio-meter.audio-meter-compact{
-      gap:4px;
-      height:46px;
-      margin-top:10px;
-    }
-    .audio-meter.audio-meter-compact .bar{
-      width:5px;
-      height:16px;
-    }
-    .audio-meter-label{
-      margin-top:10px;
-      text-align:center;
-      font-size:.72rem;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:#f2f2f2;
-      opacity:.82;
-    }
-    .player-embed-inner{
-      display:flex;
-      flex-direction:column;
-      height:100%;
-    }
-    .player-embed .audio-meter{
-      margin:10px 12px 14px;
-      width:auto;
-      flex:0 0 auto;
-    }
-    .player-embed .audio-meter .bar{
-      width:5px;
-      border-radius:6px 6px 0 0;
-    }
-    .player-side .player-visual-stack{
-      display:flex;
-      flex-direction:column;
-      width:100%;
-    }
-    .player-side .player-visual-stack .audio-meter{
-      margin-top:12px;
-    }
-    .player-side .player-visual-stack .audio-meter .bar{
-      background:linear-gradient(180deg, #fff0f2 0%, #ff5668 44%, #a80f24 100%);
-    }
     .player-side .side-copy{
       text-align:center;
       color:var(--muted);
@@ -1027,8 +962,10 @@
     }
     .player-side{
       display:flex;
+      flex-direction:column;
       align-items:stretch;
-      justify-content:center;
+      justify-content:flex-start;
+      gap:12px;
       padding:12px;
       min-height:250px;
     }
@@ -1042,6 +979,99 @@
       background:#000;
       box-shadow:0 0 22px rgba(255,0,0,.18), 0 0 54px rgba(255,0,0,.08);
       border:1px solid rgba(255,255,255,.05);
+    }
+    .eq-mini{
+      --mini-height: 86px;
+      position:relative;
+      width:100%;
+      height:var(--mini-height);
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      gap:4px;
+      padding:10px 12px 8px;
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid rgba(255,46,63,.14);
+      background:
+        linear-gradient(180deg, rgba(255,46,63,.12), rgba(0,0,0,.42)),
+        radial-gradient(circle at 50% 0%, rgba(255,46,63,.18), transparent 55%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.03),
+        0 0 16px rgba(255,46,63,.10);
+    }
+    .eq-mini::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:34%;
+      background:linear-gradient(180deg, transparent, rgba(255,46,63,.08));
+      pointer-events:none;
+    }
+    .player-equalizer{
+      --eq-height: 208px;
+      position:relative;
+      width:100%;
+      height:var(--eq-height);
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      gap:5px;
+      padding:16px 10px 12px;
+      overflow:hidden;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.06), transparent 36%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.28));
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.02),
+        0 0 26px rgba(0,0,0,.18);
+    }
+    .player-equalizer::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, transparent 0 68%, rgba(255,255,255,.03) 100%),
+        radial-gradient(circle at 50% 100%, rgba(0,0,0,.56), transparent 65%);
+      pointer-events:none;
+    }
+    .player-equalizer::after{
+      content:"";
+      position:absolute;
+      left:0;right:0;bottom:0;
+      height:34%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0)),
+        linear-gradient(90deg, transparent, rgba(255,255,255,.05), transparent);
+      opacity:.35;
+      pointer-events:none;
+    }
+    .eq-bar{
+      flex:1 1 0;
+      min-width:4px;
+      height:100%;
+      border-radius:9px 9px 0 0;
+      transform-origin:bottom center;
+      transform:scaleY(.18);
+      will-change:transform;
+      background:linear-gradient(180deg, var(--bar-top, #ff7a7a) 0%, var(--bar-mid, #ff3d3d) 58%, var(--bar-bottom, #7a0812) 100%);
+      box-shadow:
+        0 0 8px rgba(255,46,63,.14),
+        0 0 20px rgba(255,46,63,.07);
+      filter:saturate(1.08);
+    }
+    .player-equalizer .eq-bar{
+      min-width:6px;
+      max-width:18px;
+    }
+    .eq-mini .eq-bar{
+      min-width:3px;
+      max-width:9px;
+      box-shadow:
+        0 0 8px rgba(255,46,63,.16),
+        0 0 16px rgba(255,46,63,.08);
     }
 
     .gallery-grid{
@@ -1636,6 +1666,8 @@
       .player-side .micro-video{min-height:250px}
       .player-side .mic{width:150px;height:200px}
       .player-side .side-copy{font-size:.88rem}
+      .player-equalizer{--eq-height:170px}
+      .eq-mini{--mini-height:78px}
       .world-video-wrap{min-height:200px}
       .world-video{min-height:200px}
       .footer-panel{
@@ -1845,35 +1877,26 @@
           <div class="panel player-wrap">
             <div class="player-grid">
               <div class="player-side">
-                <div class="player-visual-stack">
-                  <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png">
-                    <source src="boyington-radio-micro-animation.mp4" type="video/mp4">
-                  </video>
-                  <div class="audio-meter audio-meter-compact" data-meter="boyington-sync" aria-hidden="true">
-                    <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
-                  </div>
-                  <div class="audio-meter-label">MICRO LIVE</div>
-                </div>
+                <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png">
+                  <source src="boyington-radio-micro-animation.mp4" type="video/mp4">
+                </video>
+                <div class="eq-mini" id="microEqualizer" aria-hidden="true"></div>
               </div>
 
               <div class="player-embed">
-                <div class="player-embed-inner">
-                  <iframe
-                    id="sc-player"
-                    width="100%"
-                    height="250"
-                    scrolling="no"
-                    frameborder="no"
-                    allow="autoplay; encrypted-media"
-                    src="about:blank"
-                    title="SoundCloud player - Boyington Web Radio"></iframe>
-
-                  <div class="audio-meter" data-meter="boyington-sync" aria-hidden="true">
-                    <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
-                  </div>
-                </div>
+                <iframe
+                  id="sc-player"
+                  width="100%"
+                  height="250"
+                  scrolling="no"
+                  frameborder="no"
+                  allow="autoplay; encrypted-media"
+                  src="about:blank"
+                  title="SoundCloud player - Boyington Web Radio"></iframe>
               </div>
             </div>
+
+            <div class="player-equalizer" id="playerEqualizer" aria-hidden="true"></div>
 
             <div class="player-actions">
               <button id="randomPlaylistBtn" class="btn btn-primary" type="button" disabled>
@@ -2464,37 +2487,6 @@
       updateClock();
       setInterval(updateClock, 1000);
 
-      const audioMeters = Array.from(document.querySelectorAll('[data-meter="boyington-sync"]'));
-      const meterBars = audioMeters.map(function (meter) {
-        return Array.from(meter.querySelectorAll('.bar'));
-      });
-
-      function clamp(value, min, max) {
-        return Math.max(min, Math.min(max, value));
-      }
-
-      function updateAudioMeters() {
-        const now = performance.now();
-        const seed = now * 0.00135;
-        const phaseA = Math.sin(seed * 1.9);
-        const phaseB = Math.sin(seed * 2.7 + 1.1);
-        const phaseC = Math.sin(seed * 4.3 + 0.7);
-
-        meterBars.forEach(function (bars) {
-          bars.forEach(function (bar, index) {
-            const wave1 = Math.sin(seed * 2.1 + index * 0.68);
-            const wave2 = Math.sin(seed * 3.4 + index * 1.18);
-            const wave3 = Math.sin(seed * 5.1 + index * 0.47);
-            const envelope = 0.46 + 0.18 * phaseA + 0.14 * phaseB + 0.10 * phaseC;
-            const value = clamp(16 + ((envelope + 0.25 * wave1 + 0.17 * wave2 + 0.10 * wave3) * 72), 14, 100);
-            bar.style.height = value.toFixed(1) + 'px';
-          });
-        });
-      }
-
-      updateAudioMeters();
-      setInterval(updateAudioMeters, 90);
-
       if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
 
       let playlistPool = [];
@@ -2669,5 +2661,102 @@
         });
     })();
   </script>
+
+  <script>
+    (function () {
+      const microContainer = document.getElementById('microEqualizer');
+      const playerContainer = document.getElementById('playerEqualizer');
+
+      if (!microContainer || !playerContainer) return;
+
+      const MICRO_BARS = 16;
+      const PLAYER_BARS = 42;
+
+      function buildBars(container, count, kind) {
+        container.innerHTML = '';
+        const bars = [];
+        for (let i = 0; i < count; i += 1) {
+          const bar = document.createElement('span');
+          bar.className = 'eq-bar';
+
+          if (kind === 'player') {
+            const hue = Math.round((i / Math.max(1, count - 1)) * 300);
+            bar.style.setProperty('--bar-top', `hsl(${hue} 100% 72%)`);
+            bar.style.setProperty('--bar-mid', `hsl(${hue} 96% 58%)`);
+            bar.style.setProperty('--bar-bottom', `hsl(${hue} 88% 28%)`);
+          } else {
+            bar.style.setProperty('--bar-top', 'rgba(255,170,175,.98)');
+            bar.style.setProperty('--bar-mid', 'rgba(255,72,88,.96)');
+            bar.style.setProperty('--bar-bottom', 'rgba(111,4,18,.95)');
+          }
+
+          container.appendChild(bar);
+          bars.push(bar);
+        }
+        return bars;
+      }
+
+      const microBars = buildBars(microContainer, MICRO_BARS, 'micro');
+      const playerBars = buildBars(playerContainer, PLAYER_BARS, 'player');
+
+      const microState = microBars.map((_, i) => ({
+        value: 0.28 + (i % 5) * 0.03,
+        drift: 0.9 + (i % 4) * 0.14
+      }));
+
+      const playerState = playerBars.map((_, i) => ({
+        value: 0.20 + (i % 7) * 0.02,
+        drift: 0.7 + (i % 6) * 0.09
+      }));
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function waveValue(time, index, total, intensity) {
+        const x = total <= 1 ? 0 : index / (total - 1);
+        const center = Math.exp(-Math.pow((x - 0.5) / 0.18, 2));
+        const edgeSoftener = 1 - Math.abs(x - 0.5) * 0.9;
+        const base =
+          0.22 +
+          0.18 * Math.sin(time * 1.35 + index * 0.42) +
+          0.16 * Math.sin(time * 2.15 + index * 0.83 + 1.3) +
+          0.10 * Math.sin(time * 3.6 + index * 0.17 + 0.5) +
+          0.05 * Math.sin(time * 6.2 + index * 1.11);
+
+        const beat = 0.10 * Math.sin(time * 4.8 + x * 8.5);
+        const pulse = 0.12 * Math.sin(time * 0.8 + x * 4.0 + Math.sin(time * 0.55));
+        const lifted = base + beat + pulse + center * 0.18 + edgeSoftener * 0.05 + intensity;
+        return clamp(lifted, 0.10, 1);
+      }
+
+      function animate(now) {
+        const t = now / 1000;
+
+        microBars.forEach((bar, i) => {
+          const state = microState[i];
+          const target = waveValue(t, i, microBars.length, 0.02);
+          state.value += (target - state.value) * 0.17;
+          const scale = clamp(state.value + (i % 3 === 0 ? 0.02 : 0), 0.12, 1);
+          bar.style.transform = `scaleY(${scale})`;
+          bar.style.opacity = (0.86 + scale * 0.14).toFixed(3);
+        });
+
+        playerBars.forEach((bar, i) => {
+          const state = playerState[i];
+          const target = waveValue(t, i, playerBars.length, 0.00);
+          state.value += (target - state.value) * 0.14;
+          const scale = clamp(state.value, 0.10, 1);
+          bar.style.transform = `scaleY(${scale})`;
+          bar.style.opacity = (0.78 + scale * 0.22).toFixed(3);
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
 </body>
 </html>
