@@ -930,82 +930,6 @@
       min-height:250px;
     }
 
-    
-    .eq-overlay{
-      position:absolute;
-      left:10px;
-      right:10px;
-      bottom:10px;
-      height:112px;
-      border-radius:20px;
-      overflow:hidden;
-      z-index:3;
-      pointer-events:none;
-      background:
-        linear-gradient(180deg,
-          rgba(255,255,255,.02) 0%,
-          rgba(255,255,255,.02) 18%,
-          rgba(0,0,0,.10) 34%,
-          rgba(0,0,0,.42) 72%,
-          rgba(0,0,0,.62) 100%);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.05),
-        0 0 34px rgba(255,46,63,.08);
-    }
-    .eq-overlay::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(255,46,63,.12), transparent 34%),
-        radial-gradient(circle at 50% 100%, rgba(0,0,0,.45), transparent 40%),
-        linear-gradient(180deg, rgba(255,255,255,.05), transparent 28%, rgba(0,0,0,.30) 100%);
-      opacity:.92;
-      pointer-events:none;
-    }
-    .eq-overlay::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
-      height:24px;
-      background:linear-gradient(180deg, rgba(255,255,255,0), rgba(0,0,0,.45));
-      pointer-events:none;
-    }
-    .eq-track{
-      position:absolute;
-      inset:14px 14px 18px;
-      display:flex;
-      align-items:flex-end;
-      gap:1px;
-      z-index:1;
-    }
-    .eq-bar{
-      flex:1 1 0;
-      min-width:2px;
-      border-radius:999px 999px 4px 4px;
-      transform-origin:bottom center;
-      background:
-        linear-gradient(180deg,
-          hsl(var(--eq-hue) 90% 70%) 0%,
-          hsl(var(--eq-hue) 92% 52%) 44%,
-          hsl(var(--eq-hue) 96% 34%) 100%);
-      box-shadow:
-        0 0 8px hsl(var(--eq-hue) 95% 48% / .40),
-        0 0 18px hsl(var(--eq-hue) 95% 42% / .16);
-      opacity:.92;
-      will-change:height,filter,transform,opacity,box-shadow;
-      transition:height 42ms linear, filter 42ms linear, opacity 42ms linear, transform 42ms linear;
-    }
-    .eq-bar:nth-child(4n){
-      filter:saturate(.98) brightness(.94);
-    }
-    .eq-bar:nth-child(7n){
-      filter:saturate(1.08) brightness(1);
-    }
-
-
     .player-actions{
       display:flex;
       justify-content:center;
@@ -1053,6 +977,58 @@
       background:#000;
       box-shadow:0 0 22px rgba(255,0,0,.18), 0 0 54px rgba(255,0,0,.08);
       border:1px solid rgba(255,255,255,.05);
+    }
+
+    .player-eq-overlay{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:112px;
+      padding:14px 18px 12px;
+      z-index:3;
+      pointer-events:none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.28) 20%, rgba(255,255,255,.84) 62%, rgba(255,255,255,.98) 100%);
+      backdrop-filter:blur(3px) saturate(1.08);
+      -webkit-backdrop-filter:blur(3px) saturate(1.08);
+      border-top:1px solid rgba(0,0,0,.04);
+    }
+    .player-eq-track{
+      width:100%;
+      height:100%;
+      display:grid;
+      grid-template-columns:repeat(160, minmax(0, 1fr));
+      gap:2px;
+      align-items:end;
+      transform:translateZ(0);
+    }
+    .player-eq-bar{
+      position:relative;
+      align-self:end;
+      height:14%;
+      border-radius:999px 999px 4px 4px;
+      background:linear-gradient(180deg, var(--bar-top, rgba(60,60,60,.96)) 0%, var(--bar-mid, rgba(25,25,25,.96)) 62%, var(--bar-bottom, rgba(10,10,10,.98)) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 0 6px rgba(0,0,0,.15),
+        0 0 12px var(--bar-glow, rgba(0,0,0,.18));
+      transform-origin:bottom center;
+      will-change:height, filter, opacity;
+      opacity:.98;
+      min-height:4px;
+    }
+    .player-eq-bar::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:0;
+      height:40%;
+      border-radius:inherit;
+      background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+      pointer-events:none;
+      opacity:.65;
     }
 
     .gallery-grid{
@@ -1871,8 +1847,8 @@
                   allow="autoplay; encrypted-media"
                   src="about:blank"
                   title="SoundCloud player - Boyington Web Radio"></iframe>
-                <div class="eq-overlay" aria-hidden="true">
-                  <div class="eq-track" id="eqTrack"></div>
+                <div class="player-eq-overlay" aria-hidden="true">
+                  <div class="player-eq-track" id="boyingtonEqTrack"></div>
                 </div>
               </div>
             </div>
@@ -2203,97 +2179,6 @@
 
       updateWorldWeatherTicker();
       setInterval(updateWorldWeatherTicker, 30 * 60 * 1000);
-
-
-      const eqTrack = document.getElementById('eqTrack');
-      let eqBars = [];
-      let eqResizeTimer = null;
-      let eqAnimationFrame = null;
-
-      function clamp(value, min, max) {
-        return Math.min(max, Math.max(min, value));
-      }
-
-
-      function buildEqualizer() {
-        if (!eqTrack) return;
-
-        const count = window.matchMedia('(max-width: 640px)').matches
-          ? 132
-          : window.matchMedia('(max-width: 960px)').matches
-            ? 154
-            : 186;
-
-        eqTrack.innerHTML = '';
-        eqBars = [];
-
-        for (let i = 0; i < count; i += 1) {
-          const bar = document.createElement('span');
-          bar.className = 'eq-bar';
-          const hue = 6 + (i / Math.max(count - 1, 1)) * 286;
-          bar.style.setProperty('--eq-hue', String(Math.round(hue)));
-          bar.style.height = `${10 + Math.round((i % 11) * 0.3)}%`;
-          bar.style.opacity = '0.78';
-          eqTrack.appendChild(bar);
-          eqBars.push(bar);
-        }
-      }
-
-      function animateEqualizer(now) {
-        if (!eqBars.length) {
-          eqAnimationFrame = window.requestAnimationFrame(animateEqualizer);
-          return;
-        }
-
-        const t = now * 0.00165;
-        const count = eqBars.length;
-
-        for (let i = 0; i < count; i += 1) {
-          const bar = eqBars[i];
-          const phase = i * 0.16;
-          const spread = i / Math.max(count - 1, 1);
-
-          const waveA = (Math.sin(t * 2.25 + phase) + 1) / 2;
-          const waveB = (Math.sin(t * 1.10 + phase * 0.52 + 1.35) + 1) / 2;
-          const waveC = (Math.sin(t * 3.70 + phase * 1.42 + 0.28) + 1) / 2;
-          const waveD = (Math.cos(t * 0.74 + phase * 0.24 + spread * 2.8) + 1) / 2;
-          const waveE = (Math.sin(t * 5.40 + phase * 2.20 + spread * 6.1) + 1) / 2;
-
-          const base = (
-            (waveA * 0.26) +
-            (waveB * 0.19) +
-            (waveC * 0.24) +
-            (waveD * 0.17) +
-            (waveE * 0.14)
-          );
-
-          const envelope = 0.72 + (Math.sin(t * 0.42 + spread * 5.2) + 1) * 0.14;
-          const punch = Math.pow(clamp(base * envelope, 0, 1), 0.82);
-
-          const heightPct = 12 + (punch * 82);
-          const glow = 0.32 + (punch * 0.55);
-          const brightness = 0.84 + (punch * 0.22);
-
-          bar.style.height = `${heightPct}%`;
-          bar.style.opacity = String(clamp(0.60 + punch * 0.40, 0.60, 1));
-          bar.style.filter = `brightness(${brightness.toFixed(3)}) saturate(${(0.95 + punch * 0.25).toFixed(3)})`;
-          bar.style.transform = `scaleY(${(0.96 + punch * 0.10).toFixed(3)})`;
-          bar.style.boxShadow = `0 0 ${Math.round(7 + glow * 8)}px hsl(${bar.style.getPropertyValue('--eq-hue')} 95% 52% / .44), 0 0 ${Math.round(16 + glow * 14)}px hsl(${bar.style.getPropertyValue('--eq-hue')} 95% 42% / .14)`;
-        }
-
-        eqAnimationFrame = window.requestAnimationFrame(animateEqualizer);
-      }
-
-
-      buildEqualizer();
-      eqAnimationFrame = window.requestAnimationFrame(animateEqualizer);
-
-      window.addEventListener('resize', function () {
-        if (eqResizeTimer) window.clearTimeout(eqResizeTimer);
-        eqResizeTimer = window.setTimeout(function () {
-          buildEqualizer();
-        }, 180);
-      });
 
       if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
 
@@ -2730,6 +2615,115 @@
           return;
         });
     })();
+      (function initBoyingtonSurfaceEqualizer() {
+        const track = document.getElementById('boyingtonEqTrack');
+        if (!track) return;
+
+        const BAR_COUNT = 160;
+        const bars = [];
+        const palette = [
+          [92, 34, 34],   // deep red
+          [126, 52, 30],  // ember
+          [154, 92, 28],  // amber
+          [146, 132, 30], // gold-olive
+          [68, 118, 45],  // forest
+          [34, 130, 112], // teal
+          [34, 92, 154],  // steel blue
+          [64, 74, 178],  // indigo
+          [103, 56, 176], // violet
+          [146, 56, 168], // plum
+          [170, 50, 118], // magenta
+          [176, 60, 72]   // rose-red
+        ];
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        function lerp(a, b, t) {
+          return a + (b - a) * t;
+        }
+
+        function colorAt(i) {
+          const t = i / Math.max(1, BAR_COUNT - 1);
+          const segment = t * (palette.length - 1);
+          const idx = Math.floor(segment);
+          const frac = segment - idx;
+          const a = palette[idx];
+          const b = palette[Math.min(idx + 1, palette.length - 1)];
+          const r = Math.round(lerp(a[0], b[0], frac));
+          const g = Math.round(lerp(a[1], b[1], frac));
+          const bch = Math.round(lerp(a[2], b[2], frac));
+
+          const top = `rgba(${Math.round(r * 1.05)}, ${Math.round(g * 1.05)}, ${Math.round(bch * 1.05)}, .96)`;
+          const mid = `rgba(${Math.round(r * .82)}, ${Math.round(g * .82)}, ${Math.round(bch * .82)}, .98)`;
+          const bottom = `rgba(${Math.round(r * .55)}, ${Math.round(g * .55)}, ${Math.round(bch * .55)}, .98)`;
+          const glow = `rgba(${Math.round(r * .95)}, ${Math.round(g * .95)}, ${Math.round(bch * .95)}, .28)`;
+          return { top, mid, bottom, glow };
+        }
+
+        function createBars() {
+          track.innerHTML = '';
+          bars.length = 0;
+          for (let i = 0; i < BAR_COUNT; i += 1) {
+            const bar = document.createElement('span');
+            bar.className = 'player-eq-bar';
+            const colors = colorAt(i);
+            bar.style.setProperty('--bar-top', colors.top);
+            bar.style.setProperty('--bar-mid', colors.mid);
+            bar.style.setProperty('--bar-bottom', colors.bottom);
+            bar.style.setProperty('--bar-glow', colors.glow);
+            bar.dataset.phase = (Math.random() * Math.PI * 2).toFixed(5);
+            bar.dataset.speed = (0.75 + Math.random() * 2.1).toFixed(5);
+            bar.dataset.base = (0.12 + Math.random() * 0.24).toFixed(5);
+            bar.dataset.amp = (0.38 + Math.random() * 0.42).toFixed(5);
+            bar.dataset.current = (0.12 + Math.random() * 0.24).toFixed(5);
+            bar.dataset.wander = (0.15 + Math.random() * 0.75).toFixed(5);
+            bar.style.height = `${12 + parseFloat(bar.dataset.current) * 80}%`;
+            track.appendChild(bar);
+            bars.push(bar);
+          }
+        }
+
+        function animate(now) {
+          const t = now / 1000;
+          for (let i = 0; i < bars.length; i += 1) {
+            const bar = bars[i];
+            const phase = parseFloat(bar.dataset.phase);
+            const speed = parseFloat(bar.dataset.speed);
+            const base = parseFloat(bar.dataset.base);
+            const amp = parseFloat(bar.dataset.amp);
+            const wander = parseFloat(bar.dataset.wander);
+
+            const wave1 = Math.sin(t * speed + phase);
+            const wave2 = Math.sin(t * (speed * 0.43) + phase * 1.7 + i * 0.07);
+            const wave3 = Math.sin(t * (speed * 1.33) + phase * 0.31 + i * 0.015);
+            const spike = Math.pow(Math.max(0, Math.sin(t * (2.25 + wander) + phase * 1.9 + i * 0.08)), 4.5);
+
+            const target = clamp(
+              base + amp * (0.40 * wave1 + 0.28 * wave2 + 0.18 * wave3 + 0.54) + spike * 0.22,
+              0.05,
+              1
+            );
+
+            const current = parseFloat(bar.dataset.current);
+            const next = current + (target - current) * 0.34;
+            bar.dataset.current = next.toFixed(5);
+
+            const pct = 8 + next * 90;
+            bar.style.height = `${pct}%`;
+            bar.style.opacity = `${0.78 + next * 0.22}`;
+          }
+          requestAnimationFrame(animate);
+        }
+
+        createBars();
+        requestAnimationFrame(animate);
+
+        window.addEventListener('resize', () => {
+          // keep the track responsive without recreating bars
+          track.style.gridTemplateColumns = `repeat(${BAR_COUNT}, minmax(0, 1fr))`;
+        }, { passive: true });
+      })();
+
   </script>
 </body>
 </html>
