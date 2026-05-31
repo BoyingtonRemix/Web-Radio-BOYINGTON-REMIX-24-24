@@ -979,6 +979,105 @@
       border:1px solid rgba(255,255,255,.05);
     }
 
+    .spectrum-stage{
+      margin-top:14px;
+      padding:16px 16px 14px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 50% 14%, rgba(255,46,63,.12), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.28));
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.02),
+        0 16px 44px rgba(0,0,0,.26);
+    }
+    .spectrum-stage-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.72rem;
+      font-weight:800;
+      color:var(--silver);
+    }
+    .spectrum-stage-head span:last-child{
+      color:#ffd6da;
+    }
+    .spectrum{
+      position:relative;
+      display:grid;
+      align-items:end;
+      gap:3px;
+      width:100%;
+      overflow:hidden;
+      border-radius:18px;
+      padding:10px 10px 6px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.34)),
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.08), transparent 48%);
+    }
+    .spectrum::before{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:0;
+      height:42%;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+      opacity:.24;
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+    .spectrum .bar{
+      width:100%;
+      min-height:10px;
+      border-radius:8px 8px 2px 2px;
+      transform-origin:bottom;
+      will-change:height, transform, opacity;
+      box-shadow:
+        0 0 6px rgba(255,46,63,.10),
+        0 0 18px rgba(255,255,255,.04);
+      filter:saturate(1.18);
+      opacity:.96;
+    }
+    .spectrum-mini{
+      height:66px;
+      margin-top:14px;
+      padding:8px 8px 4px;
+      gap:2px;
+      border:1px solid rgba(255,255,255,.05);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,46,63,.22), transparent 28%),
+        linear-gradient(180deg, rgba(255,46,63,.10), rgba(0,0,0,.24));
+    }
+    .spectrum-mini .bar{
+      background:linear-gradient(180deg, rgba(255,136,149,.98), rgba(171,15,35,.98));
+      box-shadow:0 0 10px rgba(255,46,63,.16);
+    }
+    .spectrum-large{
+      height:190px;
+      gap:3px;
+      border:1px solid rgba(255,255,255,.06);
+      background:
+        radial-gradient(circle at 50% 8%, rgba(255,255,255,.04), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,46,63,.04) 38%, rgba(0,0,0,.42));
+    }
+    .spectrum-large .bar{
+      box-shadow:
+        0 0 10px rgba(255,255,255,.05),
+        0 0 16px rgba(0,0,0,.22);
+    }
+    .spectrum-caption{
+      margin-top:10px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.82rem;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+
     .gallery-grid{
       display:grid;
       grid-template-columns:repeat(4, minmax(0, 1fr));
@@ -1783,6 +1882,7 @@
                 <video class="micro-video" autoplay muted loop playsinline preload="metadata" poster="logo_radio_boyington.png">
                   <source src="boyington-radio-micro-animation.mp4" type="video/mp4">
                 </video>
+                <div class="spectrum spectrum-mini" id="microSpectrum" data-bars="18" data-mode="mini" aria-hidden="true"></div>
               </div>
 
               <div class="player-embed">
@@ -1796,6 +1896,15 @@
                   src="about:blank"
                   title="SoundCloud player - Boyington Web Radio"></iframe>
               </div>
+            </div>
+
+            <div class="spectrum-stage" aria-label="Equaliseur principal">
+              <div class="spectrum-stage-head">
+                <span>LIVE SPECTRUM</span>
+                <span>MIC / PLAYER SYNC</span>
+              </div>
+              <div class="spectrum spectrum-large" id="playerSpectrum" data-bars="96" data-mode="hero" aria-hidden="true"></div>
+              <div class="spectrum-caption">BOYINGTON WEB RADIO — VISUEL AUDIO SYNCHRONISÉ</div>
             </div>
 
             <div class="player-actions">
@@ -2044,6 +2153,12 @@
       const clockEl = document.getElementById('boyingtonClock');
       const heroClockEl = document.getElementById('heroRadioClock');
       const heroDateEl = document.getElementById('heroRadioDate');
+      const worldWeatherTicker = document.getElementById('worldWeatherTicker');
+
+      const spectrumNodes = Array.from(document.querySelectorAll('.spectrum'));
+      const spectrumState = new Map();
+      let spectrumRaf = 0;
+      let spectrumSeed = 0;
 
       function updateClock() {
         const now = new Date();
@@ -2065,8 +2180,10 @@
         if (heroDateEl) heroDateEl.textContent = dateText;
       }
 
-      updateClock();
-      setInterval(updateClock, 1000);
+      function formatTemp(value) {
+        if (typeof value !== 'number' || Number.isNaN(value)) return '--';
+        return Math.round(value);
+      }
 
       const worldCities = [
         { label: 'PARIS', latitude: 48.8566, longitude: 2.3522 },
@@ -2079,13 +2196,6 @@
         { label: 'DUBLIN', latitude: 53.3498, longitude: -6.2603 },
         { label: 'MONTREAL', latitude: 45.5017, longitude: -73.5673 }
       ];
-
-      const worldWeatherTicker = document.getElementById('worldWeatherTicker');
-
-      function formatTemp(value) {
-        if (typeof value !== 'number' || Number.isNaN(value)) return '--';
-        return Math.round(value);
-      }
 
       async function fetchCityTemperature(city) {
         const url = new URL('https://api.open-meteo.com/v1/forecast');
@@ -2122,8 +2232,119 @@
         }
       }
 
+      function isMobileDevice() {
+        const mobilePattern = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|webOS|BlackBerry/i;
+        return mobilePattern.test(navigator.userAgent) || window.matchMedia('(max-width: 960px)').matches;
+      }
+
+      function initSpectrum(el) {
+        if (!el) return;
+
+        const mode = el.dataset.mode || 'hero';
+        const width = window.innerWidth || document.documentElement.clientWidth || 1280;
+        const count = mode === 'mini'
+          ? 18
+          : (width < 700 ? 60 : width < 1100 ? 80 : 96);
+
+        el.innerHTML = '';
+        el.style.gridTemplateColumns = `repeat(${count}, minmax(0, 1fr))`;
+
+        const bars = [];
+        for (let i = 0; i < count; i += 1) {
+          const bar = document.createElement('span');
+          bar.className = 'bar';
+
+          const ratio = count > 1 ? i / (count - 1) : 0;
+          const hue = mode === 'mini' ? 0 : Math.round(360 * ratio * 0.82);
+          bar.style.setProperty('--hue', hue);
+          bar.style.background = mode === 'mini'
+            ? 'linear-gradient(180deg, rgba(255,136,149,.98), rgba(171,15,35,.98))'
+            : `linear-gradient(180deg, hsl(${hue} 100% 68%) 0%, hsl(${hue} 100% 54%) 58%, hsl(${hue} 100% 36%) 100%)`;
+
+          const seed = (Math.sin((i + 1) * 12.9898 + spectrumSeed) * 43758.5453) % 1;
+          const speed = mode === 'mini'
+            ? 1.1 + ((i % 5) * 0.12)
+            : 0.55 + (ratio * 1.1) + ((i % 7) * 0.03);
+          const floor = mode === 'mini'
+            ? 0.12 + (i % 3) * 0.02
+            : 0.10 + (Math.sin(i * 0.37) * 0.02) + (ratio < 0.18 || ratio > 0.82 ? 0.03 : 0);
+          const lift = mode === 'mini'
+            ? 0.62 + ((i % 6) * 0.03)
+            : 0.70 + (Math.sin(i * 0.23) * 0.12);
+
+          bar.dataset.seed = String(seed);
+          bar.dataset.speed = String(speed);
+          bar.dataset.floor = String(floor);
+          bar.dataset.lift = String(lift);
+          el.appendChild(bar);
+          bars.push({ bar, current: floor, seed, speed, floor, lift, index: i });
+        }
+
+        spectrumState.set(el, bars);
+      }
+
+      function refreshSpectrums() {
+        spectrumSeed += 1;
+        spectrumNodes.forEach(initSpectrum);
+      }
+
+      function animateSpectrums(nowMs) {
+        const t = nowMs / 1000;
+
+        spectrumState.forEach((bars, el) => {
+          const mode = el.dataset.mode || 'hero';
+          const total = bars.length || 1;
+
+          bars.forEach((state, idx) => {
+            const center = 1 - Math.abs((idx / Math.max(total - 1, 1)) * 2 - 1);
+            const carrier = Math.sin((t * state.speed) + (state.seed * 11.71)) * 0.5 + 0.5;
+            const carrier2 = Math.sin((t * (state.speed * 0.41)) + (state.seed * 17.33) + idx * 0.09) * 0.5 + 0.5;
+            const pulse = Math.sin((t * (mode === 'mini' ? 1.85 : 1.15)) + idx * (mode === 'mini' ? 0.42 : 0.16)) * 0.5 + 0.5;
+
+            let target = state.floor
+              + (state.lift * 0.22)
+              + (carrier * (mode === 'mini' ? 0.46 : 0.34))
+              + (carrier2 * (mode === 'mini' ? 0.20 : 0.18))
+              + (pulse * (mode === 'mini' ? 0.18 : 0.16));
+
+            if (mode === 'hero') {
+              const arch = Math.max(0, 1 - Math.abs(idx - total * 0.5) / (total * 0.5));
+              const wave = Math.max(0, Math.sin(t * 0.75 + arch * 5.2));
+              target += arch * 0.18 + wave * 0.16;
+              if (idx > total * 0.72) target *= 0.72 + arch * 0.28;
+            } else {
+              const hump = Math.max(0, Math.sin(t * 1.75 + idx * 0.24));
+              target += hump * 0.20;
+            }
+
+            target = Math.min(0.98, Math.max(0.10, target));
+            state.current += (target - state.current) * 0.16;
+
+            const rect = el.getBoundingClientRect();
+            const maxHeight = Math.max(40, rect.height - 12);
+            const pixelHeight = Math.max(10, Math.round(maxHeight * state.current));
+            state.bar.style.height = `${pixelHeight}px`;
+            state.bar.style.opacity = String(0.86 + state.current * 0.14);
+            state.bar.style.transform = `translate3d(0, ${Math.max(0, (maxHeight - pixelHeight) * 0.02)}px, 0)`;
+          });
+        });
+
+        spectrumRaf = window.requestAnimationFrame(animateSpectrums);
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
       updateWorldWeatherTicker();
       setInterval(updateWorldWeatherTicker, 30 * 60 * 1000);
+
+      spectrumNodes.forEach(initSpectrum);
+      spectrumRaf = window.requestAnimationFrame(animateSpectrums);
+
+      window.addEventListener('resize', function () {
+        window.clearTimeout(window.__boyingtonSpectrumResizeTimer);
+        window.__boyingtonSpectrumResizeTimer = window.setTimeout(refreshSpectrums, 150);
+      });
 
       if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
 
@@ -2131,9 +2352,8 @@
       let currentPlaylistIndex = -1;
       let widget = null;
       let readyAfterLoad = false;
-      let pendingAutoplay = false;
-      let pendingRandomizeTrack = false;
       let widgetInitTimer = null;
+      let pendingRandomizeTrack = false;
 
       function normalizeEntry(item) {
         if (!item || typeof item !== 'object') return null;
@@ -2158,7 +2378,6 @@
           const urlMatch = content.match(/URL\s*=\s*(.+)/i);
           const title = titleMatch ? titleMatch[1].trim() : '';
           const url = urlMatch ? urlMatch[1].trim() : '';
-
           if (url) entries.push({ title: title || 'Sans titre', url });
         });
 
@@ -2172,11 +2391,6 @@
         let index = randomBytes[0] % length;
         if (index === avoidIndex) index = (index + 1) % length;
         return index;
-      }
-
-      function isMobileDevice() {
-        const mobilePattern = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini|webOS|BlackBerry/i;
-        return mobilePattern.test(navigator.userAgent) || window.matchMedia('(max-width: 960px)').matches;
       }
 
       function buildPlayerUrl(playlistUrl) {
@@ -2203,14 +2417,11 @@
         widget.bind(SC.Widget.Events.READY, function () {
           if (readyAfterLoad) return;
           readyAfterLoad = true;
-
           if (pendingRandomizeTrack) {
             startRandomTrackInCurrentPlaylist();
           } else {
             widget.play();
           }
-
-          pendingAutoplay = false;
           pendingRandomizeTrack = false;
         });
 
@@ -2248,15 +2459,14 @@
         currentPlaylistIndex = safeIndex;
         const currentPlaylist = playlistPool[safeIndex];
 
-        pendingAutoplay = autoplay;
-        pendingRandomizeTrack = randomizeTrack;
-        readyAfterLoad = false;
-
         if (!widget || forceIframeReload) {
           iframe.src = buildPlayerUrl(currentPlaylist.url);
           reloadWidgetFromIframe();
           return;
         }
+
+        readyAfterLoad = false;
+        pendingRandomizeTrack = !!randomizeTrack;
 
         widget.load(currentPlaylist.url, {
           auto_play: autoplay,
@@ -2276,12 +2486,8 @@
         if (autoplay) {
           window.setTimeout(function () {
             if (!widget) return;
-            try {
-              widget.play();
-            } catch (error) {}
-            if (randomizeTrack) {
-              startRandomTrackInCurrentPlaylist();
-            }
+            try { widget.play(); } catch (_error) {}
+            if (randomizeTrack) startRandomTrackInCurrentPlaylist();
           }, isMobileDevice() ? 220 : 120);
         }
       }
@@ -2289,18 +2495,7 @@
       function playRandomPlaylist() {
         if (!playlistPool.length) return;
         const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-        const mobileFallback = isMobileDevice();
-        loadPlaylist(nextPlaylist, true, true, mobileFallback);
-
-        if (mobileFallback) {
-          window.setTimeout(function () {
-            if (!widget) return;
-            try {
-              widget.play();
-            } catch (error) {}
-            startRandomTrackInCurrentPlaylist();
-          }, 300);
-        }
+        loadPlaylist(nextPlaylist, true, true, isMobileDevice());
       }
 
       function playNextOrLoadAnotherPlaylist() {
@@ -2318,213 +2513,6 @@
             if (playlistPool.length > 1) {
               const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
               loadPlaylist(nextPlaylist, true, true, isMobileDevice());
-              return;
-            }
-
-            if (playlistPool.length === 1) {
-              loadPlaylist(0, true);
-            }
-          });
-        });
-      }
-
-      if (randomPlaylistBtn) {
-        randomPlaylistBtn.addEventListener('click', function () {
-          playRandomPlaylist();
-        });
-      }
-
-      fetch(PLAYLISTS_URL, { cache: 'no-store' })
-        .then(function (response) {
-          if (!response.ok) throw new Error('Impossible de charger playlists.txt');
-          return response.text();
-        })
-        .then(function (rawText) {
-          playlistPool = parsePlaylistText(rawText);
-          if (!playlistPool.length) return;
-
-          const initialPlaylistIndex = pickRandomIndex(playlistPool.length, -1);
-          currentPlaylistIndex = initialPlaylistIndex;
-          iframe.src = buildPlayerUrl(playlistPool[initialPlaylistIndex].url);
-          createWidget();
-          if (randomPlaylistBtn) randomPlaylistBtn.disabled = false;
-        })
-        .catch(function () {
-          return;
-        });
-    })();
-  </script>
-  <script>
-    (function () {
-      const PLAYER_IFRAME_ID = 'sc-player';
-      const PLAYLISTS_URL = 'playlists.txt';
-      const iframe = document.getElementById(PLAYER_IFRAME_ID);
-      const randomPlaylistBtn = document.getElementById('randomPlaylistBtn');
-      const clockEl = document.getElementById('boyingtonClock');
-      const heroClockEl = document.getElementById('heroRadioClock');
-      const heroDateEl = document.getElementById('heroRadioDate');
-
-      function updateClock() {
-        const now = new Date();
-        const timeText = new Intl.DateTimeFormat('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-        }).format(now);
-
-        const dateText = new Intl.DateTimeFormat('fr-FR', {
-          weekday: 'long',
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        }).format(now);
-
-        if (clockEl) clockEl.textContent = timeText;
-        if (heroClockEl) heroClockEl.textContent = timeText;
-        if (heroDateEl) heroDateEl.textContent = dateText;
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-
-      if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
-
-      let playlistPool = [];
-      let currentPlaylistIndex = -1;
-      let widget = null;
-      let readyAfterLoad = false;
-
-      function normalizeEntry(item) {
-        if (!item || typeof item !== 'object') return null;
-        const url = typeof item.url === 'string' ? item.url.trim() : '';
-        const title = (typeof item.title === 'string' && item.title.trim())
-          ? item.title.trim()
-          : (typeof item.titre === 'string' && item.titre.trim())
-            ? item.titre.trim()
-            : 'Sans titre';
-        if (!url) return null;
-        return { title, url };
-      }
-
-      function parsePlaylistText(rawText) {
-        const blocks = rawText.split(/\[PLAYLIST\]/i);
-        const entries = [];
-
-        blocks.forEach(function (block, index) {
-          if (index === 0) return;
-          const content = block.split(/\[\/PLAYLIST\]/i)[0] || '';
-          const titleMatch = content.match(/TITLE\s*=\s*(.+)/i) || content.match(/TITRE\s*=\s*(.+)/i);
-          const urlMatch = content.match(/URL\s*=\s*(.+)/i);
-          const title = titleMatch ? titleMatch[1].trim() : '';
-          const url = urlMatch ? urlMatch[1].trim() : '';
-
-          if (url) entries.push({ title: title || 'Sans titre', url });
-        });
-
-        return entries.map(normalizeEntry).filter(Boolean);
-      }
-
-      function pickRandomIndex(length, avoidIndex = -1) {
-        if (length <= 1) return 0;
-        const randomBytes = new Uint32Array(1);
-        (window.crypto || window.msCrypto).getRandomValues(randomBytes);
-        let index = randomBytes[0] % length;
-        if (index === avoidIndex) index = (index + 1) % length;
-        return index;
-      }
-
-      function buildPlayerUrl(playlistUrl) {
-        const encoded = encodeURIComponent(playlistUrl);
-        return 'https://w.soundcloud.com/player/?url=' + encoded + '&color=%23ff2e3f&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false';
-      }
-
-      function createWidget() {
-        if (widget) return widget;
-        widget = SC.Widget(iframe);
-
-        widget.bind(SC.Widget.Events.READY, function () {
-          if (!readyAfterLoad) {
-            readyAfterLoad = true;
-            startRandomTrackInCurrentPlaylist();
-          }
-        });
-
-        widget.bind(SC.Widget.Events.FINISH, function () {
-          playNextOrLoadAnotherPlaylist();
-        });
-
-        return widget;
-      }
-
-      function loadPlaylist(index, autoplay = true, randomizeTrack = autoplay) {
-        if (!playlistPool.length) return;
-
-        const safeIndex = Math.max(0, Math.min(index, playlistPool.length - 1));
-        currentPlaylistIndex = safeIndex;
-        const currentPlaylist = playlistPool[safeIndex];
-
-        if (!widget) {
-          iframe.src = buildPlayerUrl(currentPlaylist.url);
-          return;
-        }
-
-        readyAfterLoad = false;
-        widget.load(currentPlaylist.url, {
-          auto_play: autoplay,
-          color: '#ff2e3f',
-          buying: false,
-          sharing: false,
-          download: false,
-          show_artwork: true,
-          show_playcount: false,
-          show_user: false,
-          single_active: true,
-          show_comments: false,
-          show_reposts: false,
-          show_teaser: false
-        });
-
-        if (autoplay && randomizeTrack) {
-          window.setTimeout(function () {
-            startRandomTrackInCurrentPlaylist();
-          }, 1200);
-        }
-      }
-
-      function startRandomTrackInCurrentPlaylist() {
-        if (!widget) return;
-
-        widget.getSounds(function (sounds) {
-          const total = Array.isArray(sounds) ? sounds.length : 0;
-          if (!total) return;
-
-          const startIndex = pickRandomIndex(total, -1);
-          if (startIndex > 0) widget.skip(startIndex);
-          widget.play();
-        });
-      }
-
-      function playRandomPlaylist() {
-        if (!playlistPool.length) return;
-        const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-        loadPlaylist(nextPlaylist, true, true);
-      }
-
-      function playNextOrLoadAnotherPlaylist() {
-        if (!widget) return;
-
-        widget.getCurrentSoundIndex(function (index) {
-          widget.getSounds(function (sounds) {
-            const total = Array.isArray(sounds) ? sounds.length : 0;
-
-            if (total > 0 && typeof index === 'number' && index >= 0 && index < total - 1) {
-              widget.next();
-              return;
-            }
-
-            if (playlistPool.length > 1) {
-              const nextPlaylist = pickRandomIndex(playlistPool.length, currentPlaylistIndex);
-              loadPlaylist(nextPlaylist, true, true);
               return;
             }
 
