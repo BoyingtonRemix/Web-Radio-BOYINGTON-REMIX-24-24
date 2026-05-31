@@ -930,6 +930,75 @@
       min-height:250px;
     }
 
+    .eq-overlay{
+      position:absolute;
+      left:14px;
+      right:14px;
+      bottom:14px;
+      height:96px;
+      border-radius:18px;
+      overflow:hidden;
+      z-index:3;
+      pointer-events:none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 18%, rgba(0,0,0,.08) 35%, rgba(0,0,0,.42) 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 0 40px rgba(255,46,63,.10);
+    }
+    .eq-overlay::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,46,63,.20), transparent 42%),
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent 30%, rgba(0,0,0,.25) 100%);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .eq-overlay::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,0), rgba(0,0,0,.35));
+      pointer-events:none;
+    }
+    .eq-track{
+      position:absolute;
+      inset:12px 16px 16px;
+      display:flex;
+      align-items:flex-end;
+      gap:2px;
+      z-index:1;
+    }
+    .eq-bar{
+      flex:1 1 0;
+      min-width:2px;
+      border-radius:999px 999px 3px 3px;
+      transform-origin:bottom center;
+      background:
+        linear-gradient(180deg,
+          hsl(var(--eq-hue) 100% 78%) 0%,
+          hsl(var(--eq-hue) 100% 62%) 38%,
+          hsl(var(--eq-hue) 100% 50%) 100%);
+      box-shadow:
+        0 0 10px hsl(var(--eq-hue) 100% 60% / .55),
+        0 0 24px hsl(var(--eq-hue) 100% 55% / .18);
+      opacity:.96;
+      will-change:height,filter,transform,opacity;
+      transition:height 90ms linear, filter 90ms linear, opacity 90ms linear;
+    }
+    .eq-bar:nth-child(4n){
+      filter:saturate(1.15) brightness(1.05);
+    }
+    .eq-bar:nth-child(7n){
+      filter:saturate(1.35) brightness(1.1);
+    }
+
+
     .player-actions{
       display:flex;
       justify-content:center;
@@ -952,88 +1021,6 @@
       pointer-events:none;
       opacity:.8;
     }
-
-    .player-eq-visual{
-      position:absolute;
-      left:16px;
-      right:16px;
-      bottom:14px;
-      z-index:3;
-      pointer-events:none;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      padding:8px 8px 10px;
-      border-radius:20px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.02) 20%, rgba(0,0,0,.08) 100%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.45),
-        inset 0 -16px 24px rgba(0,0,0,.10),
-        0 10px 24px rgba(0,0,0,.10);
-      backdrop-filter:blur(3px) saturate(1.2);
-      -webkit-backdrop-filter:blur(3px) saturate(1.2);
-    }
-    .player-eq-track{
-      position:relative;
-      display:flex;
-      align-items:flex-end;
-      gap:2px;
-      width:100%;
-      min-height:54px;
-      height:54px;
-      padding:0 6px 2px;
-      overflow:hidden;
-      border-radius:16px;
-      background:
-        radial-gradient(circle at 50% 100%, rgba(255,255,255,.20), transparent 52%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.08));
-    }
-    .player-eq-track-main{
-      min-height:58px;
-      height:58px;
-      box-shadow:
-        inset 0 -10px 18px rgba(0,0,0,.12),
-        inset 0 1px 0 rgba(255,255,255,.08);
-    }
-    .player-eq-track-reflect{
-      min-height:22px;
-      height:22px;
-      opacity:.28;
-      transform:scaleY(-1);
-      filter:blur(.15px) saturate(.92);
-      mask-image:linear-gradient(180deg, rgba(0,0,0,.9), transparent 100%);
-      -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,.9), transparent 100%);
-    }
-    .player-eq-track::after{
-      content:"";
-      position:absolute;
-      left:8px;
-      right:8px;
-      bottom:2px;
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.72), transparent);
-      opacity:.45;
-      box-shadow:0 0 18px rgba(255,46,63,.42);
-    }
-    .player-eq-bar{
-      flex:1 1 0;
-      min-width:3px;
-      height:100%;
-      transform-origin:bottom center;
-      border-radius:999px 999px 4px 4px;
-      background:
-        linear-gradient(180deg,
-          hsl(var(--hue) 100% 78%) 0%,
-          hsl(var(--hue) 100% 68%) 38%,
-          hsl(var(--hue) 100% 56%) 100%);
-      box-shadow:
-        0 0 8px hsla(var(--hue) 100% 64% / .56),
-        0 0 18px hsla(var(--hue) 100% 58% / .30);
-      filter:saturate(1.65) brightness(1.05);
-      will-change:transform, opacity;
-    }
-
     iframe{
       display:block;
       width:100%;
@@ -1877,9 +1864,8 @@
                   allow="autoplay; encrypted-media"
                   src="about:blank"
                   title="SoundCloud player - Boyington Web Radio"></iframe>
-                <div class="player-eq-visual" aria-hidden="true">
-                  <div class="player-eq-track player-eq-track-main"></div>
-                  <div class="player-eq-track player-eq-track-reflect"></div>
+                <div class="eq-overlay" aria-hidden="true">
+                  <div class="eq-track" id="eqTrack"></div>
                 </div>
               </div>
             </div>
@@ -2210,6 +2196,87 @@
 
       updateWorldWeatherTicker();
       setInterval(updateWorldWeatherTicker, 30 * 60 * 1000);
+
+
+      const eqTrack = document.getElementById('eqTrack');
+      let eqBars = [];
+      let eqResizeTimer = null;
+      let eqAnimationFrame = null;
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function buildEqualizer() {
+        if (!eqTrack) return;
+
+        const count = window.matchMedia('(max-width: 640px)').matches
+          ? 112
+          : window.matchMedia('(max-width: 960px)').matches
+            ? 136
+            : 162;
+
+        eqTrack.innerHTML = '';
+        eqBars = [];
+
+        for (let i = 0; i < count; i += 1) {
+          const bar = document.createElement('span');
+          bar.className = 'eq-bar';
+          bar.style.setProperty('--eq-hue', String(Math.round((i / Math.max(count - 1, 1)) * 300)));
+          bar.style.height = `${8 + Math.round((i % 9) * 0.4)}%`;
+          bar.style.opacity = '0.82';
+          eqTrack.appendChild(bar);
+          eqBars.push(bar);
+        }
+      }
+
+      function animateEqualizer(now) {
+        if (!eqBars.length) {
+          eqAnimationFrame = window.requestAnimationFrame(animateEqualizer);
+          return;
+        }
+
+        const t = now * 0.00055; // deliberately slow, smooth motion
+        const count = eqBars.length;
+
+        for (let i = 0; i < count; i += 1) {
+          const bar = eqBars[i];
+          const phase = i * 0.19;
+
+          const waveA = (Math.sin(t + phase) + 1) / 2;
+          const waveB = (Math.sin(t * 0.62 + phase * 0.42 + 1.7) + 1) / 2;
+          const waveC = (Math.sin(t * 0.9 + phase * 1.6 + 0.9) + 1) / 2;
+          const waveD = (Math.sin(t * 0.35 + phase * 0.07) + 1) / 2;
+
+          const value = clamp(
+            0.10 + (waveA * 0.32) + (waveB * 0.24) + (waveC * 0.22) + (waveD * 0.12),
+            0.05,
+            1
+          );
+
+          const heightPct = 14 + (value * 74);
+          const glow = 0.55 + (value * 0.7);
+          const brightness = 0.92 + (value * 0.55);
+
+          bar.style.height = `${heightPct}%`;
+          bar.style.opacity = String(clamp(0.55 + value * 0.45, 0.55, 1));
+          bar.style.filter = `brightness(${brightness.toFixed(3)}) saturate(${(1.06 + value * 0.36).toFixed(3)})`;
+          bar.style.transform = `scaleY(${(0.95 + value * 0.08).toFixed(3)})`;
+          bar.style.boxShadow = `0 0 ${Math.round(10 + glow * 10)}px hsl(${bar.style.getPropertyValue('--eq-hue')} 100% 60% / .50), 0 0 ${Math.round(22 + glow * 18)}px hsl(${bar.style.getPropertyValue('--eq-hue')} 100% 55% / .16)`;
+        }
+
+        eqAnimationFrame = window.requestAnimationFrame(animateEqualizer);
+      }
+
+      buildEqualizer();
+      eqAnimationFrame = window.requestAnimationFrame(animateEqualizer);
+
+      window.addEventListener('resize', function () {
+        if (eqResizeTimer) window.clearTimeout(eqResizeTimer);
+        eqResizeTimer = window.setTimeout(function () {
+          buildEqualizer();
+        }, 180);
+      });
 
       if (!iframe || typeof SC === 'undefined' || !SC.Widget) return;
 
@@ -2647,95 +2714,5 @@
         });
     })();
   </script>
-
-  <script>
-    (function () {
-      const mainTrack = document.querySelector('.player-eq-track-main');
-      const reflectTrack = document.querySelector('.player-eq-track-reflect');
-      if (!mainTrack || !reflectTrack) return;
-
-      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let barPairs = [];
-      let resizeTimer = null;
-
-      function buildTrack(track, count) {
-        track.innerHTML = '';
-        const bars = [];
-        for (let i = 0; i < count; i += 1) {
-          const bar = document.createElement('span');
-          bar.className = 'player-eq-bar';
-          const hue = Math.round((i / Math.max(1, count - 1)) * 300);
-          bar.style.setProperty('--hue', String(hue));
-          bar.dataset.phase = String((i * 0.37) + (i % 7) * 0.11);
-          bar.dataset.speed = String(1.7 + ((i % 9) * 0.07));
-          track.appendChild(bar);
-          bars.push(bar);
-        }
-        return bars;
-      }
-
-      function buildBars() {
-        const width = Math.max(mainTrack.clientWidth, 800);
-        const count = Math.max(128, Math.min(180, Math.floor(width / 7)));
-        const mainBars = buildTrack(mainTrack, count);
-        const reflectBars = buildTrack(reflectTrack, count);
-        barPairs = mainBars.map((bar, index) => [bar, reflectBars[index]]);
-      }
-
-      function setBarState(bar, value) {
-        bar.style.transform = 'scaleY(' + value.toFixed(3) + ')';
-        bar.style.opacity = (0.60 + value * 0.40).toFixed(3);
-      }
-
-      function animate(ts) {
-        const t = ts * 0.001;
-        for (let i = 0; i < barPairs.length; i += 1) {
-          const pair = barPairs[i];
-          const mainBar = pair[0];
-          const reflectBar = pair[1];
-          const phase = Number(mainBar.dataset.phase || 0);
-          const speed = Number(mainBar.dataset.speed || 1.8);
-
-          const waveA = Math.abs(Math.sin(t * speed * 4.1 + phase));
-          const waveB = Math.abs(Math.sin(t * speed * 7.9 + phase * 1.72));
-          const waveC = Math.abs(Math.sin(t * speed * 13.7 + phase * 2.23));
-          const waveD = Math.abs(Math.sin(t * 22.0 + i * 0.51));
-
-          const value = Math.max(
-            0.08,
-            Math.min(1, (waveA * 0.42) + (waveB * 0.31) + (waveC * 0.21) + (waveD * 0.10))
-          );
-
-          setBarState(mainBar, value);
-          setBarState(reflectBar, Math.max(0.05, value * 0.85));
-        }
-
-        requestAnimationFrame(animate);
-      }
-
-      function rebuild() {
-        buildBars();
-      }
-
-      buildBars();
-
-      if (!prefersReducedMotion) {
-        requestAnimationFrame(animate);
-      } else {
-        for (let i = 0; i < barPairs.length; i += 1) {
-          const pair = barPairs[i];
-          const fallback = 0.22 + ((i % 11) / 18);
-          setBarState(pair[0], fallback);
-          setBarState(pair[1], Math.max(0.05, fallback * 0.85));
-        }
-      }
-
-      window.addEventListener('resize', function () {
-        window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(rebuild, 120);
-      }, { passive: true });
-    })();
-  </script>
-
 </body>
 </html>
