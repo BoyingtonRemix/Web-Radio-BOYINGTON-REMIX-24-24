@@ -89,10 +89,7 @@
       box-shadow:var(--shadow);
     }
 
-    /* ===============================================================
-   BLOC HEADER / TOPBAR
-   =============================================================== */
-.topbar{
+    .topbar{
       position:sticky;
       top:0;
       z-index:100;
@@ -208,10 +205,7 @@
       box-shadow:0 10px 25px rgba(0,0,0,.24);
     }
 
-    /* ===============================================================
-   BLOC HERO PRINCIPAL
-   =============================================================== */
-.hero{padding:22px 0 14px}
+    .hero{padding:22px 0 14px}
     .hero-grid{
       display:grid;
       grid-template-columns:1.08fr .92fr;
@@ -384,10 +378,7 @@
       background:rgba(255,46,63,.07);
     }
 
-    /* ===============================================================
-   BLOC HERO DROIT / HORLOGE
-   =============================================================== */
-.hero-side{
+    .hero-side{
       padding:16px;
       background:
         radial-gradient(circle at top right, rgba(255,46,63,.15), transparent 26%),
@@ -708,10 +699,7 @@
       line-height:1.6;
     }
 
-    /* ===============================================================
-   BLOC PLAYER OFFICIEL
-   =============================================================== */
-.player-wrap{
+    .player-wrap{
       padding:18px;
       background:
         radial-gradient(circle at 15% 50%, rgba(255,46,63,.08), transparent 22%),
@@ -991,58 +979,56 @@
       border:1px solid rgba(255,255,255,.05);
     }
 
-    /* ===================================================================
-   🧰 REPAIRS RAPIDES — ÉGALISEUR (ZONE PRIORITAIRE)
-   -------------------------------------------------------------------
-   BAR_COUNT        : nombre total de barres.
-   SPEED_MULTIPLIER : vitesse globale (1 = normal, 2 = 2x, etc.).
-   AMP_MIN          : hauteur minimale des barres.
-   AMP_MAX          : hauteur maximale des barres.
-   BAR_GAP          : espace entre les barres.
-   REFLECT_ALPHA    : intensité du reflet.
-   BAR_RADIUS       : rondeur des barres.
-   =================================================================== */
-    /* ===============================================================
-   BLOC ÉGALISEUR
-   =============================================================== */
-.player-eq-overlay{
+    
+    .player-eq-overlay{
       position:absolute;
       left:0;
       right:0;
       bottom:0;
-      height:112px;
-      padding:14px 18px 12px;
+      height:124px;
+      padding:12px 16px 12px;
       z-index:3;
       pointer-events:none;
+      overflow:hidden;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.28) 20%, rgba(255,255,255,.84) 62%, rgba(255,255,255,.98) 100%);
-      backdrop-filter:blur(3px) saturate(1.08);
-      -webkit-backdrop-filter:blur(3px) saturate(1.08);
+        linear-gradient(180deg,
+          rgba(255,255,255,0) 0%,
+          rgba(255,255,255,.30) 18%,
+          rgba(255,255,255,.86) 58%,
+          rgba(255,255,255,.98) 100%);
+      backdrop-filter:blur(3px) saturate(1.06);
+      -webkit-backdrop-filter:blur(3px) saturate(1.06);
       border-top:1px solid rgba(0,0,0,.04);
     }
     .player-eq-track{
       width:100%;
       height:100%;
-      display:grid;
-      grid-template-columns:repeat(160, minmax(0, 1fr));
+      display:flex;
+      flex-wrap:nowrap;
+      align-items:flex-end;
       gap:2px;
-      align-items:end;
+      overflow:hidden;
       transform:translateZ(0);
     }
     .player-eq-bar{
+      flex:0 0 4px;
+      width:4px;
+      min-width:4px;
       position:relative;
-      align-self:end;
-      height:14%;
+      align-self:flex-end;
+      height:12%;
       border-radius:999px 999px 4px 4px;
-      background:linear-gradient(180deg, var(--bar-top, rgba(60,60,60,.96)) 0%, var(--bar-mid, rgba(25,25,25,.96)) 62%, var(--bar-bottom, rgba(10,10,10,.98)) 100%);
+      background:linear-gradient(180deg,
+        var(--bar-top, rgba(255,255,255,.98)) 0%,
+        var(--bar-mid, rgba(200,200,200,.98)) 58%,
+        var(--bar-bottom, rgba(120,120,120,.98)) 100%);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.12),
-        0 0 6px rgba(0,0,0,.15),
-        0 0 12px var(--bar-glow, rgba(0,0,0,.18));
+        inset 0 1px 0 rgba(255,255,255,.18),
+        0 0 8px var(--bar-glow, rgba(255,255,255,.35)),
+        0 0 18px var(--bar-glow, rgba(255,255,255,.18));
       transform-origin:bottom center;
-      will-change:height, filter, opacity;
+      will-change:height, transform, filter, opacity;
       opacity:.98;
-      min-height:4px;
     }
     .player-eq-bar::after{
       content:"";
@@ -1050,17 +1036,21 @@
       left:0;
       right:0;
       top:0;
-      height:40%;
+      height:38%;
       border-radius:inherit;
-      background:linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+      background:linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,0));
       pointer-events:none;
-      opacity:.65;
+      opacity:.70;
+      filter:blur(1px);
     }
 
-    /* ===============================================================
-   BLOC VISUELS
-   =============================================================== */
-.gallery-grid{
+
+
+    .player-eq-track, .player-eq-overlay{
+      max-width:100%;
+    }
+
+    .gallery-grid{
       display:grid;
       grid-template-columns:repeat(4, minmax(0, 1fr));
       gap:14px;
@@ -1114,10 +1104,7 @@
     }
     .pager span:first-child{background:var(--red)}
 
-    /* ===============================================================
-   BLOC RÉSEAU MONDIAL
-   =============================================================== */
-.matrix-wrap{
+    .matrix-wrap{
       padding:18px;
       background:
         radial-gradient(circle at 20% 20%, rgba(255,46,63,.08), transparent 18%),
@@ -1320,10 +1307,7 @@
       font-size:.82rem;
     }
 
-    /* ===============================================================
-   BLOC RÉSEAUX SOCIAUX
-   =============================================================== */
-.social-grid{
+    .social-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
       gap:14px;
@@ -1475,10 +1459,7 @@
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
     }
 
-    /* ===============================================================
-   BLOC FOOTER
-   =============================================================== */
-.footer{
+    .footer{
       padding:18px 0 24px;
       color:var(--muted);
     }
@@ -1744,27 +1725,6 @@
 </style>
 </head>
 <body>
-<!-- ================================================================ -->
-<!--  BOYINGTON WEB RADIO 6 — MARQUEURS ULTRA VISIBLES                -->
-<!--                                                                 -->
-<!--  01  FOND GÉNÉRAL DE PAGE                                         -->
-<!--  02  TOPBAR / HEADER                                              -->
-<!--  03  HERO PRINCIPAL                                               -->
-<!--  04  HERO DROIT / HORLOGE LIVE                                   -->
-<!--  05  PLAYER OFFICIEL                                             -->
-<!--  06  ÉGALISEUR DANS LA SURFACE BLANCHE DU PLAYER                 -->
-<!--  07  REPAIRS RAPIDES ÉGALISEUR                                   -->
-<!--  08  VISUELS STUDIO                                              -->
-<!--  09  RÉSEAU MONDIAL                                             -->
-<!--  10  LIENS OFFICIELS / RÉSEAUX SOCIAUX                           -->
-<!--  11  FOOTER / BAS DE PAGE                                        -->
-<!--  12  JAVASCRIPT GÉNÉRAL / HORLOGE / PLAYLIST / ÉGALISEUR        -->
-<!--                                                                 -->
-<!--  Lecture rapide :                                                 -->
-<!--  - Chaque bloc est séparé par de grandes barres de repérage.      -->
-<!--  - Les réglages de l’égaliseur sont visibles dans le CSS/JS.      -->
-<!--  - Le player SoundCloud reste verrouillé.                         -->
-<!-- ================================================================ -->
   <div class="shell">
     <header class="topbar">
       <div class="container topbar-inner">
@@ -1802,12 +1762,7 @@
     </header>
 
     <main>
-      <!-- ================================================================ -->
-<!-- 🔴 01 — FOND GÉNÉRAL DE PAGE + HERO PRINCIPAL                      -->
-<!--     Début de la grande zone d’accueil : fond, image, titre,         -->
-<!--     badges live, stats et boutons d’action.                          -->
-<!-- ================================================================ -->
-<section id="accueil" class="hero">
+      <section id="accueil" class="hero">
         <div class="container hero-grid">
           <article class="panel hero-panel">
             <div class="hero-overlay"></div>
@@ -1885,12 +1840,7 @@
         </div>
       </section>
 
-      <!-- ================================================================ -->
-<!-- 🟠 02 — PLAYER OFFICIEL                                             -->
-<!--     Micro vidéo à gauche + iframe SoundCloud à droite.               -->
-<!--     Le bouton PLAYLIST ALÉATOIRE reste sous le player.              -->
-<!-- ================================================================ -->
-<section id="player" class="section">
+      <section id="player" class="section">
         <div class="container">
           <div class="section-head">
             <div>
@@ -1916,12 +1866,6 @@
                   allow="autoplay; encrypted-media"
                   src="about:blank"
                   title="SoundCloud player - Boyington Web Radio"></iframe>
-                <!-- REPAIR EQ: zone rapide à ajuster
-                 - changer le nombre de barres via BAR_COUNT
-                 - accélérer via SPEED_MULTIPLIER
-                 - assombrir via la palette JS
-                 - réduire le reflet via REFLECT_ALPHA
-            -->
                 <div class="player-eq-overlay" aria-hidden="true">
                   <div class="player-eq-track" id="boyingtonEqTrack"></div>
                 </div>
@@ -1937,11 +1881,7 @@
         </div>
       </section>
 
-      <!-- ================================================================ -->
-<!-- 🟡 03 — VISUELS STUDIO                                              -->
-<!--     Galerie d’images et de vidéos du dépôt GitHub.                  -->
-<!-- ================================================================ -->
-<section id="visuels" class="section">
+      <section id="visuels" class="section">
         <div class="container">
           <div class="section-head">
             <div>
@@ -1989,11 +1929,7 @@
         </div>
       </section>
 
-      <!-- ================================================================ -->
-<!-- 🟢 04 — RÉSEAU MONDIAL                                              -->
-<!--     Carte / vidéo / météo / flux international.                     -->
-<!-- ================================================================ -->
-<section id="matrix" class="section">
+      <section id="matrix" class="section">
         <div class="container">
           <div class="section-head">
             <div>
@@ -2064,11 +2000,7 @@
         </div>
       </section>
 
-      <!-- ================================================================ -->
-<!-- 🔵 05 — LIENS OFFICIELS / RÉSEAUX SOCIAUX                           -->
-<!--     Cartes de liens officiels, format glass rouge.                  -->
-<!-- ================================================================ -->
-<section id="reseaux" class="section">
+      <section id="reseaux" class="section">
         <div class="container">
           <div class="section-head">
             <div>
@@ -2147,11 +2079,7 @@
       </section>
 </main>
 
-    <!-- ================================================================ -->
-<!-- 🟣 06 — FOOTER / BAS DE PAGE                                        -->
-<!--     Logo final, mentions légales, identité et signature.             -->
-<!-- ================================================================ -->
-<footer id="footer" class="footer">      <div class="container">
+    <footer id="footer" class="footer">      <div class="container">
         <div class="gold-line"></div>
         
 <div class="footer-panel footer-centered">
@@ -2706,168 +2634,147 @@
           return;
         });
     })();
-      (/* ===================================================================
-   🎛️ JAVASCRIPT ÉGALISEUR — RÉGLAGES VISIBLES
-   -------------------------------------------------------------------
-   - Ici on règle la vitesse.
-   - Ici on règle l’amplitude.
-   - Ici on règle le nombre de barres.
-   - Ici on règle la fluidité.
-   =================================================================== */
-    function initBoyingtonSurfaceEqualizer() {
-        const track = document.getElementById('boyingtonEqTrack');
-        if (!track) return;
+      
+    (function initBoyingtonSurfaceEqualizer() {
+      const track = document.getElementById('boyingtonEqTrack');
+      if (!track) return;
 
-        /* =========================================================
-           BOYINGTON RADIO — REPAIRS RAPIDES (ÉGALISEUR)
-           ---------------------------------------------------------
-           1) BAR_COUNT          : plus haut = plus de barres.
-           2) SPEED_MULTIPLIER   : plus haut = animation plus rapide.
-           3) SMOOTHING         : plus bas = plus nerveux / plus vif.
-           4) AMP_MIN / AMP_MAX : plus haut = barres qui montent plus.
-           5) REFLECT_ALPHA     : plus haut = reflet plus visible.
-           6) Palette           : ici pour foncer / éclaircir les barres.
-           Astuce rapide :
-             - vitesse trop lente  -> augmente SPEED_MULTIPLIER
-             - barres trop basses  -> augmente AMP_MAX
-             - effet figé          -> baisse SMOOTHING
-             - trop peu dense      -> augmente BAR_COUNT
-           ========================================================= */
+      /* ===============================================================
+         REPAIRS RAPIDES — ÉGALISEUR
+         - BAR_COUNT        : densité des barres
+         - FRAME_MS         : vitesse de mise à jour
+         - AMP_MIN / AMP_MAX: plage des hauteurs
+         - WAVE_SPEED       : vitesse de variation
+         - REFLECT_ALPHA    : reflet visuel
+         =============================================================== */
+      const BAR_COUNT = 128;
+      const FRAME_MS = 42;
+      const AMP_MIN = 18;
+      const AMP_MAX = 100;
+      const WAVE_SPEED = 1.65;
+      const REFLECT_ALPHA = 0.34;
 
-        const EQ_CONFIG = {
-          BAR_COUNT: 180,
-          SPEED_MULTIPLIER: 2.35,
-          SMOOTHING: 0.56,
-          AMP_MIN: 0.46,
-          AMP_MAX: 0.88,
-          BASE_MIN: 0.06,
-          BASE_MAX: 0.20,
-          WANDER_MIN: 0.22,
-          WANDER_MAX: 1.00,
-          MIN_HEIGHT: 0.08,
-          MAX_HEIGHT: 1.00,
-          REFLECT_ALPHA: 0.16
-        };
+      const bars = [];
+      const palette = [
+        [255, 0, 110],   // fluo rose
+        [255, 23, 68],   // rouge néon
+        [255, 69, 0],    // orange
+        [255, 204, 0],   // jaune
+        [182, 255, 0],   // lime
+        [0, 255, 102],   // vert fluo
+        [0, 255, 213],   // cyan
+        [0, 183, 255],   // bleu clair
+        [0, 76, 255],    // bleu électrique
+        [122, 0, 255],   // violet
+        [255, 0, 255],   // magenta
+        [255, 96, 176]   // rose doux
+      ];
 
-        const bars = [];
-        const palette = [
-          [74, 18, 18],    // deep red
-          [108, 34, 18],   // ember
-          [140, 64, 20],   // copper
-          [160, 118, 18],  // amber
-          [128, 150, 24],  // yellow-green
-          [54, 140, 48],   // green
-          [20, 150, 120],  // teal
-          [22, 112, 190],  // blue
-          [78, 78, 212],   // indigo
-          [120, 54, 192],  // violet
-          [164, 48, 170],  // magenta
-          [180, 46, 92]    // rose
-        ];
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const lerp = (a, b, t) => a + (b - a) * t;
 
-        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      function colorAt(i) {
+        const t = i / Math.max(1, BAR_COUNT - 1);
+        const segment = t * (palette.length - 1);
+        const idx = Math.floor(segment);
+        const frac = segment - idx;
+        const a = palette[idx];
+        const b = palette[Math.min(idx + 1, palette.length - 1)];
 
-        function lerp(a, b, t) {
-          return a + (b - a) * t;
+        const r = Math.round(lerp(a[0], b[0], frac));
+        const g = Math.round(lerp(a[1], b[1], frac));
+        const bl = Math.round(lerp(a[2], b[2], frac));
+
+        const top = `rgba(${Math.min(255, Math.round(r * 1.08))}, ${Math.min(255, Math.round(g * 1.08))}, ${Math.min(255, Math.round(bl * 1.08))}, .99)`;
+        const mid = `rgba(${Math.round(r * .92)}, ${Math.round(g * .92)}, ${Math.round(bl * .92)}, .99)`;
+        const bottom = `rgba(${Math.round(r * .62)}, ${Math.round(g * .62)}, ${Math.round(bl * .62)}, .99)`;
+        const glow = `rgba(${r}, ${g}, ${bl}, ${REFLECT_ALPHA})`;
+        return { top, mid, bottom, glow };
+      }
+
+      function createBars() {
+        track.innerHTML = '';
+        bars.length = 0;
+
+        for (let i = 0; i < BAR_COUNT; i++) {
+          const bar = document.createElement('span');
+          bar.className = 'player-eq-bar';
+          const c = colorAt(i);
+          bar.style.setProperty('--bar-top', c.top);
+          bar.style.setProperty('--bar-mid', c.mid);
+          bar.style.setProperty('--bar-bottom', c.bottom);
+          bar.style.setProperty('--bar-glow', c.glow);
+          bar.dataset.phase = (Math.random() * Math.PI * 2).toFixed(6);
+          bar.dataset.speed = (0.65 + Math.random() * 1.55).toFixed(6);
+          bar.dataset.base = (0.10 + Math.random() * 0.16).toFixed(6);
+          bar.dataset.amp = (0.46 + Math.random() * 0.42).toFixed(6);
+          bar.dataset.current = bar.dataset.base;
+          bar.dataset.swell = (0.35 + Math.random() * 0.60).toFixed(6);
+
+          const startH = clamp(
+            AMP_MIN + (Math.random() * (AMP_MAX - AMP_MIN)),
+            AMP_MIN,
+            AMP_MAX
+          );
+          bar.style.height = `${startH}%`;
+          track.appendChild(bar);
+          bars.push(bar);
         }
+      }
 
-        function colorAt(i) {
-          const t = i / Math.max(1, EQ_CONFIG.BAR_COUNT - 1);
-          const segment = t * (palette.length - 1);
-          const idx = Math.floor(segment);
-          const frac = segment - idx;
-          const a = palette[idx];
-          const b = palette[Math.min(idx + 1, palette.length - 1)];
-          const r = Math.round(lerp(a[0], b[0], frac));
-          const g = Math.round(lerp(a[1], b[1], frac));
-          const bch = Math.round(lerp(a[2], b[2], frac));
+      let lastTs = 0;
+      let rafId = 0;
 
-          return {
-            top: `rgba(${Math.round(r * 1.06)}, ${Math.round(g * 1.06)}, ${Math.round(bch * 1.06)}, .96)`,
-            mid: `rgba(${Math.round(r * .82)}, ${Math.round(g * .82)}, ${Math.round(bch * .82)}, .98)`,
-            bottom: `rgba(${Math.round(r * .54)}, ${Math.round(g * .54)}, ${Math.round(bch * .54)}, .98)`,
-            glow: `rgba(${Math.round(r * .95)}, ${Math.round(g * .95)}, ${Math.round(bch * .95)}, ${EQ_CONFIG.REFLECT_ALPHA})`
-          };
-        }
+      function animate(ts) {
+        if (!lastTs) lastTs = ts;
+        const delta = ts - lastTs;
 
-        function createBars() {
-          track.innerHTML = '';
-          bars.length = 0;
+        if (delta >= FRAME_MS) {
+          lastTs = ts;
 
-          for (let i = 0; i < EQ_CONFIG.BAR_COUNT; i += 1) {
-            const bar = document.createElement('span');
-            bar.className = 'player-eq-bar';
-
-            const colors = colorAt(i);
-            bar.style.setProperty('--bar-top', colors.top);
-            bar.style.setProperty('--bar-mid', colors.mid);
-            bar.style.setProperty('--bar-bottom', colors.bottom);
-            bar.style.setProperty('--bar-glow', colors.glow);
-
-            const phase = (Math.random() * Math.PI * 2).toFixed(5);
-            const speed = (0.95 + Math.random() * 3.10).toFixed(5);
-            const base = (EQ_CONFIG.BASE_MIN + Math.random() * EQ_CONFIG.BASE_MAX).toFixed(5);
-            const amp = (EQ_CONFIG.AMP_MIN + Math.random() * (EQ_CONFIG.AMP_MAX - EQ_CONFIG.AMP_MIN)).toFixed(5);
-            const wander = (EQ_CONFIG.WANDER_MIN + Math.random() * (EQ_CONFIG.WANDER_MAX - EQ_CONFIG.WANDER_MIN)).toFixed(5);
-
-            bar.dataset.phase = phase;
-            bar.dataset.speed = speed;
-            bar.dataset.base = base;
-            bar.dataset.amp = amp;
-            bar.dataset.current = (0.12 + Math.random() * 0.28).toFixed(5);
-            bar.dataset.wander = wander;
-
-            const current = parseFloat(bar.dataset.current);
-            bar.style.height = `${clamp(8 + current * 82, 8, 96)}%`;
-
-            track.appendChild(bar);
-            bars.push(bar);
-          }
-        }
-
-        function animate(now) {
-          const t = (now / 1000) * EQ_CONFIG.SPEED_MULTIPLIER;
-
-          for (let i = 0; i < bars.length; i += 1) {
+          const time = ts * 0.001;
+          for (let i = 0; i < bars.length; i++) {
             const bar = bars[i];
             const phase = parseFloat(bar.dataset.phase);
             const speed = parseFloat(bar.dataset.speed);
             const base = parseFloat(bar.dataset.base);
             const amp = parseFloat(bar.dataset.amp);
-            const wander = parseFloat(bar.dataset.wander);
+            const swell = parseFloat(bar.dataset.swell);
 
-            const wave1 = Math.sin(t * speed + phase);
-            const wave2 = Math.sin(t * (speed * 0.51) + phase * 1.31 + i * 0.09);
-            const wave3 = Math.sin(t * (speed * 1.37) + phase * 0.27 + i * 0.03);
-            const pulse = Math.max(0, Math.sin(t * (2.8 + wander) + phase * 2.0 + i * 0.11));
-            const spike = Math.pow(pulse, 5.0);
+            const waveA = Math.sin((time * WAVE_SPEED * speed) + phase);
+            const waveB = Math.sin((time * (WAVE_SPEED * 0.62) * (1.1 + (i % 7) * 0.05)) + phase * 1.7);
+            const waveC = Math.cos((time * (WAVE_SPEED * 1.38) * (0.9 + (i % 11) * 0.03)) + phase * 0.8);
 
-            const target = clamp(
-              base + amp * (0.42 * wave1 + 0.28 * wave2 + 0.18 * wave3 + 0.70) + spike * 0.28,
-              EQ_CONFIG.MIN_HEIGHT,
-              EQ_CONFIG.MAX_HEIGHT
+            const burst = Math.abs(waveA * 0.55 + waveB * 0.30 + waveC * 0.15);
+            const peak = Math.pow(burst, 1.28);
+            const floor = base * 0.26;
+            const height = clamp(
+              (AMP_MIN + (AMP_MAX - AMP_MIN) * (floor + peak * amp * 0.88 + swell * 0.06)),
+              AMP_MIN * 0.8,
+              AMP_MAX
             );
 
-            const current = parseFloat(bar.dataset.current);
-            const next = current + (target - current) * EQ_CONFIG.SMOOTHING;
-            bar.dataset.current = next.toFixed(5);
-
-            const pct = clamp(8 + next * 92, 8, 100);
-            bar.style.height = `${pct}%`;
-            bar.style.opacity = `${0.82 + next * 0.18}`;
+            bar.style.height = `${height}%`;
+            bar.style.opacity = String(0.82 + peak * 0.18);
+            bar.style.transform = `translateY(${Math.max(0, (1 - peak) * 0.25)}px) scaleY(${1 + peak * 0.12})`;
+            bar.style.filter = `saturate(${1.15 + peak * 0.65}) brightness(${1 + peak * 0.35})`;
           }
-
-          requestAnimationFrame(animate);
         }
 
-        createBars();
-        requestAnimationFrame(animate);
+        rafId = window.requestAnimationFrame(animate);
+      }
 
-        window.addEventListener('resize', () => {
-          track.style.gridTemplateColumns = `repeat(${EQ_CONFIG.BAR_COUNT}, minmax(0, 1fr))`;
-        }, { passive: true });
-      })();
+      createBars();
+      rafId = window.requestAnimationFrame(animate);
 
-  </script>
+      window.addEventListener('resize', function () {
+        // keep a single line: recreate only if the overlay width changes materially
+        // (no wrap, no second row)
+        const shouldRebuild = track.children.length !== BAR_COUNT;
+        if (shouldRebuild) createBars();
+      }, { passive: true });
+    })();
+
+</script>
 </body>
 </html>
