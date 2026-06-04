@@ -134,6 +134,11 @@ TITLE=Playlist 21 Non-Stop Soul Groove 2
 URL=https://soundcloud.com/boyingtonremix/playlist-21-non-stop-soul
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=BRACKA....Allez! Allez! OH-OH (Remix original) par Boyington Remix
+URL=https://soundcloud.com/boyingtonremix/bracka-allez-allez-oh-oh
+[/PLAYLIST]
+
 
 
 
