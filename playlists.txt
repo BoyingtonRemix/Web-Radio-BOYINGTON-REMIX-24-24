@@ -139,6 +139,11 @@ TITLE=BRACKA....Allez! Allez! OH-OH (Remix original) par Boyington Remix
 URL=https://soundcloud.com/boyingtonremix/bracka-allez-allez-oh-oh
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Playlist 22 Remix Funky Disco
+URL=https://soundcloud.com/boyingtonremix/playlist-22-remix-funky-disco
+[/PLAYLIST]
+
 
 
 
