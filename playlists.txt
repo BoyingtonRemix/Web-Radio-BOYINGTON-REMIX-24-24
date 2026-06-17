@@ -144,6 +144,10 @@ TITLE=Playlist 22 Remix Funky Disco
 URL=https://soundcloud.com/boyingtonremix/playlist-22-remix-funky-disco
 [/PLAYLIST]
 
+[PLAYLIST]
+TITLE=Bop-biggi-di-bop (Remix original) par Boyington Remix
+URL=https://soundcloud.com/boyingtonremix/bop-biggi-di-bop-original-mix
+[/PLAYLIST]
 
 
 
