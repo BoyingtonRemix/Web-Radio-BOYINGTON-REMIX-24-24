@@ -150,9 +150,8 @@ URL=https://soundcloud.com/boyingtonremix/bop-biggi-di-bop-original-mix
 [/PLAYLIST]
 
 
-
 [PLAYLIST]
-TITLE=Mostacho (Remix original) par Boyington Remix (Remasterisé)
+TITLE=Mostacho (Original Mix) by Boyington Remix (Remastered)
 URL=https://soundcloud.com/boyingtonremix/mostacho-original-mix
 [PLAYLIST]
 
