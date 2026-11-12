@@ -155,8 +155,8 @@ TITLE=Mostacho (Original Mix) by Boyington Remix (Remastered)
 URL=https://soundcloud.com/boyingtonremix/mostacho-original-mix
 
 [PLAYLIST]
-TITLE=
-URL=
+TITLE=Dans mon coeur Gitan By Boyington Remix
+URL=https://soundcloud.com/boyingtonremix/dans-mon-coeur-gitan
 [/PLAYLIST]
 
 [PLAYLIST]
