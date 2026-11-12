@@ -145,8 +145,8 @@ URL=https://soundcloud.com/boyingtonremix/playlist-22-remix-funky-disco
 [/PLAYLIST]
 
 [PLAYLIST]
-TITLE=Bop-biggi-di-bop (Remix original) par Boyington Remix
-URL=https://soundcloud.com/boyingtonremix/bop-biggi-di-bop-original-mix
+TITLE=Dans mon coeur Gitan By Boyington Remix
+URL=https://soundcloud.com/boyingtonremix/dans-mon-coeur-gitan
 [/PLAYLIST]
 
 
@@ -155,10 +155,6 @@ TITLE=Mostacho (Original Mix) by Boyington Remix (Remastered)
 URL=https://soundcloud.com/boyingtonremix/mostacho-original-mix
 [PLAYLIST]
 
-[PLAYLIST]
-TITLE=Dans mon coeur Gitan By Boyington Remix
-URL=https://soundcloud.com/boyingtonremix/dans-mon-coeur-gitan
-[/PLAYLIST]
 
 [PLAYLIST]
 TITLE=LET ME GO (Original Mix) (Roots Reggae) By Boyington
