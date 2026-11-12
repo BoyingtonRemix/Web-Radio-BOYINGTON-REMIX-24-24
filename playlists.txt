@@ -161,8 +161,8 @@ URL=https://soundcloud.com/boyingtonremix/dans-mon-coeur-gitan
 [/PLAYLIST]
 
 [PLAYLIST]
-TITLE=
-URL=
+TITLE=LET ME GO (Original Mix) (Roots Reggae) By Boyington
+URL=https://soundcloud.com/boyingtonremix/let-me-go-original-mix
 [/PLAYLIST]
 
 [PLAYLIST]
